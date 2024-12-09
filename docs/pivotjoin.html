@@ -234,7 +234,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </blockquote>
 <p>We are going to investigate this dataset and summarize it using Great Tables. Great Tables is a python package which implements “grammar of tables”, so in many respects it is similar in spirit to plotnine, in a sense that it attempts to develop a consistent API around production of tables making it very easy to produce nice looking summaries form data in table form. The main function in Great Tables is <code>GT()</code>. It takes data argument and many other useful options. We can use .pipe to pass the data into it.</p>
 <p>In the code example provided to you in the notebook you can see the code for importing the data, as well as the dataframe containing the data dictionary for this dataset. The data frame is specified via a dictionary denoted with curly braces <code>{}</code>. Dictionaries are widely used in Python for passing “key-value” pairs.</p>
-<div id="d8fe5900" class="cell" data-execution_count="2">
+<div id="b833b17a" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plastics_df <span class="op">=</span> pl.read_csv(<span class="st">"bffp/BFFplastics.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plastics_docs <span class="op">=</span> pl.DataFrame({</span>
@@ -477,7 +477,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </div>
 <p>There are many missing values in this data. The year column covers 2019 and 2020. The different plastics types exibit different degrees of missingness.</p>
 <p>First have a look at the data</p>
-<div id="4d781a5d" class="cell" data-execution_count="3">
+<div id="fc86cefb" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plastics_df</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plastics_df.<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>).is_null())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -735,7 +735,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </div>
 <p>Look at the very first row. The <code>parent_company</code> is Grand Total. It seems like this line contains the totals for Argentinian records for 2019.</p>
 <p>However, for year 2020, the rows with totals per country are not marked with “Grand Total”, but rather are populated with the missing value</p>
-<div id="7d61d75a" class="cell" data-execution_count="4">
+<div id="102d1299" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(plastics_df</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"year"</span>)<span class="op">==</span><span class="dv">2020</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -992,7 +992,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </div>
 <p>Before we dive deeper into analyzing top contributors to plastic waste, lets look at the totals per country. We now have two options. We could populate the rows containing the totals with the phrase “Grand Total” and then use it to filter. This assumes that totals are calculated properly for all countries. We will basically disregard the majority of the dataset and rely on few rows that have been pre-computed for us.</p>
 <p>An alternative strategy could be to drop all rows with invalid company name (marked with either “Grand Total” or left missing “null”) and recompute totals by hand for each of the count columns.</p>
-<div id="fc38af88" class="cell" data-execution_count="5">
+<div id="b67c3509" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plastics_totals <span class="op">=</span> (plastics_df</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"grand_total"</span>, <span class="st">"num_events"</span>, <span class="st">"volunteers"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>((pl.col(<span class="st">"parent_company"</span>)<span class="op">!=</span><span class="st">"Grand Total"</span>),</span>
@@ -1001,7 +1001,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    .agg(pl.exclude(<span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"parent_company"</span>).drop_nulls().<span class="bu">sum</span>())</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f5ebcd6c" class="cell" data-execution_count="6">
+<div id="2d000672" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LEFT AS AN EXERCISE FOR THE USER</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># fill the missing values in the parent_company column with the phrase "Grand Total". </span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Since the parent company column is no longer informative, we can drop it.</span></span>
@@ -1037,7 +1037,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We do have <code>grand_total</code> column which seems to be a sum of columns <code>empty:pvc</code> describing counts for different type of plastic. Let’s say our goal is to make a chart describing the composition of trash by plastic type in different countries. In order to calculate proportions as we did previously, we need to have multiple observations for each country, one for each plastic type. Then we will calculate proportion over the country (and year).</p>
-<div id="6512dc8e" class="cell" data-execution_count="7">
+<div id="f516b365" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plastics_long_df <span class="op">=</span> (plastics_df</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"grand_total"</span>, <span class="st">"num_events"</span>, <span class="st">"volunteers"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(pl.col(<span class="st">"parent_company"</span>).fill_null(<span class="st">"Grand Total"</span>))</span>
@@ -1050,7 +1050,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># In `.unpivot()` the `on` argument is optional. Everything other than index</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pivot is making the data wider</p>
-<div id="866c691f" class="cell" data-execution_count="8">
+<div id="c4f9cfb3" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(plastics_long_df</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    .pivot(on<span class="op">=</span><span class="st">"year"</span>, values<span class="op">=</span><span class="st">"quantity"</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    )</span>
@@ -1152,7 +1152,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </div>
 </div>
 </div>
-<div id="27b32af3" class="cell" data-execution_count="9">
+<div id="3defa244" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(plastics_long_df</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    .pivot(on<span class="op">=</span><span class="st">"year"</span>, index<span class="op">=</span><span class="st">"country"</span>, values<span class="op">=</span><span class="st">"quantity"</span>, aggregate_function<span class="op">=</span><span class="st">'sum'</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    )</span>
@@ -1177,52 +1177,52 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
-<div id="uzevvmqevw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="daplejfxak" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>
-#uzevvmqevw table {
+#daplejfxak table {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
 
-#uzevvmqevw thead, tbody, tfoot, tr, td, th { border-style: none; }
+#daplejfxak thead, tbody, tfoot, tr, td, th { border-style: none; }
  tr { background-color: transparent; }
-#uzevvmqevw p { margin: 0; padding: 0; }
- #uzevvmqevw .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
- #uzevvmqevw .gt_caption { padding-top: 4px; padding-bottom: 4px; }
- #uzevvmqevw .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
- #uzevvmqevw .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
- #uzevvmqevw .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #uzevvmqevw .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
- #uzevvmqevw .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #uzevvmqevw .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
- #uzevvmqevw .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
- #uzevvmqevw .gt_column_spanner_outer:first-child { padding-left: 0; }
- #uzevvmqevw .gt_column_spanner_outer:last-child { padding-right: 0; }
- #uzevvmqevw .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
- #uzevvmqevw .gt_spanner_row { border-bottom-style: hidden; }
- #uzevvmqevw .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
- #uzevvmqevw .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
- #uzevvmqevw .gt_from_md> :first-child { margin-top: 0; }
- #uzevvmqevw .gt_from_md> :last-child { margin-bottom: 0; }
- #uzevvmqevw .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
- #uzevvmqevw .gt_stub { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
- #uzevvmqevw .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
- #uzevvmqevw .gt_row_group_first td { border-top-width: 2px; }
- #uzevvmqevw .gt_row_group_first th { border-top-width: 2px; }
- #uzevvmqevw .gt_striped { background-color: rgba(128,128,128,0.05); }
- #uzevvmqevw .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
- #uzevvmqevw .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
- #uzevvmqevw .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
- #uzevvmqevw .gt_left { text-align: left; }
- #uzevvmqevw .gt_center { text-align: center; }
- #uzevvmqevw .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
- #uzevvmqevw .gt_font_normal { font-weight: normal; }
- #uzevvmqevw .gt_font_bold { font-weight: bold; }
- #uzevvmqevw .gt_font_italic { font-style: italic; }
- #uzevvmqevw .gt_super { font-size: 65%; }
- #uzevvmqevw .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
- #uzevvmqevw .gt_asterisk { font-size: 100%; vertical-align: 0; }
+#daplejfxak p { margin: 0; padding: 0; }
+ #daplejfxak .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #daplejfxak .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #daplejfxak .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
+ #daplejfxak .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
+ #daplejfxak .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #daplejfxak .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #daplejfxak .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #daplejfxak .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #daplejfxak .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #daplejfxak .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #daplejfxak .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #daplejfxak .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #daplejfxak .gt_spanner_row { border-bottom-style: hidden; }
+ #daplejfxak .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #daplejfxak .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
+ #daplejfxak .gt_from_md> :first-child { margin-top: 0; }
+ #daplejfxak .gt_from_md> :last-child { margin-bottom: 0; }
+ #daplejfxak .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
+ #daplejfxak .gt_stub { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
+ #daplejfxak .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #daplejfxak .gt_row_group_first td { border-top-width: 2px; }
+ #daplejfxak .gt_row_group_first th { border-top-width: 2px; }
+ #daplejfxak .gt_striped { background-color: rgba(128,128,128,0.05); }
+ #daplejfxak .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #daplejfxak .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #daplejfxak .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #daplejfxak .gt_left { text-align: left; }
+ #daplejfxak .gt_center { text-align: center; }
+ #daplejfxak .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #daplejfxak .gt_font_normal { font-weight: normal; }
+ #daplejfxak .gt_font_bold { font-weight: bold; }
+ #daplejfxak .gt_font_italic { font-style: italic; }
+ #daplejfxak .gt_super { font-size: 65%; }
+ #daplejfxak .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #daplejfxak .gt_asterisk { font-size: 100%; vertical-align: 0; }
  
 </style>
 
@@ -1245,22 +1245,22 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left">France</td>
+<td class="gt_row gt_left">Spain</td>
 <td class="gt_row gt_left">None</td>
 <td class="gt_row gt_left">None</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left">Switzerland</td>
-<td class="gt_row gt_left">None</td>
-<td class="gt_row gt_left">None</td>
-</tr>
-<tr class="odd">
 <td class="gt_row gt_left">Italy</td>
 <td class="gt_row gt_left">None</td>
 <td class="gt_row gt_left">None</td>
 </tr>
+<tr class="odd">
+<td class="gt_row gt_left">Switzerland</td>
+<td class="gt_row gt_left">None</td>
+<td class="gt_row gt_left">None</td>
+</tr>
 <tr class="even">
-<td class="gt_row gt_left">Spain</td>
+<td class="gt_row gt_left">France</td>
 <td class="gt_row gt_left">None</td>
 <td class="gt_row gt_left">None</td>
 </tr>
@@ -1285,7 +1285,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </section>
 <section id="joins" class="level1">
 <h1>joins</h1>
-<div id="8fe56fc4" class="cell" data-execution_count="10">
+<div id="2247fe6a" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>band_members <span class="op">=</span> pl.DataFrame({</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"name"</span>: [<span class="st">"Mick"</span>, <span class="st">"John"</span>, <span class="st">"Paul"</span>],</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"band"</span>: [<span class="st">"Stones"</span>, <span class="st">"Beatles"</span>, <span class="st">"Beatles"</span>] </span>
@@ -1297,7 +1297,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Left join</p>
-<div id="2be41c63" class="cell" data-execution_count="11">
+<div id="ecc2500b" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(band_members</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>.join(band_instruments, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"left"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
@@ -1344,7 +1344,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </div>
 </div>
 <p>Full join</p>
-<div id="0639ff17" class="cell" data-execution_count="12">
+<div id="cae7cbc1" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(band_members</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>.join(band_instruments, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"full"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
@@ -1407,7 +1407,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </div>
 </div>
 </div>
-<div id="72696445" class="cell" data-execution_count="13">
+<div id="46e28822" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(band_members</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>.join(band_instruments, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"full"</span>, coalesce<span class="op">=</span><span class="va">True</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
@@ -1464,7 +1464,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </div>
 </div>
 <p>Inner join (Default)</p>
-<div id="51fe72b8" class="cell" data-execution_count="14">
+<div id="9f416783" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(band_members</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>.join(band_instruments, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"inner"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
@@ -1506,7 +1506,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </div>
 </div>
 <p>Anti join</p>
-<div id="44a3189f" class="cell" data-execution_count="15">
+<div id="79e7c43a" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(band_members</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>.join(band_instruments, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"anti"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
@@ -1540,7 +1540,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </div>
 </div>
 <p>And reverse. Note the swapped order of datasets.</p>
-<div id="5bee4eb2" class="cell" data-execution_count="16">
+<div id="c89dd8c1" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(band_instruments</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>.join(band_members, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"anti"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
@@ -1581,7 +1581,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <p>For the curious right join allows you to perform left join in the opposite direction (without swapping the datasets). You should do “right join” only as the last resort, when you can not change the dataset order.</p>
 <p>Full join introduces missing value, inner join drops records, left join does both, but thats what you probably want. Anti-join is useful for checking which records will get dropped if you perform an inner join. Do it in both directions!</p>
 <p>There’s something that’s called “semi-join” but it is more like a filter. It will return the left dataset WITHOUT any additional information, filtered to only those records you have on the right.</p>
-<div id="29f649f7" class="cell" data-execution_count="17">
+<div id="e431786e" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(band_instruments</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>.join(band_members, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"semi"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
@@ -1619,14 +1619,14 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </div>
 </div>
 <p>Let’s look at the data.</p>
-<div id="f4845a42" class="cell" data-execution_count="18">
+<div id="f3d06ea6" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fact_area_df <span class="op">=</span> pl.read_csv(<span class="st">"cia/factbook_area_2024.csv"</span>, null_values<span class="op">=</span><span class="st">"NA"</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>fact_comm_df <span class="op">=</span> pl.read_csv(<span class="st">"cia/factbook_comm_transport_2024.csv"</span>, null_values<span class="op">=</span><span class="st">"NA"</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>fact_econ_df <span class="op">=</span> pl.read_csv(<span class="st">"cia/factbook_economy_security_2024.csv"</span>, null_values<span class="op">=</span><span class="st">"NA"</span>)</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>fact_energy_df <span class="op">=</span> pl.read_csv(<span class="st">"cia/factbook_energy_environment_2024.csv"</span>, null_values<span class="op">=</span><span class="st">"NA"</span>)</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>fact_ppl_df <span class="op">=</span> pl.read_csv(<span class="st">"cia/factbook_people_society_2024.csv"</span>, null_values<span class="op">=</span><span class="st">"NA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="bdbfe989" class="cell" data-execution_count="19">
+<div id="f5dce19f" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"People dataset dimensions:"</span>, fact_ppl_df.shape[<span class="dv">0</span>])</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Energy dataset dimensions:"</span>, fact_energy_df.shape[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1638,7 +1638,7 @@ Energy dataset dimensions: 226</code></pre>
 <section id="left-join" class="level1">
 <h1>left join</h1>
 <p>How many records will be returned if we perform left join on this? Correct answer is 237. Creates missing values.</p>
-<div id="3595e46b" class="cell" data-execution_count="20">
+<div id="17d53414" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>fact_ppl_df</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    .join(fact_energy_df, on<span class="op">=</span>[<span class="st">"name"</span>, <span class="st">"slug"</span>, <span class="st">"region"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
@@ -1987,7 +1987,7 @@ Energy dataset dimensions: 226</code></pre>
 </div>
 </div>
 <p>The inner join drops “unmatched” observations from both sides</p>
-<div id="8fa182f8" class="cell" data-execution_count="21">
+<div id="9b6ab5f9" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    fact_ppl_df</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    .join(fact_energy_df, on<span class="op">=</span>[<span class="st">"name"</span>, <span class="st">"slug"</span>, <span class="st">"region"</span>], how<span class="op">=</span><span class="st">"inner"</span>)</span>
@@ -1998,7 +1998,7 @@ Energy dataset dimensions: 226</code></pre>
 </div>
 </div>
 <p>Full join will keep unmatched observations on both sides.</p>
-<div id="36fa465d" class="cell" data-execution_count="22">
+<div id="7f74322c" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    fact_ppl_df</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    .join(fact_energy_df, on<span class="op">=</span>[<span class="st">"name"</span>, <span class="st">"slug"</span>, <span class="st">"region"</span>], how<span class="op">=</span><span class="st">"full"</span>, coalesce<span class="op">=</span><span class="va">True</span>)</span>
@@ -2009,7 +2009,7 @@ Energy dataset dimensions: 226</code></pre>
 </div>
 </div>
 <p>Join all of these datasets.</p>
-<div id="a28ad064" class="cell" data-execution_count="23">
+<div id="e34cea12" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>fact_all_df <span class="op">=</span> (</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    fact_area_df</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    .join(fact_econ_df, on<span class="op">=</span>[<span class="st">"name"</span>, <span class="st">"slug"</span>, <span class="st">"region"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
@@ -2018,7 +2018,7 @@ Energy dataset dimensions: 226</code></pre>
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    .join(fact_ppl_df, on<span class="op">=</span>[<span class="st">"name"</span>, <span class="st">"slug"</span>, <span class="st">"region"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cbed6dae" class="cell" data-execution_count="24">
+<div id="26277a00" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    ggplot(fact_all_df)<span class="op">+</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    geom_point(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">"gdp_composition_by_sector_of_origin_services"</span>, y<span class="op">=</span><span class="st">"energy_consumption_per_capita"</span>, color<span class="op">=</span><span class="st">"region"</span>, size<span class="op">=</span><span class="st">"population_total"</span>))<span class="op">+</span></span>
@@ -2130,10 +2130,10 @@ Energy dataset dimensions: 226</code></pre>
 </div>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="23">
-<pre><code>&lt;plotnine.ggplot.ggplot at 0x7e1ea0fdfc40&gt;</code></pre>
+<pre><code>&lt;plotnine.ggplot.ggplot at 0x792955de5450&gt;</code></pre>
 </div>
 </div>
-<div id="c3615ac7" class="cell" data-execution_count="25">
+<div id="a00f79c6" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    ggplot(fact_all_df)<span class="op">+</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    geom_point(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">"military_expenditures"</span>, y<span class="op">=</span><span class="st">"total_fertility_rate"</span>, color<span class="op">=</span><span class="st">"region"</span>, size<span class="op">=</span><span class="st">"population_total"</span>))<span class="op">+</span></span>
@@ -2244,12 +2244,12 @@ Energy dataset dimensions: 226</code></pre>
 </div>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="24">
-<pre><code>&lt;plotnine.ggplot.ggplot at 0x7e1e5b56b280&gt;</code></pre>
+<pre><code>&lt;plotnine.ggplot.ggplot at 0x7929109623b0&gt;</code></pre>
 </div>
 </div>
 <section id="stacking" class="level2">
 <h2 class="anchored" data-anchor-id="stacking">Stacking</h2>
-<div id="90a04882" class="cell" data-execution_count="26">
+<div id="734015d0" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># indoor air pollution</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>hhap_deaths <span class="op">=</span> pl.read_csv(<span class="st">"hhap/hhap_deaths.csv"</span>)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>clean_fuels <span class="op">=</span> pl.read_csv(<span class="st">"hhap/clean_fuels_cooking.csv"</span>)</span>
@@ -2258,7 +2258,7 @@ Energy dataset dimensions: 226</code></pre>
 <p>Another common type of operation is stacking two identical datasets together (vertically). This is possible to do when the meaning of the columns in the datasets is the same and we are interested in combining two parts of identical data into a new and larger dataset.</p>
 <p>Recall that in our household air pollution case study we had three files: - <code>hhap_deaths</code> - containing death cases, associated with air pollution - <code>fuel_types</code> - describing information about the fuels used by population in different countries for household needs - <code>clean_fuels</code> - containing the fraction of population in each country with access to clean fulels for cooking</p>
 <p>All three of these datasets contain three identical columns describing the country of observation: <code>region</code>, <code>country_code</code> and <code>country</code>. The countries listed in each of the datasets is largely similar, but not completely overlapping. Let’s see if we can compile a single master set of all countries with the codes and the regions they belong to. Because the data is recorded over many years each of the datasets contains many duplicates entries. This problem will be even larger when we stack the data from several datasets together, so we will need to ensure the records in our final (combined) dataset are unique.</p>
-<div id="4100385c" class="cell" data-execution_count="27">
+<div id="b916e551" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>idcols<span class="op">=</span>cs.by_name(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>country_regions <span class="op">=</span> (hhap_deaths.select(idcols)</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    .vstack(fuel_types.select(idcols))</span>
@@ -2268,7 +2268,7 @@ Energy dataset dimensions: 226</code></pre>
 </div>
 <p>Note, that here we created a temporary object idcols, which will store only selector object for the three columns we are interested in. Polar selectors are independent entities which can live both inside the querying contexts as well as in the global environment, i.e.&nbsp;in memory accessible</p>
 <p>Lets compare our country codes with the full list of codes issued by ISO. Here’s a file with all Alpha 2 and Alpha 3 codes issued to nation states and territories.</p>
-<div id="8ae9a3ee" class="cell" data-execution_count="28">
+<div id="398951cb" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>iso_df <span class="op">=</span> pl.read_csv(<span class="st">"hhap/CountryCodes_Alpha2_Alpha3.csv"</span>)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>(country_regions</span>
