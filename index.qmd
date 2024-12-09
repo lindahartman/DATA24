@@ -1,0 +1,180 @@
+---
+title: "Data Literacy with Python"
+---
+
+## Shell
+
+:::{.callout-tip}
+### Objective
+Launch command line terminal in every OS
+:::
+
+## Installing uv
+
+:::{.callout-tip}
+### Objective
+Install uv.
+:::
+
+Wheres my terminal
+
+
+We will install the main tool. Open the terminal and run
+
+```
+# On macOS and Linux.
+$ curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# On Windows.
+$ powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+Alternative attempts to deal with installation problems
+
+If you have python and pip install using pip (you will never need it again)
+
+```
+# With pip.
+$ pip install uv
+```
+
+On Mac it can be built with Homebrew
+
+```
+# using Homebrew on Mac
+$ brew install uv
+```
+
+::: {.callout-note}
+Before you proceed, please check that installation is successful by running `uv` in the terminal. You should see something like this
+
+```
+uv
+
+#> An extremely fast Python package manager.
+#>
+#> Usage: uv [OPTIONS] <COMMAND>
+#> 
+#> Commands:
+#>  run      Run a command or script
+#>  init     Create a new project
+#>  ...
+```
+
+:::
+
+## Managing python installation
+
+:::{.callout-tip}
+### Objective
+Install Python using uv
+:::
+
+`uv` is not only powerful package and environment manager, but it also can help manage Python installations. Run the following to see if `uv` can detect an existing Python installation in your system.
+
+```
+$ uv python find
+#> /path/to/your/installation/of/bin/python3
+```
+If no path is returned you can easily install `uv`-managed latest version of Python with
+
+```
+$ uv python install
+```
+
+## On files and folders
+
+:::{.callout-tip}
+### Objective
+Understand folders. Decide on location for projects. Navigate there in command line
+:::
+
+The files on your computer are organized into folders. Your operating system managed most of the files on your computer but there are still quite a lot of files that you can create and use. You probably written some Word documents or made Excel tables. If you did, you probably know how important it is to remember where you saved your work, so that you can quickly find it.
+
+When working with data analysis you will produce quite a few files. You will need to save your scripts, you will probably have some datasets you are going to use. At the end you probably want to produce some reports and data visualization. It means that a lot of files will be produced all related to the same project you are working on.
+
+It is, therefore, important to not disperse these file all over your computer, but make sure that they are easily locatable together. 
+
+The way operating system organizes the files on your computer is by using folders. Folders are nested containers of other files and folders which is best visualized as a tree. Open a file explorer on your computer and lets have a quick look
+
+If you are on Windows, your file explorer may look something like this, if you are on Mac, your explorer will look like this and if you are on Linux you probably have something like this on your computer. 
+
+The folders are easily recognizable by their distinct icon, but most importantly, if you click on one of those folders you will "drop down" inside of it and you will see its content often with more files and folders.
+
+On every operating system there's usually a place where your computer expects you to place your files. 
+
+The folders dedicated to user files are usually split by type. In your file explorer you can probably find a folder for music, documents, pictures, videos, and downloads, where as we say it in academia "PDF files go to die".
+
+One special folder present in all operating systems is called Desktop. This is the folder, which content will be visible if you minimize all windows. Even though it is very convenient, most experts would agree that Desktop is not the best place to store your work long term. You can probably keep there a file or two you are currently working on, but you probably need to have a long-term home for your files to keep your Desktop free from clutter. We definitely do not recommend starting your data analysis project inside the Desktop folder.
+
+![](img/desktop.jpeg)
+
+Where should you place your data analysis work? I think the documents folder is a solid way to start. If your Documents folder is synched to the cloud, as the case often is on Windows or Mac, you might consider whether it is the right place to store your project files. Data analysis project tend to grow big and while back up for source files is important you may not want to take up your valuable cloud quota, which could be better used by your work documents and presentations.
+
+Alternatively, you can create a folder on the same level as your documents and downloads, called, for example, Projects and host your data science projects there.  We will learn about version control for source code, which helps you keep track of changes, so the task of backing up your work will be taken care of by Git and GitHub, which we will introduce in Lesson 5. 
+
+Wherever you decide to place your work, make sure it is easily locatable. In the next section we will talk about organizing your work in project folders, which ensure that your work is tidy and reproducible.
+
+Navigating to project location using command line (ls, cd and cd ..).
+
+## Projects
+
+:::{.callout-tip}
+### Objective
+Create project. 
+:::
+
+Each of your data analysis endeavours should be stored in a separate project folder. 
+
+```
+$ uv init data-literacy-project
+cd data-literacy-project
+```
+
+or alternatively
+
+```
+$ mkdir data-literacy-project
+$ cd data-literacy-project
+$ uv init
+```
+
+## Libraries
+
+:::{.callout-tip}
+### Objective
+Add dependencies
+:::
+
+We will need a few libraries. Lets add them 
+
+```
+$ uv add gapminder plotnine polars jupyter great_tables setuptools ipykernel pyyaml nbformat nbclient
+```
+If you did these steps then you should have a file `data-literacy-project/pyproject.toml` which looks something like this
+
+```yaml
+[project]
+name = "data-literacy-project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "gapminder>=0.1",
+    "ipykernel>=6.29.5",
+    "jupyter>=1.1.1",
+    "plotnine>=0.13.6",
+    "polars>=1.8.2",
+    "setuptools>=75.1.0",
+]
+```
+
+## Activation
+
+Finally we need to activate the environment we created
+
+```
+source .venv/bin/activate
+```
+

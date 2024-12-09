@@ -1,0 +1,257 @@
+name,slug,region,area_sqkm
+Russia,russia,Central Asia,17098242
+Antarctica,antarctica,Antarctica,14200000
+Canada,canada,North America,9984670
+United States,united-states,North America,9833517
+China,china,East and Southeast Asia,9596960
+Brazil,brazil,South America,8515770
+Australia,australia,Australia and Oceania,7741220
+India,india,South Asia,3287263
+Argentina,argentina,South America,2780400
+Kazakhstan,kazakhstan,Central Asia,2724900
+Algeria,algeria,Africa,2381740
+"Congo, Democratic Republic of the",congo-democratic-republic-of-the,Africa,2344858
+Greenland,greenland,North America,2166086
+Saudi Arabia,saudi-arabia,Middle East,2149690
+Mexico,mexico,North America,1964375
+Indonesia,indonesia,East and Southeast Asia,1904569
+Sudan,sudan,Africa,1861484
+Libya,libya,Africa,1759540
+Iran,iran,Middle East,1648195
+Mongolia,mongolia,East and Southeast Asia,1564116
+Peru,peru,South America,1285216
+Chad,chad,Africa,1284000
+Niger,niger,Africa,1267000
+Angola,angola,Africa,1246700
+Mali,mali,Africa,1240192
+South Africa,south-africa,Africa,1219090
+Colombia,colombia,South America,1138910
+Ethiopia,ethiopia,Africa,1104300
+Bolivia,bolivia,South America,1098581
+Mauritania,mauritania,Africa,1030700
+Egypt,egypt,Africa,1001450
+Tanzania,tanzania,Africa,947300
+Nigeria,nigeria,Africa,923768
+Venezuela,venezuela,South America,912050
+Namibia,namibia,Africa,824292
+Mozambique,mozambique,Africa,799380
+Pakistan,pakistan,South Asia,796095
+Turkey (Turkiye),turkey-turkiye,Middle East,783562
+Chile,chile,South America,756102
+Zambia,zambia,Africa,752618
+Morocco,morocco,Africa,716550
+Burma,burma,East and Southeast Asia,676578
+Afghanistan,afghanistan,South Asia,652230
+South Sudan,south-sudan,Africa,644329
+France,france,Europe,643801
+Somalia,somalia,Africa,637657
+Central African Republic,central-african-republic,Africa,622984
+Ukraine,ukraine,Europe,603550
+Madagascar,madagascar,Africa,587041
+Botswana,botswana,Africa,581730
+Kenya,kenya,Africa,580367
+Yemen,yemen,Middle East,527968
+Thailand,thailand,East and Southeast Asia,513120
+Spain,spain,Europe,505370
+Turkmenistan,turkmenistan,Central Asia,488100
+Cameroon,cameroon,Africa,475440
+Papua New Guinea,papua-new-guinea,East and Southeast Asia,462840
+Sweden,sweden,Europe,450295
+Uzbekistan,uzbekistan,Central Asia,447400
+Iraq,iraq,Middle East,438317
+Paraguay,paraguay,South America,406752
+Zimbabwe,zimbabwe,Africa,390757
+Japan,japan,East and Southeast Asia,377915
+Germany,germany,Europe,357022
+"Congo, Republic of the",congo-republic-of-the,Africa,342000
+Finland,finland,Europe,338145
+Vietnam,vietnam,East and Southeast Asia,331210
+Malaysia,malaysia,East and Southeast Asia,329847
+Norway,norway,Europe,323802
+Cote d'Ivoire,cote-divoire,Africa,322463
+Poland,poland,Europe,312685
+Oman,oman,Middle East,309500
+Italy,italy,Europe,301340
+Philippines,philippines,East and Southeast Asia,300000
+Ecuador,ecuador,South America,283561
+Burkina Faso,burkina-faso,Africa,274200
+New Zealand,new-zealand,Australia and Oceania,268838
+Gabon,gabon,Africa,267667
+Guinea,guinea,Africa,245857
+United Kingdom,united-kingdom,Europe,243610
+Uganda,uganda,Africa,241038
+Ghana,ghana,Africa,238533
+Romania,romania,Europe,238391
+Laos,laos,East and Southeast Asia,236800
+Guyana,guyana,South America,214969
+Belarus,belarus,Europe,207600
+Kyrgyzstan,kyrgyzstan,Central Asia,199951
+Senegal,senegal,Africa,196722
+Syria,syria,Middle East,187437
+Cambodia,cambodia,East and Southeast Asia,181035
+Uruguay,uruguay,South America,176215
+Suriname,suriname,South America,163820
+Tunisia,tunisia,Africa,163610
+Bangladesh,bangladesh,South Asia,148460
+Nepal,nepal,South Asia,147181
+Tajikistan,tajikistan,Central Asia,144100
+Greece,greece,Europe,131957
+Nicaragua,nicaragua,Central America and the Caribbean,130370
+"Korea, North",korea-north,East and Southeast Asia,120538
+Malawi,malawi,Africa,118484
+Eritrea,eritrea,Africa,117600
+Benin,benin,Africa,112622
+Honduras,honduras,Central America and the Caribbean,112090
+Liberia,liberia,Africa,111369
+Bulgaria,bulgaria,Europe,110879
+Cuba,cuba,Central America and the Caribbean,110860
+Guatemala,guatemala,Central America and the Caribbean,108889
+Iceland,iceland,Europe,103000
+"Korea, South",korea-south,East and Southeast Asia,99720
+Hungary,hungary,Europe,93028
+Portugal,portugal,Europe,92090
+Jordan,jordan,Middle East,89342
+Azerbaijan,azerbaijan,Middle East,86600
+Austria,austria,Europe,83871
+United Arab Emirates,united-arab-emirates,Middle East,83600
+Czechia,czechia,Europe,78867
+Serbia,serbia,Europe,77474
+Panama,panama,Central America and the Caribbean,75420
+Sierra Leone,sierra-leone,Africa,71740
+Ireland,ireland,Europe,70273
+Georgia,georgia,Middle East,69700
+Sri Lanka,sri-lanka,South Asia,65610
+Lithuania,lithuania,Europe,65300
+Latvia,latvia,Europe,64589
+Svalbard,svalbard,Europe,62045
+Togo,togo,Africa,56785
+Croatia,croatia,Europe,56594
+Bosnia and Herzegovina,bosnia-and-herzegovina,Europe,51197
+Costa Rica,costa-rica,Central America and the Caribbean,51100
+Slovakia,slovakia,Europe,49035
+Dominican Republic,dominican-republic,Central America and the Caribbean,48670
+Estonia,estonia,Europe,45228
+Denmark,denmark,Europe,43094
+Netherlands,netherlands,Europe,41543
+Switzerland,switzerland,Europe,41277
+Bhutan,bhutan,South Asia,38394
+Guinea-Bissau,guinea-bissau,Africa,36125
+Taiwan,taiwan,East and Southeast Asia,35980
+Moldova,moldova,Europe,33851
+Belgium,belgium,Europe,30528
+Lesotho,lesotho,Africa,30355
+Armenia,armenia,Middle East,29743
+Solomon Islands,solomon-islands,Australia and Oceania,28896
+Albania,albania,Europe,28748
+Equatorial Guinea,equatorial-guinea,Africa,28051
+Burundi,burundi,Africa,27830
+Haiti,haiti,Central America and the Caribbean,27750
+Rwanda,rwanda,Africa,26338
+North Macedonia,north-macedonia,Europe,25713
+Djibouti,djibouti,Africa,23200
+Belize,belize,Central America and the Caribbean,22966
+Israel,israel,Middle East,21937
+El Salvador,el-salvador,Central America and the Caribbean,21041
+Slovenia,slovenia,Europe,20273
+New Caledonia,new-caledonia,Australia and Oceania,18575
+Fiji,fiji,Australia and Oceania,18274
+Kuwait,kuwait,Middle East,17818
+Eswatini,eswatini,Africa,17364
+Timor-Leste,timor-leste,East and Southeast Asia,14874
+"Bahamas, The",bahamas-the,Central America and the Caribbean,13880
+Montenegro,montenegro,Europe,13812
+Vanuatu,vanuatu,Australia and Oceania,12189
+Falkland Islands (Islas Malvinas),falkland-islands-islas-malvinas,South America,12173
+Qatar,qatar,Middle East,11586
+"Gambia, The",gambia-the,Africa,11300
+Jamaica,jamaica,Central America and the Caribbean,10991
+Kosovo,kosovo,Europe,10887
+Lebanon,lebanon,Middle East,10400
+Cyprus,cyprus,Europe,9251
+Puerto Rico,puerto-rico,Central America and the Caribbean,9104
+West Bank,west-bank,Middle East,5860
+Brunei,brunei,East and Southeast Asia,5765
+Trinidad and Tobago,trinidad-and-tobago,Central America and the Caribbean,5128
+French Polynesia,french-polynesia,Australia and Oceania,4167
+Cabo Verde,cabo-verde,Africa,4033
+South Georgia and South Sandwich Islands,south-georgia-and-south-sandwich-islands,South America,3903
+Samoa,samoa,Australia and Oceania,2831
+Luxembourg,luxembourg,Europe,2586
+Comoros,comoros,Africa,2235
+Mauritius,mauritius,Africa,2040
+Virgin Islands,virgin-islands,Central America and the Caribbean,1910
+Faroe Islands,faroe-islands,Europe,1393
+Hong Kong,hong-kong,East and Southeast Asia,1108
+Sao Tome and Principe,sao-tome-and-principe,Africa,964
+Turks and Caicos Islands,turks-and-caicos-islands,Central America and the Caribbean,948
+Kiribati,kiribati,Australia and Oceania,811
+Bahrain,bahrain,Middle East,760
+Dominica,dominica,Central America and the Caribbean,751
+Tonga,tonga,Australia and Oceania,747
+Singapore,singapore,East and Southeast Asia,719
+"Micronesia, Federated States of",micronesia-federated-states-of,Australia and Oceania,702
+Saint Lucia,saint-lucia,Central America and the Caribbean,616
+Isle of Man,isle-of-man,Europe,572
+Guam,guam,Australia and Oceania,544
+Andorra,andorra,Europe,468
+Northern Mariana Islands,northern-mariana-islands,Australia and Oceania,464
+Palau,palau,Australia and Oceania,459
+Seychelles,seychelles,Africa,455
+Curacao,curacao,Central America and the Caribbean,444
+Antigua and Barbuda,antigua-and-barbuda,Central America and the Caribbean,443
+Barbados,barbados,Central America and the Caribbean,430
+Heard Island and McDonald Islands,heard-island-and-mcdonald-islands,Antarctica,412
+"Saint Helena, Ascension, and Tristan da Cunha",saint-helena-ascension-and-tristan-da-cunha,Africa,394
+Saint Vincent and the Grenadines,saint-vincent-and-the-grenadines,Central America and the Caribbean,389
+Jan Mayen,jan-mayen,Europe,377
+Gaza Strip,gaza-strip,Middle East,360
+Grenada,grenada,Central America and the Caribbean,344
+Malta,malta,Europe,316
+Maldives,maldives,South Asia,298
+Cayman Islands,cayman-islands,Central America and the Caribbean,264
+Saint Kitts and Nevis,saint-kitts-and-nevis,Central America and the Caribbean,261
+Niue,niue,Australia and Oceania,260
+Akrotiri and Dhekelia,akrotiri-and-dhekelia,Europe,254
+Saint Pierre and Miquelon,saint-pierre-and-miquelon,North America,242
+Cook Islands,cook-islands,Australia and Oceania,236
+American Samoa,american-samoa,Australia and Oceania,224
+Marshall Islands,marshall-islands,Australia and Oceania,181
+Aruba,aruba,Central America and the Caribbean,180
+Liechtenstein,liechtenstein,Europe,160
+British Virgin Islands,british-virgin-islands,Central America and the Caribbean,151
+Wallis and Futuna,wallis-and-futuna,Australia and Oceania,142
+Christmas Island,christmas-island,Australia and Oceania,135
+Jersey,jersey,Europe,116
+Montserrat,montserrat,Central America and the Caribbean,102
+Anguilla,anguilla,Central America and the Caribbean,91
+Guernsey,guernsey,Europe,78
+San Marino,san-marino,Europe,61
+British Indian Ocean Territory,british-indian-ocean-territory,South Asia,60
+Bermuda,bermuda,North America,54
+Saint Martin,saint-martin,Central America and the Caribbean,50
+Bouvet Island,bouvet-island,Antarctica,49
+Pitcairn Islands,pitcairn-islands,Australia and Oceania,47
+Norfolk Island,norfolk-island,Australia and Oceania,36
+Sint Maarten,sint-maarten,Central America and the Caribbean,34
+Macau,macau,East and Southeast Asia,28
+Tuvalu,tuvalu,Australia and Oceania,26
+Saint Barthelemy,saint-barthelemy,Central America and the Caribbean,25
+Nauru,nauru,Australia and Oceania,21
+Cocos (Keeling) Islands,cocos-keeling-islands,Australia and Oceania,14
+Tokelau,tokelau,Australia and Oceania,12
+Palmyra Atoll,palmyra-atoll,Australia and Oceania,12
+Paracel Islands,paracel-islands,East and Southeast Asia,8
+Wake Island,wake-island,Australia and Oceania,7
+Gibraltar,gibraltar,Europe,7
+Clipperton Island,clipperton-island,North America,6
+Midway Islands,midway-islands,Australia and Oceania,6
+Ashmore and Cartier Islands,ashmore-and-cartier-islands,Australia and Oceania,5
+Navassa Island,navassa-island,Central America and the Caribbean,5
+Spratly Islands,spratly-islands,East and Southeast Asia,5
+Jarvis Island,jarvis-island,Australia and Oceania,5
+Johnston Atoll,johnston-atoll,Australia and Oceania,3
+Coral Sea Islands,coral-sea-islands,Australia and Oceania,3
+Monaco,monaco,Europe,2
+Howland Island,howland-island,Australia and Oceania,2
+Kingman Reef,kingman-reef,Australia and Oceania,1
+Holy See (Vatican City),holy-see-vatican-city,Europe,0

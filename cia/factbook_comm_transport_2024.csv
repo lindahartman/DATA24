@@ -1,0 +1,242 @@
+name,slug,region,airports,broadband_fixed_subscriptions,internet_users,merchant_marine,railways,roadways,telephones_fixed_lines,telephones_mobile_cellular,waterways
+United States,united-states,North America,15873,121176000,312800000,3533,293564.2,6586610,91623000,372682000,41009
+Brazil,brazil,South America,4919,36344670,170100000,888,29849.9,2000000,27258000,212926000,50000
+Australia,australia,Australia and Oceania,2180,9099619,24960000,604,32606,873573,6409000,28018000,2000
+Mexico,mexico,North America,1485,21936131,98800000,674,23389,704884,27185000,127872000,2900
+Canada,canada,North America,1425,15825813,35340000,716,49422,1042300,11312000,35082000,636
+United Kingdom,united-kingdom,Europe,1043,27330297,64990000,868,16390,416461,29798000,81564000,3200
+Russia,russia,Central Asia,904,33893305,132000000,2910,85494,1283387,23864000,245267000,102000
+Germany,germany,Europe,838,36215303,75530000,595,39379,830000,38580000,104400000,7300
+Argentina,argentina,South America,756,9571562,39150000,201,17866,240000,7615000,60236000,11000
+France,france,Europe,689,30627000,55900000,553,27860,1090059,37740000,76807000,NA
+Colombia,colombia,South America,662,7764772,37960000,153,2141,206102,7588000,80812000,24725
+Italy,italy,Europe,636,18128787,44250000,1276,18475,228863,19982000,78503000,2400
+South Africa,south-africa,Africa,575,1303057,42480000,110,30400,750000,1310000,100260000,NA
+Papua New Guinea,papua-new-guinea,East and Southeast Asia,535,21000,3168000,205,NA,24862,166000,4818000,11000
+China,china,East and Southeast Asia,531,483549500,1022000000,8314,150000,5200000,179414000,1781000000,27700
+Indonesia,indonesia,East and Southeast Asia,513,11722218,167400000,11422,8159,496607,8424000,316553000,21579
+Venezuela,venezuela,South America,502,2561556,22734162,272,447,96189,3147000,17949000,7100
+Chile,chile,South America,374,3763826,17100000,249,7281.5,77801,2217000,26415000,NA
+Kenya,kenya,Africa,370,674191,15370000,26,3819,161451,63000,65737000,NA
+Spain,spain,Europe,363,16188502,44180000,503,15489,150110,18687000,59020000,1000
+India,india,South Asia,311,22950000,644000000,1859,65554,6371847,27450000,1143000000,14500
+Ecuador,ecuador,South America,310,2371297,13680000,154,965,43950,1644000,17491000,1500
+Poland,poland,Europe,288,8369218,32300000,152,19461,427580,5277000,52589000,3997
+Japan,japan,East and Southeast Asia,279,44000791,99600000,5229,27311,1218772,60721000,207648000,1770
+"Congo, Democratic Republic of the",congo-democratic-republic-of-the,Africa,272,31000,21102720,24,4007,152373,0,49844000,15000
+Namibia,namibia,Africa,255,71063,1325000,15,2628,48875,86000,2906000,NA
+Philippines,philippines,East and Southeast Asia,246,7936574,58300000,2203,77,216387,4885000,166454000,3219
+Czechia,czechia,Europe,243,3845426,9130000,NA,9548,129418,1214000,13475000,664
+Tanzania,tanzania,Africa,206,1135608,20480000,381,4097,145203,85000,60192000,1594
+Sweden,sweden,Europe,203,4179574,8800000,361,10910,197964,1261000,13194000,2052
+New Zealand,new-zealand,Australia and Oceania,202,1764984,4896000,117,4128,94000,757000,5947000,NA
+Bolivia,bolivia,South America,200,931918,7920000,50,3960,90568,550000,12034000,10000
+Iran,iran,Middle East,173,9564195,69520000,965,8483.5,223485,29342000,145668000,850
+Peru,peru,South America,166,3044000,24140000,111,1854.4,70000,1798000,41549000,8808
+Ukraine,ukraine,Europe,148,7769401,34596356,410,21733,169694,1739000,49304000,1672
+Norway,norway,Europe,145,2387661,5346000,1720,3848,95120,140000,6015000,1577
+Zimbabwe,zimbabwe,Africa,144,203461,5600000,NA,3427,97267,291000,14301000,223
+Kazakhstan,kazakhstan,Central Asia,132,2620400,17290000,122,16636,96167,2888000,25299000,43983
+Portugal,portugal,Europe,130,4160795,8200000,888,2526,11217,5437000,12792000,210
+Honduras,honduras,Central America and the Caribbean,129,396916,4800000,489,699,14742,414000,7937000,465
+Costa Rica,costa-rica,Central America and the Caribbean,129,992725,4316000,11,278,5035,492000,7876000,730
+Cuba,cuba,Central America and the Caribbean,123,231654,7810000,65,8367,60000,1574000,7600000,240
+Botswana,botswana,Africa,122,259525,1924000,NA,888,31747,92000,4348000,NA
+Zambia,zambia,Africa,119,82317,3990000,2,3126,67671,96000,19838000,2250
+Pakistan,pakistan,South Asia,116,2523027,48300000,60,11881,264175,2799000,192780000,NA
+Turkey (Turkiye),turkey-turkiye,Middle East,115,16734853,68850000,1170,11497,68526,11198000,90298000,1200
+Slovakia,slovakia,Europe,114,1701561,4806000,NA,3627,45106,541000,7445000,172
+Bulgaria,bulgaria,Europe,111,2115053,5175000,78,4029,19117,691000,7964000,470
+Hungary,hungary,Europe,109,3382136,8633000,1,7687,216443,2845000,10372000,1622
+Thailand,thailand,East and Southeast Asia,108,11478265,61200000,884,4127,180053,4368000,126414000,4000
+Angola,angola,Africa,106,230610,11550000,64,2761,76000,94000,23978000,1300
+Malaysia,malaysia,East and Southeast Asia,102,3358800,32980000,1750,1851,144403,8453000,47952000,7200
+Ireland,ireland,Europe,100,1516473,4750000,94,1688,102227,1498000,5690000,956
+Denmark,denmark,Europe,99,2590282,5841000,715,2682,73591,712000,7444000,400
+Finland,finland,Europe,98,1846000,5115000,282,5918,108637,186000,7130000,8000
+Mozambique,mozambique,Africa,92,70000,5440000,36,4787,30562,29000,13871000,460
+Madagascar,madagascar,Africa,91,32000,5800000,29,836,31640,26000,20783000,600
+"Korea, South",korea-south,East and Southeast Asia,89,22327182,50960000,2149,3979,100428,22810000,76992000,1600
+Saudi Arabia,saudi-arabia,Middle East,86,7890261,36000000,433,5410,221372,6773000,48198000,NA
+Algeria,algeria,Africa,85,3790459,31240000,119,4020,112696,5576000,49019000,NA
+"Korea, North",korea-north,East and Southeast Asia,83,NA,NA,264,7435,25554,1180000,6000000,2250
+Paraguay,paraguay,South America,83,562369,5159000,108,30,78811,169000,8659000,3100
+Iceland,iceland,Europe,83,141816,370000,39,NA,12905,93000,457000,NA
+South Sudan,south-sudan,Africa,82,200,869000,NA,248,90200,NA,3276000,NA
+Romania,romania,Europe,82,5684782,15960000,127,10628,85387,2222000,23219000,1731
+Greece,greece,Europe,81,4257026,7800000,1215,2345,117000,4907000,11326000,6
+Panama,panama,Central America and the Caribbean,76,562413,2992000,8174,77,NA,811000,6891000,800
+Uzbekistan,uzbekistan,Central Asia,74,4820009,26180000,NA,4642,225500,5686000,35690000,1100
+Egypt,egypt,Africa,73,9349469,79200000,441,5085,65050,11600000,103450000,3500
+Burma,burma,East and Southeast Asia,73,688185,23760000,101,5031,157000,535000,57807000,12800
+Iraq,iraq,Middle East,71,6254099,21560000,74,2272,58592,2392000,43688000,5279
+Afghanistan,afghanistan,South Asia,67,26570,7020000,NA,NA,34903,146000,22678000,1200
+Libya,libya,Africa,66,332000,3095400,96,NA,34000,1218000,13940000,NA
+Lithuania,lithuania,Europe,65,796814,2436000,59,1911,83821,250000,3826000,441
+Uruguay,uruguay,South America,64,1063701,3060000,58,1673,77732,1259000,4741000,1600
+Switzerland,switzerland,Europe,62,4028238,8352000,17,5296,83131,2919000,10450000,1292
+Austria,austria,Europe,61,2606000,8277000,1,6123,126233,3544000,11035000,358
+Guatemala,guatemala,Central America and the Caribbean,58,612000,9180000,9,800,17440,1918000,20553000,990
+Ethiopia,ethiopia,Africa,57,212000,20400000,12,659,180000,862000,69123000,NA
+Latvia,latvia,Europe,56,490569,1729000,83,2216,57972,174000,2167000,300
+"Congo, Republic of the",congo-republic-of-the,Africa,56,1000,1794390,11,510,23324,17000,5648000,1120
+Suriname,suriname,South America,55,92270,402600,13,NA,4304,108000,929000,1200
+"Bahamas, The",bahamas-the,Central America and the Caribbean,55,83000,385400,1274,NA,2700,86000,404000,NA
+French Polynesia,french-polynesia,Australia and Oceania,54,64000,218100,24,NA,2590,139000,328000,NA
+Taiwan,taiwan,East and Southeast Asia,53,5831470,21600000,465,1613.1,43206,10000000,30000000,NA
+Guyana,guyana,South America,51,95000,680000,80,NA,3995,125000,856000,330
+Nepal,nepal,South Asia,51,1270000,15600000,NA,59,64500,726000,38213000,NA
+Belgium,belgium,Europe,49,4734210,10920000,198,3602,118414,2953000,11874000,2043
+Morocco,morocco,Africa,49,2102434,32560000,94,2067,57300,2645000,52959000,NA
+Burkina Faso,burkina-faso,Africa,49,13979,4840000,NA,622,15304,81000,24678000,NA
+Nigeria,nigeria,Africa,47,65313,115500000,928,3798,195000,97000,222225000,8600
+Belarus,belarus,Europe,46,3255552,8352000,4,5528,86600,4230000,11771000,2500
+Netherlands,netherlands,Europe,45,7525016,16560000,1187,3055,139027,4570000,20737000,6237
+Central African Republic,central-african-republic,Africa,43,499,605000,NA,NA,24000,2000,1831000,2800
+Serbia,serbia,Europe,43,1730496,5589000,NA,3333,45022,2539000,8621000,587
+Chad,chad,Africa,42,NA,3060000,NA,NA,40000,5000,12087000,12400
+United Arab Emirates,united-arab-emirates,Middle East,42,3245123,9400000,655,NA,4080,2286000,20036000,NA
+Vietnam,vietnam,East and Southeast Asia,42,16699249,71780000,1973,2600,195468,2391000,137412000,47130
+Slovenia,slovenia,Europe,42,651604,1869000,8,1207,38125,676000,2675000,710
+Sudan,sudan,Africa,41,28782,13248000,14,7251,30000,156000,34671000,4068
+Croatia,croatia,Europe,40,1030973,3321000,384,2617,26958,1235000,4480000,4714
+Gabon,gabon,Africa,40,44607,1656000,87,649,14300,43000,2995000,1600
+Syria,syria,Middle East,39,1549356,8492468,24,2052,69873,2821000,16991000,900
+Nicaragua,nicaragua,Central America and the Caribbean,39,290351,3933000,5,NA,24033,216000,6652000,2220
+Uganda,uganda,Africa,39,58594,4600000,NA,1244,20544,117000,33068000,907
+Somalia,somalia,Africa,38,119000,2465000,4,NA,15000,91000,8844000,NA
+Israel,israel,Middle East,37,2602079,8010000,41,1497,20391,3574000,13758000,NA
+Cameroon,cameroon,Africa,37,722579,12420000,198,987,77589,929000,23107000,NA
+Yemen,yemen,Middle East,36,391000,8229624,30,NA,71300,1240000,15178000,NA
+Oman,oman,Middle East,36,508949,4320000,57,NA,60230,563000,6750000,NA
+Solomon Islands,solomon-islands,Australia and Oceania,35,1000,255600,25,NA,1390,7000,474000,NA
+Mongolia,mongolia,East and Southeast Asia,35,307166,2772000,318,1815,113200,475000,4836000,580
+Falkland Islands (Islas Malvinas),falkland-islands-islas-malvinas,South America,34,1000,3762,2,NA,440,2000,6000,NA
+Marshall Islands,marshall-islands,Australia and Oceania,33,1000,16254,4180,NA,2028,2000,16000,NA
+Lesotho,lesotho,Africa,33,5060,1104000,NA,NA,6906,7000,1557000,NA
+Dominican Republic,dominican-republic,Central America and the Caribbean,32,1031858,9350000,40,496,19705,1144000,10150000,NA
+Azerbaijan,azerbaijan,Middle East,32,1995474,8600000,312,2944.3,24981,1641000,11068000,NA
+Vanuatu,vanuatu,Australia and Oceania,31,2785,211200,338,NA,2958,3000,256000,NA
+Antarctica,antarctica,Antarctica,30,NA,4400,NA,NA,NA,NA,NA,NA
+Mali,mali,Africa,30,243806,7480000,NA,593,139107,307000,25869000,1800
+Cote d'Ivoire,cote-divoire,Africa,29,260097,12150000,25,660,81996,263000,49006000,980
+Kyrgyzstan,kyrgyzstan,Central Asia,28,289000,5070000,NA,424,34000,299000,8511000,576
+Malawi,malawi,Africa,28,12255,4800000,NA,767,15451,9000,12269000,700
+Belize,belize,Central America and the Caribbean,27,36000,248000,774,NA,3281,19000,264000,825
+El Salvador,el-salvador,Central America and the Caribbean,27,586000,3969000,5,12.5,9012,863000,11509000,422
+Niger,niger,Africa,26,12000,5500000,NA,NA,18949,58000,14239000,563
+Fiji,fiji,Australia and Oceania,26,23062,809600,74,597,7500,49000,992000,203
+Estonia,estonia,Europe,26,415610,1183000,72,1441,89382,266000,2056000,335
+Greenland,greenland,North America,25,15649,38920,10,NA,NA,6000,67000,NA
+Mauritania,mauritania,Africa,25,18457,2714000,11,728,12253,48000,5358000,1086
+Turkmenistan,turkmenistan,Central Asia,23,10000,1563023,73,5113,58592,802000,6255000,1300
+Kiribati,kiribati,Australia and Oceania,21,185,70200,74,NA,670,0,64000,5
+New Caledonia,new-caledonia,Australia and Oceania,21,55000,237800,23,NA,5622,46000,260000,NA
+Puerto Rico,puerto-rico,Central America and the Caribbean,20,671284,2564100,NA,NA,26862,739000,3896000,NA
+Jamaica,jamaica,Central America and the Caribbean,20,385603,2296000,40,NA,25595,447000,3003000,NA
+Senegal,senegal,Africa,19,153813,9860000,36,906,16665,297000,20855000,1000
+Georgia,georgia,Middle East,19,986809,2888000,26,1363,40044,301000,5844000,NA
+Liberia,liberia,Africa,19,13000,1768000,4821,429,10600,6000,1653000,NA
+Tajikistan,tajikistan,Central Asia,19,6000,3009054,NA,680,30000,502000,11584000,200
+Maldives,maldives,South Asia,19,63685,447200,82,NA,93,13000,715000,NA
+Sri Lanka,sri-lanka,South Asia,18,1781530,14740000,96,1562,114093,2582000,31237000,160
+Laos,laos,East and Southeast Asia,18,128000,4588000,1,422,59647,1300000,4823000,4600
+Bangladesh,bangladesh,South Asia,17,10052819,66300000,558,2460,369105,274000,180198000,8370
+Jordan,jordan,Middle East,17,630545,9130000,34,509,7203,466000,7626000,NA
+Haiti,haiti,Central America and the Caribbean,17,31000,4290000,4,NA,3875,6000,7319000,NA
+Eswatini,eswatini,Africa,16,12000,708000,NA,301,4594,38000,1468000,NA
+Guinea,guinea,Africa,16,1000,4900000,2,1086,44301,0,13795000,1300
+Seychelles,seychelles,Africa,16,34966,90200,30,NA,526,19000,205000,NA
+Tunisia,tunisia,Africa,14,1334059,9480000,72,2173,32332,1790000,15971000,NA
+Cambodia,cambodia,East and Southeast Asia,13,233732,10200000,195,642,61810,38000,19505000,3700
+North Macedonia,north-macedonia,Europe,13,475569,1743000,NA,699,15170,436000,2048000,NA
+Cyprus,cyprus,Europe,13,332080,809900,1005,NA,13027,297000,1392000,NA
+Bosnia and Herzegovina,bosnia-and-herzegovina,Europe,13,770424,2508000,NA,965,8619,651000,3812000,990
+Armenia,armenia,Middle East,11,430407,2212000,NA,686,7700,366000,3761000,NA
+Moldova,moldova,Europe,11,719001,1891000,75,1171,9488,951000,4170000,558
+Ghana,ghana,Africa,11,78371,22440000,52,947,65725,330000,40045000,1293
+Cabo Verde,cabo-verde,Africa,10,24839,413000,44,NA,1350,57000,589000,NA
+Benin,benin,Africa,10,29981,4420000,6,438,16000,2000,14550000,150
+Djibouti,djibouti,Africa,10,25053,759000,40,97,2893,28000,519000,NA
+Eritrea,eritrea,Africa,10,5000,792000,9,306,16000,66000,1801000,NA
+Cook Islands,cook-islands,Australia and Oceania,10,2700,11382,190,NA,295,7000,17000,NA
+Timor-Leste,timor-leste,East and Southeast Asia,10,75,507000,1,NA,6040,2000,1481000,NA
+Turks and Caicos Islands,turks-and-caicos-islands,Central America and the Caribbean,9,NA,37008,3,NA,121,4000,25085,NA
+Singapore,singapore,East and Southeast Asia,9,1509700,5369000,3202,NA,3500,1906000,9351000,NA
+Rwanda,rwanda,Africa,8,17685,3900000,NA,NA,7797,10000,11002000,90
+Qatar,qatar,Middle East,8,296126,2700000,123,NA,7039,524000,4693000,NA
+Sierra Leone,sierra-leone,Africa,8,NA,1047499,584,NA,11701,269,8227000,800
+Lebanon,lebanon,Middle East,8,432070,4872000,51,401,21705,875000,4288000,NA
+"Micronesia, Federated States of",micronesia-federated-states-of,Australia and Oceania,7,6000,44000,38,NA,388,7000,22000,NA
+Guinea-Bissau,guinea-bissau,Africa,7,2383,735000,20,NA,4400,4800,2652000,1367
+Equatorial Guinea,equatorial-guinea,Africa,7,1000,864000,53,NA,2880,11000,893000,NA
+Togo,togo,Africa,7,52706,3010000,397,568,9951,66000,6564000,50
+Burundi,burundi,Africa,6,4230,754000,NA,NA,12000,15000,7471000,673
+Kuwait,kuwait,Middle East,6,73948,4300000,176,NA,5749,573000,7726000,NA
+Tonga,tonga,Australia and Oceania,6,5000,73700,29,NA,680,11000,64000,NA
+Saint Vincent and the Grenadines,saint-vincent-and-the-grenadines,Central America and the Caribbean,5,24733,85000,830,NA,NA,11000,104000,NA
+Montenegro,montenegro,Europe,5,184176,516600,18,250,9825,191000,1274000,NA
+Kosovo,kosovo,Europe,4,NA,1756300,NA,437,2248,383763,1777859,NA
+Bhutan,bhutan,South Asia,4,3189,670800,NA,NA,12205,20000,742000,NA
+Isle of Man,isle-of-man,Europe,4,NA,NA,269,63,1107,NA,NA,NA
+Northern Mariana Islands,northern-mariana-islands,Australia and Oceania,4,NA,12299,NA,NA,536,20000,20474,NA
+French Southern and Antarctic Lands,french-southern-and-antarctic-lands,Antarctica,4,NA,NA,2,NA,NA,NA,NA,NA
+Mauritius,mauritius,Africa,4,323200,884000,32,NA,2428,462000,2097000,NA
+Albania,albania,Europe,3,508937,2291000,69,424,3581,177000,2782000,41
+Guam,guam,Australia and Oceania,3,3000,136850,3,NA,1045,70000,98000,NA
+Samoa,samoa,Australia and Oceania,3,1692,171600,13,NA,1150,5000,134000,NA
+Antigua and Barbuda,antigua-and-barbuda,Central America and the Caribbean,3,8000,89280,614,NA,1170,27000,184000,NA
+Cayman Islands,cayman-islands,Central America and the Caribbean,3,3200,55148,130,NA,785,36000,100000,NA
+Palau,palau,Australia and Oceania,3,1224,6696,427,NA,121,8000,24000,NA
+Bahrain,bahrain,Middle East,3,148928,1500000,184,NA,4122,253000,2141000,NA
+Comoros,comoros,Africa,3,1066,221400,273,NA,849,7000,839000,NA
+American Samoa,american-samoa,Australia and Oceania,3,NA,18135,NA,NA,241,10000,2250,NA
+Trinidad and Tobago,trinidad-and-tobago,Central America and the Caribbean,3,376771,1185000,102,NA,NA,326000,1999000,NA
+Luxembourg,luxembourg,Europe,3,235155,633600,147,271,2746,261000,876000,37
+British Virgin Islands,british-virgin-islands,Central America and the Caribbean,3,6738,24087,29,NA,200,23000,38000,NA
+Hong Kong,hong-kong,East and Southeast Asia,3,2885586,6975000,2537,NA,2193,3673000,21861000,NA
+"Saint Helena, Ascension, and Tristan da Cunha",saint-helena-ascension-and-tristan-da-cunha,Africa,2,1000,2287,NA,NA,198,4000,4000,NA
+Barbados,barbados,Central America and the Caribbean,2,128000,240800,272,NA,1700,121000,323000,NA
+Wallis and Futuna,wallis-and-futuna,Australia and Oceania,2,NA,5496,1,NA,NA,3000,0,NA
+Brunei,brunei,East and Southeast Asia,2,71078,441000,97,NA,2976,122000,529000,209
+Sao Tome and Principe,sao-tome-and-principe,Africa,2,2512,112200,25,NA,1300,3000,197000,NA
+Dominica,dominica,Central America and the Caribbean,2,16000,58320,77,NA,1512,7000,62000,NA
+Saint Pierre and Miquelon,saint-pierre-and-miquelon,North America,2,NA,5099,NA,NA,117,4800,NA,NA
+Grenada,grenada,Central America and the Caribbean,2,32000,93600,6,NA,1127,26000,101000,NA
+Saint Lucia,saint-lucia,Central America and the Caribbean,2,33000,140400,NA,NA,1210,14000,172000,NA
+Saint Kitts and Nevis,saint-kitts-and-nevis,Central America and the Caribbean,2,30000,37920,341,50,383,16000,57000,NA
+Guernsey,guernsey,Europe,2,25336,55069,NA,NA,260,33930,71485,NA
+United States Pacific Island Wildlife Refuges,united-states-pacific-island-wildlife-refuges,Australia and Oceania,2,NA,NA,NA,NA,NA,NA,NA,NA
+Virgin Islands,virgin-islands,Central America and the Caribbean,2,NA,67508,2,NA,1260,76000,80000,NA
+Macau,macau,East and Southeast Asia,1,208000,607200,5,NA,428,92000,1213000,NA
+West Bank,west-bank,Middle East,1,373050,3938199,NA,NA,4686,458000,4388000,NA
+Saint Barthelemy,saint-barthelemy,Central America and the Caribbean,1,NA,7077,NA,NA,40,NA,NA,NA
+Tuvalu,tuvalu,Australia and Oceania,1,450,7920,270,NA,16,2000,9000,NA
+San Marino,san-marino,Europe,1,11000,25500,NA,NA,292,16000,41000,NA
+Norfolk Island,norfolk-island,Australia and Oceania,1,NA,806,NA,NA,80,NA,NA,NA
+Gibraltar,gibraltar,Europe,1,21009,31152,129,NA,29,17000,37000,NA
+Montserrat,montserrat,Central America and the Caribbean,1,2700,2473,NA,NA,NA,3000,5000,NA
+Cocos (Keeling) Islands,cocos-keeling-islands,Australia and Oceania,1,NA,80,NA,NA,22,NA,NA,NA
+Malta,malta,Europe,1,213419,461100,1957,NA,2855,259000,702000,NA
+Aruba,aruba,Central America and the Caribbean,1,19000,106800,1,NA,1000,35000,141000,NA
+Curacao,curacao,Central America and the Caribbean,1,55000,111956,57,NA,550,53000,168000,NA
+"Gambia, The",gambia-the,Africa,1,5000,858000,15,NA,2977,60000,2678000,390
+Niue,niue,Australia and Oceania,1,NA,1512,70,NA,234,1000,NA,NA
+Anguilla,anguilla,Central America and the Caribbean,1,5000,13056,2,NA,175,6000,26000,NA
+Wake Island,wake-island,Australia and Oceania,1,NA,NA,NA,NA,NA,NA,NA,NA
+Nauru,nauru,Australia and Oceania,1,950,10920,6,NA,30,NA,10000,NA
+British Indian Ocean Territory,british-indian-ocean-territory,South Asia,1,NA,NA,NA,NA,NA,NA,NA,NA
+Faroe Islands,faroe-islands,Europe,1,18443,51728,91,NA,960,15000,59000,NA
+Christmas Island,christmas-island,Australia and Oceania,1,NA,1139,NA,18,142,NA,NA,NA
+Saint Martin,saint-martin,Central America and the Caribbean,1,NA,19284,NA,NA,NA,NA,68840,NA
+Bermuda,bermuda,North America,1,23000,64000,122,NA,447,25000,68000,NA
+Sint Maarten,sint-maarten,Central America and the Caribbean,1,NA,39089,NA,NA,53,NA,68840,NA
+Jersey,jersey,Europe,1,39699,96038,NA,NA,576,48122,124083,NA
+Gaza Strip,gaza-strip,Middle East,NA,376911,3602452,NA,NA,NA,458000,4388000,NA
+Andorra,andorra,Europe,NA,37000,74260,NA,NA,320,51000,114000,NA
+Monaco,monaco,Europe,NA,20877,31820,1,NA,NA,45000,39000,NA
+Liechtenstein,liechtenstein,Europe,NA,18050,37440,17,9,420,11000,50000,28
+Tokelau,tokelau,Australia and Oceania,NA,NA,800,NA,NA,10,300,NA,NA
+Holy See (Vatican City),holy-see-vatican-city,Europe,NA,NA,383,NA,NA,NA,NA,NA,NA
+Pitcairn Islands,pitcairn-islands,Australia and Oceania,NA,NA,37,NA,NA,NA,NA,NA,NA
+Svalbard,svalbard,Europe,NA,NA,NA,NA,NA,40,NA,NA,NA

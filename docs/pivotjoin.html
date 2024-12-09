@@ -1,0 +1,2811 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Pivots and joins – DATA24</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d37c06fde26cce7278c43b211372364c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-81674bea0ce09368006a45d6d4084aa0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<style>
+div.callout-challenge.callout {
+  border-left-color: firebrick;
+}
+div.callout-challenge.callout-style-default > .callout-header {
+  background-color: rgb(from firebrick r g b / 13%);
+}
+div.callout-challenge .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-challenge.callout-style-default .callout-icon::before, div.callout-challenge.callout-titled .callout-icon::before {
+  content: '🛠️';
+  background-image: none;
+}
+div.callout-question.callout {
+  border-left-color: pink;
+}
+div.callout-question.callout-style-default > .callout-header {
+  background-color: rgb(from pink r g b / 13%);
+}
+div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
+  content: '🧠';
+  background-image: none;
+}
+</style>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./LU_logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">DATA24</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./visualization.html"> 
+<span class="menu-text">Visualization</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./wrangling.html"> 
+<span class="menu-text">Wrangling</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./pivotjoin.html" aria-current="page"> 
+<span class="menu-text">Pivots and joins</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#pivot" id="toc-pivot" class="nav-link active" data-scroll-target="#pivot">Pivot</a></li>
+  <li><a href="#joins" id="toc-joins" class="nav-link" data-scroll-target="#joins">joins</a></li>
+  <li><a href="#left-join" id="toc-left-join" class="nav-link" data-scroll-target="#left-join">left join</a>
+  <ul class="collapse">
+  <li><a href="#stacking" id="toc-stacking" class="nav-link" data-scroll-target="#stacking">Stacking</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Pivots and joins</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="setup" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars.selectors <span class="im">as</span> cs</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gapminder <span class="im">import</span> gapminder</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> great_tables <span class="im">import</span> GT</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>theme_set(theme_linedraw())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="pivot" class="level2">
+<h2 class="anchored" data-anchor-id="pivot">Pivot</h2>
+<p>Earlier we mentioned that data frame consists of observations organized in rows and variable organized in columns. But not all data comes as well-organized as wel would want it to be. Today we are going to look at the sample of the data collected by the Break from Plastics environmental campaign. Here’s the description of the data:</p>
+<blockquote class="blockquote">
+<p>In 2020, thanks to our members and allies, Break Free From Plastic engaged 14,734 volunteers in 55 countries to conduct 575 brand audits. These volunteers collected 346,494 pieces of plastic waste, 63% of which was marked with a clear consumer brand. Despite the challenges of organizing during a global pandemic, our volunteers safely coordinated more brand audit events in more countries this year than in the previous two years. As a special activity during the pandemic, we also worked with over 300 waste pickers to highlight their roles as essential workers. Participants catalogued over 5,000 brands in this year’s global audit. Our analysis reveals the following as the 2020 Top 10 Global Polluters: The Coca-Cola Company; PepsiCo; Nestlé; Unilever; Mondelez International; Mars, Inc.; Procter &amp; Gamble; Philip Morris International; Colgate-Palmolive; and Perfetti Van Melle.</p>
+</blockquote>
+<p>We are going to investigate this dataset and summarize it using Great Tables. Great Tables is a python package which implements “grammar of tables”, so in many respects it is similar in spirit to plotnine, in a sense that it attempts to develop a consistent API around production of tables making it very easy to produce nice looking summaries form data in table form. The main function in Great Tables is <code>GT()</code>. It takes data argument and many other useful options. We can use .pipe to pass the data into it.</p>
+<p>In the code example provided to you in the notebook you can see the code for importing the data, as well as the dataframe containing the data dictionary for this dataset. The data frame is specified via a dictionary denoted with curly braces <code>{}</code>. Dictionaries are widely used in Python for passing “key-value” pairs.</p>
+<div id="d8fe5900" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plastics_df <span class="op">=</span> pl.read_csv(<span class="st">"bffp/BFFplastics.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plastics_docs <span class="op">=</span> pl.DataFrame({</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Variable"</span>: [<span class="st">"region"</span>, <span class="st">"country_code"</span> , <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"parent_company"</span>, <span class="st">"empty"</span>, <span class="st">"hdpe"</span>, <span class="st">"ldpe"</span>, <span class="st">"o"</span>, <span class="st">"pet"</span>, <span class="st">"pp"</span>, <span class="st">"ps"</span>, <span class="st">"pvc"</span>, <span class="st">"grand_total"</span>, <span class="st">"num_events"</span>, <span class="st">"volunteers"</span>],</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Class"</span>: [<span class="st">"character"</span>,<span class="st">"character"</span>,<span class="st">"character"</span>, <span class="st">"double"</span>, <span class="st">"character"</span>, <span class="st">"double"</span>, <span class="st">"double"</span>, <span class="st">"double"</span>, <span class="st">"double"</span>, <span class="st">"double"</span>, <span class="st">"double"</span>, <span class="st">"double"</span>, <span class="st">"double"</span>, <span class="st">"double"</span>, <span class="st">"double"</span>, <span class="st">"double"</span>],</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Description"</span>: [<span class="st">"Region"</span>, <span class="st">"Alpha 3 ISO 3166 code"</span>,<span class="st">"Country of cleanup"</span>, <span class="st">"Year (2019 or 2020)"</span>, <span class="st">"Source of plastic"</span>, <span class="st">"Category left empty count"</span>, <span class="st">"High density polyethylene count (Plastic milk containers, plastic bags, bottle caps, trash cans, oil cans, plastic lumber, toolboxes, supplement containers)"</span>, <span class="st">"Low density polyethylene count (Plastic bags, Ziploc bags, buckets, squeeze bottles, plastic tubes, chopping boards)"</span>, <span class="st">"Category marked other count"</span>, <span class="st">"Polyester plastic count (Polyester fibers, soft drink bottles, food containers (also see plastic bottles)"</span>, <span class="st">"Polypropylene count (Flower pots, bumpers, car interior trim, industrial fibers, carry-out beverage cups, microwavable food containers, DVD keep cases)"</span>, <span class="st">"Polystyrene count (Toys, video cassettes, ashtrays, trunks, beverage/food coolers, beer cups, wine and champagne cups, carry-out food containers, Styrofoam)"</span>, <span class="st">"PVC plastic count (Window frames, bottles for chemicals, flooring, plumbing pipes)"</span>, <span class="st">"Grand total count (all types of plastic)"</span>, <span class="st">"Number of counting events"</span>, <span class="st">"Number of volunteers"</span>]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>(plastics_docs</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    .pipe(GT)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>(plastics_df.describe())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (9, 17)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">statistic</th>
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">parent_company</th>
+<th data-quarto-table-cell-role="th">empty</th>
+<th data-quarto-table-cell-role="th">hdpe</th>
+<th data-quarto-table-cell-role="th">ldpe</th>
+<th data-quarto-table-cell-role="th">o</th>
+<th data-quarto-table-cell-role="th">pet</th>
+<th data-quarto-table-cell-role="th">pp</th>
+<th data-quarto-table-cell-role="th">ps</th>
+<th data-quarto-table-cell-role="th">pvc</th>
+<th data-quarto-table-cell-role="th">grand_total</th>
+<th data-quarto-table-cell-role="th">num_events</th>
+<th data-quarto-table-cell-role="th">volunteers</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>f64</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"count"</td>
+<td>"12034"</td>
+<td>"12034"</td>
+<td>"12034"</td>
+<td>13380.0</td>
+<td>"13330"</td>
+<td>10137.0</td>
+<td>11734.0</td>
+<td>11303.0</td>
+<td>13113.0</td>
+<td>13166.0</td>
+<td>11884.0</td>
+<td>11408.0</td>
+<td>9052.0</td>
+<td>13366.0</td>
+<td>13380.0</td>
+<td>13273.0</td>
+</tr>
+<tr class="even">
+<td>"null_count"</td>
+<td>"1346"</td>
+<td>"1346"</td>
+<td>"1346"</td>
+<td>0.0</td>
+<td>"50"</td>
+<td>3243.0</td>
+<td>1646.0</td>
+<td>2077.0</td>
+<td>267.0</td>
+<td>214.0</td>
+<td>1496.0</td>
+<td>1972.0</td>
+<td>4328.0</td>
+<td>14.0</td>
+<td>0.0</td>
+<td>107.0</td>
+</tr>
+<tr class="odd">
+<td>"mean"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019.305232</td>
+<td>null</td>
+<td>0.411759</td>
+<td>3.04602</td>
+<td>10.319384</td>
+<td>49.61359</td>
+<td>20.940301</td>
+<td>8.220801</td>
+<td>1.862114</td>
+<td>0.350088</td>
+<td>90.15083</td>
+<td>33.369806</td>
+<td>1117.645295</td>
+</tr>
+<tr class="even">
+<td>"std"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>0.460523</td>
+<td>null</td>
+<td>22.586066</td>
+<td>66.123044</td>
+<td>194.644067</td>
+<td>1601.989534</td>
+<td>428.157766</td>
+<td>141.805081</td>
+<td>39.737064</td>
+<td>7.894296</td>
+<td>1873.68134</td>
+<td>44.708642</td>
+<td>1812.402748</td>
+</tr>
+<tr class="odd">
+<td>"min"</td>
+<td>"Africa"</td>
+<td>"ARE"</td>
+<td>"Argentina"</td>
+<td>2019.0</td>
+<td>""ESE""</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td>"25%"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019.0</td>
+<td>null</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>4.0</td>
+<td>114.0</td>
+</tr>
+<tr class="odd">
+<td>"50%"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019.0</td>
+<td>null</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>15.0</td>
+<td>400.0</td>
+</tr>
+<tr class="even">
+<td>"75%"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2020.0</td>
+<td>null</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>6.0</td>
+<td>42.0</td>
+<td>1416.0</td>
+</tr>
+<tr class="odd">
+<td>"max"</td>
+<td>"Western Pacific"</td>
+<td>"ZAF"</td>
+<td>"Viet Nam"</td>
+<td>2020.0</td>
+<td>"脆司令/Cui Siling"</td>
+<td>2208.0</td>
+<td>3728.0</td>
+<td>11700.0</td>
+<td>120646.0</td>
+<td>36226.0</td>
+<td>6046.0</td>
+<td>2101.0</td>
+<td>622.0</td>
+<td>120646.0</td>
+<td>145.0</td>
+<td>31318.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>There are many missing values in this data. The year column covers 2019 and 2020. The different plastics types exibit different degrees of missingness.</p>
+<p>First have a look at the data</p>
+<div id="4d781a5d" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plastics_df</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plastics_df.<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>).is_null())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (1_346, 16)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">parent_company</th>
+<th data-quarto-table-cell-role="th">empty</th>
+<th data-quarto-table-cell-role="th">hdpe</th>
+<th data-quarto-table-cell-role="th">ldpe</th>
+<th data-quarto-table-cell-role="th">o</th>
+<th data-quarto-table-cell-role="th">pet</th>
+<th data-quarto-table-cell-role="th">pp</th>
+<th data-quarto-table-cell-role="th">ps</th>
+<th data-quarto-table-cell-role="th">pvc</th>
+<th data-quarto-table-cell-role="th">grand_total</th>
+<th data-quarto-table-cell-role="th">num_events</th>
+<th data-quarto-table-cell-role="th">volunteers</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"Grand Total"</td>
+<td>null</td>
+<td>1535</td>
+<td>6443</td>
+<td>30181</td>
+<td>11087</td>
+<td>5420</td>
+<td>2101</td>
+<td>188</td>
+<td>56955</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+<tr class="even">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"Unbranded"</td>
+<td>null</td>
+<td>631</td>
+<td>3176</td>
+<td>17432</td>
+<td>4265</td>
+<td>2417</td>
+<td>1545</td>
+<td>20</td>
+<td>29486</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+<tr class="odd">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"The Coca-Cola Company"</td>
+<td>null</td>
+<td>130</td>
+<td>4</td>
+<td>157</td>
+<td>1154</td>
+<td>210</td>
+<td>1</td>
+<td>51</td>
+<td>1707</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+<tr class="even">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"Philip Morris"</td>
+<td>null</td>
+<td>13</td>
+<td>37</td>
+<td>1579</td>
+<td>1</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>1634</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+<tr class="odd">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"Sahakari Jal"</td>
+<td>null</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>563</td>
+<td>975</td>
+<td>0</td>
+<td>0</td>
+<td>1538</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"Schulte"</td>
+<td>null</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+<tr class="even">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"Schwartau"</td>
+<td>null</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+<tr class="odd">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"SchÃ¶fferhofer"</td>
+<td>null</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+<tr class="even">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"Scotts Black Mulch"</td>
+<td>null</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+<tr class="odd">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"Cherry Valley marketplace"</td>
+<td>null</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Look at the very first row. The <code>parent_company</code> is Grand Total. It seems like this line contains the totals for Argentinian records for 2019.</p>
+<p>However, for year 2020, the rows with totals per country are not marked with “Grand Total”, but rather are populated with the missing value</p>
+<div id="7d61d75a" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(plastics_df</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"year"</span>)<span class="op">==</span><span class="dv">2020</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (4_084, 16)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">parent_company</th>
+<th data-quarto-table-cell-role="th">empty</th>
+<th data-quarto-table-cell-role="th">hdpe</th>
+<th data-quarto-table-cell-role="th">ldpe</th>
+<th data-quarto-table-cell-role="th">o</th>
+<th data-quarto-table-cell-role="th">pet</th>
+<th data-quarto-table-cell-role="th">pp</th>
+<th data-quarto-table-cell-role="th">ps</th>
+<th data-quarto-table-cell-role="th">pvc</th>
+<th data-quarto-table-cell-role="th">grand_total</th>
+<th data-quarto-table-cell-role="th">num_events</th>
+<th data-quarto-table-cell-role="th">volunteers</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2020</td>
+<td>null</td>
+<td>0</td>
+<td>12</td>
+<td>9</td>
+<td>70</td>
+<td>9</td>
+<td>7</td>
+<td>2</td>
+<td>0</td>
+<td>109</td>
+<td>24</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2020</td>
+<td>"Aceitera Martinez S.A"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>24</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2020</td>
+<td>"AGD"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>24</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2020</td>
+<td>"Alfredo Willliner S.A"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>24</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2020</td>
+<td>"Alicorp Argentina"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>24</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>"VNM"</td>
+<td>"Viet Nam"</td>
+<td>2020</td>
+<td>"Vinamilk"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>91</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>92</td>
+<td>6</td>
+<td>27</td>
+</tr>
+<tr class="even">
+<td>"Western Pacific"</td>
+<td>"VNM"</td>
+<td>"Viet Nam"</td>
+<td>2020</td>
+<td>"VINH HAO CO."</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>6</td>
+<td>27</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>"VNM"</td>
+<td>"Viet Nam"</td>
+<td>2020</td>
+<td>"Vital"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>6</td>
+<td>27</td>
+</tr>
+<tr class="even">
+<td>"Western Pacific"</td>
+<td>"VNM"</td>
+<td>"Viet Nam"</td>
+<td>2020</td>
+<td>"VM Group"</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>6</td>
+<td>27</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>"VNM"</td>
+<td>"Viet Nam"</td>
+<td>2020</td>
+<td>"Yakult"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>6</td>
+<td>27</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Before we dive deeper into analyzing top contributors to plastic waste, lets look at the totals per country. We now have two options. We could populate the rows containing the totals with the phrase “Grand Total” and then use it to filter. This assumes that totals are calculated properly for all countries. We will basically disregard the majority of the dataset and rely on few rows that have been pre-computed for us.</p>
+<p>An alternative strategy could be to drop all rows with invalid company name (marked with either “Grand Total” or left missing “null”) and recompute totals by hand for each of the count columns.</p>
+<div id="fc38af88" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plastics_totals <span class="op">=</span> (plastics_df</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"grand_total"</span>, <span class="st">"num_events"</span>, <span class="st">"volunteers"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>((pl.col(<span class="st">"parent_company"</span>)<span class="op">!=</span><span class="st">"Grand Total"</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>            (pl.col(<span class="st">"parent_company"</span>).is_not_null()))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"country"</span>, <span class="st">"year"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    .agg(pl.exclude(<span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"parent_company"</span>).drop_nulls().<span class="bu">sum</span>())</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="f5ebcd6c" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LEFT AS AN EXERCISE FOR THE USER</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># fill the missing values in the parent_company column with the phrase "Grand Total". </span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Since the parent company column is no longer informative, we can drop it.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plastics_totals_1 <span class="op">=</span> (plastics_df</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"grand_total"</span>, <span class="st">"num_events"</span>, <span class="st">"volunteers"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    .with_columns(pl.col(<span class="st">"parent_company"</span>).fill_null(<span class="st">"Grand Total"</span>))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"parent_company"</span>)<span class="op">==</span><span class="st">"Grand Total"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"parent_company"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># What did we miss?</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>(plastics_totals_1</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    .join(plastics_totals, on<span class="op">=</span>[<span class="st">"country"</span>, <span class="st">"year"</span>], how<span class="op">=</span><span class="st">"anti"</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>(plastics_totals</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    .join(plastics_totals_1, on<span class="op">=</span>[<span class="st">"country"</span>, <span class="st">"year"</span>], how<span class="op">=</span><span class="st">"anti"</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># does not have row for the total</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>tmp1_df <span class="op">=</span> (plastics_df</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>)<span class="op">==</span><span class="st">"Slovenia"</span>,</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"year"</span>)<span class="op">==</span><span class="dv">2020</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># does not have any records other than the total</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>tmp2_df <span class="op">=</span> (plastics_df</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>)<span class="op">==</span><span class="st">"United Arab Emirates"</span>,</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"year"</span>)<span class="op">==</span><span class="dv">2020</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>tmp2_df <span class="op">=</span> (plastics_totals</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>).is_null())</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We do have <code>grand_total</code> column which seems to be a sum of columns <code>empty:pvc</code> describing counts for different type of plastic. Let’s say our goal is to make a chart describing the composition of trash by plastic type in different countries. In order to calculate proportions as we did previously, we need to have multiple observations for each country, one for each plastic type. Then we will calculate proportion over the country (and year).</p>
+<div id="6512dc8e" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plastics_long_df <span class="op">=</span> (plastics_df</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"grand_total"</span>, <span class="st">"num_events"</span>, <span class="st">"volunteers"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(pl.col(<span class="st">"parent_company"</span>).fill_null(<span class="st">"Grand Total"</span>))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"parent_company"</span>)<span class="op">==</span><span class="st">"Grand Total"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"parent_company"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">#.unpivot(index=["country", "year"], variable_name="plastic_type", value_name="quantity")</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    .unpivot(index<span class="op">=</span>cs.by_name(<span class="st">"country"</span>, <span class="st">"year"</span>), variable_name<span class="op">=</span><span class="st">"plastic_type"</span>, value_name<span class="op">=</span><span class="st">"quantity"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    .with_columns(pl.col(<span class="st">"quantity"</span>).fill_null(<span class="dv">0</span>))</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># In `.unpivot()` the `on` argument is optional. Everything other than index</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Pivot is making the data wider</p>
+<div id="866c691f" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(plastics_long_df</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    .pivot(on<span class="op">=</span><span class="st">"year"</span>, values<span class="op">=</span><span class="st">"quantity"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># In `.pivot()` the `index` is optional. All remaining columns not specified in `on` and `values` will be used.</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># either index or values need to be specified</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (650, 4)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">plastic_type</th>
+<th data-quarto-table-cell-role="th">2019</th>
+<th data-quarto-table-cell-role="th">2020</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Argentina"</td>
+<td>"region"</td>
+<td>"Americas"</td>
+<td>"Americas"</td>
+</tr>
+<tr class="even">
+<td>"Australia"</td>
+<td>"region"</td>
+<td>"Western Pacific"</td>
+<td>"Western Pacific"</td>
+</tr>
+<tr class="odd">
+<td>"Bangladesh"</td>
+<td>"region"</td>
+<td>"South-East Asia"</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"Benin"</td>
+<td>"region"</td>
+<td>"Africa"</td>
+<td>"Africa"</td>
+</tr>
+<tr class="odd">
+<td>"Bhutan"</td>
+<td>"region"</td>
+<td>"South-East Asia"</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Peru"</td>
+<td>"pvc"</td>
+<td>null</td>
+<td>"1"</td>
+</tr>
+<tr class="even">
+<td>"Romania"</td>
+<td>"pvc"</td>
+<td>null</td>
+<td>"0"</td>
+</tr>
+<tr class="odd">
+<td>"Serbia"</td>
+<td>"pvc"</td>
+<td>null</td>
+<td>"0"</td>
+</tr>
+<tr class="even">
+<td>"Singapore"</td>
+<td>"pvc"</td>
+<td>null</td>
+<td>"0"</td>
+</tr>
+<tr class="odd">
+<td>"Togo"</td>
+<td>"pvc"</td>
+<td>null</td>
+<td>"0"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="27b32af3" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(plastics_long_df</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    .pivot(on<span class="op">=</span><span class="st">"year"</span>, index<span class="op">=</span><span class="st">"country"</span>, values<span class="op">=</span><span class="st">"quantity"</span>, aggregate_function<span class="op">=</span><span class="st">'sum'</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>plastics_campaigns_df <span class="op">=</span> (plastics_long_df</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    .pivot(on<span class="op">=</span><span class="st">"year"</span>, index<span class="op">=</span>[<span class="st">"country"</span>, <span class="st">"plastic_type"</span>], values<span class="op">=</span><span class="st">"quantity"</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"country"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    .agg(pl.<span class="bu">all</span>().exclude(<span class="st">"country"</span>, <span class="st">"plastic_type"</span>).fill_null(<span class="dv">0</span>).<span class="bu">sum</span>())</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>(plastics_campaigns_df    </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>).is_in([<span class="st">"Germany"</span>, <span class="st">"Netherlands"</span>, <span class="st">"Switzerland"</span>, <span class="st">"France"</span>, <span class="st">"Spain"</span>, <span class="st">"Italy"</span>]))</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    .pipe(GT)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    .cols_label(</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        country<span class="op">=</span><span class="st">"Country"</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    .tab_spanner(<span class="st">"Year"</span>, columns<span class="op">=</span>[<span class="st">"2019"</span>, <span class="st">"2020"</span>])</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    .tab_header(</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        title <span class="op">=</span> <span class="st">"Break Free From Plastics campaigns"</span>,</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        subtitle <span class="op">=</span> <span class="st">"Brand plastic counts in some European countries"</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    .tab_source_note(</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        source_note<span class="op">=</span><span class="st">"Source: BFFP data via TidyTuesday 2021-01-26"</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div id="uzevvmqevw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>
+#uzevvmqevw table {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+#uzevvmqevw thead, tbody, tfoot, tr, td, th { border-style: none; }
+ tr { background-color: transparent; }
+#uzevvmqevw p { margin: 0; padding: 0; }
+ #uzevvmqevw .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #uzevvmqevw .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #uzevvmqevw .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
+ #uzevvmqevw .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
+ #uzevvmqevw .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #uzevvmqevw .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #uzevvmqevw .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #uzevvmqevw .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #uzevvmqevw .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #uzevvmqevw .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #uzevvmqevw .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #uzevvmqevw .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #uzevvmqevw .gt_spanner_row { border-bottom-style: hidden; }
+ #uzevvmqevw .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #uzevvmqevw .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
+ #uzevvmqevw .gt_from_md> :first-child { margin-top: 0; }
+ #uzevvmqevw .gt_from_md> :last-child { margin-bottom: 0; }
+ #uzevvmqevw .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
+ #uzevvmqevw .gt_stub { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
+ #uzevvmqevw .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #uzevvmqevw .gt_row_group_first td { border-top-width: 2px; }
+ #uzevvmqevw .gt_row_group_first th { border-top-width: 2px; }
+ #uzevvmqevw .gt_striped { background-color: rgba(128,128,128,0.05); }
+ #uzevvmqevw .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #uzevvmqevw .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #uzevvmqevw .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #uzevvmqevw .gt_left { text-align: left; }
+ #uzevvmqevw .gt_center { text-align: center; }
+ #uzevvmqevw .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #uzevvmqevw .gt_font_normal { font-weight: normal; }
+ #uzevvmqevw .gt_font_bold { font-weight: bold; }
+ #uzevvmqevw .gt_font_italic { font-style: italic; }
+ #uzevvmqevw .gt_super { font-size: 65%; }
+ #uzevvmqevw .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #uzevvmqevw .gt_asterisk { font-size: 100%; vertical-align: 0; }
+ 
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<th colspan="3" class="gt_heading gt_title gt_font_normal">Break Free From Plastics campaigns</th>
+</tr>
+<tr class="gt_heading even">
+<th colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Brand plastic counts in some European countries</th>
+</tr>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="Country" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Country</th>
+<th colspan="2" id="Year" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">Year</span></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="2019" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">2019</th>
+<th id="2020" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">2020</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left">France</td>
+<td class="gt_row gt_left">None</td>
+<td class="gt_row gt_left">None</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left">Switzerland</td>
+<td class="gt_row gt_left">None</td>
+<td class="gt_row gt_left">None</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left">Italy</td>
+<td class="gt_row gt_left">None</td>
+<td class="gt_row gt_left">None</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left">Spain</td>
+<td class="gt_row gt_left">None</td>
+<td class="gt_row gt_left">None</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left">Germany</td>
+<td class="gt_row gt_left">None</td>
+<td class="gt_row gt_left">None</td>
+</tr>
+</tbody><tfoot class="gt_sourcenotes">
+<tr class="odd">
+<td colspan="3" class="gt_sourcenote">Source: BFFP data via TidyTuesday 2021-01-26</td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+        
+</div>
+</div>
+</section>
+<section id="joins" class="level1">
+<h1>joins</h1>
+<div id="8fe56fc4" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>band_members <span class="op">=</span> pl.DataFrame({</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"name"</span>: [<span class="st">"Mick"</span>, <span class="st">"John"</span>, <span class="st">"Paul"</span>],</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"band"</span>: [<span class="st">"Stones"</span>, <span class="st">"Beatles"</span>, <span class="st">"Beatles"</span>] </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>band_instruments <span class="op">=</span> pl.DataFrame({</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"name"</span>: [<span class="st">"John"</span>, <span class="st">"Paul"</span>, <span class="st">"Keith"</span>, <span class="st">"Ringo"</span>],</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"plays"</span>: [<span class="st">"guitar"</span>, <span class="st">"bass"</span>, <span class="st">"guitar"</span>, <span class="st">"drums"</span>]</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Left join</p>
+<div id="2be41c63" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(band_members</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>.join(band_instruments, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"left"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (3, 3)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">band</th>
+<th data-quarto-table-cell-role="th">plays</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Mick"</td>
+<td>"Stones"</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"John"</td>
+<td>"Beatles"</td>
+<td>"guitar"</td>
+</tr>
+<tr class="odd">
+<td>"Paul"</td>
+<td>"Beatles"</td>
+<td>"bass"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Full join</p>
+<div id="0639ff17" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(band_members</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>.join(band_instruments, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"full"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 4)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">band</th>
+<th data-quarto-table-cell-role="th">name_right</th>
+<th data-quarto-table-cell-role="th">plays</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"John"</td>
+<td>"Beatles"</td>
+<td>"John"</td>
+<td>"guitar"</td>
+</tr>
+<tr class="even">
+<td>"Paul"</td>
+<td>"Beatles"</td>
+<td>"Paul"</td>
+<td>"bass"</td>
+</tr>
+<tr class="odd">
+<td>null</td>
+<td>null</td>
+<td>"Keith"</td>
+<td>"guitar"</td>
+</tr>
+<tr class="even">
+<td>null</td>
+<td>null</td>
+<td>"Ringo"</td>
+<td>"drums"</td>
+</tr>
+<tr class="odd">
+<td>"Mick"</td>
+<td>"Stones"</td>
+<td>null</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="72696445" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(band_members</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>.join(band_instruments, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"full"</span>, coalesce<span class="op">=</span><span class="va">True</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 3)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">band</th>
+<th data-quarto-table-cell-role="th">plays</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"John"</td>
+<td>"Beatles"</td>
+<td>"guitar"</td>
+</tr>
+<tr class="even">
+<td>"Paul"</td>
+<td>"Beatles"</td>
+<td>"bass"</td>
+</tr>
+<tr class="odd">
+<td>"Keith"</td>
+<td>null</td>
+<td>"guitar"</td>
+</tr>
+<tr class="even">
+<td>"Ringo"</td>
+<td>null</td>
+<td>"drums"</td>
+</tr>
+<tr class="odd">
+<td>"Mick"</td>
+<td>"Stones"</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Inner join (Default)</p>
+<div id="51fe72b8" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(band_members</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>.join(band_instruments, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"inner"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (2, 3)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">band</th>
+<th data-quarto-table-cell-role="th">plays</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"John"</td>
+<td>"Beatles"</td>
+<td>"guitar"</td>
+</tr>
+<tr class="even">
+<td>"Paul"</td>
+<td>"Beatles"</td>
+<td>"bass"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Anti join</p>
+<div id="44a3189f" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(band_members</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>.join(band_instruments, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"anti"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (1, 2)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">band</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Mick"</td>
+<td>"Stones"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>And reverse. Note the swapped order of datasets.</p>
+<div id="5bee4eb2" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(band_instruments</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>.join(band_members, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"anti"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (2, 2)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">plays</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Keith"</td>
+<td>"guitar"</td>
+</tr>
+<tr class="even">
+<td>"Ringo"</td>
+<td>"drums"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Most commonly used join is <code>left</code>. If you dont know which join you need, you need “left” join. Pay attention which dataset is on your left.</p>
+<p>For the curious right join allows you to perform left join in the opposite direction (without swapping the datasets). You should do “right join” only as the last resort, when you can not change the dataset order.</p>
+<p>Full join introduces missing value, inner join drops records, left join does both, but thats what you probably want. Anti-join is useful for checking which records will get dropped if you perform an inner join. Do it in both directions!</p>
+<p>There’s something that’s called “semi-join” but it is more like a filter. It will return the left dataset WITHOUT any additional information, filtered to only those records you have on the right.</p>
+<div id="29f649f7" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(band_instruments</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>.join(band_members, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"semi"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (2, 2)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">plays</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"John"</td>
+<td>"guitar"</td>
+</tr>
+<tr class="even">
+<td>"Paul"</td>
+<td>"bass"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Let’s look at the data.</p>
+<div id="f4845a42" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fact_area_df <span class="op">=</span> pl.read_csv(<span class="st">"cia/factbook_area_2024.csv"</span>, null_values<span class="op">=</span><span class="st">"NA"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>fact_comm_df <span class="op">=</span> pl.read_csv(<span class="st">"cia/factbook_comm_transport_2024.csv"</span>, null_values<span class="op">=</span><span class="st">"NA"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>fact_econ_df <span class="op">=</span> pl.read_csv(<span class="st">"cia/factbook_economy_security_2024.csv"</span>, null_values<span class="op">=</span><span class="st">"NA"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>fact_energy_df <span class="op">=</span> pl.read_csv(<span class="st">"cia/factbook_energy_environment_2024.csv"</span>, null_values<span class="op">=</span><span class="st">"NA"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>fact_ppl_df <span class="op">=</span> pl.read_csv(<span class="st">"cia/factbook_people_society_2024.csv"</span>, null_values<span class="op">=</span><span class="st">"NA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="bdbfe989" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"People dataset dimensions:"</span>, fact_ppl_df.shape[<span class="dv">0</span>])</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Energy dataset dimensions:"</span>, fact_energy_df.shape[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>People dataset dimensions: 237
+Energy dataset dimensions: 226</code></pre>
+</div>
+</div>
+</section>
+<section id="left-join" class="level1">
+<h1>left join</h1>
+<p>How many records will be returned if we perform left join on this? Correct answer is 237. Creates missing values.</p>
+<div id="3595e46b" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>fact_ppl_df</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    .join(fact_energy_df, on<span class="op">=</span>[<span class="st">"name"</span>, <span class="st">"slug"</span>, <span class="st">"region"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (237, 23)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">slug</th>
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">alcohol_consumption_per_capita</th>
+<th data-quarto-table-cell-role="th">birth_rate</th>
+<th data-quarto-table-cell-role="th">children_under_the_age_of_5_years_underweight</th>
+<th data-quarto-table-cell-role="th">death_rate</th>
+<th data-quarto-table-cell-role="th">education_expenditures</th>
+<th data-quarto-table-cell-role="th">infant_mortality_rate</th>
+<th data-quarto-table-cell-role="th">life_expectancy_at_birth</th>
+<th data-quarto-table-cell-role="th">maternal_mortality_ratio</th>
+<th data-quarto-table-cell-role="th">median_age</th>
+<th data-quarto-table-cell-role="th">net_migration_rate</th>
+<th data-quarto-table-cell-role="th">obesity_adult_prevalence_rate</th>
+<th data-quarto-table-cell-role="th">population_total</th>
+<th data-quarto-table-cell-role="th">population_growth_rate</th>
+<th data-quarto-table-cell-role="th">tobacco_use</th>
+<th data-quarto-table-cell-role="th">total_fertility_rate</th>
+<th data-quarto-table-cell-role="th">carbon_dioxide_emissions</th>
+<th data-quarto-table-cell-role="th">electricity_installed_generating_capacity</th>
+<th data-quarto-table-cell-role="th">energy_consumption_per_capita</th>
+<th data-quarto-table-cell-role="th">revenue_from_coal</th>
+<th data-quarto-table-cell-role="th">revenue_from_forest_resources</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Cook Islands"</td>
+<td>"cook-islands"</td>
+<td>"Australia and Oceania"</td>
+<td>12.97</td>
+<td>12.1</td>
+<td>null</td>
+<td>9.4</td>
+<td>4.6</td>
+<td>15.1</td>
+<td>77.6</td>
+<td>null</td>
+<td>41.1</td>
+<td>-25.1</td>
+<td>55.9</td>
+<td>7761</td>
+<td>-2.24</td>
+<td>24.0</td>
+<td>2.02</td>
+<td>87000</td>
+<td>17000</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"Latvia"</td>
+<td>"latvia"</td>
+<td>"Europe"</td>
+<td>12.9</td>
+<td>8.3</td>
+<td>21.1</td>
+<td>14.7</td>
+<td>6.0</td>
+<td>4.7</td>
+<td>76.4</td>
+<td>18</td>
+<td>45.5</td>
+<td>-4.9</td>
+<td>23.6</td>
+<td>1801246</td>
+<td>-1.14</td>
+<td>37.0</td>
+<td>1.55</td>
+<td>6458000</td>
+<td>3233000</td>
+<td>64272000</td>
+<td>0.0</td>
+<td>0.85</td>
+</tr>
+<tr class="odd">
+<td>"Czechia"</td>
+<td>"czechia"</td>
+<td>"Europe"</td>
+<td>12.73</td>
+<td>9.8</td>
+<td>null</td>
+<td>12.0</td>
+<td>5.1</td>
+<td>2.6</td>
+<td>78.6</td>
+<td>3</td>
+<td>44.2</td>
+<td>2.7</td>
+<td>26.0</td>
+<td>10837890</td>
+<td>0.04</td>
+<td>30.7</td>
+<td>1.73</td>
+<td>91213000</td>
+<td>21914000</td>
+<td>149874000</td>
+<td>0.14</td>
+<td>0.17</td>
+</tr>
+<tr class="even">
+<td>"Lithuania"</td>
+<td>"lithuania"</td>
+<td>"Europe"</td>
+<td>11.93</td>
+<td>8.9</td>
+<td>2.5</td>
+<td>15.2</td>
+<td>4.0</td>
+<td>3.6</td>
+<td>76.1</td>
+<td>9</td>
+<td>45.1</td>
+<td>-4.1</td>
+<td>26.3</td>
+<td>2628186</td>
+<td>-1.05</td>
+<td>32.0</td>
+<td>1.62</td>
+<td>12803000</td>
+<td>4258000</td>
+<td>85201000</td>
+<td>0.0</td>
+<td>0.31</td>
+</tr>
+<tr class="odd">
+<td>"Austria"</td>
+<td>"austria"</td>
+<td>"Europe"</td>
+<td>11.9</td>
+<td>9.3</td>
+<td>null</td>
+<td>9.9</td>
+<td>5.1</td>
+<td>3.2</td>
+<td>82.7</td>
+<td>5</td>
+<td>44.9</td>
+<td>3.5</td>
+<td>20.1</td>
+<td>8967982</td>
+<td>0.3</td>
+<td>26.4</td>
+<td>1.52</td>
+<td>57876000</td>
+<td>29810000</td>
+<td>123110000</td>
+<td>0.0</td>
+<td>0.07</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Tokelau"</td>
+<td>"tokelau"</td>
+<td>"Australia and Oceania"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>-3.84</td>
+<td>null</td>
+<td>1647</td>
+<td>-0.01</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"Svalbard"</td>
+<td>"svalbard"</td>
+<td>"Europe"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>-5.57</td>
+<td>null</td>
+<td>2926</td>
+<td>-0.03</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"Norfolk Island"</td>
+<td>"norfolk-island"</td>
+<td>"Australia and Oceania"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>1748</td>
+<td>0.01</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"Holy See (Vatican City)"</td>
+<td>"holy-see-vatican-city"</td>
+<td>"Europe"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>1000</td>
+<td>0.0</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"Pitcairn Islands"</td>
+<td>"pitcairn-islands"</td>
+<td>"Australia and Oceania"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>50</td>
+<td>0.0</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>The inner join drops “unmatched” observations from both sides</p>
+<div id="8fa182f8" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    fact_ppl_df</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    .join(fact_energy_df, on<span class="op">=</span>[<span class="st">"name"</span>, <span class="st">"slug"</span>, <span class="st">"region"</span>], how<span class="op">=</span><span class="st">"inner"</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    .shape</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>(223, 23)</code></pre>
+</div>
+</div>
+<p>Full join will keep unmatched observations on both sides.</p>
+<div id="36fa465d" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    fact_ppl_df</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    .join(fact_energy_df, on<span class="op">=</span>[<span class="st">"name"</span>, <span class="st">"slug"</span>, <span class="st">"region"</span>], how<span class="op">=</span><span class="st">"full"</span>, coalesce<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    .shape</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>(240, 23)</code></pre>
+</div>
+</div>
+<p>Join all of these datasets.</p>
+<div id="a28ad064" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>fact_all_df <span class="op">=</span> (</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    fact_area_df</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    .join(fact_econ_df, on<span class="op">=</span>[<span class="st">"name"</span>, <span class="st">"slug"</span>, <span class="st">"region"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    .join(fact_energy_df, on<span class="op">=</span>[<span class="st">"name"</span>, <span class="st">"slug"</span>, <span class="st">"region"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    .join(fact_comm_df, on<span class="op">=</span>[<span class="st">"name"</span>, <span class="st">"slug"</span>, <span class="st">"region"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    .join(fact_ppl_df, on<span class="op">=</span>[<span class="st">"name"</span>, <span class="st">"slug"</span>, <span class="st">"region"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cbed6dae" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    ggplot(fact_all_df)<span class="op">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    geom_point(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">"gdp_composition_by_sector_of_origin_services"</span>, y<span class="op">=</span><span class="st">"energy_consumption_per_capita"</span>, color<span class="op">=</span><span class="st">"region"</span>, size<span class="op">=</span><span class="st">"population_total"</span>))<span class="op">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    scale_y_log10()<span class="op">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    scale_size_continuous()</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/plotnine/ggplot.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg ansi-bold">    137</span> 
+<span class="ansi-green-fg ansi-bold">    138</span>         This method will always be called when a ggplot object <span class="ansi-green-fg">is</span> the
+<span class="ansi-green-fg ansi-bold">    139</span>         last <span class="ansi-green-fg">in</span> the cell<span class="ansi-blue-fg">.</span>
+<span class="ansi-green-fg ansi-bold">    140</span>         """
+<span class="ansi-green-fg">--&gt; 141</span><span class="ansi-red-fg">         </span>self<span class="ansi-blue-fg">.</span>_display<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/plotnine/ggplot.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg ansi-bold">    177</span>             save_format <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">"png"</span>
+<span class="ansi-green-fg ansi-bold">    178</span> 
+<span class="ansi-green-fg ansi-bold">    179</span>         figure_size_px <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>theme<span class="ansi-blue-fg">.</span>_figure_size_px
+<span class="ansi-green-fg ansi-bold">    180</span>         buf <span class="ansi-blue-fg">=</span> BytesIO<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">--&gt; 181</span><span class="ansi-red-fg">         </span>self<span class="ansi-blue-fg">.</span>save<span class="ansi-blue-fg">(</span>buf<span class="ansi-blue-fg">,</span> format<span class="ansi-blue-fg">=</span>save_format<span class="ansi-blue-fg">,</span> verbose<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    182</span>         display_func <span class="ansi-blue-fg">=</span> get_display_function<span class="ansi-blue-fg">(</span>format<span class="ansi-blue-fg">,</span> figure_size_px<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    183</span>         display_func<span class="ansi-blue-fg">(</span>buf<span class="ansi-blue-fg">.</span>getvalue<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/plotnine/ggplot.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self, filename, format, path, width, height, units, dpi, limitsize, verbose, **kwargs)</span>
+<span class="ansi-green-fg ansi-bold">    669</span>             If<span class="ansi-red-fg"> </span><span class="ansi-red-fg">`</span><span class="ansi-green-fg">True</span><span class="ansi-red-fg">`</span><span class="ansi-blue-fg">,</span> print the saving information<span class="ansi-blue-fg">.</span>
+<span class="ansi-green-fg ansi-bold">    670</span>         kwargs <span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">    671</span>             Additional arguments to <span class="ansi-green-fg">pass</span> to matplotlib<span class="ansi-red-fg"> </span><span class="ansi-red-fg">`</span>savefig<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-red-fg">`</span><span class="ansi-blue-fg">.</span>
+<span class="ansi-green-fg ansi-bold">    672</span>         """
+<span class="ansi-green-fg">--&gt; 673</span><span class="ansi-red-fg">         sv = self.save_helper(
+</span><span class="ansi-green-fg ansi-bold">    674</span>             filename<span class="ansi-blue-fg">=</span>filename<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg ansi-bold">    675</span>             format<span class="ansi-blue-fg">=</span>format<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg ansi-bold">    676</span>             path<span class="ansi-blue-fg">=</span>path<span class="ansi-blue-fg">,</span>
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/plotnine/ggplot.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self, filename, format, path, width, height, units, dpi, limitsize, verbose, **kwargs)</span>
+<span class="ansi-green-fg ansi-bold">    617</span> 
+<span class="ansi-green-fg ansi-bold">    618</span>         <span class="ansi-green-fg">if</span> dpi <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">    619</span>             self<span class="ansi-blue-fg">.</span>theme <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>theme <span class="ansi-blue-fg">+</span> theme<span class="ansi-blue-fg">(</span>dpi<span class="ansi-blue-fg">=</span>dpi<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    620</span> 
+<span class="ansi-green-fg">--&gt; 621</span><span class="ansi-red-fg">         </span>figure <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>draw<span class="ansi-blue-fg">(</span>show<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    622</span>         <span class="ansi-green-fg">return</span> mpl_save_view<span class="ansi-blue-fg">(</span>figure<span class="ansi-blue-fg">,</span> fig_kwargs<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/plotnine/ggplot.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self, show)</span>
+<span class="ansi-green-fg ansi-bold">    274</span>         <span class="ansi-red-fg"># ggplot object. Do the copy here as we may/may not</span>
+<span class="ansi-green-fg ansi-bold">    275</span>         <span class="ansi-red-fg"># assign a default theme</span>
+<span class="ansi-green-fg ansi-bold">    276</span>         self <span class="ansi-blue-fg">=</span> deepcopy<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    277</span>         <span class="ansi-green-fg">with</span> plot_context<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> show<span class="ansi-blue-fg">=</span>show<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 278</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>_build<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    279</span> 
+<span class="ansi-green-fg ansi-bold">    280</span>             <span class="ansi-red-fg"># setup</span>
+<span class="ansi-green-fg ansi-bold">    281</span>             self<span class="ansi-blue-fg">.</span>figure<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>axs <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>facet<span class="ansi-blue-fg">.</span>setup<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/plotnine/ggplot.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg ansi-bold">    356</span>         layers<span class="ansi-blue-fg">.</span>update_labels<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    357</span> 
+<span class="ansi-green-fg ansi-bold">    358</span>         <span class="ansi-red-fg"># Give each layer a copy of the data, the mappings and</span>
+<span class="ansi-green-fg ansi-bold">    359</span>         <span class="ansi-red-fg"># the execution environment</span>
+<span class="ansi-green-fg">--&gt; 360</span><span class="ansi-red-fg">         </span>layers<span class="ansi-blue-fg">.</span>setup<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    361</span> 
+<span class="ansi-green-fg ansi-bold">    362</span>         <span class="ansi-red-fg"># Initialise panels, add extra data for margins &amp; missing</span>
+<span class="ansi-green-fg ansi-bold">    363</span>         <span class="ansi-red-fg"># facetting variables, and add on a PANEL variable to data</span>
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/plotnine/layer.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self, plot)</span>
+<span class="ansi-green-fg ansi-bold">    441</span>     <span class="ansi-green-fg">def</span> setup<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> plot<span class="ansi-blue-fg">:</span> ggplot<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">    442</span>         <span class="ansi-green-fg">for</span> l <span class="ansi-green-fg">in</span> self<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 443</span><span class="ansi-red-fg">             </span>l<span class="ansi-blue-fg">.</span>setup<span class="ansi-blue-fg">(</span>plot<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/plotnine/layer.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self, plot)</span>
+<span class="ansi-green-fg ansi-bold">    159</span>         Prepare layer <span class="ansi-green-fg">for</span> the plot building
+<span class="ansi-green-fg ansi-bold">    160</span> 
+<span class="ansi-green-fg ansi-bold">    161</span>         Give the layer access to the data<span class="ansi-blue-fg">,</span> mapping <span class="ansi-green-fg">and</span> environment
+<span class="ansi-green-fg ansi-bold">    162</span>         """
+<span class="ansi-green-fg">--&gt; 163</span><span class="ansi-red-fg">         </span>self<span class="ansi-blue-fg">.</span>_make_layer_data<span class="ansi-blue-fg">(</span>plot<span class="ansi-blue-fg">.</span>data<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    164</span>         self<span class="ansi-blue-fg">.</span>_make_layer_mapping<span class="ansi-blue-fg">(</span>plot<span class="ansi-blue-fg">.</span>mapping<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    165</span>         self<span class="ansi-blue-fg">.</span>_make_layer_environments<span class="ansi-blue-fg">(</span>plot<span class="ansi-blue-fg">.</span>environment<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/plotnine/layer.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self, plot_data)</span>
+<span class="ansi-green-fg ansi-bold">    175</span>         """
+<span class="ansi-green-fg ansi-bold">    176</span>         <span class="ansi-green-fg">if</span> plot_data <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">    177</span>             data <span class="ansi-blue-fg">=</span> pd<span class="ansi-blue-fg">.</span>DataFrame<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    178</span>         <span class="ansi-green-fg">elif</span> hasattr<span class="ansi-blue-fg">(</span>plot_data<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">"to_pandas"</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 179</span><span class="ansi-red-fg">             </span>data <span class="ansi-blue-fg">=</span> cast<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"DataFrameConvertible"</span><span class="ansi-blue-fg">,</span> plot_data<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>to_pandas<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    180</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">    181</span>             data <span class="ansi-blue-fg">=</span> cast<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"pd.DataFrame"</span><span class="ansi-blue-fg">,</span> plot_data<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    182</span> 
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/polars/dataframe/frame.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self, use_pyarrow_extension_array, **kwargs)</span>
+<span class="ansi-green-fg ansi-bold">   2408</span>             return self._to_pandas_with_object_columns(
+<span class="ansi-green-fg ansi-bold">   2409</span>                 use_pyarrow_extension_array<span class="ansi-blue-fg">=</span>use_pyarrow_extension_array<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs
+<span class="ansi-green-fg ansi-bold">   2410</span>             )
+<span class="ansi-green-fg ansi-bold">   2411</span> 
+<span class="ansi-green-fg">-&gt; 2412</span><span class="ansi-red-fg">         return self._to_pandas_without_object_columns(
+</span><span class="ansi-green-fg ansi-bold">   2413</span>             self<span class="ansi-blue-fg">,</span> use_pyarrow_extension_array<span class="ansi-blue-fg">=</span>use_pyarrow_extension_array<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs
+<span class="ansi-green-fg ansi-bold">   2414</span>         )
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/polars/dataframe/frame.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self, df, use_pyarrow_extension_array, **kwargs)</span>
+<span class="ansi-green-fg ansi-bold">   2459</span>     ) -&gt; pd.DataFrame:
+<span class="ansi-green-fg ansi-bold">   2460</span>         <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> df<span class="ansi-blue-fg">.</span>width<span class="ansi-blue-fg">:</span>  <span class="ansi-red-fg"># Empty dataframe, cannot infer schema from batches</span>
+<span class="ansi-green-fg ansi-bold">   2461</span>             <span class="ansi-green-fg">return</span> pd<span class="ansi-blue-fg">.</span>DataFrame<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">   2462</span> 
+<span class="ansi-green-fg">-&gt; 2463</span><span class="ansi-red-fg">         </span>record_batches <span class="ansi-blue-fg">=</span> df<span class="ansi-blue-fg">.</span>_df<span class="ansi-blue-fg">.</span>to_pandas<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">   2464</span>         tbl <span class="ansi-blue-fg">=</span> pa<span class="ansi-blue-fg">.</span>Table<span class="ansi-blue-fg">.</span>from_batches<span class="ansi-blue-fg">(</span>record_batches<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">   2465</span>         <span class="ansi-green-fg">if</span> use_pyarrow_extension_array<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">   2466</span>             return tbl.to_pandas(
+
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named 'pyarrow'</pre>
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>&lt;plotnine.ggplot.ggplot at 0x7e1ea0fdfc40&gt;</code></pre>
+</div>
+</div>
+<div id="c3615ac7" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    ggplot(fact_all_df)<span class="op">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    geom_point(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">"military_expenditures"</span>, y<span class="op">=</span><span class="st">"total_fertility_rate"</span>, color<span class="op">=</span><span class="st">"region"</span>, size<span class="op">=</span><span class="st">"population_total"</span>))<span class="op">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    scale_y_log10()</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/plotnine/ggplot.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg ansi-bold">    137</span> 
+<span class="ansi-green-fg ansi-bold">    138</span>         This method will always be called when a ggplot object <span class="ansi-green-fg">is</span> the
+<span class="ansi-green-fg ansi-bold">    139</span>         last <span class="ansi-green-fg">in</span> the cell<span class="ansi-blue-fg">.</span>
+<span class="ansi-green-fg ansi-bold">    140</span>         """
+<span class="ansi-green-fg">--&gt; 141</span><span class="ansi-red-fg">         </span>self<span class="ansi-blue-fg">.</span>_display<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/plotnine/ggplot.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg ansi-bold">    177</span>             save_format <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">"png"</span>
+<span class="ansi-green-fg ansi-bold">    178</span> 
+<span class="ansi-green-fg ansi-bold">    179</span>         figure_size_px <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>theme<span class="ansi-blue-fg">.</span>_figure_size_px
+<span class="ansi-green-fg ansi-bold">    180</span>         buf <span class="ansi-blue-fg">=</span> BytesIO<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">--&gt; 181</span><span class="ansi-red-fg">         </span>self<span class="ansi-blue-fg">.</span>save<span class="ansi-blue-fg">(</span>buf<span class="ansi-blue-fg">,</span> format<span class="ansi-blue-fg">=</span>save_format<span class="ansi-blue-fg">,</span> verbose<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    182</span>         display_func <span class="ansi-blue-fg">=</span> get_display_function<span class="ansi-blue-fg">(</span>format<span class="ansi-blue-fg">,</span> figure_size_px<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    183</span>         display_func<span class="ansi-blue-fg">(</span>buf<span class="ansi-blue-fg">.</span>getvalue<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/plotnine/ggplot.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self, filename, format, path, width, height, units, dpi, limitsize, verbose, **kwargs)</span>
+<span class="ansi-green-fg ansi-bold">    669</span>             If<span class="ansi-red-fg"> </span><span class="ansi-red-fg">`</span><span class="ansi-green-fg">True</span><span class="ansi-red-fg">`</span><span class="ansi-blue-fg">,</span> print the saving information<span class="ansi-blue-fg">.</span>
+<span class="ansi-green-fg ansi-bold">    670</span>         kwargs <span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">    671</span>             Additional arguments to <span class="ansi-green-fg">pass</span> to matplotlib<span class="ansi-red-fg"> </span><span class="ansi-red-fg">`</span>savefig<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-red-fg">`</span><span class="ansi-blue-fg">.</span>
+<span class="ansi-green-fg ansi-bold">    672</span>         """
+<span class="ansi-green-fg">--&gt; 673</span><span class="ansi-red-fg">         sv = self.save_helper(
+</span><span class="ansi-green-fg ansi-bold">    674</span>             filename<span class="ansi-blue-fg">=</span>filename<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg ansi-bold">    675</span>             format<span class="ansi-blue-fg">=</span>format<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg ansi-bold">    676</span>             path<span class="ansi-blue-fg">=</span>path<span class="ansi-blue-fg">,</span>
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/plotnine/ggplot.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self, filename, format, path, width, height, units, dpi, limitsize, verbose, **kwargs)</span>
+<span class="ansi-green-fg ansi-bold">    617</span> 
+<span class="ansi-green-fg ansi-bold">    618</span>         <span class="ansi-green-fg">if</span> dpi <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">    619</span>             self<span class="ansi-blue-fg">.</span>theme <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>theme <span class="ansi-blue-fg">+</span> theme<span class="ansi-blue-fg">(</span>dpi<span class="ansi-blue-fg">=</span>dpi<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    620</span> 
+<span class="ansi-green-fg">--&gt; 621</span><span class="ansi-red-fg">         </span>figure <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>draw<span class="ansi-blue-fg">(</span>show<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    622</span>         <span class="ansi-green-fg">return</span> mpl_save_view<span class="ansi-blue-fg">(</span>figure<span class="ansi-blue-fg">,</span> fig_kwargs<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/plotnine/ggplot.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self, show)</span>
+<span class="ansi-green-fg ansi-bold">    274</span>         <span class="ansi-red-fg"># ggplot object. Do the copy here as we may/may not</span>
+<span class="ansi-green-fg ansi-bold">    275</span>         <span class="ansi-red-fg"># assign a default theme</span>
+<span class="ansi-green-fg ansi-bold">    276</span>         self <span class="ansi-blue-fg">=</span> deepcopy<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    277</span>         <span class="ansi-green-fg">with</span> plot_context<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> show<span class="ansi-blue-fg">=</span>show<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 278</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>_build<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    279</span> 
+<span class="ansi-green-fg ansi-bold">    280</span>             <span class="ansi-red-fg"># setup</span>
+<span class="ansi-green-fg ansi-bold">    281</span>             self<span class="ansi-blue-fg">.</span>figure<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>axs <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>facet<span class="ansi-blue-fg">.</span>setup<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/plotnine/ggplot.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg ansi-bold">    356</span>         layers<span class="ansi-blue-fg">.</span>update_labels<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    357</span> 
+<span class="ansi-green-fg ansi-bold">    358</span>         <span class="ansi-red-fg"># Give each layer a copy of the data, the mappings and</span>
+<span class="ansi-green-fg ansi-bold">    359</span>         <span class="ansi-red-fg"># the execution environment</span>
+<span class="ansi-green-fg">--&gt; 360</span><span class="ansi-red-fg">         </span>layers<span class="ansi-blue-fg">.</span>setup<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    361</span> 
+<span class="ansi-green-fg ansi-bold">    362</span>         <span class="ansi-red-fg"># Initialise panels, add extra data for margins &amp; missing</span>
+<span class="ansi-green-fg ansi-bold">    363</span>         <span class="ansi-red-fg"># facetting variables, and add on a PANEL variable to data</span>
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/plotnine/layer.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self, plot)</span>
+<span class="ansi-green-fg ansi-bold">    441</span>     <span class="ansi-green-fg">def</span> setup<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> plot<span class="ansi-blue-fg">:</span> ggplot<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">    442</span>         <span class="ansi-green-fg">for</span> l <span class="ansi-green-fg">in</span> self<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 443</span><span class="ansi-red-fg">             </span>l<span class="ansi-blue-fg">.</span>setup<span class="ansi-blue-fg">(</span>plot<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/plotnine/layer.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self, plot)</span>
+<span class="ansi-green-fg ansi-bold">    159</span>         Prepare layer <span class="ansi-green-fg">for</span> the plot building
+<span class="ansi-green-fg ansi-bold">    160</span> 
+<span class="ansi-green-fg ansi-bold">    161</span>         Give the layer access to the data<span class="ansi-blue-fg">,</span> mapping <span class="ansi-green-fg">and</span> environment
+<span class="ansi-green-fg ansi-bold">    162</span>         """
+<span class="ansi-green-fg">--&gt; 163</span><span class="ansi-red-fg">         </span>self<span class="ansi-blue-fg">.</span>_make_layer_data<span class="ansi-blue-fg">(</span>plot<span class="ansi-blue-fg">.</span>data<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    164</span>         self<span class="ansi-blue-fg">.</span>_make_layer_mapping<span class="ansi-blue-fg">(</span>plot<span class="ansi-blue-fg">.</span>mapping<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    165</span>         self<span class="ansi-blue-fg">.</span>_make_layer_environments<span class="ansi-blue-fg">(</span>plot<span class="ansi-blue-fg">.</span>environment<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/plotnine/layer.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self, plot_data)</span>
+<span class="ansi-green-fg ansi-bold">    175</span>         """
+<span class="ansi-green-fg ansi-bold">    176</span>         <span class="ansi-green-fg">if</span> plot_data <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">    177</span>             data <span class="ansi-blue-fg">=</span> pd<span class="ansi-blue-fg">.</span>DataFrame<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    178</span>         <span class="ansi-green-fg">elif</span> hasattr<span class="ansi-blue-fg">(</span>plot_data<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">"to_pandas"</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 179</span><span class="ansi-red-fg">             </span>data <span class="ansi-blue-fg">=</span> cast<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"DataFrameConvertible"</span><span class="ansi-blue-fg">,</span> plot_data<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>to_pandas<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    180</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">    181</span>             data <span class="ansi-blue-fg">=</span> cast<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"pd.DataFrame"</span><span class="ansi-blue-fg">,</span> plot_data<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">    182</span> 
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/polars/dataframe/frame.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self, use_pyarrow_extension_array, **kwargs)</span>
+<span class="ansi-green-fg ansi-bold">   2408</span>             return self._to_pandas_with_object_columns(
+<span class="ansi-green-fg ansi-bold">   2409</span>                 use_pyarrow_extension_array<span class="ansi-blue-fg">=</span>use_pyarrow_extension_array<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs
+<span class="ansi-green-fg ansi-bold">   2410</span>             )
+<span class="ansi-green-fg ansi-bold">   2411</span> 
+<span class="ansi-green-fg">-&gt; 2412</span><span class="ansi-red-fg">         return self._to_pandas_without_object_columns(
+</span><span class="ansi-green-fg ansi-bold">   2413</span>             self<span class="ansi-blue-fg">,</span> use_pyarrow_extension_array<span class="ansi-blue-fg">=</span>use_pyarrow_extension_array<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs
+<span class="ansi-green-fg ansi-bold">   2414</span>         )
+
+<span class="ansi-green-fg">~/Projects/DATA24WEB/.venv/lib/python3.10/site-packages/polars/dataframe/frame.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self, df, use_pyarrow_extension_array, **kwargs)</span>
+<span class="ansi-green-fg ansi-bold">   2459</span>     ) -&gt; pd.DataFrame:
+<span class="ansi-green-fg ansi-bold">   2460</span>         <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> df<span class="ansi-blue-fg">.</span>width<span class="ansi-blue-fg">:</span>  <span class="ansi-red-fg"># Empty dataframe, cannot infer schema from batches</span>
+<span class="ansi-green-fg ansi-bold">   2461</span>             <span class="ansi-green-fg">return</span> pd<span class="ansi-blue-fg">.</span>DataFrame<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">   2462</span> 
+<span class="ansi-green-fg">-&gt; 2463</span><span class="ansi-red-fg">         </span>record_batches <span class="ansi-blue-fg">=</span> df<span class="ansi-blue-fg">.</span>_df<span class="ansi-blue-fg">.</span>to_pandas<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">   2464</span>         tbl <span class="ansi-blue-fg">=</span> pa<span class="ansi-blue-fg">.</span>Table<span class="ansi-blue-fg">.</span>from_batches<span class="ansi-blue-fg">(</span>record_batches<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">   2465</span>         <span class="ansi-green-fg">if</span> use_pyarrow_extension_array<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg ansi-bold">   2466</span>             return tbl.to_pandas(
+
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named 'pyarrow'</pre>
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>&lt;plotnine.ggplot.ggplot at 0x7e1e5b56b280&gt;</code></pre>
+</div>
+</div>
+<section id="stacking" class="level2">
+<h2 class="anchored" data-anchor-id="stacking">Stacking</h2>
+<div id="90a04882" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># indoor air pollution</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>hhap_deaths <span class="op">=</span> pl.read_csv(<span class="st">"hhap/hhap_deaths.csv"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>clean_fuels <span class="op">=</span> pl.read_csv(<span class="st">"hhap/clean_fuels_cooking.csv"</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>fuel_types <span class="op">=</span> pl.read_csv(<span class="st">"hhap/cooking_by_fuel_type.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Another common type of operation is stacking two identical datasets together (vertically). This is possible to do when the meaning of the columns in the datasets is the same and we are interested in combining two parts of identical data into a new and larger dataset.</p>
+<p>Recall that in our household air pollution case study we had three files: - <code>hhap_deaths</code> - containing death cases, associated with air pollution - <code>fuel_types</code> - describing information about the fuels used by population in different countries for household needs - <code>clean_fuels</code> - containing the fraction of population in each country with access to clean fulels for cooking</p>
+<p>All three of these datasets contain three identical columns describing the country of observation: <code>region</code>, <code>country_code</code> and <code>country</code>. The countries listed in each of the datasets is largely similar, but not completely overlapping. Let’s see if we can compile a single master set of all countries with the codes and the regions they belong to. Because the data is recorded over many years each of the datasets contains many duplicates entries. This problem will be even larger when we stack the data from several datasets together, so we will need to ensure the records in our final (combined) dataset are unique.</p>
+<div id="4100385c" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>idcols<span class="op">=</span>cs.by_name(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>country_regions <span class="op">=</span> (hhap_deaths.select(idcols)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    .vstack(fuel_types.select(idcols))</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    .vstack(clean_fuels.select(idcols))</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    .unique()</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note, that here we created a temporary object idcols, which will store only selector object for the three columns we are interested in. Polar selectors are independent entities which can live both inside the querying contexts as well as in the global environment, i.e.&nbsp;in memory accessible</p>
+<p>Lets compare our country codes with the full list of codes issued by ISO. Here’s a file with all Alpha 2 and Alpha 3 codes issued to nation states and territories.</p>
+<div id="8ae9a3ee" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>iso_df <span class="op">=</span> pl.read_csv(<span class="st">"hhap/CountryCodes_Alpha2_Alpha3.csv"</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>(country_regions</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    .join(iso_df, left_on<span class="op">=</span><span class="st">"country_code"</span>, right_on<span class="op">=</span><span class="st">"alpha3"</span>, how<span class="op">=</span><span class="st">"anti"</span>))</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>(country_regions</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    .join(iso_df, left_on<span class="op">=</span><span class="st">"country_code"</span>, right_on<span class="op">=</span><span class="st">"alpha3"</span>, how<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co"># How many countries are not present in the combined household air pollution dataset? </span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="co"># What proportion of those countries have the world "Island" in their name?</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>tmp_df1 <span class="op">=</span> (iso_df</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    .join(country_regions, left_on<span class="op">=</span><span class="st">"alpha3"</span>, right_on<span class="op">=</span><span class="st">"country_code"</span>, how<span class="op">=</span><span class="st">"anti"</span>))</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>(iso_df</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>    .join(country_regions, left_on<span class="op">=</span><span class="st">"alpha3"</span>, right_on<span class="op">=</span><span class="st">"country_code"</span>, how<span class="op">=</span><span class="st">"anti"</span>)</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"country"</span>).<span class="bu">str</span>.contains(<span class="st">"Island"</span>).mean())</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>(iso_df</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>    .join(country_regions, left_on<span class="op">=</span><span class="st">"alpha3"</span>, right_on<span class="op">=</span><span class="st">"country_code"</span>, how<span class="op">=</span><span class="st">"anti"</span>)</span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>    .group_by(pl.col(<span class="st">"country"</span>).<span class="bu">str</span>.contains(<span class="st">"Island"</span>).alias(<span class="st">"island"</span>))</span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">len</span>()</span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>    .with_columns(pl.col(<span class="st">"len"</span>)<span class="op">/</span>pl.<span class="bu">sum</span>(<span class="st">"len"</span>))</span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(<span class="st">"island"</span>)</span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (1, 2)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">island</th>
+<th data-quarto-table-cell-role="th">len</th>
+</tr>
+<tr class="even">
+<th>bool</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>true</td>
+<td>0.259259</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Horizontal stacking is possible, but you probably want to do a join instead, because horizontal stacking assumes that row order is the same and observations are identical. This is better ensured with unique IDs which could be used for join.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Lund University</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Data Literacy with Python</p>
+</div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Follow us on  
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/lunduniversity">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/lunduniversity/">
+      <i class="bi bi-instagram" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/school/lunduniversity/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/user/LundUniversity">
+      <i class="bi bi-youtube" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.facebook.com/lunduniversity">
+      <i class="bi bi-facebook" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

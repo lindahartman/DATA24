@@ -1,0 +1,227 @@
+name,slug,region,carbon_dioxide_emissions,electricity_installed_generating_capacity,energy_consumption_per_capita,revenue_from_coal,revenue_from_forest_resources
+China,china,East and Southeast Asia,13506000000,2594000000,122004000,0.57,0.08
+United States,united-states,North America,4941000000,1201000000,284575000,0.2,0.04
+India,india,South Asia,2805000000,487407000,24793000,1.15,0.14
+Russia,russia,Central Asia,1840000000,301123000,225235000,0.53,0.29
+Japan,japan,East and Southeast Asia,1049000000,349940000,136122000,0,0.02
+Iran,iran,Middle East,750453000,80740000,152479000,0.01,0.01
+Indonesia,indonesia,East and Southeast Asia,684926000,69706000,33039000,1.06,0.39
+Germany,germany,Europe,668292000,261086000,132263000,0.02,0.03
+"Korea, South",korea-south,East and Southeast Asia,643456000,146539000,235518000,0,0.01
+Saudi Arabia,saudi-arabia,Middle East,638449000,80110000,313903000,0,0
+Canada,canada,North America,572820000,158973000,315581000,0.08,0.08
+Brazil,brazil,South America,516752000,220319000,50037000,0.01,0.62
+South Africa,south-africa,Africa,476987000,63411000,95511000,2.4,NA
+Mexico,mexico,North America,453600000,104318000,59319000,0.03,0.1
+Australia,australia,Australia and Oceania,415177000,101350000,236653000,0.78,0.13
+Turkey (Turkiye),turkey-turkiye,Middle East,391592000,103817000,70594000,0.05,0.08
+United Kingdom,united-kingdom,Europe,353407000,111020000,99499000,0,0.01
+Italy,italy,Europe,316578000,123327000,98458000,0,0.01
+France,france,Europe,311904000,148914000,121928000,0,0.03
+Thailand,thailand,East and Southeast Asia,307934000,57216000,69958000,0.03,0.34
+Taiwan,taiwan,East and Southeast Asia,306035000,61944000,208336000,NA,NA
+Vietnam,vietnam,East and Southeast Asia,297826000,85040000,39117000,0.35,1.49
+Poland,poland,Europe,293356000,58719000,106196000,0.27,0.17
+United Arab Emirates,united-arab-emirates,Middle East,268041000,39915000,496365000,0,0
+Spain,spain,Europe,266476000,118141000,105979000,0,0.02
+Kazakhstan,kazakhstan,Central Asia,265460000,26033000,176085000,0.99,0
+Malaysia,malaysia,East and Southeast Asia,262458000,36301000,116494000,0.02,1.57
+Singapore,singapore,East and Southeast Asia,241710000,12538000,653844000,0,0
+Egypt,egypt,Africa,240225000,59248000,36463000,NA,0.15
+Pakistan,pakistan,South Asia,213498000,43478000,14902000,0.06,0.1
+Netherlands,netherlands,Europe,186092000,57194000,186890000,0,0.01
+Argentina,argentina,South America,185370000,46820000,75735000,0,0.09
+Iraq,iraq,Middle East,156892000,31339000,57702000,0,0
+Algeria,algeria,Africa,147930000,21706000,58473000,0,0.1
+Philippines,philippines,East and Southeast Asia,136273000,27542000,15558000,0.07,0.18
+Qatar,qatar,Middle East,122122000,11414000,767202000,0,0
+Nigeria,nigeria,Africa,118699000,11697000,8564000,0,1.02
+Belgium,belgium,Europe,116271000,26310000,205444000,0,0.02
+Uzbekistan,uzbekistan,Central Asia,103219000,16926000,53528000,0.06,0
+Turkmenistan,turkmenistan,Central Asia,101442000,5202000,282657000,0,0
+Kuwait,kuwait,Middle East,100596000,20250000,402030000,0,0
+Bangladesh,bangladesh,South Asia,99570000,22449000,9678000,0.02,0.08
+Ukraine,ukraine,Europe,93360000,58531000,53302000,0.42,0.34
+Czechia,czechia,Europe,91213000,21914000,149874000,0.14,0.17
+Hong Kong,hong-kong,East and Southeast Asia,87498000,13388000,167815000,0,0
+Venezuela,venezuela,South America,80769000,34742000,57282000,NA,NA
+Chile,chile,South America,79689000,35598000,69194000,0.01,0.49
+Oman,oman,Middle East,79559000,9129000,285886000,0,0
+Colombia,colombia,South America,70163000,18896000,25800000,0.75,0.1
+Morocco,morocco,Africa,67688000,14237000,24936000,0,0.13
+Israel,israel,Middle East,64871000,22207000,113455000,0,0
+Romania,romania,Europe,62594000,19126000,60670000,0.03,0.16
+Greece,greece,Europe,62142000,22336000,94151000,0.04,0.01
+"Korea, North",korea-north,East and Southeast Asia,61605000,8277000,25876000,NA,NA
+Austria,austria,Europe,57876000,29810000,123110000,0,0.07
+Belarus,belarus,Europe,51682000,11508000,99484000,0,1.02
+Libya,libya,Africa,49751000,10517000,117609000,0,0.06
+Sweden,sweden,Europe,47364000,52706000,150621000,0,0.21
+Peru,peru,South America,45504000,15504000,24932000,0,0.12
+Hungary,hungary,Europe,44884000,11995000,102832000,0.01,0.1
+Bahrain,bahrain,Middle East,43343000,6983000,514320000,0,0
+Bulgaria,bulgaria,Europe,43234000,12031000,107943000,0.14,0.22
+Serbia,serbia,Europe,42933000,8075000,89037000,0.25,0.38
+Portugal,portugal,Europe,42562000,23316000,80316000,0,0.13
+Norway,norway,Europe,38928000,40540000,201034000,0,0.05
+Azerbaijan,azerbaijan,Middle East,36187000,7710000,61497000,0,0.02
+Finland,finland,Europe,36006000,24784000,181313000,0,0.36
+Ireland,ireland,Europe,35957000,11530000,118037000,0,0.01
+Trinidad and Tobago,trinidad-and-tobago,Central America and the Caribbean,35415000,2522000,NA,0,0.05
+Switzerland,switzerland,Europe,33609000,24014000,101938000,0,0.01
+New Zealand,new-zealand,Australia and Oceania,31998000,10412000,120219000,0.03,0.5
+Burma,burma,East and Southeast Asia,31347000,6993000,9244000,0.01,1.69
+Ecuador,ecuador,South America,31306000,8377000,30111000,0,0.27
+Denmark,denmark,Europe,30308000,19503000,100260000,0,0.02
+Dominican Republic,dominican-republic,Central America and the Caribbean,27132000,5573000,36656000,0,0.03
+Lebanon,lebanon,Middle East,26594000,4141000,67466000,0,0
+Panama,panama,Central America and the Caribbean,25763000,4434000,87160000,0,0.08
+Bosnia and Herzegovina,bosnia-and-herzegovina,Europe,25762000,4591000,92698000,0.34,0.49
+Syria,syria,Middle East,25628000,10124000,18111000,NA,NA
+Tunisia,tunisia,Africa,23645000,6328000,33641000,0,0.21
+Ghana,ghana,Africa,22882000,5444000,11416000,0,3.51
+Sri Lanka,sri-lanka,South Asia,21766000,5040000,14449000,0,0.06
+Cuba,cuba,Central America and the Caribbean,21693000,7667000,32255000,0,0.06
+Slovakia,slovakia,Europe,21405000,8029000,93681000,0.01,0.22
+Jordan,jordan,Middle East,21261000,6805000,30906000,0,0.02
+Laos,laos,East and Southeast Asia,20151000,12222000,29176000,NA,1.48
+Angola,angola,Africa,19818000,7588000,9610000,0,0.36
+Kenya,kenya,Africa,19471000,3746000,5692000,0,1.3
+Guatemala,guatemala,Central America and the Caribbean,18056000,5210000,16807000,0,0.78
+Bolivia,bolivia,South America,17773000,4104000,24229000,0,0.33
+Puerto Rico,puerto-rico,Central America and the Caribbean,17260000,6601000,76228000,0,0
+Ethiopia,ethiopia,Africa,17232000,5730000,2340000,0,5.81
+Sudan,sudan,Africa,16497000,3815000,6271000,0,3.01
+Croatia,croatia,Europe,15944000,5417000,78371000,0,0.26
+Mongolia,mongolia,East and Southeast Asia,15918000,1610000,57093000,8.62,0.14
+Cambodia,cambodia,East and Southeast Asia,14396000,3204000,12831000,0,0.84
+Gibraltar,gibraltar,Europe,14297000,43000,NA,NA,NA
+Zimbabwe,zimbabwe,Africa,13871000,2487000,11726000,0.4,1.61
+Tanzania,tanzania,Africa,12804000,1677000,3221000,0.02,2.19
+Lithuania,lithuania,Europe,12803000,4258000,85201000,0,0.31
+Cote d'Ivoire,cote-divoire,Africa,12733000,2282000,7733000,0,2.04
+Slovenia,slovenia,Europe,12260000,4322000,114991000,0.03,0.2
+Brunei,brunei,East and Southeast Asia,12172000,1265000,466111000,0,0.05
+Georgia,georgia,Middle East,10958000,4128000,58044000,0.01,0.07
+Nepal,nepal,South Asia,10515000,2389000,5881000,0,0.45
+Kyrgyzstan,kyrgyzstan,Central Asia,10197000,4408000,26992000,0.21,0.01
+Honduras,honduras,Central America and the Caribbean,9428000,3195000,16386000,0,0.91
+Senegal,senegal,Africa,9152000,1668000,7836000,0,1.46
+Yemen,yemen,Middle East,9017000,1776000,3939000,0,0.04
+Jamaica,jamaica,Central America and the Caribbean,8860000,1222000,46586000,0,0.15
+Luxembourg,luxembourg,Europe,8694000,2002000,232384000,0,0.01
+Kosovo,kosovo,Europe,8619000,1547000,57072000,0.31,0
+Mozambique,mozambique,Africa,8423000,2770000,5426000,4.17,6.46
+Malta,malta,Europe,8352000,805000,226072000,0,0
+Tajikistan,tajikistan,Central Asia,8324000,5993000,16255000,0.54,1.12
+El Salvador,el-salvador,Central America and the Caribbean,8256000,2853000,23672000,0,0.6
+Paraguay,paraguay,South America,8234000,8833000,28472000,0,1.21
+Botswana,botswana,Africa,8145000,738000,39265000,0.45,0.23
+Costa Rica,costa-rica,Central America and the Caribbean,7966000,3692000,31430000,0,0.82
+Armenia,armenia,Middle East,7344000,3893000,60957000,0,0.28
+Moldova,moldova,Europe,7319000,625000,34021000,0,0.26
+Cameroon,cameroon,Africa,7239000,1763000,4656000,0,2.5
+Uruguay,uruguay,South America,7084000,5360000,47237000,0,1.56
+Afghanistan,afghanistan,South Asia,7029000,627000,2686000,0.45,0.2
+Benin,benin,Africa,7010000,500000,7638000,0,2.24
+Zambia,zambia,Africa,6924000,3863000,7088000,0.04,4.45
+Mali,mali,Africa,6868000,1145000,4476000,0,2.02
+North Macedonia,north-macedonia,Europe,6775000,2153000,46564000,0,0.15
+Cyprus,cyprus,Europe,6713000,2145000,106317000,0,0
+Latvia,latvia,Europe,6458000,3233000,64272000,0,0.85
+Uganda,uganda,Africa,6190000,2436000,2248000,0,7.32
+Estonia,estonia,Europe,5160000,2871000,73259000,0,0.85
+Mauritius,mauritius,Africa,5091000,956000,54401000,0,0
+Burkina Faso,burkina-faso,Africa,4989000,449000,3419000,0,4.54
+Nicaragua,nicaragua,Central America and the Caribbean,4987000,1841000,12903000,0,1.26
+New Caledonia,new-caledonia,Australia and Oceania,4806000,1069000,NA,NA,NA
+Guinea,guinea,Africa,4502000,1191000,4891000,0,4.81
+Papua New Guinea,papua-new-guinea,East and Southeast Asia,4375000,1263000,6565000,0,2.08
+Mauritania,mauritania,Africa,4322000,675000,13306000,0,1.3
+Madagascar,madagascar,Africa,4054000,663000,1887000,0,4.34
+Gaza Strip,gaza-strip,Middle East,3942000,352000,15201000,NA,0
+West Bank,west-bank,Middle East,3942000,352000,15201000,NA,0
+"Congo, Democratic Republic of the",congo-democratic-republic-of-the,Africa,3860000,2904000,970000,0,8.72
+Albania,albania,Europe,3856000,2635000,30306000,0.03,0.18
+Equatorial Guinea,equatorial-guinea,Africa,3806000,349000,41487000,0,1.52
+Namibia,namibia,Africa,3610000,646000,24695000,0,0.47
+Iceland,iceland,Europe,3579000,3006000,NA,0,0
+Gabon,gabon,Africa,3470000,784000,23955000,0,2.6
+"Bahamas, The",bahamas-the,Central America and the Caribbean,3431000,578000,115318000,0,0.01
+Haiti,haiti,Central America and the Caribbean,2805000,471000,3403000,0,0.68
+Montenegro,montenegro,Europe,2566000,1066000,59174000,0.12,0.43
+"Congo, Republic of the",congo-republic-of-the,Africa,2542000,842000,7238000,0,3.17
+Guyana,guyana,South America,2499000,385000,42797000,0,4.56
+Niger,niger,Africa,2454000,359000,1405000,0.03,4.41
+Togo,togo,Africa,2306000,309000,4077000,0,3.96
+Virgin Islands,virgin-islands,Central America and the Caribbean,2272000,326000,NA,NA,0
+Maldives,maldives,South Asia,2247000,566000,56264000,0,0
+Suriname,suriname,South America,2190000,537000,55101000,0,2.36
+Chad,chad,Africa,2064000,90000,1649000,0,3.81
+South Sudan,south-sudan,Africa,1970000,134000,2627000,NA,2.65
+Guam,guam,Australia and Oceania,1830000,525000,150555000,0,0
+Macau,macau,East and Southeast Asia,1746000,437000,69034000,0,0
+Malawi,malawi,Africa,1617000,758000,1331000,0.03,6.19
+Rwanda,rwanda,Africa,1442000,273000,1659000,0,3.75
+Sierra Leone,sierra-leone,Africa,1352000,138000,2229000,0,6.92
+Barbados,barbados,Central America and the Caribbean,1347000,340000,68271000,0,0.01
+Fiji,fiji,Australia and Oceania,1248000,413000,21041000,0,0.59
+Wake Island,wake-island,Australia and Oceania,1221000,NA,NA,NA,NA
+Aruba,aruba,Central America and the Caribbean,1214000,304000,161715000,NA,0
+Bhutan,bhutan,South Asia,1206000,2342000,60788000,0,1.89
+Eswatini,eswatini,Africa,1151000,287000,17642000,0.1,2.25
+French Polynesia,french-polynesia,Australia and Oceania,929000,280000,NA,NA,NA
+Seychelles,seychelles,Africa,867000,158000,111200000,0,0.09
+Faroe Islands,faroe-islands,Europe,825000,178000,NA,NA,0
+Somalia,somalia,Africa,815000,131000,661000,NA,NA
+Burundi,burundi,Africa,800000,114000,961000,0,10.31
+Antigua and Barbuda,antigua-and-barbuda,Central America and the Caribbean,769000,97000,114469000,0,0
+Lesotho,lesotho,Africa,752000,75000,5975000,0,3.34
+Cayman Islands,cayman-islands,Central America and the Caribbean,718000,175000,144845000,0,0
+Belize,belize,Central America and the Caribbean,690000,217000,30710000,0,0.31
+Cabo Verde,cabo-verde,Africa,681000,204000,16298000,0,0.38
+Eritrea,eritrea,Africa,671000,219000,2530000,NA,NA
+Djibouti,djibouti,Africa,660000,150000,9559000,0,0.26
+Timor-Leste,timor-leste,East and Southeast Asia,637000,283000,6497000,0,0.13
+Liberia,liberia,Africa,620000,197000,1971000,0,13.27
+Saint Lucia,saint-lucia,Central America and the Caribbean,617000,92000,48251000,0,0.01
+Bermuda,bermuda,North America,582000,173000,124882000,NA,NA
+Greenland,greenland,North America,562000,188000,NA,0,0
+"Gambia, The",gambia-the,Africa,524000,140000,2651000,0,2.47
+Jersey,jersey,Europe,450000,NA,NA,NA,NA
+American Samoa,american-samoa,Australia and Oceania,391000,48000,89105000,0,0
+Comoros,comoros,Africa,372000,4036000,6223000,0,1.39
+Grenada,grenada,Central America and the Caribbean,364000,56000,40666000,0,0
+Guinea-Bissau,guinea-bissau,Africa,362000,28000,2372000,0,9.24
+Solomon Islands,solomon-islands,Australia and Oceania,322000,37000,6172000,0,20.27
+Central African Republic,central-african-republic,Africa,316000,38000,881000,0,8.99
+Samoa,samoa,Australia and Oceania,311000,53000,20949000,0,0.27
+United States Pacific Island Wildlife Refuges,united-states-pacific-island-wildlife-refuges,Australia and Oceania,297000,NA,NA,NA,NA
+Marshall Islands,marshall-islands,Australia and Oceania,293700,NA,NA,NA,0
+Saint Kitts and Nevis,saint-kitts-and-nevis,Central America and the Caribbean,272000,72000,77743000,0,0
+Vanuatu,vanuatu,Australia and Oceania,248000,38000,10775000,0,0.54
+Saint Vincent and the Grenadines,saint-vincent-and-the-grenadines,Central America and the Caribbean,246000,54000,35826000,0,0.02
+Turks and Caicos Islands,turks-and-caicos-islands,Central America and the Caribbean,244000,91000,NA,0,0
+British Virgin Islands,british-virgin-islands,Central America and the Caribbean,191000,47000,87470000,NA,NA
+Dominica,dominica,Central America and the Caribbean,175000,42000,35086000,0,0.03
+"Micronesia, Federated States of",micronesia-federated-states-of,Australia and Oceania,166000,NA,NA,NA,0.02
+Sao Tome and Principe,sao-tome-and-principe,Africa,162000,30000,9873000,0,1.9
+Tonga,tonga,Australia and Oceania,131000,33000,17949000,0,0.03
+Cook Islands,cook-islands,Australia and Oceania,87000,17000,NA,NA,NA
+Kiribati,kiribati,Australia and Oceania,78000,11000,8403000,0,0.04
+Nauru,nauru,Australia and Oceania,70000,19000,NA,NA,0
+Saint Pierre and Miquelon,saint-pierre-and-miquelon,North America,59000,26000,NA,NA,NA
+Falkland Islands (Islas Malvinas),falkland-islands-islas-malvinas,South America,38000,10000,NA,NA,NA
+Montserrat,montserrat,Central America and the Caribbean,26000,6000,NA,NA,NA
+"Saint Helena, Ascension, and Tristan da Cunha",saint-helena-ascension-and-tristan-da-cunha,Africa,13000,8000,NA,NA,NA
+Antarctica,antarctica,Antarctica,12000,NA,NA,NA,NA
+Niue,niue,Australia and Oceania,8000,3000,NA,NA,NA
+Northern Mariana Islands,northern-mariana-islands,Australia and Oceania,0,NA,NA,NA,0
+Curacao,curacao,Central America and the Caribbean,NA,NA,NA,0,0
+Tuvalu,tuvalu,Australia and Oceania,NA,NA,NA,NA,0
+Palau,palau,Australia and Oceania,NA,NA,NA,NA,0
+San Marino,san-marino,Europe,NA,NA,NA,NA,0
+Isle of Man,isle-of-man,Europe,NA,NA,NA,NA,0
+Liechtenstein,liechtenstein,Europe,NA,NA,NA,NA,0
+Andorra,andorra,Europe,NA,NA,NA,NA,0
+Monaco,monaco,Europe,NA,NA,NA,NA,0

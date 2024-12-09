@@ -1,0 +1,56 @@
+project:
+  type: website
+  output-dir: docs
+
+brand: brand/_brand.yml
+
+website:
+  title: "DATA24"
+  page-footer:
+    left: 'Lund University'
+    center: "Data Literacy with Python"
+    right:
+      - text: "Follow us on  "
+      - icon: twitter
+        href: https://twitter.com/lunduniversity
+      - icon: instagram
+        href: https://www.instagram.com/lunduniversity/
+      - icon: linkedin
+        href: https://www.linkedin.com/school/lunduniversity/
+      - icon: youtube
+        href: https://www.youtube.com/user/LundUniversity
+      - icon: facebook
+        href: https://www.facebook.com/lunduniversity
+  navbar:
+    logo: "brand/LU_logo.png"
+    left:
+      - href: index.qmd
+        text: Home
+      - visualization.qmd
+      - wrangling.qmd
+      - pivotjoin.qmd
+      - about.qmd
+
+format:
+  html:
+    page-layout: full
+    grid: 
+      body-width: 1000px
+    theme: [zephyr, brand]
+    anchor-sections: true
+    email-obfuscation: javascript
+    toc: true
+    link-external-icon: true
+    link-external-newwindow: true
+
+custom-callout:
+  challenge:
+    icon-symbol: "🛠️"
+    color: "firebrick"
+  question:
+    icon-symbol: "🧠"
+    color: "pink"
+filters:
+  - custom-callout
+
+

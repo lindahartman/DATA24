@@ -1,0 +1,46 @@
+meta:
+  name: "Lund Univerisy brand"
+  link: "https://www.medarbetarwebben.lu.se/grafiskprofil"
+
+color:
+  palette:
+    lu-blue: "#000080"
+    lu-gold: "#9C6114"
+    bg-pink: "#E9C4C7"
+    bg-pink-50: "#E9C4C780"
+    bg-blue: "#B9D3DC"
+    bg-blue-50: "#B9D3DC80"
+    bg-green: "#ADCAB8"
+    bg-green-50: "#ADCAB880"
+    bg-beige: "#D6D2C4"
+    bg-beige-50: "#D6D2C480"
+    bg-grey: "#BFB8AF"
+    bg-grey-50: "#BFB8AF80"
+  background: "#ffffff"
+  foreground: "#4d4c44"
+  primary: lu-gold
+  secondary: "#4d4c44"
+  tertiary: bg-grey
+  light: white
+
+logo: 
+  medium: LU_logo.png
+
+typography:
+  fonts:
+    - family: EB Garamond
+      source: google
+    - family: Roboto
+      source: google
+    - family: Fira Code
+      source: google
+  base: Roboto
+  headings:
+    family: EB Garamond
+    color: lu-gold 
+  monospace: Fira Code
+
+defaults:
+  bootstrap:
+    enable-rounded: false
+    navbar-fg: lu-gold

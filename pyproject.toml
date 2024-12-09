@@ -1,0 +1,18 @@
+[project]
+name = "data24web"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "gapminder>=0.1",
+    "great-tables>=0.14.0",
+    "ipykernel>=6.29.5",
+    "nbclient>=0.10.1",
+    "nbformat>=5.10.4",
+    "plotnine>=0.14.3",
+    "polars>=1.16.0",
+    "pyyaml>=6.0.2",
+    "setuptools>=75.6.0",
+    "tidytuesday>=0.1.0",
+]
