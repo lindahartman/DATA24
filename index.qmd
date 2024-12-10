@@ -82,10 +82,58 @@ Let’s get started on this exciting journey into the world of data literacy!
 
 ## Shell
 
-:::{.callout-tip}
-### Objective
-Launch command line terminal in every OS
+Before we dive into the thrilling world of data analysis, let’s pause and talk about something fundamental: your computer. That’s right, the device you’re watching this on is more than just a tool—it’s the backbone of your data analysis journey. Set it up well, and it will help you create reliable, reproducible, and stunning analytic projects.
+
+But to unlock its full potential, we need to talk about something that might not look exciting at first glance but is incredibly powerful: the command line—also known as the shell or terminal.
+
+Every operating system has some version of a terminal. Whether you're on Windows, macOS, or Linux, this is your gateway to greater control over your computer. In the terminal, you don’t rely on menus, buttons, or icons. Instead, you type commands, giving you direct access to your system's capabilities.
+
+Now, if this is new to you, don’t worry! Below this video, you’ll find instructions on how to locate and open the terminal on your operating system. Take a moment to familiarize yourself with launching it, and then meet me back here.
+
+Once you’re ready, we’ll discuss folders—yes, the simple yet crucial task of organizing your files. If you already know how to navigate your operating system, create new folders, and understand the user directory, feel free to skip ahead to the next video. Otherwise, stick with me, and I’ll walk you through everything you need to know.
+
+:::{.challenge}
+Find and open the terminal on your computer. Take that first step toward becoming a power user!
 :::
+
+## On files and folders
+
+Now that you’ve found your terminal, it’s time to talk about something fundamental to every data analysis project: files and folders.
+
+Think about how your computer organizes everything you create or download—whether it’s a Word document, an Excel spreadsheet, or a photo. These files are stored in folders, and if you’ve ever saved something important, you know how critical it is to remember where it’s located.
+
+When working with data analysis, you’ll generate a lot of files—scripts, datasets, reports, visualizations—the list goes on. Keeping all of these files organized and in one place is essential to staying productive. You don’t want to waste time hunting through your computer every time you need something.
+
+Here’s the good news: your operating system already provides a great tool for organizing files—folders. Folders are like containers, and they can even hold other folders. Picture this as a tree, with your main folder as the trunk and subfolders branching out.
+
+Let’s take a moment to explore this on your computer.
+
+- On Windows, you can open File Explorer by clicking the icon on your taskbar or pressing the Windows key + E. Once it’s open, you’ll see something like this:
+
+![](img/win_explorer.png)
+
+- On Mac, you’ll use an app called Finder. Just click its icon in the Dock, and you’ll see a view like this:
+
+![](img/mac_finder.png)
+
+- On Linux, it’s often just called Files, and the interface may vary depending on your distribution. On my Ubuntu setup, it looks like this:
+
+![](img/linux-files.png)
+
+Inside these interfaces, folders are easy to spot with their distinct icons. Click on one, and you’ll dive inside to see its contents—maybe more files, maybe more folders.
+
+Now, every operating system has a home base for your personal files. This is typically called your Home folder and contains directories like Music, Pictures, Videos, and Downloads. A special folder called Desktop displays its contents right on your screen.
+
+While it’s tempting to store everything on your Desktop for easy access, this isn’t the best long-term solution. A cluttered Desktop can make it harder to stay organized, and let’s be honest—it doesn’t look great either.
+
+![](img/desktop.jpeg)
+
+Instead, consider creating a dedicated folder for your data analysis projects. For example, you could use your Documents folder or create a new folder called Projects. If your Documents folder is synced to the cloud—like with OneDrive or iCloud—think carefully about whether that’s the right place for large datasets. Cloud storage is precious, and you might want to save that space for smaller files like presentations or text documents.
+
+Don’t worry about backups just yet—we’ll cover that later when we dive into version control using Git and GitHub. For now, focus on picking a location that’s tidy, accessible, and works for you.
+
+Once you’ve chosen your perfect home base, we’ll move on to the next step: learning how to navigate your files and folders using the command line. Trust me, it’s easier than it sounds, and it will make your workflow so much more efficient!
+
 
 ## Installing uv
 
@@ -160,38 +208,6 @@ If no path is returned you can easily install `uv`-managed latest version of Pyt
 $ uv python install
 ```
 
-## On files and folders
-
-:::{.callout-tip}
-### Objective
-Understand folders. Decide on location for projects. Navigate there in command line
-:::
-
-The files on your computer are organized into folders. Your operating system managed most of the files on your computer but there are still quite a lot of files that you can create and use. You probably written some Word documents or made Excel tables. If you did, you probably know how important it is to remember where you saved your work, so that you can quickly find it.
-
-When working with data analysis you will produce quite a few files. You will need to save your scripts, you will probably have some datasets you are going to use. At the end you probably want to produce some reports and data visualization. It means that a lot of files will be produced all related to the same project you are working on.
-
-It is, therefore, important to not disperse these file all over your computer, but make sure that they are easily locatable together. 
-
-The way operating system organizes the files on your computer is by using folders. Folders are nested containers of other files and folders which is best visualized as a tree. Open a file explorer on your computer and lets have a quick look
-
-If you are on Windows, your file explorer may look something like this, if you are on Mac, your explorer will look like this and if you are on Linux you probably have something like this on your computer. 
-
-The folders are easily recognizable by their distinct icon, but most importantly, if you click on one of those folders you will "drop down" inside of it and you will see its content often with more files and folders.
-
-On every operating system there's usually a place where your computer expects you to place your files. 
-
-The folders dedicated to user files are usually split by type. In your file explorer you can probably find a folder for music, documents, pictures, videos, and downloads, where as we say it in academia "PDF files go to die".
-
-One special folder present in all operating systems is called Desktop. This is the folder, which content will be visible if you minimize all windows. Even though it is very convenient, most experts would agree that Desktop is not the best place to store your work long term. You can probably keep there a file or two you are currently working on, but you probably need to have a long-term home for your files to keep your Desktop free from clutter. We definitely do not recommend starting your data analysis project inside the Desktop folder.
-
-![](img/desktop.jpeg)
-
-Where should you place your data analysis work? I think the documents folder is a solid way to start. If your Documents folder is synched to the cloud, as the case often is on Windows or Mac, you might consider whether it is the right place to store your project files. Data analysis project tend to grow big and while back up for source files is important you may not want to take up your valuable cloud quota, which could be better used by your work documents and presentations.
-
-Alternatively, you can create a folder on the same level as your documents and downloads, called, for example, Projects and host your data science projects there.  We will learn about version control for source code, which helps you keep track of changes, so the task of backing up your work will be taken care of by Git and GitHub, which we will introduce in Lesson 5. 
-
-Wherever you decide to place your work, make sure it is easily locatable. In the next section we will talk about organizing your work in project folders, which ensure that your work is tidy and reproducible.
 
 Navigating to project location using command line (ls, cd and cd ..).
 
