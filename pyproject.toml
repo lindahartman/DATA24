@@ -12,6 +12,7 @@ dependencies = [
     "nbformat>=5.10.4",
     "plotnine>=0.14.3",
     "polars>=1.16.0",
+    "pyarrow>=18.1.0",
     "pyyaml>=6.0.2",
     "setuptools>=75.6.0",
     "tidytuesday>=0.1.0",
