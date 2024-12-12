@@ -104,7 +104,7 @@ Think about how your computer organizes everything you create or download—whet
 
 When working with data analysis, you’ll generate a lot of files—scripts, datasets, reports, visualizations—the list goes on. Keeping all of these files organized and in one place is essential to staying productive. You don’t want to waste time hunting through your computer every time you need something.
 
-Here’s the good news: your operating system already provides a great tool for organizing files—folders. Folders are like containers, and they can even hold other folders. Picture this as a tree, with your main folder as the trunk and subfolders branching out.
+Here’s the good news: your operating system already provides a great tool for organizing files—folders. Folders, or as they are sometimes called directories, are like containers, and they can even hold other folders. Picture this as a tree, with your main folder as the trunk and subfolders branching out.
 
 Let’s take a moment to explore this on your computer.
 
@@ -134,45 +134,129 @@ Don’t worry about backups just yet—we’ll cover that later when we dive int
 
 Once you’ve chosen your perfect home base, we’ll move on to the next step: learning how to navigate your files and folders using the command line. Trust me, it’s easier than it sounds, and it will make your workflow so much more efficient!
 
+## Navigating in the command line
+
+Alright, let’s open up your terminal! Don’t worry—this isn’t as intimidating as it might look. I’m going to guide you through some simple steps that will help you make sense of this dark text window, and these skills will serve you every time you use the command line.
+
+First, take a look at your screen. See that little blinking line? That’s called the cursor, and it’s where you’ll type commands. To the left of the cursor, you’ll notice something else—this is called the system prompt. It’s a little symbol or combination of symbols, like $, >, or %. Think of it as your computer saying, “I’m ready for your command!”
+
+But before you start typing anything, let’s ask an important question: “Where am I?”
+
+When you open your terminal, it starts in a specific location in your computer’s file system. This location is called a directory, and it’s similar to a folder in your file explorer. But which folder or directory are you in right now?
+
+Here’s your first and perhaps most important command: `pwd`. It stands for “print working directory.” This command tells you the exact path of the folder your terminal is currently in.
+
+If you’re using Windows, the equivalent command is `cd`—which we’ll use a bit differently later on, but for now, you can think of it as “current directory.”
+
+Go ahead and type pwd (or cd on Windows) and hit Enter. Your terminal will respond with something called a path. This is a series of folder names separated by forward slashes /, and on Windows, you might also see a drive letter like C: or D:.
+
+For example, my terminal tells me this:
+
+```
+Dmytro@dell-xps-9570: $ pwd  
+/home/Dmytro  
+```
+
+This means my terminal has opened in my user directory, /home/Dmytro/. That’s the folder where my personal files are stored.
+
+Now that we know where we are, the next logical question is: “What’s here?”
+
+To find out, use the command ls. This stands for “list,” and it will show you everything inside the current directory—both files and other directories.
+
+Here’s what my terminal shows when I type ls:
+
+```
+Dmytro@dell-xps-9570:~$ ls  
+ 'Calibre Library'  Pictures           Projects  
+ Desktop            Public             Videos  
+ Documents          Downloads          Templates  
+ Zotero             Music              Scanned_Document_House.pdf  
+```
+
+As you can see, I have a mix of directories and one lonely PDF document I prepared for the tax authorities. I recognize all of these files—they’re the same ones I’d see if I opened my Files app and navigated to my user directory.
+
+So, in just two simple commands—pwd to figure out where you are and ls to see what’s inside—you’ve already gained some control over the terminal. Pretty cool, right?
+
+Now that you know how to figure out where you are on your computer, we’ll take it a step further and learn how to move around the file system using the terminal. Stay with me—you’re doing great!
+
+The command you’ll need is cd, which stands for “change directory.” This is how you “step into” a folder or directory from the terminal.
+
+Let’s say you see a folder named Pictures in your current directory, and you want to navigate into it. All you have to do is type:
+
+```
+cd Pictures
+```
+
+Hit Enter, and you’ll notice that the prefix—the text before the system prompt—changes. This tells you that you’re now inside the Pictures directory.
+
+Want to double-check where you are? Use the pwd command again, and it will confirm your new location. If you want to see what’s inside the Pictures folder, just type ls.
+
+But what if you want to go back to where you were before? Easy! Just type:
+
+```
+cd ..
+```
+
+The two dots (..) mean “go up one level.” Hit Enter, and you’ll be back in the directory you started from.
+
+Let me show you an example of a full roundtrip:
+
+```
+Dmytro@dell-xps-9570:~$ cd Pictures  
+Dmytro@dell-xps-9570:~/Pictures$ pwd  
+/home/Dmytro/Pictures  
+Dmytro@dell-xps-9570:~/Pictures$ cd ..  
+Dmytro@dell-xps-9570:~$ pwd  
+/home/Dmytro  
+```
+
+See how simple that was? Using just `cd` and `cd ..`, you can navigate up and down the directory tree.
+
+Now it’s your turn! Play around with these commands. Practice navigating into folders and back out again. There are faster ways to move around your file system, but for now, these basic steps are more than enough to get you started. Once you’re comfortable with these movements, please, take an effort to navigate to the directory, where you decided to store your project files.
+
+:::{.challenge}
+Using `cd`, `cd ..` and `ls`, navigate to the directory, where you decided to store your project files.
+:::
+
+When you have done that, join me in the next section, where we’ll begin installing some software to set up your data analysis environment. I’ll see you there!
 
 ## Installing uv
 
-:::{.callout-tip}
-### Objective
-Install uv.
+Alright, now it’s time to roll up our sleeves and install one of the most exciting tools in modern Python development—uv!
+
+uv is an incredibly fast Python installation and environment manager, written in the high-performance language Rust. This tool burst onto the Python scene earlier this year, and it’s already winning the hearts of Python developers worldwide.
+
+When I say “fast,” I mean lightning fast—orders of magnitude faster than its competitors! Just look at this chart:
+
+![](img/uv-perf-chart.png)
+
+Not only is uv fast, but it’s also environmentally friendly. Yes, it’s saving the planet! By reducing the time and energy it takes for data centers to rebuild their test and development environments daily, uv contributes to a smaller carbon footprint.
+
+In this course, we’ll only scratch the surface of what uv can do. But I promise, as you start using it in your real-life projects, your appreciation for this tool—and the Astral team behind it—will grow exponentially
+
+Now let’s get started with the installation. Open your terminal and type the following command. Hit Enter, and the installation should begin.
+
+:::{.challenge}
+
+On Mac or Linux, use the following command after the system prompt:
+```
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+On Windown, type the following:
+
+```
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
 :::
 
-Wheres my terminal
+If you already have Python installed, you can also install uv using one of Python’s existing package managers. On Mac, it’s even possible to install it through Homebrew. I’ll include a link to the official documentation with detailed instructions below this video.
 
+:::{.challenge}
+Check out `uv` installation instructions at https://docs.astral.sh/uv/getting-started/installation/
+:::
 
-We will install the main tool. Open the terminal and run
-
-```
-# On macOS and Linux.
-$ curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# On Windows.
-$ powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
-```
-
-Alternative attempts to deal with installation problems
-
-If you have python and pip install using pip (you will never need it again)
-
-```
-# With pip.
-$ pip install uv
-```
-
-On Mac it can be built with Homebrew
-
-```
-# using Homebrew on Mac
-$ brew install uv
-```
-
-::: {.callout-note}
-Before you proceed, please check that installation is successful by running `uv` in the terminal. You should see something like this
+Once the installation is complete, let’s check if everything worked. In your terminal, type `uv`. You should see output that looks something like this:
 
 ```
 uv
@@ -187,65 +271,77 @@ uv
 #>  ...
 ```
 
-:::
+If you see that, congratulations! You’ve successfully installed uv. 
+
+From now on, we’ll use uv to manage everything, including installing Python itself. Stay with me as we continue setting up your computing environment. I’ll see you in the next section!
 
 ## Managing python installation
 
-:::{.callout-tip}
-### Objective
-Install Python using uv
-:::
+uv isn’t just a package and environment manager—it also handles Python installations effortlessly. Let’s start by checking if uv can detect an existing Python installation on your system.
 
-`uv` is not only powerful package and environment manager, but it also can help manage Python installations. Run the following to see if `uv` can detect an existing Python installation in your system.
+In your terminal, run:
 
-```
-$ uv python find
-#> /path/to/your/installation/of/bin/python3
-```
-If no path is returned you can easily install `uv`-managed latest version of Python with
+uv python find
 
-```
-$ uv python install
-```
+If uv detects a Python installation, it will return the path to it. This path will also likely give you a clue about the Python version. But if you’re unsure about the version, you can use this command:
 
+uv python list --only-installed
 
-Navigating to project location using command line (ls, cd and cd ..).
+Now comes the decision point: Do you want to use your existing Python installation, or would you prefer a fresh installation managed entirely by uv?
 
-## Projects
+Here’s my advice: While you can use the Python installation that uv detects, it’s often a good idea to have a separate Python installation that’s fully under uv's control. Why? Because Python is often deeply integrated into modern operating systems, and having an isolated installation ensures you don’t accidentally disrupt system-level functionality.
 
-:::{.callout-tip}
-### Objective
-Create project. 
-:::
+Python environment management has historically been a mess! XKCD even made a [famous comic](https://xkcd.com/1987/) about it. 
 
-Each of your data analysis endeavours should be stored in a separate project folder. 
+![](https://imgs.xkcd.com/comics/python_environment_2x.png)
+
+Yeah, it can get pretty bad. But don’t worry—with uv, that nightmare is a thing of the past. If you’re ready to let uv manage your Python installation, just run this command: 
 
 ```
-$ uv init data-literacy-project
+uv python install
+```
+
+This will install the latest and greatest version of Python, which will now be entirely supervised by uv. If the installation completes without errors, you’re officially set up with Python! To verify, you can run the uv python find command again, and it should show the new Python installation.
+
+With Python sorted, you’re ready for the next step: setting up your project environment. 
+
+As we discussed earlier, every data analysis project should live in its own folder. This keeps things tidy and avoids any cross-contamination between projects. Now, naming your project folder can feel like a challenge—it’s almost an art! Developers joke that naming things is one of the hardest parts of computer science. Why? Because you want a name that’s memorable, descriptive, and easy to type.
+
+So, pick a short, meaningful name without spaces. I’ve decided to call my project data-literacy-project. Once you’ve chosen a name, make sure you’re in the directory where you want to create your project. You can double-check by running `pwd` (`cd` on Windows).  Now, let’s initialize your project. Type the following, replacing `data-literacy-project` with your project’s name:
+
+```
+uv init data-literacy-project
 cd data-literacy-project
 ```
 
-or alternatively
+Note that the second command navigates you into the folder (remember, we learned `cd foldername`). That is because `uv init` has created a new directory for you with the name you picked. There's one command I did not tell you about, which allows you to create directories manually. It is called `mkdir` which stands for "make directory", followed by the directory name. 
+
+If you prefer, you could create the folder yourself and then initialize it with uv. Here’s how that would look:
 
 ```
 $ mkdir data-literacy-project
 $ cd data-literacy-project
 $ uv init
 ```
+Either way, once you’re inside the folder, it’s ready to go! You can explore what uv has created for you by running `ls`. One of the files you’ll see is pyproject.toml. This is your project’s manifest—a file where uv tracks metadata about your project, including its dependencies (the libraries it needs).
 
-## Libraries
-
-:::{.callout-tip}
-### Objective
-Add dependencies
-:::
-
-We will need a few libraries. Lets add them 
+Speaking of dependencies, let’s add some libraries. Run the following command:
 
 ```
-$ uv add gapminder plotnine polars jupyter great_tables setuptools ipykernel pyyaml nbformat nbclient
+$ uv add gapminder plotnine polars pyarrow great_tables setuptools jupyter ipykernel pyyaml nbformat nbclient
 ```
-If you did these steps then you should have a file `data-literacy-project/pyproject.toml` which looks something like this
+
+This command installs several Python libraries we’ll use throughout the course. You’ll notice that uv installs additional packages that these libraries rely on—it handles all the messy details for you! And thanks to uv, the installation will be lightning-fast.
+
+Curious about what just happened? I want to leave you with a fun little command: it’s called cat. Yes, like the furry little animal! The cat command is a handy way to view the contents of small files directly in your terminal. For larger files, it might take a while to load, but for our purposes, cat is perfect.
+
+Let’s use it to check out the contents of our project manifest file. In your terminal, type:
+
+```
+cat pyproject.toml
+``` 
+
+When you hit enter, you’ll see something like this:
 
 ```yaml
 [project]
@@ -260,15 +356,37 @@ dependencies = [
     "jupyter>=1.1.1",
     "plotnine>=0.13.6",
     "polars>=1.8.2",
-    "setuptools>=75.1.0",
+    "pyarrow>=18.1.0",
+    "pyyaml>=6.0.2",
+    "great-tables>=0.14.0",
+    "nbformat>=5.10.4",
+    "nbclient>=0.10.1",
+    "setuptools>=75.6.0",
 ]
 ```
 
-## Activation
 
-Finally we need to activate the environment we created
+This file, pyproject.toml, serves as a “manifest” for your project. It keeps track of metadata like your project name, version, and—most importantly—dependencies. Each time you add a new library with uv add, it’s recorded here.
 
+Now, here’s something happening behind the scenes: uv created a hidden folder called .venv. This stands for “virtual environment,” and it’s where all your project’s libraries and dependencies live. Hidden files and folders don’t show up when you run `ls`— not unless you add the -a flag to the command, so `ls -a` will, in fact, show that you have this `.venv` folder in your project directory. But don’t worry that this folder stays hidden, you’ll rarely, if ever, need to open it. uv manages this folder for you, so you can focus on your work without getting bogged down in the details.
+
+Here’s the most important thing to know: the .venv folder is what makes your project self-contained. All your dependencies are stored there, safe and separate from anything else on your system. This is especially useful if you want to share your work later—a topic we’ll cover in the final module of this course.
+
+Before we wrap up, there’s one last thing you need to do: activate your environment.
+
+Activating your environment ensures that Python uses the correct versions of the libraries you’ve installed. This step is essential whenever you’re working on your project. To activate your environment, type the following command:
+
+:::{.challenge}
+
+Activate your environment
 ```
 source .venv/bin/activate
 ```
+:::
+
+This command might look a bit cryptic. `source` tells your system to execute a file and `.venv/bin/activate` is? you are right! it's the path, (relative path in fact) to the activation script inside your `.venv` folder.
+
+When you run this command, your environment comes to life. All the packages and dependencies you installed are now available and ready for you to use.
+
+And that’s it! The boring setup part is officially behind us. From here on, it’s all about diving into the exciting world of data analysis. Onward and upward!
 

@@ -186,11 +186,9 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
   <ul>
   <li><a href="#shell" id="toc-shell" class="nav-link active" data-scroll-target="#shell">Shell</a></li>
   <li><a href="#on-files-and-folders" id="toc-on-files-and-folders" class="nav-link" data-scroll-target="#on-files-and-folders">On files and folders</a></li>
+  <li><a href="#navigating-in-the-command-line" id="toc-navigating-in-the-command-line" class="nav-link" data-scroll-target="#navigating-in-the-command-line">Navigating in the command line</a></li>
   <li><a href="#installing-uv" id="toc-installing-uv" class="nav-link" data-scroll-target="#installing-uv">Installing uv</a></li>
   <li><a href="#managing-python-installation" id="toc-managing-python-installation" class="nav-link" data-scroll-target="#managing-python-installation">Managing python installation</a></li>
-  <li><a href="#projects" id="toc-projects" class="nav-link" data-scroll-target="#projects">Projects</a></li>
-  <li><a href="#libraries" id="toc-libraries" class="nav-link" data-scroll-target="#libraries">Libraries</a></li>
-  <li><a href="#activation" id="toc-activation" class="nav-link" data-scroll-target="#activation">Activation</a></li>
   </ul>
 </nav>
     </div>
@@ -283,7 +281,7 @@ Challenge
 <p>Now that you’ve found your terminal, it’s time to talk about something fundamental to every data analysis project: files and folders.</p>
 <p>Think about how your computer organizes everything you create or download—whether it’s a Word document, an Excel spreadsheet, or a photo. These files are stored in folders, and if you’ve ever saved something important, you know how critical it is to remember where it’s located.</p>
 <p>When working with data analysis, you’ll generate a lot of files—scripts, datasets, reports, visualizations—the list goes on. Keeping all of these files organized and in one place is essential to staying productive. You don’t want to waste time hunting through your computer every time you need something.</p>
-<p>Here’s the good news: your operating system already provides a great tool for organizing files—folders. Folders are like containers, and they can even hold other folders. Picture this as a tree, with your main folder as the trunk and subfolders branching out.</p>
+<p>Here’s the good news: your operating system already provides a great tool for organizing files—folders. Folders, or as they are sometimes called directories, are like containers, and they can even hold other folders. Picture this as a tree, with your main folder as the trunk and subfolders branching out.</p>
 <p>Let’s take a moment to explore this on your computer.</p>
 <ul>
 <li>On Windows, you can open File Explorer by clicking the icon on your taskbar or pressing the Windows key + E. Once it’s open, you’ll see something like this:</li>
@@ -305,46 +303,102 @@ Challenge
 <p>Don’t worry about backups just yet—we’ll cover that later when we dive into version control using Git and GitHub. For now, focus on picking a location that’s tidy, accessible, and works for you.</p>
 <p>Once you’ve chosen your perfect home base, we’ll move on to the next step: learning how to navigate your files and folders using the command line. Trust me, it’s easier than it sounds, and it will make your workflow so much more efficient!</p>
 </section>
+<section id="navigating-in-the-command-line" class="level2">
+<h2 class="anchored" data-anchor-id="navigating-in-the-command-line">Navigating in the command line</h2>
+<p>Alright, let’s open up your terminal! Don’t worry—this isn’t as intimidating as it might look. I’m going to guide you through some simple steps that will help you make sense of this dark text window, and these skills will serve you every time you use the command line.</p>
+<p>First, take a look at your screen. See that little blinking line? That’s called the cursor, and it’s where you’ll type commands. To the left of the cursor, you’ll notice something else—this is called the system prompt. It’s a little symbol or combination of symbols, like $, &gt;, or %. Think of it as your computer saying, “I’m ready for your command!”</p>
+<p>But before you start typing anything, let’s ask an important question: “Where am I?”</p>
+<p>When you open your terminal, it starts in a specific location in your computer’s file system. This location is called a directory, and it’s similar to a folder in your file explorer. But which folder or directory are you in right now?</p>
+<p>Here’s your first and perhaps most important command: <code>pwd</code>. It stands for “print working directory.” This command tells you the exact path of the folder your terminal is currently in.</p>
+<p>If you’re using Windows, the equivalent command is <code>cd</code>—which we’ll use a bit differently later on, but for now, you can think of it as “current directory.”</p>
+<p>Go ahead and type pwd (or cd on Windows) and hit Enter. Your terminal will respond with something called a path. This is a series of folder names separated by forward slashes /, and on Windows, you might also see a drive letter like C: or D:.</p>
+<p>For example, my terminal tells me this:</p>
+<pre><code>Dmytro@dell-xps-9570: $ pwd  
+/home/Dmytro  </code></pre>
+<p>This means my terminal has opened in my user directory, /home/Dmytro/. That’s the folder where my personal files are stored.</p>
+<p>Now that we know where we are, the next logical question is: “What’s here?”</p>
+<p>To find out, use the command ls. This stands for “list,” and it will show you everything inside the current directory—both files and other directories.</p>
+<p>Here’s what my terminal shows when I type ls:</p>
+<pre><code>Dmytro@dell-xps-9570:~$ ls  
+ 'Calibre Library'  Pictures           Projects  
+ Desktop            Public             Videos  
+ Documents          Downloads          Templates  
+ Zotero             Music              Scanned_Document_House.pdf  </code></pre>
+<p>As you can see, I have a mix of directories and one lonely PDF document I prepared for the tax authorities. I recognize all of these files—they’re the same ones I’d see if I opened my Files app and navigated to my user directory.</p>
+<p>So, in just two simple commands—pwd to figure out where you are and ls to see what’s inside—you’ve already gained some control over the terminal. Pretty cool, right?</p>
+<p>Now that you know how to figure out where you are on your computer, we’ll take it a step further and learn how to move around the file system using the terminal. Stay with me—you’re doing great!</p>
+<p>The command you’ll need is cd, which stands for “change directory.” This is how you “step into” a folder or directory from the terminal.</p>
+<p>Let’s say you see a folder named Pictures in your current directory, and you want to navigate into it. All you have to do is type:</p>
+<pre><code>cd Pictures</code></pre>
+<p>Hit Enter, and you’ll notice that the prefix—the text before the system prompt—changes. This tells you that you’re now inside the Pictures directory.</p>
+<p>Want to double-check where you are? Use the pwd command again, and it will confirm your new location. If you want to see what’s inside the Pictures folder, just type ls.</p>
+<p>But what if you want to go back to where you were before? Easy! Just type:</p>
+<pre><code>cd ..</code></pre>
+<p>The two dots (..) mean “go up one level.” Hit Enter, and you’ll be back in the directory you started from.</p>
+<p>Let me show you an example of a full roundtrip:</p>
+<pre><code>Dmytro@dell-xps-9570:~$ cd Pictures  
+Dmytro@dell-xps-9570:~/Pictures$ pwd  
+/home/Dmytro/Pictures  
+Dmytro@dell-xps-9570:~/Pictures$ cd ..  
+Dmytro@dell-xps-9570:~$ pwd  
+/home/Dmytro  </code></pre>
+<p>See how simple that was? Using just <code>cd</code> and <code>cd ..</code>, you can navigate up and down the directory tree.</p>
+<p>Now it’s your turn! Play around with these commands. Practice navigating into folders and back out again. There are faster ways to move around your file system, but for now, these basic steps are more than enough to get you started. Once you’re comfortable with these movements, please, take an effort to navigate to the directory, where you decided to store your project files.</p>
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using <code>cd</code>, <code>cd ..</code> and <code>ls</code>, navigate to the directory, where you decided to store your project files.</p>
+</div>
+</div>
+<p>When you have done that, join me in the next section, where we’ll begin installing some software to set up your data analysis environment. I’ll see you there!</p>
+</section>
 <section id="installing-uv" class="level2">
 <h2 class="anchored" data-anchor-id="installing-uv">Installing uv</h2>
-<div class="callout callout-style-default callout-tip callout-titled">
+<p>Alright, now it’s time to roll up our sleeves and install one of the most exciting tools in modern Python development—uv!</p>
+<p>uv is an incredibly fast Python installation and environment manager, written in the high-performance language Rust. This tool burst onto the Python scene earlier this year, and it’s already winning the hearts of Python developers worldwide.</p>
+<p>When I say “fast,” I mean lightning fast—orders of magnitude faster than its competitors! Just look at this chart:</p>
+<p><img src="img/uv-perf-chart.png" class="img-fluid"></p>
+<p>Not only is uv fast, but it’s also environmentally friendly. Yes, it’s saving the planet! By reducing the time and energy it takes for data centers to rebuild their test and development environments daily, uv contributes to a smaller carbon footprint.</p>
+<p>In this course, we’ll only scratch the surface of what uv can do. But I promise, as you start using it in your real-life projects, your appreciation for this tool—and the Astral team behind it—will grow exponentially</p>
+<p>Now let’s get started with the installation. Open your terminal and type the following command. Hit Enter, and the installation should begin.</p>
+<div class="callout callout-style-default callout-challenge callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Objective
+Challenge
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Install uv.</p>
+<p>On Mac or Linux, use the following command after the system prompt:</p>
+<pre><code>curl -LsSf https://astral.sh/uv/install.sh | sh</code></pre>
+<p>On Windown, type the following:</p>
+<pre><code>powershell -c "irm https://astral.sh/uv/install.ps1 | iex"</code></pre>
 </div>
 </div>
-<p>Wheres my terminal</p>
-<p>We will install the main tool. Open the terminal and run</p>
-<pre><code># On macOS and Linux.
-$ curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# On Windows.
-$ powershell -c "irm https://astral.sh/uv/install.ps1 | iex"</code></pre>
-<p>Alternative attempts to deal with installation problems</p>
-<p>If you have python and pip install using pip (you will never need it again)</p>
-<pre><code># With pip.
-$ pip install uv</code></pre>
-<p>On Mac it can be built with Homebrew</p>
-<pre><code># using Homebrew on Mac
-$ brew install uv</code></pre>
-<div class="callout callout-style-default callout-note callout-titled">
+<p>If you already have Python installed, you can also install uv using one of Python’s existing package managers. On Mac, it’s even possible to install it through Homebrew. I’ll include a link to the official documentation with detailed instructions below this video.</p>
+<div class="callout callout-style-default callout-challenge callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Challenge
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Before you proceed, please check that installation is successful by running <code>uv</code> in the terminal. You should see something like this</p>
+<p>Check out <code>uv</code> installation instructions at https://docs.astral.sh/uv/getting-started/installation/</p>
+</div>
+</div>
+<p>Once the installation is complete, let’s check if everything worked. In your terminal, type <code>uv</code>. You should see output that looks something like this:</p>
 <pre><code>uv
 
 #&gt; An extremely fast Python package manager.
@@ -355,91 +409,82 @@ Note
 #&gt;  run      Run a command or script
 #&gt;  init     Create a new project
 #&gt;  ...</code></pre>
-</div>
-</div>
+<p>If you see that, congratulations! You’ve successfully installed uv.</p>
+<p>From now on, we’ll use uv to manage everything, including installing Python itself. Stay with me as we continue setting up your computing environment. I’ll see you in the next section!</p>
 </section>
 <section id="managing-python-installation" class="level2">
 <h2 class="anchored" data-anchor-id="managing-python-installation">Managing python installation</h2>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Objective
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Install Python using uv</p>
-</div>
-</div>
-<p><code>uv</code> is not only powerful package and environment manager, but it also can help manage Python installations. Run the following to see if <code>uv</code> can detect an existing Python installation in your system.</p>
-<pre><code>$ uv python find
-#&gt; /path/to/your/installation/of/bin/python3</code></pre>
-<p>If no path is returned you can easily install <code>uv</code>-managed latest version of Python with</p>
-<pre><code>$ uv python install</code></pre>
-<p>Navigating to project location using command line (ls, cd and cd ..).</p>
-</section>
-<section id="projects" class="level2">
-<h2 class="anchored" data-anchor-id="projects">Projects</h2>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Objective
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Create project.</p>
-</div>
-</div>
-<p>Each of your data analysis endeavours should be stored in a separate project folder.</p>
-<pre><code>$ uv init data-literacy-project
+<p>uv isn’t just a package and environment manager—it also handles Python installations effortlessly. Let’s start by checking if uv can detect an existing Python installation on your system.</p>
+<p>In your terminal, run:</p>
+<p>uv python find</p>
+<p>If uv detects a Python installation, it will return the path to it. This path will also likely give you a clue about the Python version. But if you’re unsure about the version, you can use this command:</p>
+<p>uv python list –only-installed</p>
+<p>Now comes the decision point: Do you want to use your existing Python installation, or would you prefer a fresh installation managed entirely by uv?</p>
+<p>Here’s my advice: While you can use the Python installation that uv detects, it’s often a good idea to have a separate Python installation that’s fully under uv’s control. Why? Because Python is often deeply integrated into modern operating systems, and having an isolated installation ensures you don’t accidentally disrupt system-level functionality.</p>
+<p>Python environment management has historically been a mess! XKCD even made a <a href="https://xkcd.com/1987/">famous comic</a> about it.</p>
+<p><img src="https://imgs.xkcd.com/comics/python_environment_2x.png" class="img-fluid"></p>
+<p>Yeah, it can get pretty bad. But don’t worry—with uv, that nightmare is a thing of the past. If you’re ready to let uv manage your Python installation, just run this command:</p>
+<pre><code>uv python install</code></pre>
+<p>This will install the latest and greatest version of Python, which will now be entirely supervised by uv. If the installation completes without errors, you’re officially set up with Python! To verify, you can run the uv python find command again, and it should show the new Python installation.</p>
+<p>With Python sorted, you’re ready for the next step: setting up your project environment.</p>
+<p>As we discussed earlier, every data analysis project should live in its own folder. This keeps things tidy and avoids any cross-contamination between projects. Now, naming your project folder can feel like a challenge—it’s almost an art! Developers joke that naming things is one of the hardest parts of computer science. Why? Because you want a name that’s memorable, descriptive, and easy to type.</p>
+<p>So, pick a short, meaningful name without spaces. I’ve decided to call my project data-literacy-project. Once you’ve chosen a name, make sure you’re in the directory where you want to create your project. You can double-check by running <code>pwd</code> (<code>cd</code> on Windows). Now, let’s initialize your project. Type the following, replacing <code>data-literacy-project</code> with your project’s name:</p>
+<pre><code>uv init data-literacy-project
 cd data-literacy-project</code></pre>
-<p>or alternatively</p>
+<p>Note that the second command navigates you into the folder (remember, we learned <code>cd foldername</code>). That is because <code>uv init</code> has created a new directory for you with the name you picked. There’s one command I did not tell you about, which allows you to create directories manually. It is called <code>mkdir</code> which stands for “make directory”, followed by the directory name.</p>
+<p>If you prefer, you could create the folder yourself and then initialize it with uv. Here’s how that would look:</p>
 <pre><code>$ mkdir data-literacy-project
 $ cd data-literacy-project
 $ uv init</code></pre>
-</section>
-<section id="libraries" class="level2">
-<h2 class="anchored" data-anchor-id="libraries">Libraries</h2>
-<div class="callout callout-style-default callout-tip callout-titled">
+<p>Either way, once you’re inside the folder, it’s ready to go! You can explore what uv has created for you by running <code>ls</code>. One of the files you’ll see is pyproject.toml. This is your project’s manifest—a file where uv tracks metadata about your project, including its dependencies (the libraries it needs).</p>
+<p>Speaking of dependencies, let’s add some libraries. Run the following command:</p>
+<pre><code>$ uv add gapminder plotnine polars pyarrow great_tables setuptools jupyter ipykernel pyyaml nbformat nbclient</code></pre>
+<p>This command installs several Python libraries we’ll use throughout the course. You’ll notice that uv installs additional packages that these libraries rely on—it handles all the messy details for you! And thanks to uv, the installation will be lightning-fast.</p>
+<p>Curious about what just happened? I want to leave you with a fun little command: it’s called cat. Yes, like the furry little animal! The cat command is a handy way to view the contents of small files directly in your terminal. For larger files, it might take a while to load, but for our purposes, cat is perfect.</p>
+<p>Let’s use it to check out the contents of our project manifest file. In your terminal, type:</p>
+<pre><code>cat pyproject.toml</code></pre>
+<p>When you hit enter, you’ll see something like this:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="at">project</span><span class="kw">]</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="at">name = "data-literacy-project"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="at">version = "0.1.0"</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="at">description = "Add your description here"</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="at">readme = "README.md"</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="at">requires-python = "&gt;=3.10"</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="at">dependencies = [</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"gapminder&gt;=0.1"</span><span class="at">,</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"ipykernel&gt;=6.29.5"</span><span class="at">,</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"jupyter&gt;=1.1.1"</span><span class="at">,</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"plotnine&gt;=0.13.6"</span><span class="at">,</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"polars&gt;=1.8.2"</span><span class="at">,</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"pyarrow&gt;=18.1.0"</span><span class="at">,</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"pyyaml&gt;=6.0.2"</span><span class="at">,</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"great-tables&gt;=0.14.0"</span><span class="at">,</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"nbformat&gt;=5.10.4"</span><span class="at">,</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"nbclient&gt;=0.10.1"</span><span class="at">,</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"setuptools&gt;=75.6.0"</span><span class="at">,</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="at">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This file, pyproject.toml, serves as a “manifest” for your project. It keeps track of metadata like your project name, version, and—most importantly—dependencies. Each time you add a new library with uv add, it’s recorded here.</p>
+<p>Now, here’s something happening behind the scenes: uv created a hidden folder called .venv. This stands for “virtual environment,” and it’s where all your project’s libraries and dependencies live. Hidden files and folders don’t show up when you run <code>ls</code>— not unless you add the -a flag to the command, so <code>ls -a</code> will, in fact, show that you have this <code>.venv</code> folder in your project directory. But don’t worry that this folder stays hidden, you’ll rarely, if ever, need to open it. uv manages this folder for you, so you can focus on your work without getting bogged down in the details.</p>
+<p>Here’s the most important thing to know: the .venv folder is what makes your project self-contained. All your dependencies are stored there, safe and separate from anything else on your system. This is especially useful if you want to share your work later—a topic we’ll cover in the final module of this course.</p>
+<p>Before we wrap up, there’s one last thing you need to do: activate your environment.</p>
+<p>Activating your environment ensures that Python uses the correct versions of the libraries you’ve installed. This step is essential whenever you’re working on your project. To activate your environment, type the following command:</p>
+<div class="callout callout-style-default callout-challenge callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Objective
+Challenge
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Add dependencies</p>
-</div>
-</div>
-<p>We will need a few libraries. Lets add them</p>
-<pre><code>$ uv add gapminder plotnine polars jupyter great_tables setuptools ipykernel pyyaml nbformat nbclient</code></pre>
-<p>If you did these steps then you should have a file <code>data-literacy-project/pyproject.toml</code> which looks something like this</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="at">project</span><span class="kw">]</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="at">name = "data-literacy-project"</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="at">version = "0.1.0"</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="at">description = "Add your description here"</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="at">readme = "README.md"</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="at">requires-python = "&gt;=3.10"</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="at">dependencies = [</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"gapminder&gt;=0.1"</span><span class="at">,</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"ipykernel&gt;=6.29.5"</span><span class="at">,</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"jupyter&gt;=1.1.1"</span><span class="at">,</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"plotnine&gt;=0.13.6"</span><span class="at">,</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"polars&gt;=1.8.2"</span><span class="at">,</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"setuptools&gt;=75.1.0"</span><span class="at">,</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="at">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="activation" class="level2">
-<h2 class="anchored" data-anchor-id="activation">Activation</h2>
-<p>Finally we need to activate the environment we created</p>
+<p>Activate your environment</p>
 <pre><code>source .venv/bin/activate</code></pre>
+</div>
+</div>
+<p>This command might look a bit cryptic. <code>source</code> tells your system to execute a file and <code>.venv/bin/activate</code> is? you are right! it’s the path, (relative path in fact) to the activation script inside your <code>.venv</code> folder.</p>
+<p>When you run this command, your environment comes to life. All the packages and dependencies you installed are now available and ready for you to use.</p>
+<p>And that’s it! The boring setup part is officially behind us. From here on, it’s all about diving into the exciting world of data analysis. Onward and upward!</p>
 
 
 </section>
