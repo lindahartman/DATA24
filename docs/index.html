@@ -101,17 +101,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>
-div.callout-challenge.callout {
-  border-left-color: firebrick;
-}
-div.callout-challenge.callout-style-default > .callout-header {
-  background-color: rgb(from firebrick r g b / 13%);
-}
-div.callout-challenge .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-challenge.callout-style-default .callout-icon::before, div.callout-challenge.callout-titled .callout-icon::before {
-  content: '🛠️';
-  background-image: none;
-}
 div.callout-question.callout {
   border-left-color: pink;
 }
@@ -121,6 +110,17 @@ div.callout-question.callout-style-default > .callout-header {
 div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
   content: '🧠';
+  background-image: none;
+}
+div.callout-challenge.callout {
+  border-left-color: firebrick;
+}
+div.callout-challenge.callout-style-default > .callout-header {
+  background-color: rgb(from firebrick r g b / 13%);
+}
+div.callout-challenge .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-challenge.callout-style-default .callout-icon::before, div.callout-challenge.callout-titled .callout-icon::before {
+  content: '🛠️';
   background-image: none;
 }
 </style>
@@ -189,6 +189,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
   <li><a href="#navigating-in-the-command-line" id="toc-navigating-in-the-command-line" class="nav-link" data-scroll-target="#navigating-in-the-command-line">Navigating in the command line</a></li>
   <li><a href="#installing-uv" id="toc-installing-uv" class="nav-link" data-scroll-target="#installing-uv">Installing uv</a></li>
   <li><a href="#managing-python-installation" id="toc-managing-python-installation" class="nav-link" data-scroll-target="#managing-python-installation">Managing python installation</a></li>
+  <li><a href="#launch-jupyter" id="toc-launch-jupyter" class="nav-link" data-scroll-target="#launch-jupyter">Launch Jupyter</a></li>
   </ul>
 </nav>
     </div>
@@ -363,7 +364,7 @@ Challenge
 <h2 class="anchored" data-anchor-id="installing-uv">Installing uv</h2>
 <p>Alright, now it’s time to roll up our sleeves and install one of the most exciting tools in modern Python development—uv!</p>
 <p>uv is an incredibly fast Python installation and environment manager, written in the high-performance language Rust. This tool burst onto the Python scene earlier this year, and it’s already winning the hearts of Python developers worldwide.</p>
-<p>When I say “fast,” I mean lightning fast—orders of magnitude faster than its competitors! Just look at this chart:</p>
+<p>When I say “fast,” I mean lightning fast—orders of magnitude faster than its popular counterparts! Just look at this chart:</p>
 <p><img src="img/uv-perf-chart.png" class="img-fluid"></p>
 <p>Not only is uv fast, but it’s also environmentally friendly. Yes, it’s saving the planet! By reducing the time and energy it takes for data centers to rebuild their test and development environments daily, uv contributes to a smaller carbon footprint.</p>
 <p>In this course, we’ll only scratch the surface of what uv can do. But I promise, as you start using it in your real-life projects, your appreciation for this tool—and the Astral team behind it—will grow exponentially</p>
@@ -416,14 +417,14 @@ Challenge
 <h2 class="anchored" data-anchor-id="managing-python-installation">Managing python installation</h2>
 <p>uv isn’t just a package and environment manager—it also handles Python installations effortlessly. Let’s start by checking if uv can detect an existing Python installation on your system.</p>
 <p>In your terminal, run:</p>
-<p>uv python find</p>
+<pre><code>uv python find</code></pre>
 <p>If uv detects a Python installation, it will return the path to it. This path will also likely give you a clue about the Python version. But if you’re unsure about the version, you can use this command:</p>
-<p>uv python list –only-installed</p>
+<pre><code>uv python list --only-installed</code></pre>
 <p>Now comes the decision point: Do you want to use your existing Python installation, or would you prefer a fresh installation managed entirely by uv?</p>
 <p>Here’s my advice: While you can use the Python installation that uv detects, it’s often a good idea to have a separate Python installation that’s fully under uv’s control. Why? Because Python is often deeply integrated into modern operating systems, and having an isolated installation ensures you don’t accidentally disrupt system-level functionality.</p>
 <p>Python environment management has historically been a mess! XKCD even made a <a href="https://xkcd.com/1987/">famous comic</a> about it.</p>
 <p><img src="https://imgs.xkcd.com/comics/python_environment_2x.png" class="img-fluid"></p>
-<p>Yeah, it can get pretty bad. But don’t worry—with uv, that nightmare is a thing of the past. If you’re ready to let uv manage your Python installation, just run this command:</p>
+<p>Yeah, it can get pretty bad. But don’t worry—with uv, that nightmare is a thing of the past. If you’re ready to let uv manage your Python installation, run this command:</p>
 <pre><code>uv python install</code></pre>
 <p>This will install the latest and greatest version of Python, which will now be entirely supervised by uv. If the installation completes without errors, you’re officially set up with Python! To verify, you can run the uv python find command again, and it should show the new Python installation.</p>
 <p>With Python sorted, you’re ready for the next step: setting up your project environment.</p>
@@ -437,37 +438,59 @@ cd data-literacy-project</code></pre>
 $ cd data-literacy-project
 $ uv init</code></pre>
 <p>Either way, once you’re inside the folder, it’s ready to go! You can explore what uv has created for you by running <code>ls</code>. One of the files you’ll see is pyproject.toml. This is your project’s manifest—a file where uv tracks metadata about your project, including its dependencies (the libraries it needs).</p>
-<p>Speaking of dependencies, let’s add some libraries. Run the following command:</p>
-<pre><code>$ uv add gapminder plotnine polars pyarrow great_tables setuptools jupyter ipykernel pyyaml nbformat nbclient</code></pre>
-<p>This command installs several Python libraries we’ll use throughout the course. You’ll notice that uv installs additional packages that these libraries rely on—it handles all the messy details for you! And thanks to uv, the installation will be lightning-fast.</p>
+<p>Speaking of dependencies, let’s add some libraries. Run the following commands:</p>
+<pre><code>$ uv add gapminder plotnine polars pyarrow great_tables
+$ uv add --dev setuptools jupyter ipykernel pyyaml nbformat nbclient jupyterlab-quarto</code></pre>
+<p>These commands install several Python libraries we’ll use throughout the course. Here we separated the main packages we need for analysis and visualization (listed here in the first line), from the auxilliary packages used to set up a computing environment, the tools we are going to use. The idea is that your Python code relying on main dependencies may stay the same, while the computing setup may look completely different. In this course we will be using Jupyter notebooks, but the same analysis can be performed in Python script files in an IDE, such as VS Studio Code or Positron.</p>
+<p>As you run these commands, you will notice that uv installs more packages than we requested. It pulls in the packages that these specified libraries rely on — it handles all the messy details of software dependecies for you! And thanks to uv, the installation will be lightning-fast.</p>
 <p>Curious about what just happened? I want to leave you with a fun little command: it’s called cat. Yes, like the furry little animal! The cat command is a handy way to view the contents of small files directly in your terminal. For larger files, it might take a while to load, but for our purposes, cat is perfect.</p>
 <p>Let’s use it to check out the contents of our project manifest file. In your terminal, type:</p>
 <pre><code>cat pyproject.toml</code></pre>
 <p>When you hit enter, you’ll see something like this:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="at">project</span><span class="kw">]</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="at">name = "data-literacy-project"</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="at">version = "0.1.0"</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="at">description = "Add your description here"</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="at">readme = "README.md"</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="at">requires-python = "&gt;=3.10"</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="at">dependencies = [</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"gapminder&gt;=0.1"</span><span class="at">,</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"ipykernel&gt;=6.29.5"</span><span class="at">,</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"jupyter&gt;=1.1.1"</span><span class="at">,</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"plotnine&gt;=0.13.6"</span><span class="at">,</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"polars&gt;=1.8.2"</span><span class="at">,</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"pyarrow&gt;=18.1.0"</span><span class="at">,</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"pyyaml&gt;=6.0.2"</span><span class="at">,</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"great-tables&gt;=0.14.0"</span><span class="at">,</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"nbformat&gt;=5.10.4"</span><span class="at">,</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"nbclient&gt;=0.10.1"</span><span class="at">,</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"setuptools&gt;=75.6.0"</span><span class="at">,</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="at">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="at">project</span><span class="kw">]</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="at">name = "data-literacy-project"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="at">version = "0.1.0"</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="at">description = "Add your description here"</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="at">readme = "README.md"</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="at">requires-python = "&gt;=3.10"</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="at">dependencies = [</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"gapminder&gt;=0.1"</span><span class="at">,</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"great-tables&gt;=0.15.0"</span><span class="at">,</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"plotnine&gt;=0.14.3"</span><span class="at">,</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"polars&gt;=1.17.1"</span><span class="at">,</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"pyarrow&gt;=18.1.0"</span><span class="at">,</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="at">]</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="at">tool.uv</span><span class="kw">]</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="at">dev-dependencies = [</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"ipykernel&gt;=6.29.5"</span><span class="at">,</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"jupyter&gt;=1.1.1"</span><span class="at">,</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"jupyterlab-quarto&gt;=0.3.5"</span><span class="at">,</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"nbclient&gt;=0.10.1"</span><span class="at">,</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"nbformat&gt;=5.10.4"</span><span class="at">,</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"pyyaml&gt;=6.0.2"</span><span class="at">,</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"setuptools&gt;=75.6.0"</span><span class="at">,</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="at">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This file, pyproject.toml, serves as a “manifest” for your project. It keeps track of metadata like your project name, version, and—most importantly—dependencies. Each time you add a new library with uv add, it’s recorded here.</p>
 <p>Now, here’s something happening behind the scenes: uv created a hidden folder called .venv. This stands for “virtual environment,” and it’s where all your project’s libraries and dependencies live. Hidden files and folders don’t show up when you run <code>ls</code>— not unless you add the -a flag to the command, so <code>ls -a</code> will, in fact, show that you have this <code>.venv</code> folder in your project directory. But don’t worry that this folder stays hidden, you’ll rarely, if ever, need to open it. uv manages this folder for you, so you can focus on your work without getting bogged down in the details.</p>
 <p>Here’s the most important thing to know: the .venv folder is what makes your project self-contained. All your dependencies are stored there, safe and separate from anything else on your system. This is especially useful if you want to share your work later—a topic we’ll cover in the final module of this course.</p>
-<p>Before we wrap up, there’s one last thing you need to do: activate your environment.</p>
-<p>Activating your environment ensures that Python uses the correct versions of the libraries you’ve installed. This step is essential whenever you’re working on your project. To activate your environment, type the following command:</p>
+</section>
+<section id="launch-jupyter" class="level2">
+<h2 class="anchored" data-anchor-id="launch-jupyter">Launch Jupyter</h2>
+<p>Finally, let’s talk about Jupyter, one of the most transformative tools for interactive data analysis.</p>
+<p>Jupyter is more than just a tool—it’s a revolutionary concept. It provides a cross-platform environment for literate programming, where code, text, and results coexist seamlessly. Oh, and here’s a fun fact: the name “Jupyter” stands for Julia-Python-R, highlighting its roots as a language-agnostic platform for fast prototyping, experimentation, and sharing results. Today, the Jupyter ecosystem has grown immensely, with thousands of educators, practitioners, and enthusiasts gathering annually at JupyterCon, a conference dedicated to this amazing technology.</p>
+<p>At the heart of Jupyter is the Jupyter Notebook, a special format that allows you to write, execute, and save code, alongside text and rich results like visualizations. Behind the scenes, Jupyter maintains a live connection to the execution language—called a kernel. In our case, that’s Python.</p>
+<p>Luckily, the uv tool integrates Jupyter as one of its supported engines, making it simple to launch Jupyter Lab, the interactive environment where we’ll be working. To launch Jupyter Lab, type this command in your terminal:</p>
+<pre><code>uv run --with jupyter jupyter lab</code></pre>
+<p>When you run this command, your terminal will remain busy while Jupyter Lab is running. It’s a good idea to minimize the terminal and let it work in the background. Shortly after, your default web browser will open, displaying the Jupyter Lab interface.</p>
+<p>You’ll see a screen like this:</p>
+<p><img src="img/jlab-1.png" class="img-fluid"></p>
+<p>Click the large blue button in the top left corner—or press Ctrl-Shift-L (or Cmd-Shift-L on a Mac)—to open a Launcher.</p>
+<p><img src="img/jlab-2.png" class="img-fluid"></p>
+<p>In the Launcher, click the “Python 3 (ipykernel)” button under the “Notebook” section. This will open a new tab in Jupyter Lab, where you’ll see an empty document that looks like this:</p>
+<p><img src="img/jupyterlab-2.png" class="img-fluid"></p>
+<p>Now, let’s take a closer look at the Jupyter Notebook interface. A notebook is made up of cells, which can be either code cells or text cells. By default, the first cell is created for you, and it’s set to “code.” The cursor will already be placed in the cell, ready for you to start typing Python code.</p>
+<p>Let’s try a quick example!</p>
 <div class="callout callout-style-default callout-challenge callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -478,12 +501,64 @@ Challenge
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Activate your environment</p>
-<pre><code>source .venv/bin/activate</code></pre>
+<p>Type the following code into the first cell:</p>
+<pre><code>from datetime import date
+print('Today is', date.today())</code></pre>
+<p>Press Ctrl-Enter (or Cmd-Enter on a Mac) to execute the code.</p>
 </div>
 </div>
-<p>This command might look a bit cryptic. <code>source</code> tells your system to execute a file and <code>.venv/bin/activate</code> is? you are right! it’s the path, (relative path in fact) to the activation script inside your <code>.venv</code> folder.</p>
-<p>When you run this command, your environment comes to life. All the packages and dependencies you installed are now available and ready for you to use.</p>
+<p>You’ll see the output—today’s date—appear below the cell. Notice how the cell turns grey, indicating you’ve exited “edit mode” and are now in command mode.</p>
+<p>From command mode, you can do all sorts of things:</p>
+<ul>
+<li>Press B to insert a new cell below.</li>
+<li>Press A to insert a cell above.</li>
+</ul>
+<p>When you create a new cell, it won’t immediately be in edit mode. It’ll still be greyed out, waiting for further instructions.</p>
+<p>Let’s say we want to explain what the code does. For that, we can turn the new cell into a text cell. To change the cell type, press M (for “Markdown”). Markdown is a simple formatting language that lets you write text with styling.</p>
+<p>Now, place your cursor in the cell to start typing your thoughts. You can even add styling! For example:</p>
+<ul>
+<li>Surround text with single stars <code>* text *</code> for <em>italics</em>.</li>
+<li>Use double stars <code>** text **</code> to make text <strong>bold</strong>.</li>
+</ul>
+<p>Try it out!</p>
+<p>Add a brief description of what the code does, and play around with text formatting. When you’re done editing text in a Markdown cell, press Ctrl-Enter (or Cmd-Enter on a Mac) to render it as rich text. Your formatting—like italics, bold text, or headings—will all be applied instantly.</p>
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Add a description of what the code does, use text formatting. Conclude with Ctrl-Enter (or Cmd-Enter on a Mac) to render it.</p>
+</div>
+</div>
+<p>If you want to switch a Markdown cell back to code mode, it’s simple: press Y while in command mode. Now, the cell will behave like a code cell. Be cautious, though! If you type something invalid, the notebook will produce an error when you try to execute it.</p>
+<p>To exit edit mode and return to command mode, press the Esc key on your keyboard. Once in command mode, you can navigate through cells using the arrow keys. This is helpful when you want to scroll through your notebook, locate a specific section, or insert new cells either above (A) or below (B).</p>
+<p>To help you work more efficiently, here’s a pro tip: Jupyter Notebooks come with a host of useful shortcuts. Don’t worry, we’ll leave a list for you to refer to later.</p>
+<p>In the next module, you’ll use this environment to create stunning data visualizations. While it’s technically possible to write all your code in a single cell, it’s not recommended. You’ll soon learn that breaking your code into smaller, modular sections makes debugging much easier. Plus, combining code cells with text cells lets you document your thoughts, findings, and learning process.</p>
+<p>Think of your notebook as exactly that—a notebook. Use it as a space for both experimentation and documentation. Interleave your code and text, and add section titles as you move through new chapters. In the final module, we’ll explore how to turn your notebook into a polished, professional report. So start structuring your work now, aiming for clarity and organization from the beginning.</p>
+<p>I encourage you to play around with Jupyter Notebook! Try simple arithmetic operations in code cells and add comments in Markdown cells below them. Experiment with switching cell types, adding formatting, and organizing your notebook.</p>
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Add a code cell, write Python code to perform simple arithmetic operations.</li>
+<li>Add comments in a Markdown cell. Adding formatting</li>
+<li>Add structure to your notebook using headers of different levels.</li>
+</ul>
+</div>
+</div>
+<p>When you’re ready to save your work, press Ctrl-S (or Cmd-S on Mac). Be sure to give your notebook a meaningful name and keep the file extension as .ipynb. This tells your system that the file is a Jupyter Notebook. I hope you have fun exploring this amazing tool! Jupyter notebooks are powerful, versatile, and central part of modern data analysis toolset.</p>
 <p>And that’s it! The boring setup part is officially behind us. From here on, it’s all about diving into the exciting world of data analysis. Onward and upward!</p>
 
 
