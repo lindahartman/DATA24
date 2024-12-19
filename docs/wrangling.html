@@ -104,17 +104,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <style>
-div.callout-challenge.callout {
-  border-left-color: firebrick;
-}
-div.callout-challenge.callout-style-default > .callout-header {
-  background-color: rgb(from firebrick r g b / 13%);
-}
-div.callout-challenge .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-challenge.callout-style-default .callout-icon::before, div.callout-challenge.callout-titled .callout-icon::before {
-  content: '🛠️';
-  background-image: none;
-}
 div.callout-question.callout {
   border-left-color: pink;
 }
@@ -124,6 +113,17 @@ div.callout-question.callout-style-default > .callout-header {
 div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
   content: '🧠';
+  background-image: none;
+}
+div.callout-challenge.callout {
+  border-left-color: firebrick;
+}
+div.callout-challenge.callout-style-default > .callout-header {
+  background-color: rgb(from firebrick r g b / 13%);
+}
+div.callout-challenge .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-challenge.callout-style-default .callout-icon::before, div.callout-challenge.callout-titled .callout-icon::before {
+  content: '🛠️';
   background-image: none;
 }
 </style>
@@ -188,12 +188,12 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
    
   <ul>
   <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data">Data</a></li>
-  <li><a href="#part-i.-basics" id="toc-part-i.-basics" class="nav-link" data-scroll-target="#part-i.-basics">Part I. Basics</a>
+  <li><a href="#part-i.-basics" id="toc-part-i.-basics" class="nav-link" data-scroll-target="#part-i.-basics">Part I. Basics</a></li>
+  <li><a href="#indoor-air-pollution-datasets" id="toc-indoor-air-pollution-datasets" class="nav-link" data-scroll-target="#indoor-air-pollution-datasets">Indoor air pollution datasets</a>
   <ul class="collapse">
   <li><a href="#data-overview" id="toc-data-overview" class="nav-link" data-scroll-target="#data-overview">Data Overview</a></li>
-  </ul></li>
-  <li><a href="#selectexcludedrop-and-filter" id="toc-selectexcludedrop-and-filter" class="nav-link" data-scroll-target="#selectexcludedrop-and-filter">select/exclude/drop and filter</a>
-  <ul class="collapse">
+  <li><a href="#selectdrop" id="toc-selectdrop" class="nav-link" data-scroll-target="#selectdrop">select/drop</a></li>
+  <li><a href="#selectors" id="toc-selectors" class="nav-link" data-scroll-target="#selectors">selectors</a></li>
   <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter">Filter</a></li>
   </ul></li>
   <li><a href="#mutatingwith_columns" id="toc-mutatingwith_columns" class="nav-link" data-scroll-target="#mutatingwith_columns">mutating(with_columns)</a></li>
@@ -225,154 +225,49 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>Welcome to the module on data wrangling! In the last lesson, we explored a small, but exciting gapminder dataset, and created quite a few visualizations with it. But in real-world scenarios, datasets are often much larger. This brings new challenges, like focusing on specific subsets of data—perhaps observations from a single time period or a selection of variables related to a particular phenomenon.</p>
+<p>In this module, we’ll learn how to subset data and create meaningful summaries that provide a high-level overview of trends or differences between groups. Summarized data is often presented in tables, so we’ll also introduce a package for creating clear, professional-looking tables.</p>
+<p>Most importantly, we’ll dive into the blazingly fast Polars package for data manipulation. As I mentioned earlier, Polars is powered by Rust, a high-performance programming language. Its core functionality is exposed to Python but can also be accessed from other languages. This means the data wrangling skills you gain here will be transferable beyond Python.</p>
+<p>But first, let’s load the necessary packages for this module. In Python, it’s common to use the alias <code>pl</code> for Polars. We’ll also use a submodule called polars.selectors, aliasing it as cs — don’t worry, we’ll cover selectors in more detail soon. We’ll also import everything from Plotnine for data visualization and bring in the main function from the <code>great_tables</code> package for generating beautifully looking tables.</p>
+<p>Here’s the setup code. Place it in its own cell in your notebook and run it:</p>
 <div id="setup" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars.selectors <span class="im">as</span> cs</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> great_tables <span class="im">import</span> GT</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>theme_set(theme_linedraw())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> great_tables <span class="im">import</span> GT</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Now, let’s explore our dataset. We’ll be looking at the WHO data about household pollution curated by the Our World In Data website.</p>
+<p>Household air pollution is primarily caused by burning polluting fuels like wood, animal dung, charcoal, agricultural waste, and kerosene in open fires or inefficient stoves. Globally, 2.1 billion people rely on these fuels for cooking, heating, and lighting. The poor combustion of these fuels leads to numerous health issues, such as pneumonia in children, and chronic diseases like obstructive pulmonary disease, lung cancer, stroke, and cardiovascular problems in adults.</p>
+<p>This is a complex problem, and like many complex problems, it can be examined from different perspectives. We have three datasets to work with:</p>
+<ul>
+<li>Causes of death linked to household pollution</li>
+<li>Types of fuel used for cooking in various countries</li>
+<li>Proportion of the population with access to clean cooking fuels</li>
+</ul>
+<p>Each dataset offers a unique angle on this issue. Let’s dive in and start exploring!</p>
 </section>
 <section id="part-i.-basics" class="level1">
 <h1>Part I. Basics</h1>
-<div id="5c1456bf" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># indoor air pollution</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>hhap_deaths <span class="op">=</span> pl.read_csv(<span class="st">"hhap/hhap_deaths.csv"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>clean_fuels <span class="op">=</span> pl.read_csv(<span class="st">"hhap/clean_fuels_cooking.csv"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>fuel_types <span class="op">=</span> pl.read_csv(<span class="st">"hhap/cooking_by_fuel_type.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this section, we’ll start working with the datasets about household air pollution. These datasets are stored as comma-separated values, or CSV files. CSV is a simple text format often used for storing tabular data. Think of it as a stripped-down version of Excel—just the data, no formatting or formulas. In fact, you can even open CSV files directly in Excel if you want to take a look at them.</p>
+<p>We’ve prepared these datasets for you and stored them in the course repository on GitHub. While Polars allows us to read files directly from remote locations, you can also download the files and load them from your local project directory.</p>
+<p>Here’s the code to load the three datasets we’ll use:</p>
+</section>
+<section id="indoor-air-pollution-datasets" class="level1">
+<h1>Indoor air pollution datasets</h1>
+<div id="6a5332a9" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>hhap_deaths <span class="op">=</span> pl.read_csv(<span class="st">"hhap/hhap_deaths.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fuel_types <span class="op">=</span> pl.read_csv(<span class="st">"hhap/cooking_by_fuel_type.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>clean_fuels <span class="op">=</span> pl.read_csv(<span class="st">"hhap/clean_fuels_cooking.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Let’s break this down. We’re using the <code>read_csv()</code> function from Polars to load the data. This function takes a single mandatory argument: the file path, written as a string in quotes. The equal sign indicates that we assign the content of the file to the variable, listed on the left. The <code>pl.read_csv()</code> returns a data frame. So, from now on, we can simply refer to this variable name whenever we need to access the dataframe which we read fromm the CSV file without needing to re-import it.</p>
 <section id="data-overview" class="level2">
 <h2 class="anchored" data-anchor-id="data-overview">Data Overview</h2>
-<p>Polars data frames can be conveniently previewed with</p>
-<div id="0aa2e21e" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hhap_deaths</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To understand the data we’re working with, it’s helpful to preview it in a few ways. For instance, simply typing the name of a dataset—like clean_fuels—will display a preview of the first five and last five rows of the corresponding data frame.</p>
+<p>Rows in a data frame are often referred to as observations or records, while columns are known as variables or features. If you want to see more rows than the default preview, you can use the .head() method and specify the number of rows to display:</p>
+<div id="6b0428a7" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-<div><style>
-.dataframe > thead > tr,
-.dataframe > tbody > tr {
-  text-align: right;
-  white-space: pre-wrap;
-}
-</style>
-<small>shape: (10_800, 6)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">region</th>
-<th data-quarto-table-cell-role="th">country_code</th>
-<th data-quarto-table-cell-role="th">country</th>
-<th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th">cause_of_death</th>
-<th data-quarto-table-cell-role="th">deaths</th>
-</tr>
-<tr class="even">
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>str</th>
-<th>f64</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>"Americas"</td>
-<td>"ATG"</td>
-<td>"Antigua and Barbuda"</td>
-<td>2010</td>
-<td>"All causes"</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<td>"Americas"</td>
-<td>"ATG"</td>
-<td>"Antigua and Barbuda"</td>
-<td>2010</td>
-<td>"Acute lower respiratory infect…</td>
-<td>0.0</td>
-</tr>
-<tr class="odd">
-<td>"Americas"</td>
-<td>"ATG"</td>
-<td>"Antigua and Barbuda"</td>
-<td>2010</td>
-<td>"Trachea, bronchus, lung cancer…</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<td>"Americas"</td>
-<td>"ATG"</td>
-<td>"Antigua and Barbuda"</td>
-<td>2010</td>
-<td>"Ischaemic heart disease"</td>
-<td>0.0</td>
-</tr>
-<tr class="odd">
-<td>"Americas"</td>
-<td>"ATG"</td>
-<td>"Antigua and Barbuda"</td>
-<td>2010</td>
-<td>"Stroke"</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>"Americas"</td>
-<td>"BOL"</td>
-<td>"Bolivia (Plurinational State o…</td>
-<td>2019</td>
-<td>"Trachea, bronchus, lung cancer…</td>
-<td>98.72</td>
-</tr>
-<tr class="even">
-<td>"Africa"</td>
-<td>"GNB"</td>
-<td>"Guinea-Bissau"</td>
-<td>2019</td>
-<td>"Chronic obstructive pulmonary …</td>
-<td>98.88</td>
-</tr>
-<tr class="odd">
-<td>"Africa"</td>
-<td>"CIV"</td>
-<td>"Cote d'Ivoire"</td>
-<td>2019</td>
-<td>"Chronic obstructive pulmonary …</td>
-<td>990.6</td>
-</tr>
-<tr class="even">
-<td>"Europe"</td>
-<td>"TUR"</td>
-<td>"Türkiye"</td>
-<td>2019</td>
-<td>"Chronic obstructive pulmonary …</td>
-<td>997.6</td>
-</tr>
-<tr class="odd">
-<td>"Europe"</td>
-<td>"UZB"</td>
-<td>"Uzbekistan"</td>
-<td>2019</td>
-<td>"All causes"</td>
-<td>9982.0</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<p>By default this shows 5 first and 5 last rows of the data. Rows are often called observations or records and columns are called variables or features. If you want to see a few more observations off the top of the dataset, you can call</p>
-<div id="2990d365" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(hhap_deaths</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -388,125 +283,111 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <th data-quarto-table-cell-role="th">country_code</th>
 <th data-quarto-table-cell-role="th">country</th>
 <th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th">cause_of_death</th>
-<th data-quarto-table-cell-role="th">deaths</th>
+<th data-quarto-table-cell-role="th">pop_clean_fuels_cooking_mln</th>
+<th data-quarto-table-cell-role="th">prop_clean_fuels_cooking_pct</th>
 </tr>
 <tr class="even">
 <th>str</th>
 <th>str</th>
 <th>str</th>
 <th>i64</th>
-<th>str</th>
+<th>f64</th>
 <th>f64</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Americas"</td>
-<td>"ATG"</td>
-<td>"Antigua and Barbuda"</td>
-<td>2010</td>
-<td>"All causes"</td>
+<td>"Africa"</td>
+<td>"SSD"</td>
+<td>"South Sudan"</td>
+<td>2022</td>
 <td>0.0</td>
-</tr>
-<tr class="even">
-<td>"Americas"</td>
-<td>"ATG"</td>
-<td>"Antigua and Barbuda"</td>
-<td>2010</td>
-<td>"Acute lower respiratory infect…</td>
-<td>0.0</td>
-</tr>
-<tr class="odd">
-<td>"Americas"</td>
-<td>"ATG"</td>
-<td>"Antigua and Barbuda"</td>
-<td>2010</td>
-<td>"Trachea, bronchus, lung cancer…</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<td>"Americas"</td>
-<td>"ATG"</td>
-<td>"Antigua and Barbuda"</td>
-<td>2010</td>
-<td>"Ischaemic heart disease"</td>
-<td>0.0</td>
-</tr>
-<tr class="odd">
-<td>"Americas"</td>
-<td>"ATG"</td>
-<td>"Antigua and Barbuda"</td>
-<td>2010</td>
-<td>"Stroke"</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<td>"Americas"</td>
-<td>"ATG"</td>
-<td>"Antigua and Barbuda"</td>
-<td>2010</td>
-<td>"Chronic obstructive pulmonary …</td>
-<td>0.0</td>
-</tr>
-<tr class="odd">
-<td>"Western Pacific"</td>
-<td>"AUS"</td>
-<td>"Australia"</td>
-<td>2010</td>
-<td>"All causes"</td>
 <td>0.0</td>
 </tr>
 <tr class="even">
 <td>"Western Pacific"</td>
-<td>"AUS"</td>
-<td>"Australia"</td>
-<td>2010</td>
-<td>"Acute lower respiratory infect…</td>
-<td>0.0</td>
+<td>"NIU"</td>
+<td>"Niue"</td>
+<td>2022</td>
+<td>0.002</td>
+<td>98.5</td>
 </tr>
 <tr class="odd">
 <td>"Western Pacific"</td>
-<td>"AUS"</td>
-<td>"Australia"</td>
-<td>2010</td>
-<td>"Trachea, bronchus, lung cancer…</td>
-<td>0.0</td>
+<td>"TKL"</td>
+<td>"Tokelau"</td>
+<td>2022</td>
+<td>0.0004</td>
+<td>28.3</td>
 </tr>
 <tr class="even">
 <td>"Western Pacific"</td>
-<td>"AUS"</td>
-<td>"Australia"</td>
-<td>2010</td>
-<td>"Ischaemic heart disease"</td>
-<td>0.0</td>
+<td>"COK"</td>
+<td>"Cook Islands"</td>
+<td>2022</td>
+<td>0.013</td>
+<td>72.7</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>"PLW"</td>
+<td>"Palau"</td>
+<td>2022</td>
+<td>0.007</td>
+<td>29.45</td>
+</tr>
+<tr class="even">
+<td>"Africa"</td>
+<td>"STP"</td>
+<td>"Sao Tome and Principe"</td>
+<td>2022</td>
+<td>0.009</td>
+<td>4.1</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>"FSM"</td>
+<td>"Micronesia (Federated States o…</td>
+<td>2022</td>
+<td>0.014</td>
+<td>13.2</td>
+</tr>
+<tr class="even">
+<td>"Africa"</td>
+<td>"BDI"</td>
+<td>"Burundi"</td>
+<td>2022</td>
+<td>0.013</td>
+<td>0.1</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>"NRU"</td>
+<td>"Nauru"</td>
+<td>2022</td>
+<td>0.011</td>
+<td>100.0</td>
+</tr>
+<tr class="even">
+<td>"Western Pacific"</td>
+<td>"TUV"</td>
+<td>"Tuvalu"</td>
+<td>2022</td>
+<td>0.009</td>
+<td>75.2</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<p>When the number of columns is large, this may not be the most convenient way of getting an overview of the data. Alternative representation can be produced using glimpse, which shows the same data in horizontal (textual) form, i.e.&nbsp;every variable now occupies one row.</p>
-<div id="a52651ba" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    .glimpse())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 6402
-Columns: 6
-$ region                       &lt;str&gt; 'Africa', 'Western Pacific', 'Western Pacific', 'Western Pacific', 'Western Pacific', 'Africa', 'Western Pacific', 'Africa', 'Western Pacific', 'Western Pacific'
-$ country_code                 &lt;str&gt; 'SSD', 'NIU', 'TKL', 'COK', 'PLW', 'STP', 'FSM', 'BDI', 'NRU', 'TUV'
-$ country                      &lt;str&gt; 'South Sudan', 'Niue', 'Tokelau', 'Cook Islands', 'Palau', 'Sao Tome and Principe', 'Micronesia (Federated States of)', 'Burundi', 'Nauru', 'Tuvalu'
-$ year                         &lt;i64&gt; 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022
-$ pop_clean_fuels_cooking_mln  &lt;f64&gt; 0.0, 0.002, 0.0004, 0.013, 0.007, 0.009, 0.014, 0.013, 0.011, 0.009
-$ prop_clean_fuels_cooking_pct &lt;f64&gt; 0.0, 98.5, 28.3, 72.7, 29.45, 4.1, 13.2, 0.1, 100.0, 75.2
-</code></pre>
-</div>
-</div>
-<p>We can also look at the table of statistical summaries for our data</p>
-<div id="4394c7cb" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    .describe())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<p>You may have noticed the parentheses around the code block. This lets you write the code across multiple lines without worrying about indentation.</p>
+<p>Previewing the first few rows gives you an initial sense of the dataset’s structure and content. If you’re curious about the last few rows, there’s also a .tail() method you can use in a similar way.</p>
+<p>For a broader overview of your data, you can use the .describe() method:</p>
+<div id="17738282" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    .describe())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -623,15 +504,155 @@ $ prop_clean_fuels_cooking_pct &lt;f64&gt; 0.0, 98.5, 28.3, 72.7, 29.45, 4.1, 13
 </div>
 </div>
 </div>
+<p>The .describe() method provides a statistical summary of numerical columns, including metrics like the mean, standard deviation, minimum, maximum, and various quantiles. It’s especially useful for large datasets when you want to quickly understand key metrics.</p>
+<p>One thing to note: if a column contains missing values, Polars will display these as null. Polars treats missing values as “contagious,” so any operation involving them will also result in missing values in the output. This behavior applies to all statistical operations. We’ll see more examples of this later.</p>
+<p>Both .head() and .describe() return a data frame, which means you can chain these operations together. Method chaining is a powerful coding style that helps you write clean, readable, and maintainable code.</p>
+<p>Here’s the first challenge for you: combine the functions you learned so far to create a method chain:</p>
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Take first 25 records of clean_fuels data frame and calculate summary statistical summary</li>
+<li>Compute statistical summary of the whole data and then present only quantile summaries of each column. The quantiles include minimum, maximum as well as the 25th, 50th and 75th quantile.</li>
+</ul>
+</div>
+</div>
+<div id="fe04f599" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">25</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .describe())</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    .describe()</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    .tail(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 7)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">statistic</th>
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">pop_clean_fuels_cooking_mln</th>
+<th data-quarto-table-cell-role="th">prop_clean_fuels_cooking_pct</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"min"</td>
+<td>"Africa"</td>
+<td>"AFG"</td>
+<td>"Afghanistan"</td>
+<td>1990.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>"25%"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>1998.0</td>
+<td>0.23</td>
+<td>16.6</td>
+</tr>
+<tr class="odd">
+<td>"50%"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2006.0</td>
+<td>2.24</td>
+<td>78.0</td>
+</tr>
+<tr class="even">
+<td>"75%"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2014.0</td>
+<td>10.24</td>
+<td>100.0</td>
+</tr>
+<tr class="odd">
+<td>"max"</td>
+<td>"Western Pacific"</td>
+<td>"ZWE"</td>
+<td>"Zimbabwe"</td>
+<td>2022.0</td>
+<td>1257.0</td>
+<td>100.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Sometimes, datasets have many columns, making it difficult to gain a full overview using methods like head() or describe(). For these cases, Polars provides a particularly useful method called glimpse().</p>
+<p>When you use glimpse(), the dataset’s structure is displayed horizontally. Each variable is listed as a row, making it easier to scan through all columns, even if you’re working with a limited screen space. Here’s how it looks in action:</p>
+<div id="8f08af4b" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    .glimpse())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 6402
+Columns: 6
+$ region                       &lt;str&gt; 'Africa', 'Western Pacific', 'Western Pacific', 'Western Pacific', 'Western Pacific', 'Africa', 'Western Pacific', 'Africa', 'Western Pacific', 'Western Pacific'
+$ country_code                 &lt;str&gt; 'SSD', 'NIU', 'TKL', 'COK', 'PLW', 'STP', 'FSM', 'BDI', 'NRU', 'TUV'
+$ country                      &lt;str&gt; 'South Sudan', 'Niue', 'Tokelau', 'Cook Islands', 'Palau', 'Sao Tome and Principe', 'Micronesia (Federated States of)', 'Burundi', 'Nauru', 'Tuvalu'
+$ year                         &lt;i64&gt; 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022
+$ pop_clean_fuels_cooking_mln  &lt;f64&gt; 0.0, 0.002, 0.0004, 0.013, 0.007, 0.009, 0.014, 0.013, 0.011, 0.009
+$ prop_clean_fuels_cooking_pct &lt;f64&gt; 0.0, 98.5, 28.3, 72.7, 29.45, 4.1, 13.2, 0.1, 100.0, 75.2
+</code></pre>
+</div>
+</div>
+<p>Now, here’s a question for you what happens if you try to use glimpse() in a method chain?</p>
+<div class="callout callout-style-default callout-question callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Can you chain the operation <code>head()</code> after calling <code>glimpse()</code>? What do you think the output will be?</p>
+</div>
+</div>
+<p>The answer is: no, you cannot. glimpse(), does not return you a data frame. Instead, the output of <code>glimpse()</code> is the text printout meant solely for viewing. No further operations can be applied to it. If you attempt to chain additional methods, you’ll encounter an error. Give it a try if you want! Polars will throw an error saying that the <code>head()</code> method cannot be applied to a NoneType, which is the type of output <code>glimpse()</code> returns.</p>
+<p>By understanding how to use <code>head()</code>, <code>tail()</code>, <code>describe()</code>, and <code>glimpse()</code>, you have powerful tools at your disposal to explore and familiarize yourself with any dataset before diving deeper into your analysis.</p>
 </section>
-</section>
-<section id="selectexcludedrop-and-filter" class="level1">
-<h1>select/exclude/drop and filter</h1>
-<p>One of the most common things done in data analysis is selecting particular variables.</p>
-<div id="67bf404b" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"country"</span>))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="selectdrop" class="level2">
+<h2 class="anchored" data-anchor-id="selectdrop">select/drop</h2>
+<p>One of the most common tasks in data analysis is selecting specific variables or columns from a dataset. Let’s start by pulling out the country information from the <code>clean_fuels</code> dataset. Pause the video for a moment and try running this code:</p>
+<div id="bb00e352" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"country"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div><style>
 .dataframe > thead > tr,
@@ -689,15 +710,11 @@ $ prop_clean_fuels_cooking_pct &lt;f64&gt; 0.0, 98.5, 28.3, 72.7, 29.45, 4.1, 13
 </div>
 </div>
 </div>
-<p>As you can see the column name is wrapped into the expression for column <code>pl.col()</code>. The wrapper can sometimes be skipped, as the case is here. The <code>select()</code> will “wrap” the strings you provide into the <code>pl.col()</code> wrapper interpreting them as column names</p>
-<div id="73dcdc62" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"country_code"</span>, <span class="st">"country"</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"country_code"</span>), pl.col(<span class="st">"country"</span>))</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here, we’re using the <code>select()</code> method to isolate a column. Notice how the column name is wrapped in the <code>pl.col()</code> function. This wrapper explicitly tells Polars that we’re referring to a column in the dataframe.</p>
+<p>But here’s something cool—you can skip the pl.col() wrapper in certain cases! For example, this code:</p>
+<div id="ffe74cb2" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"country_code"</span>, <span class="st">"country"</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div><style>
 .dataframe > thead > tr,
@@ -768,19 +785,93 @@ $ prop_clean_fuels_cooking_pct &lt;f64&gt; 0.0, 98.5, 28.3, 72.7, 29.45, 4.1, 13
 </div>
 </div>
 </div>
-<p>Column names wrapped into <code>pl.col()</code> represent the simplest kind of <em>expressions</em>. In polars we create expressions and evaluate them in the context of the data. Expressions taken in isolation don’t do anything, they need to be considered in the context of the data to return some data. This line of code does not do anything. It just returns an expression:</p>
-<div id="1083fd7d" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pl.col(<span class="st">"country_code"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>…does the exact same thing as this:</p>
+<div id="b1698a46" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"country_code"</span>), pl.col(<span class="st">"country"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (6_402, 2)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"SSD"</td>
+<td>"South Sudan"</td>
+</tr>
+<tr class="even">
+<td>"NIU"</td>
+<td>"Niue"</td>
+</tr>
+<tr class="odd">
+<td>"TKL"</td>
+<td>"Tokelau"</td>
+</tr>
+<tr class="even">
+<td>"COK"</td>
+<td>"Cook Islands"</td>
+</tr>
+<tr class="odd">
+<td>"PLW"</td>
+<td>"Palau"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"AUT"</td>
+<td>"Austria"</td>
+</tr>
+<tr class="even">
+<td>"DEU"</td>
+<td>"Germany"</td>
+</tr>
+<tr class="odd">
+<td>"SWE"</td>
+<td>"Sweden"</td>
+</tr>
+<tr class="even">
+<td>"PRT"</td>
+<td>"Portugal"</td>
+</tr>
+<tr class="odd">
+<td>"IND"</td>
+<td>"India"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Pretty neat, right? The select() method can directly interpret strings as column names, making your code a little cleaner and quicker to write.</p>
+<p>When you wrap a column name in pl.col(), you’re creating an expression. An expression is like an instruction—it doesn’t do anything on its own. For example, if you run this code:</p>
+<div id="10577da8" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pl.col(<span class="st">"country_code"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
 col("country_code")
 </div>
 </div>
-<p>But when we evaluate in the context of the <code>clean_fuels</code> dataframe it will will return a column of country codes</p>
-<div id="6562e68b" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"country_code"</span>))</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<p>…nothing happens. It just returns something called an “unevaluated expression”. But when you evaluate that expression in the context of a dataset, it turns into something powerful. For instance:</p>
+<div id="ee4609eb" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"country_code"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -837,13 +928,236 @@ col("country_code")
 </div>
 </div>
 </div>
-<p>In this case, <code>select()</code> statement provides an evaluation environment. There are several commands in <code>polars</code> which provide an environment for evaluating data expressions and <code>select()</code> is the simplest one of them. It is really versatile, but at this time we will only consider the simplest usecase: extracting columns from the dataframe using expressions.</p>
-<p>Using column name wrapped in <code>pl.col()</code> as an expression-starter is a very common approach in polars. We will use it quite often to build powerful expressions tranforming columns in polars. Expressions can used to refer to multiple columns at once. For example, here we are making an expression which will refer to all columns other than country and region.</p>
-<div id="7b23b7ea" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.<span class="bu">all</span>().exclude(<span class="st">"country"</span>, <span class="st">"region"</span>))</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<p>Here, the <code>select()</code> method acts as an evaluation environment, turning the <code>pl.col()</code> expression into actual data. <code>select()</code> is one of the several methods in Polars that can evaluate expressions. While <code>select()</code> is highly versatile and can do other things as well, for now, we’ll focus on its simplest use case: extracting columns from a data frame.</p>
+<p>The pl.col() wrapper is super flexible, and it’s going to be central as we build more advanced expressions in Polars. For instance, you can use pl.col() to refer to multiple columns simultaneously:</p>
+<div id="0d963061" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"country_code"</span>, <span class="st">"country"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (6_402, 2)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"SSD"</td>
+<td>"South Sudan"</td>
+</tr>
+<tr class="even">
+<td>"NIU"</td>
+<td>"Niue"</td>
+</tr>
+<tr class="odd">
+<td>"TKL"</td>
+<td>"Tokelau"</td>
+</tr>
+<tr class="even">
+<td>"COK"</td>
+<td>"Cook Islands"</td>
+</tr>
+<tr class="odd">
+<td>"PLW"</td>
+<td>"Palau"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"AUT"</td>
+<td>"Austria"</td>
+</tr>
+<tr class="even">
+<td>"DEU"</td>
+<td>"Germany"</td>
+</tr>
+<tr class="odd">
+<td>"SWE"</td>
+<td>"Sweden"</td>
+</tr>
+<tr class="even">
+<td>"PRT"</td>
+<td>"Portugal"</td>
+</tr>
+<tr class="odd">
+<td>"IND"</td>
+<td>"India"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Sometimes, typing out long column names can feel like a chore, especially when you’re working with many columns. But don’t worry—Polars makes it easy to select columns by their position in the dataset. For example, this code selects the second and third columns by their numerical index:</p>
+<div id="d601278d" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.nth(<span class="dv">1</span>,<span class="dv">2</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (6_402, 2)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"SSD"</td>
+<td>"South Sudan"</td>
+</tr>
+<tr class="even">
+<td>"NIU"</td>
+<td>"Niue"</td>
+</tr>
+<tr class="odd">
+<td>"TKL"</td>
+<td>"Tokelau"</td>
+</tr>
+<tr class="even">
+<td>"COK"</td>
+<td>"Cook Islands"</td>
+</tr>
+<tr class="odd">
+<td>"PLW"</td>
+<td>"Palau"</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"AUT"</td>
+<td>"Austria"</td>
+</tr>
+<tr class="even">
+<td>"DEU"</td>
+<td>"Germany"</td>
+</tr>
+<tr class="odd">
+<td>"SWE"</td>
+<td>"Sweden"</td>
+</tr>
+<tr class="even">
+<td>"PRT"</td>
+<td>"Portugal"</td>
+</tr>
+<tr class="odd">
+<td>"IND"</td>
+<td>"India"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Watch out column indices in Polars are 0-based. That means the first column is index 0, the second column is index 1, and so on.</p>
+<p>What about negative numbers? They’re a handy shortcut for selecting columns from the end of the dataset. For instance, -1 refers to the last column, and this code will select the first and last columns:</p>
+<div id="785a9603" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.nth(<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (6_402, 2)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">prop_clean_fuels_cooking_pct</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Africa"</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>"Western Pacific"</td>
+<td>98.5</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>28.3</td>
+</tr>
+<tr class="even">
+<td>"Western Pacific"</td>
+<td>72.7</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>29.45</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>100.0</td>
+</tr>
+<tr class="even">
+<td>"Europe"</td>
+<td>100.0</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>100.0</td>
+</tr>
+<tr class="even">
+<td>"Europe"</td>
+<td>100.0</td>
+</tr>
+<tr class="odd">
+<td>"South-East Asia"</td>
+<td>11.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>A note of caution: selecting columns by the order of their occurence can be risky. If your dataset’s structure changes, you might accidentally select the wrong columns. So, use the nth() function sparingly.</p>
+<p>Now, let’s talk about the opposite of select()—the drop() method. The drop() method removes specific columns from your dataset, leaving everything else intact. For example:</p>
+<div id="4eb1f4e1" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    .drop(pl.col(<span class="st">"country"</span>), pl.col(<span class="st">"region"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -939,21 +1253,221 @@ col("country_code")
 </div>
 </div>
 </div>
-<p><code>pl.all()</code> refers to all columns in the evaluation environment and it gets further refined by method chaining excluding <code>country</code> and <code>region</code>.</p>
-<p>Selecting columns is a very common operation. It is so important and used so often, that there’s a special class of methods designed specifically for this purpose, situated in <code>polars.selectors</code>, commonly aliased as <code>cs</code>. Have a look at the <code>polars</code> <a href="https://docs.pola.rs/api/python/stable/reference/selectors.html">documentation for selectors</a></p>
-<p>Among the most useful selectors are, of course, selectors by name and column number (for which we might not really need selectors, because those can be picked up with <code>pl.col()</code> and <code>pl.nth()</code>).</p>
-<div id="610abd59" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars.selectors <span class="im">as</span> cs</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    .select(cs.by_name(<span class="st">"region"</span>, <span class="st">"country"</span>))</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># note python is 0-based</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    .select(cs.by_index(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">5</span>))</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<p>Dopping is equivalent to selecting <strong>all columns except</strong> the ones you want to exclude. Here’s how could would write it using in terms of selection:</p>
+<div id="6a37bf0a" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.<span class="bu">all</span>().exclude(<span class="st">"country"</span>, <span class="st">"region"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (6_402, 4)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">pop_clean_fuels_cooking_mln</th>
+<th data-quarto-table-cell-role="th">prop_clean_fuels_cooking_pct</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"SSD"</td>
+<td>2022</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>"NIU"</td>
+<td>2022</td>
+<td>0.002</td>
+<td>98.5</td>
+</tr>
+<tr class="odd">
+<td>"TKL"</td>
+<td>2022</td>
+<td>0.0004</td>
+<td>28.3</td>
+</tr>
+<tr class="even">
+<td>"COK"</td>
+<td>2022</td>
+<td>0.013</td>
+<td>72.7</td>
+</tr>
+<tr class="odd">
+<td>"PLW"</td>
+<td>2022</td>
+<td>0.007</td>
+<td>29.45</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"AUT"</td>
+<td>1990</td>
+<td>7.72</td>
+<td>100.0</td>
+</tr>
+<tr class="even">
+<td>"DEU"</td>
+<td>1990</td>
+<td>79.12</td>
+<td>100.0</td>
+</tr>
+<tr class="odd">
+<td>"SWE"</td>
+<td>1990</td>
+<td>8.57</td>
+<td>100.0</td>
+</tr>
+<tr class="even">
+<td>"PRT"</td>
+<td>1990</td>
+<td>9.95</td>
+<td>100.0</td>
+</tr>
+<tr class="odd">
+<td>"IND"</td>
+<td>1990</td>
+<td>96.58</td>
+<td>11.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>The pl.all() function refers to all columns, and the exclude() method lets you refine the selection by removing specific ones.The pl.all() function refers to all columns, and the exclude() method lets you refine the selection by removing specific ones.</p>
+<p>A quick reminder—dropping columns doesn’t modify your original dataset. It only affects the result of that query. Unless you explicitly overwrite the original dataframe, everything stays the same. So feel free to experiment!</p>
+<p>Now it’s your turn. Select the columns related to population and the proportion of the population with access to clean fuels. Try using both selection by name and by index, as well as dropping the ones you dont need.</p>
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Select the columns related to population and the proportion of population with access to clean fuels from the <code>clean_fuels</code> dataset.</p>
+</div>
+</div>
+<p>Pause the video and try couple of different ways of selecting these columns.</p>
+<div id="cdf3106d" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"pop_clean_fuels_cooking_mln"</span>), pl.col(<span class="st">"prop_clean_fuels_cooking_pct"</span>))) </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    .select(pl.nth(<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>))) </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (6_402, 2)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">pop_clean_fuels_cooking_mln</th>
+<th data-quarto-table-cell-role="th">prop_clean_fuels_cooking_pct</th>
+</tr>
+<tr class="even">
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>0.002</td>
+<td>98.5</td>
+</tr>
+<tr class="odd">
+<td>0.0004</td>
+<td>28.3</td>
+</tr>
+<tr class="even">
+<td>0.013</td>
+<td>72.7</td>
+</tr>
+<tr class="odd">
+<td>0.007</td>
+<td>29.45</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>7.72</td>
+<td>100.0</td>
+</tr>
+<tr class="even">
+<td>79.12</td>
+<td>100.0</td>
+</tr>
+<tr class="odd">
+<td>8.57</td>
+<td>100.0</td>
+</tr>
+<tr class="even">
+<td>9.95</td>
+<td>100.0</td>
+</tr>
+<tr class="odd">
+<td>96.58</td>
+<td>11.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Got it? Great! Both approaches—selecting specific columns or dropping the ones you don’t need—give you the same result. Expressions like these make your analysis more dynamic and efficient, so you can quickly adapt to different datasets or scenarios.</p>
+</section>
+<section id="selectors" class="level2">
+<h2 class="anchored" data-anchor-id="selectors">selectors</h2>
+<p>Selecting columns is such a common task that Polars has a dedicated module for it—polars.selectors. This module provides a collection of methods specifically designed to simplify column selection. These are often aliased as cs for convenience. Have a look at the <code>polars</code> <a href="https://docs.pola.rs/api/python/stable/reference/selectors.html">documentation for selectors</a>. To get started, make sure you import the selectors module:</p>
+<div id="c4328401" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars.selectors <span class="im">as</span> cs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Among the most useful selectors are, of course, selectors by name and column index (for which we might not really need selectors, because those can be picked up with <code>pl.col()</code> and <code>pl.nth()</code>).</p>
+<div id="5a7669c7" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    .select(cs.by_name(<span class="st">"region"</span>, <span class="st">"country"</span>))</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># note python is 0-based</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    .select(cs.by_index(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">5</span>))</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -1036,23 +1550,38 @@ col("country_code")
 </div>
 </div>
 </div>
-<p>But perhaps more unique and useful selectors are <code>cs.first()</code> and <code>cs.last()</code>, as well as a collection of selectors for each of the data types, such as <code>cs.numeric()</code>. The selector can be negated with <code>~</code> sign, so that <code>~cs.numeric()</code> means non-numeric columns.</p>
-<div id="9fa26f36" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    .select(cs.first())</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># not first</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    .select(<span class="op">~</span>cs.first())</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># not numeric</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    .select(<span class="op">~</span>cs.numeric())</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<p>Selecting first and last columns are so common, there are useful shortthands <code>cs.first()</code> and <code>cs.last()</code>. To select all columns other than the one you specified, you can use the tilde ~ operator. Tilde operator works with all methods in cs. module and negates the selection. For example <code>~cs.last()</code> refers to all columns other than the last one.</p>
+<p>Selectors can target columns based on their data types! For example, cs.numeric() picks all numeric columns. And if you want non-numeric columns, just negate it with ~.</p>
+<p>And now it is your turn. Try selecting first, everyhing other than the first, as well as all non-numeric columns. Use selector class for this. Pause the video and give it a try!</p>
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use <code>polars.selectors</code> aliased as <code>cs</code> to select - first column - everyhing other than first column - all non-numeric columns</p>
+</div>
+</div>
+<div id="4901f76f" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    .select(cs.first())</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># not first</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    .select(<span class="op">~</span>cs.first())</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co"># not numeric</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    .select(<span class="op">~</span>cs.numeric())</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -1135,16 +1664,18 @@ col("country_code")
 </div>
 </div>
 </div>
+<p>Fantastic work! With a wide menu of selector methods, plus column and index-based expressions like pl.col() and pl.nth(), Polars gives you incredible flexibility in working with your data. These tools will become invaluable as we move into crafting more complex expressions.</p>
+<p>Stay tuned—there’s a lot more to explore!</p>
+</section>
 <section id="filter" class="level2">
 <h2 class="anchored" data-anchor-id="filter">Filter</h2>
-<p>Expressions show up really handy when we need to perform some operations. Logical operation are perhaps among the simplest operations one can think of. For example, we can compare every value in the column <code>region</code> with the string “Europe” and, if there’s a match, return <code>True</code>, otherwise return <code>False</code>. If we now use this vector of logical values as the filter, all the records for which the value <code>True</code> is returned by this operation, will be included in the filtered dataset.</p>
-<p>Here’s the subset of our original clean fuels data for Europe.</p>
-<div id="ef3a5af2" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># large countries</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"region"</span>)<span class="op">==</span><span class="st">"Europe"</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<p>Now let’s talk about filtering data—an essential part of data analysis. In Polars, filtering allows you to subset your dataset based on logical conditions, and it’s powered by the magic of expressions. Logical operations are one of the simplest and most common use cases for expressions. For example, you can compare every value in the region column to the string “Europe”. If there’s a match, Polars returns True; otherwise, it returns False.</p>
+<p>Let’s see how this works in code:</p>
+<div id="85365470" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"region"</span>)<span class="op">==</span><span class="st">"Europe"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -1266,16 +1797,31 @@ col("country_code")
 </div>
 </div>
 </div>
-<p>You can subset the data further by adding more expressions. Let’s for example see if in the modern times there are still countries in Europe where the majority of people lack access to clean fuel for cooking.</p>
-<div id="545a4685" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"region"</span>)<span class="op">==</span><span class="st">"Europe"</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"year"</span>)<span class="op">==</span><span class="dv">2022</span>,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"prop_clean_fuels_cooking_pct"</span>)<span class="op">&lt;</span><span class="dv">50</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<p>Here, the filter() method applies the logical condition, and only rows where the region is “Europe” are included in the result. Notice that for exact comparisons, we use the double equals sign <code>==</code>. Similarly, for inequalities, we can use operators like <code>&lt;=</code>, <code>&gt;=</code>, <code>&lt;</code>, or <code>&gt;</code>. Not equal is spelled out as <code>!=</code>.</p>
+<p>But filtering doesn’t stop there—you can combine multiple conditions to create more complex filters.</p>
+<p>Here’s a challenge for you. Can you find all the countries in Europe in the year 2022 where the majority of the population lacks access to clean fuels for cooking? Take a moment to write this expression. Pause the video if you need to.</p>
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Were there any countries in Europe in the year 2022 where the majority of people lack access to clean fuel for cooking.</p>
+</div>
+</div>
+<div id="32fb5703" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"region"</span>)<span class="op">==</span><span class="st">"Europe"</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"year"</span>)<span class="op">==</span><span class="dv">2022</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"prop_clean_fuels_cooking_pct"</span>)<span class="op">&lt;</span><span class="dv">50</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -1317,13 +1863,14 @@ col("country_code")
 </div>
 </div>
 </div>
-<p>Oh, wow! Over half of population of Bosnia still does not have access to clearn fuels for cooking. Lets zoom in on Bosnia and try to visualize the data.</p>
-<div id="06a46702" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>clean_fuels</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country_code"</span>)<span class="op">==</span><span class="st">"BIH"</span>)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<p>What did you get? Oh, wow! Over half the population of Bosnia still lacks access to clean fuels for cooking. That’s a powerful insight.</p>
+<p>Now let’s zoom in on Bosnia to better understand its data. Bosnia’s country code is “BIH”, but you can also filter by country name if you prefer.</p>
+<div id="fd2f3df9" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>clean_fuels</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country_code"</span>)<span class="op">==</span><span class="st">"BIH"</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -1445,58 +1992,340 @@ col("country_code")
 </div>
 </div>
 </div>
-<p>We are interested in how the population with access to clean fuels for cooking has developed over the years, so we place year on x axis and population on y axis.</p>
-<div id="363d6569" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>ggplot(<span class="op">&lt;</span>DATA<span class="op">&gt;</span>) <span class="op">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    geom_line(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"pop_clean_fuels_cooking_mln"</span>))</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>As you remember in plotnine the data should go into the first argument of gpplot function. One approach could be to copy the code for subsetting the code for subsetting the clean fuels dataframe into the <code>&lt;DATA&gt;</code> slot inside gpplot function</p>
-<div id="e555ff90" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ggplot(</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    clean_fuels</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        .<span class="bu">filter</span>(pl.col(<span class="st">"country_code"</span>)<span class="op">==</span><span class="st">"BIH"</span>)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">+</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    geom_line(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"prop_clean_fuels_cooking_pct"</span>))</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We are interested in tracking how the proportion of the population with access to clean fuels for cooking has changed over the years. To do this, we’ll place the year on the x-axis and the population proportion on the y-axis.</p>
+<p>If you remember from the Plotnine module, the dataset goes into the first argument of the ggplot function.</p>
+<p>Here’s one way to do this:</p>
+<div id="2a2bedc0" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>ggplot(</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    clean_fuels</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>        .<span class="bu">filter</span>(pl.col(<span class="st">"country_code"</span>)<span class="op">==</span><span class="st">"BIH"</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    geom_line(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"prop_clean_fuels_cooking_pct"</span>))</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wrangling_files/figure-html/cell-19-output-1.png" width="672" height="480" class="figure-img"></p>
+<p><img src="wrangling_files/figure-html/cell-25-output-1.png" width="672" height="480" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>This code works, but it is somewhat less clear whats going on. A cleaner alternative is by using <code>.pipe()</code> which passess the polars dataframe into the function provided as an argument. In this case our data about bosnian households will be passed as a first argument into the ggplot function, which is what we wanted all along. All code after .pipe(ggplot) is plotnine code, hence the use of +</p>
-<div id="ec6f65ff" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country_code"</span>)<span class="op">==</span><span class="st">"BIH"</span>)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot) <span class="op">+</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    geom_line(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"pop_clean_fuels_cooking_mln"</span>))</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This works, but the code feels cluttered. It’s not immediately clear where the dataset comes from.</p>
+<p>Let’s clean this up using the .pipe() method.</p>
+<div id="e8f905f8" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country_code"</span>)<span class="op">==</span><span class="st">"BIH"</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot) <span class="op">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    geom_line(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"pop_clean_fuels_cooking_mln"</span>))</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wrangling_files/figure-html/cell-20-output-1.png" width="672" height="480" class="figure-img"></p>
+<p><img src="wrangling_files/figure-html/cell-26-output-1.png" width="672" height="480" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="86e9db1e" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># str.contains, str.starts_with, str.ends_with, str.extract, .str.replace, .str.replace_all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here, the .pipe() method passes the filtered clean_fuels dataset into the ggplot function as its first argument. This keeps the code clean and modular. Everything after .pipe(ggplot) is Plotnine-specific code.</p>
+<p>Nice!</p>
+<p>But what if you’re not sure how a country’s name is spelled in the dataset? For example, is it “Czech Republic” or just “Czechia”?</p>
+<p>In this case, you can use partial string matching to find it.</p>
+<div id="4cb76b11" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>).<span class="bu">str</span>.starts_with(<span class="st">"Cz"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (33, 6)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">pop_clean_fuels_cooking_mln</th>
+<th data-quarto-table-cell-role="th">prop_clean_fuels_cooking_pct</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"CZE"</td>
+<td>"Czechia"</td>
+<td>2022</td>
+<td>10.63</td>
+<td>100.0</td>
+</tr>
+<tr class="even">
+<td>"Europe"</td>
+<td>"CZE"</td>
+<td>"Czechia"</td>
+<td>2021</td>
+<td>10.63</td>
+<td>100.0</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"CZE"</td>
+<td>"Czechia"</td>
+<td>2020</td>
+<td>10.63</td>
+<td>100.0</td>
+</tr>
+<tr class="even">
+<td>"Europe"</td>
+<td>"CZE"</td>
+<td>"Czechia"</td>
+<td>2019</td>
+<td>10.63</td>
+<td>100.0</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"CZE"</td>
+<td>"Czechia"</td>
+<td>2018</td>
+<td>10.63</td>
+<td>100.0</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"CZE"</td>
+<td>"Czechia"</td>
+<td>1994</td>
+<td>10.36</td>
+<td>100.0</td>
+</tr>
+<tr class="even">
+<td>"Europe"</td>
+<td>"CZE"</td>
+<td>"Czechia"</td>
+<td>1993</td>
+<td>10.36</td>
+<td>100.0</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"CZE"</td>
+<td>"Czechia"</td>
+<td>1992</td>
+<td>10.35</td>
+<td>100.0</td>
+</tr>
+<tr class="even">
+<td>"Europe"</td>
+<td>"CZE"</td>
+<td>"Czechia"</td>
+<td>1991</td>
+<td>10.35</td>
+<td>100.0</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"CZE"</td>
+<td>"Czechia"</td>
+<td>1990</td>
+<td>10.34</td>
+<td>100.0</td>
+</tr>
+</tbody>
+</table>
 </div>
-</section>
-</section>
-<section id="mutatingwith_columns" class="level1">
-<h1>mutating(with_columns)</h1>
-<p>Lets practice what we learned about filtering by visualizing causes of death in some European countries. First of all, note that our household air pollution deaths dataset contains both summaries and breakdowns of deaths for every country and year. The observation where <code>cause_of_death</code> is indicated as “All causes” is a sum of all the other lines for that country and year.</p>
-<div id="4d8876cd" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(hhap_deaths</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country_code"</span>)<span class="op">==</span><span class="st">"BIH"</span>, pl.col(<span class="st">"year"</span>)<span class="op">==</span><span class="dv">2010</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+</div>
+</div>
+<p>Here, we use the str.starts_with() method, which checks if strings in the country column start with the letters “Cz.” Ah, there it is—“Czechia”! Polars offers several handy string operations, like:</p>
+<ul>
+<li>str.starts_with()</li>
+<li>str.ends_with()</li>
+<li>str.contains()</li>
+</ul>
+<p>You’ll see more of these as we progress, but these three are powerful enough to help you tackle the following challenge.</p>
+<p>Filter the data for your country and visualize the proportion of people with access to clean fuels. Once you’re happy with your data subset, use ggplot and everything you’ve learned about Plotnine to create a polished visualization.</p>
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Visualize the proportion of people with access to clean fuels in your country</p>
+</div>
+</div>
+<div id="ece1d7bc" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>).<span class="bu">str</span>.starts_with(<span class="st">"Ukr"</span>))</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_line(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"prop_clean_fuels_cooking_pct"</span>))</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="wrangling_files/figure-html/cell-28-output-1.png" width="672" height="480" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This looks fantastic! Great work visualizing your country’s data.</p>
+<p>In the next section, we’ll explore adding more columns to our dataset and practice advanced subsetting and visualization techniques. Stay tuned!</p>
+<p>Let’s apply what we’ve learned about filtering to visualize the causes of death in some European countries.</p>
+<div id="a446eb23" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>hhap_deaths</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (10_800, 6)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">cause_of_death</th>
+<th data-quarto-table-cell-role="th">deaths</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"ATG"</td>
+<td>"Antigua and Barbuda"</td>
+<td>2010</td>
+<td>"All causes"</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"ATG"</td>
+<td>"Antigua and Barbuda"</td>
+<td>2010</td>
+<td>"Acute lower respiratory infect…</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"ATG"</td>
+<td>"Antigua and Barbuda"</td>
+<td>2010</td>
+<td>"Trachea, bronchus, lung cancer…</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"ATG"</td>
+<td>"Antigua and Barbuda"</td>
+<td>2010</td>
+<td>"Ischaemic heart disease"</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"ATG"</td>
+<td>"Antigua and Barbuda"</td>
+<td>2010</td>
+<td>"Stroke"</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"BOL"</td>
+<td>"Bolivia (Plurinational State o…</td>
+<td>2019</td>
+<td>"Trachea, bronchus, lung cancer…</td>
+<td>98.72</td>
+</tr>
+<tr class="even">
+<td>"Africa"</td>
+<td>"GNB"</td>
+<td>"Guinea-Bissau"</td>
+<td>2019</td>
+<td>"Chronic obstructive pulmonary …</td>
+<td>98.88</td>
+</tr>
+<tr class="odd">
+<td>"Africa"</td>
+<td>"CIV"</td>
+<td>"Cote d'Ivoire"</td>
+<td>2019</td>
+<td>"Chronic obstructive pulmonary …</td>
+<td>990.6</td>
+</tr>
+<tr class="even">
+<td>"Europe"</td>
+<td>"TUR"</td>
+<td>"Türkiye"</td>
+<td>2019</td>
+<td>"Chronic obstructive pulmonary …</td>
+<td>997.6</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"UZB"</td>
+<td>"Uzbekistan"</td>
+<td>2019</td>
+<td>"All causes"</td>
+<td>9982.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>This dataset contains both summarized and detailed breakdowns of deaths for every country and year. Take a look at the column labeled cause_of_death. When this column says “All causes,” it represents the total deaths for that country and year—a sum of all the other rows.</p>
+<p>Let’s zoom in on Bosnia for a single year, say 2010, to understand this better.</p>
+<div id="13dea9b6" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>(hhap_deaths</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country_code"</span>)<span class="op">==</span><span class="st">"BIH"</span>, </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"year"</span>)<span class="op">==</span><span class="dv">2010</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -1578,157 +2407,41 @@ col("country_code")
 </div>
 </div>
 </div>
-<p>We might need to remove this line if we want to avoid double counting the deaths in each country. Lets look at European countries for which we have data on the number of deaths.</p>
-<div id="194ccb4e" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(hhap_deaths</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"region"</span>)<span class="op">==</span><span class="st">"Europe"</span>,</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"deaths"</span>)<span class="op">&gt;</span><span class="dv">0</span>,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"cause_of_death"</span>)<span class="op">!=</span><span class="st">"All causes"</span>)</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)<span class="op">+</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"deaths"</span>, color<span class="op">=</span><span class="st">"cause_of_death"</span>, group<span class="op">=</span><span class="st">"cause_of_death"</span>)<span class="op">+</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    geom_smooth(method<span class="op">=</span><span class="st">"lm"</span>)<span class="op">+</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    facet_wrap(<span class="st">"country"</span>, scales<span class="op">=</span><span class="st">"free_y"</span>, ncol<span class="op">=</span><span class="dv">9</span>)<span class="op">+</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    theme(figure_size<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">10</span>), legend_position<span class="op">=</span><span class="st">"bottom"</span>)</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>One of the rows is labeled “All causes” with 4,816 deaths. This total matches the sum of the individual causes of death. While it’s useful to have the total, it can lead to double counting if we include it in our analysis.</p>
+<p>Now let’s expand our view to include all European countries for which we have death data. We’ll exclude the totals and focus on trends for each specific cause of death. Faceting will help us visualize these trends country by country.</p>
+<div id="aaaae16c" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>(hhap_deaths</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"region"</span>)<span class="op">==</span><span class="st">"Europe"</span>,</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"deaths"</span>)<span class="op">&gt;</span><span class="dv">0</span>,</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"cause_of_death"</span>)<span class="op">!=</span><span class="st">"All causes"</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)<span class="op">+</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"deaths"</span>, color<span class="op">=</span><span class="st">"cause_of_death"</span>, group<span class="op">=</span><span class="st">"cause_of_death"</span>)<span class="op">+</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    geom_smooth(method<span class="op">=</span><span class="st">"lm"</span>)<span class="op">+</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    facet_wrap(<span class="st">"country"</span>, scales<span class="op">=</span><span class="st">"free_y"</span>, nrow<span class="op">=</span><span class="dv">2</span>)<span class="op">+</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    theme(figure_size<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">10</span>), legend_position<span class="op">=</span><span class="st">"bottom"</span>)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wrangling_files/figure-html/cell-23-output-1.png" width="1920" height="960" class="figure-img"></p>
+<p><img src="wrangling_files/figure-html/cell-31-output-1.png" width="1920" height="960" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>It would be really nice to put these numbers in perspective of population in each country. How can we get the population numbers? We could calculate it from the data on clean fuels data. Let’s see how we could do that</p>
-<div id="d68e0529" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
-<div><style>
-.dataframe > thead > tr,
-.dataframe > tbody > tr {
-  text-align: right;
-  white-space: pre-wrap;
-}
-</style>
-<small>shape: (6_402, 6)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">region</th>
-<th data-quarto-table-cell-role="th">country_code</th>
-<th data-quarto-table-cell-role="th">country</th>
-<th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th">pop_clean_fuels_cooking_mln</th>
-<th data-quarto-table-cell-role="th">prop_clean_fuels_cooking_pct</th>
-</tr>
-<tr class="even">
-<th>str</th>
-<th>str</th>
-<th>str</th>
-<th>i64</th>
-<th>f64</th>
-<th>f64</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>"Africa"</td>
-<td>"SSD"</td>
-<td>"South Sudan"</td>
-<td>2022</td>
-<td>0.0</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<td>"Western Pacific"</td>
-<td>"NIU"</td>
-<td>"Niue"</td>
-<td>2022</td>
-<td>0.002</td>
-<td>98.5</td>
-</tr>
-<tr class="odd">
-<td>"Western Pacific"</td>
-<td>"TKL"</td>
-<td>"Tokelau"</td>
-<td>2022</td>
-<td>0.0004</td>
-<td>28.3</td>
-</tr>
-<tr class="even">
-<td>"Western Pacific"</td>
-<td>"COK"</td>
-<td>"Cook Islands"</td>
-<td>2022</td>
-<td>0.013</td>
-<td>72.7</td>
-</tr>
-<tr class="odd">
-<td>"Western Pacific"</td>
-<td>"PLW"</td>
-<td>"Palau"</td>
-<td>2022</td>
-<td>0.007</td>
-<td>29.45</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>"Europe"</td>
-<td>"AUT"</td>
-<td>"Austria"</td>
-<td>1990</td>
-<td>7.72</td>
-<td>100.0</td>
-</tr>
-<tr class="even">
-<td>"Europe"</td>
-<td>"DEU"</td>
-<td>"Germany"</td>
-<td>1990</td>
-<td>79.12</td>
-<td>100.0</td>
-</tr>
-<tr class="odd">
-<td>"Europe"</td>
-<td>"SWE"</td>
-<td>"Sweden"</td>
-<td>1990</td>
-<td>8.57</td>
-<td>100.0</td>
-</tr>
-<tr class="even">
-<td>"Europe"</td>
-<td>"PRT"</td>
-<td>"Portugal"</td>
-<td>1990</td>
-<td>9.95</td>
-<td>100.0</td>
-</tr>
-<tr class="odd">
-<td>"South-East Asia"</td>
-<td>"IND"</td>
-<td>"India"</td>
-<td>1990</td>
-<td>96.58</td>
-<td>11.1</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<p>New columns can be created using <code>with_columns()</code> expression evaluation environment. Here expressions can be included which will produce new columns to be added to the dataset. First of all we are interested in turning the percentage of people with access to clean fuels into the true proportion by dividing it by 100. Note that if we name the expression by including the string value in front of = sign, this value will be used as a new column name.</p>
-<div id="a4050779" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    .with_columns(prop<span class="op">=</span>pl.col(<span class="st">"prop_clean_fuels_cooking_pct"</span>)<span class="op">/</span><span class="dv">100</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<p>Most of the trends appear to be decreasing, which is good news. However, even with free y-axis scales for each country, the differences in scale make it hard to compare trends across countries. Look at Moldova! There’s a dramatic improvement in death cases here. Meanwhile, heart- and stroke-related deaths in neighboring Russia are on the rise.</p>
+<p>Can we calculate population numbers from our <code>clean_fuels</code> dataset?</p>
+</section>
+</section>
+<section id="mutatingwith_columns" class="level1">
+<h1>mutating(with_columns)</h1>
+<p>Remember, the <code>clean_fuels</code> dataset tells us both the number of people with access to clean fuels and the proportion of the total population they represent, expressed as a percentage. With this, we can reverse-engineer the total population.</p>
+<p>To create new columns, we use the with_columns() method. This method lets us add or modify columns by specifying expressions.</p>
+<p>Let’s start by converting the percentage of people with access to clean fuels into a true proportion by dividing it by 100.</p>
+<div id="9bf4de5d" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    .with_columns(prop<span class="op">=</span>pl.col(<span class="st">"prop_clean_fuels_cooking_pct"</span>)<span class="op">/</span><span class="dv">100</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -1863,21 +2576,23 @@ col("country_code")
 </div>
 </div>
 </div>
-<p>Now we can use the newly created column in a new with_columns statement. Here I divided the population with access to clean fuels by the proportion to arrive at the annual estimate of population. I wrapped the whole expression into parenthesis (to make sure that the division operator is properly handled) and passed the result to alias() which specifies the name for the expression, which will be used as a column name. This looks good. Lets assign it to a variable.</p>
-<div id="acf67c7e" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    .with_columns(prop<span class="op">=</span>pl.col(<span class="st">"prop_clean_fuels_cooking_pct"</span>)<span class="op">/</span><span class="dv">100</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    .with_columns((pl.col(<span class="st">"pop_clean_fuels_cooking_mln"</span>)<span class="op">/</span>pl.col(<span class="st">"prop"</span>)).alias(<span class="st">"population"</span>))</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>clean_fuels_pop_df <span class="op">=</span> (clean_fuels</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    .with_columns((pl.col(<span class="st">"pop_clean_fuels_cooking_mln"</span>)<span class="op">/</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>                    (pl.col(<span class="st">"prop_clean_fuels_cooking_pct"</span>)<span class="op">/</span><span class="dv">100</span>)).alias(<span class="st">"population"</span>))</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co"># note that we created NaNs </span></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>clean_fuels_pop_df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<p>Here, we create a new column called prop. The expression starts with pl.col(“prop_clean_fuels_cooking_pct”), and then we specify the operation: dividing by 100. Easy enough, right?</p>
+<p>Now that we have the true proportion, we can calculate the total population. We’ll divide the population with access to clean fuels by this proportion.</p>
+<div id="37bcf712" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>clean_fuels_pop_df<span class="op">=</span>(clean_fuels</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    .with_columns(prop<span class="op">=</span>pl.col(<span class="st">"prop_clean_fuels_cooking_pct"</span>)<span class="op">/</span><span class="dv">100</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    .with_columns((pl.col(<span class="st">"pop_clean_fuels_cooking_mln"</span>)<span class="op">/</span>pl.col(<span class="st">"prop"</span>)).alias(<span class="st">"population"</span>))</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Notice that I wrapped the division operation in parentheses to ensure it’s evaluated correctly. I also used the alias() method to specify a name for the new column: population.This code calculates and adds two new columns:</p>
+<ul>
+<li>prop: the true proportion of the population with access to clean fuels.</li>
+<li>population: the estimated total population for each row.</li>
+</ul>
+<p>This looks good. Lets assign it to a variable and inspect the updated dataset.</p>
+<div id="cd4d001d" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>clean_fuels_pop_df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -1885,7 +2600,7 @@ col("country_code")
   white-space: pre-wrap;
 }
 </style>
-<small>shape: (9, 8)</small>
+<small>shape: (9, 9)</small>
 <table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
@@ -1896,6 +2611,7 @@ col("country_code")
 <th data-quarto-table-cell-role="th">year</th>
 <th data-quarto-table-cell-role="th">pop_clean_fuels_cooking_mln</th>
 <th data-quarto-table-cell-role="th">prop_clean_fuels_cooking_pct</th>
+<th data-quarto-table-cell-role="th">prop</th>
 <th data-quarto-table-cell-role="th">population</th>
 </tr>
 <tr class="even">
@@ -1903,6 +2619,7 @@ col("country_code")
 <th>str</th>
 <th>str</th>
 <th>str</th>
+<th>f64</th>
 <th>f64</th>
 <th>f64</th>
 <th>f64</th>
@@ -1919,12 +2636,14 @@ col("country_code")
 <td>6402.0</td>
 <td>6402.0</td>
 <td>6402.0</td>
+<td>6402.0</td>
 </tr>
 <tr class="even">
 <td>"null_count"</td>
 <td>"0"</td>
 <td>"0"</td>
 <td>"0"</td>
+<td>0.0</td>
 <td>0.0</td>
 <td>0.0</td>
 <td>0.0</td>
@@ -1938,6 +2657,7 @@ col("country_code")
 <td>2006.0</td>
 <td>19.29797</td>
 <td>61.080069</td>
+<td>0.610801</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
@@ -1948,6 +2668,7 @@ col("country_code")
 <td>9.522648</td>
 <td>73.100935</td>
 <td>39.952764</td>
+<td>0.399528</td>
 <td>NaN</td>
 </tr>
 <tr class="odd">
@@ -1956,6 +2677,7 @@ col("country_code")
 <td>"AFG"</td>
 <td>"Afghanistan"</td>
 <td>1990.0</td>
+<td>0.0</td>
 <td>0.0</td>
 <td>0.0</td>
 <td>0.001112</td>
@@ -1968,6 +2690,7 @@ col("country_code")
 <td>1998.0</td>
 <td>0.23</td>
 <td>16.6</td>
+<td>0.166</td>
 <td>1.305556</td>
 </tr>
 <tr class="odd">
@@ -1978,6 +2701,7 @@ col("country_code")
 <td>2006.0</td>
 <td>2.24</td>
 <td>78.0</td>
+<td>0.78</td>
 <td>6.833333</td>
 </tr>
 <tr class="even">
@@ -1988,6 +2712,7 @@ col("country_code")
 <td>2014.0</td>
 <td>10.24</td>
 <td>100.0</td>
+<td>1.0</td>
 <td>22.727273</td>
 </tr>
 <tr class="odd">
@@ -1998,6 +2723,7 @@ col("country_code")
 <td>2022.0</td>
 <td>1257.0</td>
 <td>100.0</td>
+<td>1.0</td>
 <td>1431.66287</td>
 </tr>
 </tbody>
@@ -2005,11 +2731,14 @@ col("country_code")
 </div>
 </div>
 </div>
-<p>There are a few <code>NaN</code> values in our data. Let’s see what those are.</p>
-<div id="f7bf7026" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels_pop_df</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"population"</span>).is_nan()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="25">
+<p>Oh, look! We’ve got some NaN values in the population column. These appear because we divided by zero wherever the proportion was zero. Division by zero is, understandably, illegal in most places—and in Python, it results in NaN.</p>
+<p>NaN, or “Not a Number,” is a special marker for missing or undefined values. It propagates through calculations, which means any further operations on these rows will also result in NaN.</p>
+<p>This is why the mean and standard deviation of the population column are also NaN in the summary.</p>
+<p>Let’s see how many rows in our dataset contain illegal population estimates. We can use the .is_nan() method, which evaluates whether a column contains NaN values.</p>
+<div id="e18b5dee" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels_pop_df</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"population"</span>).is_nan()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -2017,7 +2746,7 @@ col("country_code")
   white-space: pre-wrap;
 }
 </style>
-<small>shape: (35, 7)</small>
+<small>shape: (35, 8)</small>
 <table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
@@ -2027,6 +2756,7 @@ col("country_code")
 <th data-quarto-table-cell-role="th">year</th>
 <th data-quarto-table-cell-role="th">pop_clean_fuels_cooking_mln</th>
 <th data-quarto-table-cell-role="th">prop_clean_fuels_cooking_pct</th>
+<th data-quarto-table-cell-role="th">prop</th>
 <th data-quarto-table-cell-role="th">population</th>
 </tr>
 <tr class="even">
@@ -2034,6 +2764,7 @@ col("country_code")
 <th>str</th>
 <th>str</th>
 <th>i64</th>
+<th>f64</th>
 <th>f64</th>
 <th>f64</th>
 <th>f64</th>
@@ -2047,6 +2778,7 @@ col("country_code")
 <td>2022</td>
 <td>0.0</td>
 <td>0.0</td>
+<td>0.0</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
@@ -2054,6 +2786,7 @@ col("country_code")
 <td>"SSD"</td>
 <td>"South Sudan"</td>
 <td>2021</td>
+<td>0.0</td>
 <td>0.0</td>
 <td>0.0</td>
 <td>NaN</td>
@@ -2065,6 +2798,7 @@ col("country_code")
 <td>2020</td>
 <td>0.0</td>
 <td>0.0</td>
+<td>0.0</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
@@ -2072,6 +2806,7 @@ col("country_code")
 <td>"SSD"</td>
 <td>"South Sudan"</td>
 <td>2019</td>
+<td>0.0</td>
 <td>0.0</td>
 <td>0.0</td>
 <td>NaN</td>
@@ -2083,9 +2818,11 @@ col("country_code")
 <td>2018</td>
 <td>0.0</td>
 <td>0.0</td>
+<td>0.0</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
+<td>…</td>
 <td>…</td>
 <td>…</td>
 <td>…</td>
@@ -2101,6 +2838,7 @@ col("country_code")
 <td>1991</td>
 <td>0.0</td>
 <td>0.0</td>
+<td>0.0</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
@@ -2108,6 +2846,7 @@ col("country_code")
 <td>"SLE"</td>
 <td>"Sierra Leone"</td>
 <td>1991</td>
+<td>0.0</td>
 <td>0.0</td>
 <td>0.0</td>
 <td>NaN</td>
@@ -2119,6 +2858,7 @@ col("country_code")
 <td>1990</td>
 <td>0.0</td>
 <td>0.0</td>
+<td>0.0</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
@@ -2126,6 +2866,7 @@ col("country_code")
 <td>"BEN"</td>
 <td>"Benin"</td>
 <td>1990</td>
+<td>0.0</td>
 <td>0.0</td>
 <td>0.0</td>
 <td>NaN</td>
@@ -2137,6 +2878,7 @@ col("country_code")
 <td>1990</td>
 <td>0.0</td>
 <td>0.0</td>
+<td>0.0</td>
 <td>NaN</td>
 </tr>
 </tbody>
@@ -2144,24 +2886,192 @@ col("country_code")
 </div>
 </div>
 </div>
-<p>In the instances where the proportion was zero, we have obtained NaN instead of the proper population estimate. NaNs being one kind missing values propagate in calculations. This is why in the quantitative summaries we see that mean and standard deviation are also NaN for population column.</p>
-<p>Perhaps better source of population data could be the <code>fuel_types</code> dataset.</p>
-<div id="51895bc6" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fuel_types_pop_df <span class="op">=</span> (fuel_types</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    .with_columns(population<span class="op">=</span>pl.col(<span class="st">"pop_cooking_mln"</span>)<span class="op">/</span>pl.col(<span class="st">"prop_cooking_pct"</span>)<span class="op">*</span><span class="dv">100</span>)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Uh-oh! 35 rows! Perhaps <code>fuel_types</code> could be a better source of population data?</p>
+<p>The <code>fuel_types</code> dataset contains both the proportion of people using a specific cooking fuel and the absolute number of users. Since it includes multiple estimates for each country and year—one for each fuel type—it might give us more opportunities to calculate valid population estimates.</p>
+<p>Go ahead and add a population column to the <code>fuel_types</code> dataset. Save the extended data frame under a new name - we will need it later.</p>
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>This looks promising. We still get many <code>NaN</code> values, but now we also get multiple estimates of population from every fuel type for every country and every year. The difference in these estimates comes from the rounding imprecision in proportion of population with access to the particular fuel type. It would be really nice to be able level out those immaterial differences, through, for example, averaging.</p>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Add a population estimate to a <code>fuel_types</code> dataset and save it under a new name</p>
+</div>
+</div>
+<div id="99b6a1a0" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>fuel_types_pop_df <span class="op">=</span> (fuel_types</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    .with_columns(population<span class="op">=</span>pl.col(<span class="st">"pop_cooking_mln"</span>)<span class="op">/</span>pl.col(<span class="st">"prop_cooking_pct"</span>)<span class="op">*</span><span class="dv">100</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This looks promising! Let’s have a look at our favorite Bosnia</p>
+<div id="020595c4" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>(fuel_types_pop_df</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>).<span class="bu">str</span>.starts_with(<span class="st">"Bosni"</span>))</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="36">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (198, 8)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">fuel_type</th>
+<th data-quarto-table-cell-role="th">pop_cooking_mln</th>
+<th data-quarto-table-cell-role="th">prop_cooking_pct</th>
+<th data-quarto-table-cell-role="th">population</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"BIH"</td>
+<td>"Bosnia and Herzegovina"</td>
+<td>2022</td>
+<td>"Kerosene"</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>"Europe"</td>
+<td>"BIH"</td>
+<td>"Bosnia and Herzegovina"</td>
+<td>2022</td>
+<td>"Coal"</td>
+<td>0.003</td>
+<td>0.1</td>
+<td>3.0</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"BIH"</td>
+<td>"Bosnia and Herzegovina"</td>
+<td>2022</td>
+<td>"Charcoal"</td>
+<td>0.007</td>
+<td>0.2</td>
+<td>3.5</td>
+</tr>
+<tr class="even">
+<td>"Europe"</td>
+<td>"BIH"</td>
+<td>"Bosnia and Herzegovina"</td>
+<td>2022</td>
+<td>"Gas"</td>
+<td>0.23</td>
+<td>6.5</td>
+<td>3.538462</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"BIH"</td>
+<td>"Bosnia and Herzegovina"</td>
+<td>2022</td>
+<td>"Electricity"</td>
+<td>1.07</td>
+<td>30.7</td>
+<td>3.485342</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"BIH"</td>
+<td>"Bosnia and Herzegovina"</td>
+<td>1990</td>
+<td>"Kerosene"</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>"Europe"</td>
+<td>"BIH"</td>
+<td>"Bosnia and Herzegovina"</td>
+<td>1990</td>
+<td>"Coal"</td>
+<td>0.13</td>
+<td>2.9</td>
+<td>4.482759</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"BIH"</td>
+<td>"Bosnia and Herzegovina"</td>
+<td>1990</td>
+<td>"Gas"</td>
+<td>0.37</td>
+<td>8.2</td>
+<td>4.512195</td>
+</tr>
+<tr class="even">
+<td>"Europe"</td>
+<td>"BIH"</td>
+<td>"Bosnia and Herzegovina"</td>
+<td>1990</td>
+<td>"Biomass"</td>
+<td>1.46</td>
+<td>32.7</td>
+<td>4.464832</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"BIH"</td>
+<td>"Bosnia and Herzegovina"</td>
+<td>1990</td>
+<td>"Electricity"</td>
+<td>1.72</td>
+<td>38.6</td>
+<td>4.455959</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Interesting! We still get some <code>NaN</code> values, for example, look here: in 2022 no one was using Kerosene to cook food. Thanks goodness! But now get several estimates of Bosnia’s population — 3.0, 3.5, 3.53, 3.48 million. These slight differences arise from rounding imprecisions in the proportions or the number of people using specific fuel types. While these variations are minor, they make it tricky to work with the data directly.</p>
+<p>Wouldn’t it be nice to level out these immaterial differences, by say, averaging? In the next section, we’ll learn how to do just that: grouping and aggregation. Stay tuned!</p>
 </section>
 <section id="summarizing-group_by-agg" class="level1">
 <h1>summarizing (group_by, agg)</h1>
 <p>One of the most important operations data analysts do is producing various summaries of the data. Often we are interested in some sort of summary of the data by group. In our newly produced dataset, we could interested in total population for all countries in each of the regions. In polar we do it in two steps: first specify the groups using group_by() and then aggregate the data using .agg().</p>
-<div id="5643d4ea" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(fuel_types_pop_df</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>,<span class="st">"year"</span>, <span class="st">"country"</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"population"</span>).mean())</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div id="5503b4cf" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>(fuel_types_pop_df</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>,<span class="st">"year"</span>, <span class="st">"country"</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"population"</span>).mean())</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -2187,69 +3097,69 @@ col("country_code")
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Western Pacific"</td>
-<td>1995</td>
-<td>"Marshall Islands"</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td>"Americas"</td>
-<td>1994</td>
-<td>"Dominica"</td>
-<td>NaN</td>
-</tr>
-<tr class="odd">
-<td>"Americas"</td>
-<td>1990</td>
-<td>"Colombia"</td>
+<td>"South-East Asia"</td>
+<td>2007</td>
+<td>"Bangladesh"</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
 <td>"Europe"</td>
-<td>2007</td>
-<td>"Turkmenistan"</td>
+<td>2013</td>
+<td>"Montenegro"</td>
 <td>NaN</td>
-</tr>
-<tr class="odd">
-<td>"Africa"</td>
-<td>2007</td>
-<td>"Sierra Leone"</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
 </tr>
 <tr class="odd">
 <td>"Eastern Mediterranean"</td>
-<td>2002</td>
-<td>"Pakistan"</td>
+<td>2008</td>
+<td>"Tunisia"</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td>"Africa"</td>
-<td>1998</td>
-<td>"Liberia"</td>
-<td>2.636587</td>
+<td>"Western Pacific"</td>
+<td>2015</td>
+<td>"Nauru"</td>
+<td>NaN</td>
 </tr>
 <tr class="odd">
 <td>"Africa"</td>
-<td>2012</td>
-<td>"Liberia"</td>
+<td>2018</td>
+<td>"Central African Republic"</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td>"Europe"</td>
-<td>2004</td>
-<td>"Greece"</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>1994</td>
+<td>"China"</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>"Africa"</td>
+<td>1996</td>
+<td>"Mali"</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td>"South-East Asia"</td>
+<td>1992</td>
+<td>"Democratic People's Republic o…</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>"Eastern Mediterranean"</td>
+<td>2010</td>
+<td>"Morocco"</td>
 <td>NaN</td>
 </tr>
 <tr class="odd">
 <td>"Americas"</td>
-<td>2011</td>
-<td>"Ecuador"</td>
+<td>1996</td>
+<td>"Barbados"</td>
 <td>NaN</td>
 </tr>
 </tbody>
@@ -2259,34 +3169,34 @@ col("country_code")
 </div>
 <p>This is nice, but population in some years seem to show as NaN. This is because of division by zero in the previous section. We can drop these values before summarizing with <code>.drop_nans()</code>. Alternatively, we could drop the zero-valued records (<code>drop_nulls()</code>) in the “proportion of population with access to clean fuels”, which is used in the denominator of our <code>population</code> column</p>
 <p>Lets group by year and region and repeat (removing the missing values). and plot the result</p>
-<div id="72c6bbaf" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>(fuel_types_pop_df</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"year"</span>, <span class="st">"country"</span>)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"population"</span>).drop_nans().mean()) </span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"year"</span>)</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"population"</span>).mean())</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_line(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"population"</span>, color<span class="op">=</span><span class="st">"region"</span>))</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="204b4a88" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>(fuel_types_pop_df</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"year"</span>, <span class="st">"country"</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"population"</span>).drop_nans().mean()) </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"year"</span>)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"population"</span>).mean())</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_line(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"population"</span>, color<span class="op">=</span><span class="st">"region"</span>))</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wrangling_files/figure-html/cell-30-output-1.png" width="672" height="480" class="figure-img"></p>
+<p><img src="wrangling_files/figure-html/cell-39-output-1.png" width="672" height="480" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>As expected, we observe rapid grown in population of Africa and South-East Asia, while European population growth has stagnated.</p>
 <p>Expression can be started from one of the summary functions, with the column name as an argument. Compare two ways of expressing the same thing:</p>
-<div id="8933af67" class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>(fuel_types_pop_df</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"year"</span>, <span class="st">"country"</span>)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"population"</span>).drop_nans().mean().alias(<span class="st">"mean_pop_fuel_types"</span>)) )</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>(fuel_types_pop_df</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"year"</span>, <span class="st">"country"</span>)</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    .agg(pl.mean(<span class="st">"population"</span>).alias(<span class="st">"mean_pop_fuel_types"</span>)) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div id="7b246a89" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>(fuel_types_pop_df</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"year"</span>, <span class="st">"country"</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"population"</span>).drop_nans().mean().alias(<span class="st">"mean_pop_fuel_types"</span>)) )</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>(fuel_types_pop_df</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"year"</span>, <span class="st">"country"</span>)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    .agg(pl.mean(<span class="st">"population"</span>).alias(<span class="st">"mean_pop_fuel_types"</span>)) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -2312,33 +3222,33 @@ col("country_code")
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Africa"</td>
-<td>2014</td>
-<td>"Mauritius"</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td>"South-East Asia"</td>
+<td>"Europe"</td>
 <td>2005</td>
-<td>"Myanmar"</td>
+<td>"Türkiye"</td>
 <td>NaN</td>
-</tr>
-<tr class="odd">
-<td>"Africa"</td>
-<td>2004</td>
-<td>"Mozambique"</td>
-<td>20.189321</td>
 </tr>
 <tr class="even">
-<td>"Americas"</td>
-<td>2013</td>
-<td>"Antigua and Barbuda"</td>
+<td>"Europe"</td>
+<td>2004</td>
+<td>"Montenegro"</td>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td>"South-East Asia"</td>
-<td>2006</td>
-<td>"Bangladesh"</td>
+<td>"Americas"</td>
+<td>2022</td>
+<td>"Argentina"</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>"Eastern Mediterranean"</td>
+<td>2019</td>
+<td>"Djibouti"</td>
+<td>0.987459</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>2017</td>
+<td>"Solomon Islands"</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
@@ -2349,32 +3259,32 @@ col("country_code")
 </tr>
 <tr class="odd">
 <td>"Europe"</td>
-<td>2006</td>
-<td>"Albania"</td>
+<td>1995</td>
+<td>"Türkiye"</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td>"Americas"</td>
-<td>1994</td>
-<td>"Dominica"</td>
+<td>"Africa"</td>
+<td>1993</td>
+<td>"Gabon"</td>
 <td>NaN</td>
 </tr>
 <tr class="odd">
 <td>"Africa"</td>
-<td>1994</td>
-<td>"Congo"</td>
-<td>2.725126</td>
+<td>1998</td>
+<td>"Cote d'Ivoire"</td>
+<td>NaN</td>
 </tr>
 <tr class="even">
-<td>"Americas"</td>
-<td>1990</td>
-<td>"Panama"</td>
+<td>"Europe"</td>
+<td>2007</td>
+<td>"Georgia"</td>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td>"Americas"</td>
-<td>1997</td>
-<td>"Costa Rica"</td>
+<td>"Eastern Mediterranean"</td>
+<td>1990</td>
+<td>"Saudi Arabia"</td>
 <td>NaN</td>
 </tr>
 </tbody>
@@ -2383,20 +3293,20 @@ col("country_code")
 </div>
 </div>
 <p>Sometimes you dont want to summarize, but rather perform operation per group. Lets start by plotting total population per region for each fuel type over time. We want to group the data by region, year and fuel type and sum over countries. We can use faceted lineplot to see what’s going on in each continent clearly. The range of values is quite large. We can use log scale to deal with this.</p>
-<div id="3240ecd1" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    fuel_types</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"fuel_type"</span>, <span class="st">"year"</span>, <span class="st">"region"</span>)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"pop_cooking_mln"</span>).<span class="bu">sum</span>())</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_line(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"pop_cooking_mln"</span>, color<span class="op">=</span><span class="st">"fuel_type"</span>, group<span class="op">=</span><span class="st">"fuel_type"</span>))</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>facet_wrap(<span class="st">"region"</span>, ncol<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>scale_y_log10()</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="98d5f95c" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    fuel_types</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"fuel_type"</span>, <span class="st">"year"</span>, <span class="st">"region"</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"pop_cooking_mln"</span>).<span class="bu">sum</span>())</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_line(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"pop_cooking_mln"</span>, color<span class="op">=</span><span class="st">"fuel_type"</span>, group<span class="op">=</span><span class="st">"fuel_type"</span>))</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>facet_wrap(<span class="st">"region"</span>, ncol<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>scale_y_log10()</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wrangling_files/figure-html/cell-32-output-1.png" width="672" height="480" class="figure-img"></p>
+<p><img src="wrangling_files/figure-html/cell-41-output-1.png" width="672" height="480" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -2404,36 +3314,36 @@ col("country_code")
 <p>This looks good. We have quite different stories per continent: transitioning away from coal and charcoal in Europe and Americas. Rising importance of electricity and gas across the flobe and quite important role of biomass in Africa and South-East Asia.</p>
 <p>However because the population of these subgroups is so different it’s hard to see the energy mix in every continent clearly. Can we represent the share of population relying on each type of fuel per continent?</p>
 <p>What we need to do is divide these numbers by totals across all fuel types. We start with the code we have so far and add one more variable: proportion of population. Here we take the summed up <code>pop_cooking_mln</code> (which after aggregation contains total per region, year and fuel type) and divide it by the sum of the values across fuel type. This is not aggregation, because we dont collapse the number of observations. We just want calulate sums over certain subgroups. In polars this is expressed with the method .over(), which takes the names of the grouping variables over which expression shall be computed. Think of this as adding variables per group. We write out our expression <code>pop_cooking_mln</code>) divided by the sum of the same column, but the sum should be calcualated not for all dataset, but rather per year and region, effectively summing across the fuel type, which is the remaining variable not included in the over() statement.</p>
-<div id="b8ac7aa1" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    fuel_types</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"fuel_type"</span>, <span class="st">"year"</span>, <span class="st">"region"</span>)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"pop_cooking_mln"</span>).<span class="bu">sum</span>())</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    .with_columns(prop_pop<span class="op">=</span>(pl.col(<span class="st">"pop_cooking_mln"</span>)<span class="op">/</span>pl.col(<span class="st">"pop_cooking_mln"</span>).<span class="bu">sum</span>())</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>                            .over(<span class="st">"year"</span>, <span class="st">"region"</span>))</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_area(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"prop_pop"</span>, fill<span class="op">=</span><span class="st">"fuel_type"</span>))</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>facet_wrap(<span class="st">"region"</span>, ncol<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>scale_fill_cmap_d()</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme_linedraw()</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>labs(title<span class="op">=</span><span class="st">"Energy mix per world region"</span>,</span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>        subtitle<span class="op">=</span><span class="st">"From biomass to natural gas"</span>,</span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">"Share of population"</span>, x<span class="op">=</span><span class="st">"Year"</span>, fill<span class="op">=</span><span class="st">"Fuel Type"</span>)</span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="dab95a56" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    fuel_types</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"fuel_type"</span>, <span class="st">"year"</span>, <span class="st">"region"</span>)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"pop_cooking_mln"</span>).<span class="bu">sum</span>())</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    .with_columns(prop_pop<span class="op">=</span>(pl.col(<span class="st">"pop_cooking_mln"</span>)<span class="op">/</span>pl.col(<span class="st">"pop_cooking_mln"</span>).<span class="bu">sum</span>())</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>                            .over(<span class="st">"year"</span>, <span class="st">"region"</span>))</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_area(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"prop_pop"</span>, fill<span class="op">=</span><span class="st">"fuel_type"</span>))</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>facet_wrap(<span class="st">"region"</span>, ncol<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>scale_fill_cmap_d()</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme_linedraw()</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>labs(title<span class="op">=</span><span class="st">"Energy mix per world region"</span>,</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>        subtitle<span class="op">=</span><span class="st">"From biomass to natural gas"</span>,</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">"Share of population"</span>, x<span class="op">=</span><span class="st">"Year"</span>, fill<span class="op">=</span><span class="st">"Fuel Type"</span>)</span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wrangling_files/figure-html/cell-33-output-1.png" width="672" height="480" class="figure-img"></p>
+<p><img src="wrangling_files/figure-html/cell-42-output-1.png" width="672" height="480" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="75daa4ad" class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># When the categories are known up front use Enum. When you don't know the categories or they are not fixed then you use Categorical</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># fill_null(strategy=)</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fill_nan()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="90727c03" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># When the categories are known up front use Enum. When you don't know the categories or they are not fixed then you use Categorical</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># fill_null(strategy=)</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fill_nan()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

@@ -48,7 +48,7 @@ from plotnine import *
 from gapminder import gapminder
 ```
 
-First up is polars, the powerful data analysis library we’ll be relying on throughout the course. If you’re familiar with Python, you know it’s common practice to use shorthand or aliases when importing libraries. For polars, the standard alias is pl, so that’s what we’ll use here. Anytime we call a function from polars, it will be prefixed with pl.—simple and consistent.
+First up is polars, the powerful data analysis library we’ll be relying on throughout the course. If you’re familiar with Python, you know it’s common practice to use shorthand or aliases when importing libraries. For polars, the standard alias is pl, so that’s what we’ll use here. Anytime we call a function from polars, it will be prefixed with `pl.` — simple and consistent.
 
 Now, when it comes to our visualization library, plotnine, we’ll take a slightly different approach. Instead of using a prefix, we’ll import all its functions directly into our workspace. This means we’ll use the from plotnine import * syntax, which essentially says, “Hey Python, bring in everything from plotnine!” Why? Because it makes our plotting code cleaner, easier to read, and more expressive.
 
