@@ -3,172 +3,574 @@ title: "Pivots and joins"
 engine: python3
 ---
 
+
+# VIDEO {greenscreen} ~ 9 min
+
+Hello and welcome back to Data Literacy with Python!
+
+We’re continuing our exciting journey into data wrangling—a cornerstone of data analysis and storytelling. If you’ve been with us through the previous modules, congratulations! You’ve covered a lot of ground and gained some serious data skills.
+
+Let’s quickly recap:
+
+- We explored subsetting data, learning how to select specific rows and columns with functions like `.select()`, `.drop()`, and the powerful suite of polars.selectors.
+- For observations, we used `.head()` and `.tail()` to view subsets and `.filter()` to fine-tune our subsetting of the data.
+- We mastered creating new columns using expressions wrapped in `.with_columns().`
+- And finally, we learned how to summarize data using `.group_by()` and `.agg()`, creating insightful summaries of our datasets.
+
+These are all foundational skills, and you’re doing great!
+
+But now, it’s time to level up. Today, we’re tackling data reshaping and joins, two powerful techniques for reorganizing and enriching your datasets. I also promised you some nice-looking tables, and I intend to deliver! We’ll be using the amazing `great_tables` library for our table designs. Let’s load up the libraries and dive right in.
+
 ```{python}
 #| label: setup
+#| code-fold: true
 import polars as pl
 import polars.selectors as cs
 from plotnine import *
-from gapminder import gapminder
 from great_tables import GT
-theme_set(theme_linedraw())
 ```
 
+Today’s dataset comes from the Break from Plastics environmental campaign — a sample of data with a powerful story. Here's the description of the data:
 
-## Pivot
+::: {.callout-note collapse=true}
+In 2020, thanks to our members and allies, Break Free From Plastic engaged 14,734 volunteers in 55 countries to conduct 575 brand audits. These volunteers collected 346,494 pieces of plastic waste, 63% of which was marked with a clear consumer brand. Despite the challenges of organizing during a global pandemic, our volunteers safely coordinated more brand audit events in more countries this year than in the previous two years. As a special activity during the pandemic, we also worked with over 300 waste pickers to highlight their roles as essential workers. Participants catalogued over 5,000 brands in this year’s global audit. Our analysis reveals the following as the 2020 Top 10 Global Polluters: The Coca-Cola Company; PepsiCo; Nestlé; Unilever; Mondelez International; Mars, Inc.; Procter & Gamble; Philip Morris International; Colgate-Palmolive; and Perfetti Van Melle. 
+:::
 
-Earlier we mentioned that data frame consists of observations organized in rows and variable organized in columns. But not all data comes as well-organized as wel would want it to be. Today we are going to look at the sample of the data collected by the Break from Plastics environmental campaign. Here's the description of the data:
-
-> In 2020, thanks to our members and allies, Break Free From Plastic engaged 14,734 volunteers in 55 countries to conduct 575 brand audits. These volunteers collected 346,494 pieces of plastic waste, 63% of which was marked with a clear consumer brand. Despite the challenges of organizing during a global pandemic, our volunteers safely coordinated more brand audit events in more countries this year than in the previous two years. As a special activity during the pandemic, we also worked with over 300 waste pickers to highlight their roles as essential workers. Participants catalogued over 5,000 brands in this year’s global audit. Our analysis reveals the following as the 2020 Top 10 Global Polluters: The Coca-Cola Company; PepsiCo; Nestlé; Unilever; Mondelez International; Mars, Inc.; Procter & Gamble; Philip Morris International; Colgate-Palmolive; and Perfetti Van Melle. 
-
-We are going to investigate this dataset and summarize it using Great Tables. Great Tables is a python package which implements "grammar of tables", so in many respects it is similar in spirit to plotnine, in a sense that it attempts to develop a consistent API around production of tables making it very easy to produce nice looking summaries form data in table form. The main function in Great Tables is `GT()`. It takes data argument and many other useful options. We can use .pipe to pass the data into it.
-
-
-In the code example provided to you in the notebook you can see the code for importing the data, as well as the dataframe containing the data dictionary for this dataset. The data frame is specified via a dictionary denoted with curly braces `{}`. Dictionaries are widely used in Python for passing "key-value" pairs. 
+Here's the code to bring this data into our workspace:
 
 ```{python}
-plastics_df = pl.read_csv("bffp/BFFplastics.csv")
+#| code-fold: true
+plastics_df = pl.read_csv('bffp/BFFplastics.csv')
 
 plastics_docs = pl.DataFrame({
-    "Variable": ["region", "country_code" , "country", "year", "parent_company", "empty", "hdpe", "ldpe", "o", "pet", "pp", "ps", "pvc", "grand_total", "num_events", "volunteers"],
-    "Class": ["character","character","character", "double", "character", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double"],
-    "Description": ["Region", "Alpha 3 ISO 3166 code","Country of cleanup", "Year (2019 or 2020)", "Source of plastic", "Category left empty count", "High density polyethylene count (Plastic milk containers, plastic bags, bottle caps, trash cans, oil cans, plastic lumber, toolboxes, supplement containers)", "Low density polyethylene count (Plastic bags, Ziploc bags, buckets, squeeze bottles, plastic tubes, chopping boards)", "Category marked other count", "Polyester plastic count (Polyester fibers, soft drink bottles, food containers (also see plastic bottles)", "Polypropylene count (Flower pots, bumpers, car interior trim, industrial fibers, carry-out beverage cups, microwavable food containers, DVD keep cases)", "Polystyrene count (Toys, video cassettes, ashtrays, trunks, beverage/food coolers, beer cups, wine and champagne cups, carry-out food containers, Styrofoam)", "PVC plastic count (Window frames, bottles for chemicals, flooring, plumbing pipes)", "Grand total count (all types of plastic)", "Number of counting events", "Number of volunteers"]
+    'Variable': ['region', 'country_code' , 'country', 'year', 'parent_company', 'empty', 'hdpe', 'ldpe', 'o', 'pet', 'pp', 'ps', 'pvc', 'grand_total', 'num_events', 'volunteers'],
+    'Class': ['character','character','character', 'double', 'character', 'double', 'double', 'double', 'double', 'double', 'double', 'double', 'double', 'double', 'double', 'double'],
+    'Description': ['Region', 'Alpha 3 ISO 3166 code','Country of cleanup', 'Year (2019 or 2020)', 'Source of plastic (company name)', 'Category left empty count', 'High density polyethylene count (Plastic milk containers, plastic bags, bottle caps, trash cans, oil cans, plastic lumber, toolboxes, supplement containers)', 'Low density polyethylene count (Plastic bags, Ziploc bags, buckets, squeeze bottles, plastic tubes, chopping boards)', 'Category marked other count', 'Polyester plastic count (Polyester fibers, soft drink bottles, food containers (also see plastic bottles)', 'Polypropylene count (Flower pots, bumpers, car interior trim, industrial fibers, carry-out beverage cups, microwavable food containers, DVD keep cases)', 'Polystyrene count (Toys, video cassettes, ashtrays, trunks, beverage/food coolers, beer cups, wine and champagne cups, carry-out food containers, Styrofoam)', 'PVC plastic count (Window frames, bottles for chemicals, flooring, plumbing pipes)', 'Grand total count (all types of plastic)', 'Number of counting events', 'Number of volunteers']
 })
-
-(plastics_docs
-    .pipe(GT)
-)
-
-(plastics_df.describe())
 
 ```
 
-There are many missing values in this data. The year column covers 2019 and 2020. The different plastics types exibit different degrees of missingness. 
+In your notebook you can see the code for importing the data, as well as a DataFrame containing a data dictionary — a detailed description of the variables in this dataset.
 
-First have a look at the data
+So far, we’ve always imported data from CSV files or pre-built datasets. But now, it's time to talk about creating data frames by hand. This is super handy when working with small examples, prototypes, or mock data. To do that, we need to talk about two foundational Python data structures: dictionaries and lists.
+
+Think of a dictionary as a way to describe an object. It’s a collection of "key-value" pairs—like writing down standard characteristics of something along with their values. Dictionaries are specified with curly brackets `{}`. Let’s say I want to describe my bike: 
 
 ```{python}
-plastics_df
+#| code-fold: true
+Bicycle = {
+    'Type': 'Hybrid',
+    'Size': 28,
+    'Make': 'Merida',
+    'Color': 'Grey',
+    'Price': 250
+}
+```
 
+Here, each characteristic—like Type or Size—has one value. Easy, right? But what if I also wanted to describe the bikes of my twins? I’d need three records, not one. 
+
+This is where lists come in. A list is a collection of items—typically of the same type—and it’s denoted with square brackets `[]`. Let’s use lists to describe all the bikes in my garage:
+
+```{python}
+#| code-fold: true
+Bikes = {
+    'Type': ['Hybrid', 'MTX', 'BMX'],
+    'Size': [28, 24, 26], 
+    'Make': ['Merida', 'Giant', 'Specialized'],
+    'Color': ['Grey', 'White', 'Orange'],
+    'Price': [250, 180, 220]
+}
+```
+
+Now, we have a dictionary of lists, representing three bikes. To turn this into a Polars DataFrame, all we need to do is pass it to the `pl.DataFrame()` function:
+
+```{python}
+#| code-fold: true
+bikes_df = pl.DataFrame(Bikes)
+```
+
+And just like that, we’ve created a data frame by hand! This is a simple yet powerful way to structure and manipulate small datasets.
+
+Our `plastics_docs` specifies three characteristics: the variable names (`Variable`), their data types (`Class`), and their descriptions (`Description`).
+
+This table essentially acts as documentation for the `plastics_df`. But let’s face it — raw data frames, while functional, don’t always look polished or presentation-ready. That’s where the Great Tables package comes in.
+
+Great Tables is like a graphic design toolkit for your tables! It introduces a "grammar of tables," similar to how `plotnine` provides a "grammar of graphics." This makes it super easy to transform plain data frames into beautifully styled tables with minimal effort.
+
+The core function in Great Tables is `GT()`, and it works similarly to how we use `ggplot` for creating plots. Let’s take a sneak peek at its capabilities by styling our `plastics_docs` data frame. Here’s how we do it:
+
+```{python}
+#| code-fold: true
+#| include: false
+(
+GT(plastics_docs)
+    .opt_stylize(style=3, color='cyan')
+)
+```
+
+Voilà! `.opt_stylize()` method has some pre-built styles, which we used to convert a boring data frame into a polished and professional-looking table, ready to be shared or included in reports. Don’t worry about memorizing the details just yet — we’ll explore `GT()` more thoroughly in the upcoming sections.
+
+Before we move on, let’s take a quick look at the data itself. Here’s a snippet of the first five rows of the `plastics_df`:
+
+```{python}
+#| code-fold: true
+#| include: false
+(
+plastics_df
+    .head(5)
+)
+```
+
+As you can see, the first few variables look familiar. They describe general metadata, like the region, country, and year. But let’s focus on the variables starting from `empty` and going down to `pvc`. These columns count the number of plastic pieces of different types collected during the cleanup. 
+
+The `grand_total` column sums up all these individual plastic counts. Finally, the last two columns—`num_events` and `volunteers`—capture operational details:
+
+- How many trash counting events took place in each country during a given year?
+- How many volunteers participated in these campaigns?
+
+This dataset offers a wealth of insights into plastic pollution patterns across the globe. By organizing, reshaping, and visualizing this data, we’ll uncover powerful stories about the environmental challenges we face—and the steps we can take to address them.
+
+Let’s take a closer look at the data. Check out this very first row for Argentina. Notice the `parent_company` column contains the value: "Grand Total." This suggests that this first row contains the totals for all Argentinian records in 2019.
+
+Let's look at the next year:
+
+```{python}
+#| code-fold: true
+#| include: false
+(plastics_df
+    .filter(pl.col("year")==2020,
+        pl.col("country")=="Argentina")
+)
+```
+
+Here’s something curious: for the year 2020, the rows with country totals aren’t marked with "Grand Total." Instead, the `parent_company` field is left blank, or in technical terms, it’s marked as missing - `Null`. Hmm! What do we do with those?
+
+`Null` values aren’t just limited to `parent_company`. Let’s take a look at records collected in 2019 from unidentified locations.
+
+```{python}
+#| code-fold: true
+#| include: false
 plastics_df.filter(pl.col("country").is_null())
 ```
 
-Look at the very first row. The `parent_company` is Grand Total. It seems like this line contains the totals for Argentinian records for 2019.
+Before we dive deeper into analyzing top contributors to plastic waste, let’s calculate the totals per country and year ourselves. Why? 
 
-However, for year 2020, the rows with totals per country are not marked with "Grand Total", but rather are populated with the missing value 
+Well, the dataset has pre-computed totals marked with "Grand Total" or `Null` in the `parent_company`, but the logic seems inconsistent. Recomputing the totals ensures transparency and accuracy in our analysis.
+
+Here’s how we start:
 
 ```{python}
+#| code-fold: true
+#| include: false
 (plastics_df
-    .filter(pl.col("year")==2020))
+    .drop("grand_total")
+    .filter(pl.col("parent_company")!="Grand Total",
+            pl.col("parent_company").is_not_null())
+)
 ```
 
-Before we dive deeper into analyzing top contributors to plastic waste, lets look at the totals per country. We now have two options. We could populate the rows containing the totals with the phrase "Grand Total" and then use it to filter. This assumes that totals are calculated properly for all countries. We will basically disregard the majority of the dataset and rely on few rows that have been pre-computed for us.
+Let’s break this down:
 
-An alternative strategy could be to drop all rows with invalid company name (marked with either "Grand Total" or left missing "null") and recompute totals by hand for each of the count columns.
+- `drop("grand_total")`: The `grand_total` column is a pre-computed sum of all plastic types, which we can recalculate if needed.
+- Exclude "Grand Total" rows: We filter out rows where the `parent_company` column is populated with the phrase "Grand Total."
+- Exclude `Null` values in `parent_company` column: These rows lack a meaningful company label and often represent aggregated data.
+
+By cleaning the data in this way, we ensure that our analysis is based on individual contributions, not pre-summarized totals.
+
+# VIDEO {greenscreen} ~ 3 min
+
+Now, let’s talk about the two special columns in our dataset: `num_events` and `volunteers`. These capture the number of counting events and the number of volunteers who participated in the cleanup campaigns.
+
+But here’s the catch. These columns don’t vary within groups of rows for the same year and country. Instead, they represent aggregate metrics that make sense at the country-year level, but are less meaningful at the company level.
+
+For now, let’s set aside the rankings of companies responsible for the most plastic waste. Instead, we'll focus on the campaign itself — the Break from Plastics community engagement on a country level.
+
+It’s time to roll up our sleeves and aggregate the data at the country-year level. First, let’s think about the groups we’re interested in. Our primary group identifiers would be `region`, `country_code `, `country`, and `year`. These columns define the unique groups for aggregation since each country belongs to one region and has a unique country code.
+
+Now, let’s decide what to aggregate. We are interested in aggregating the eight columns from `empty` to `pvc`. These need to be summed for each group. However, columns like `num_events` and `volunteers` shouldn’t be summed because their values remain constant within each group. Instead, we’ll take the first non-null value in each group.
+
+With the powerful multi-column expressions in polars, we don’t need to write repetitive code for each plastic type. Using selectors, we can quickly choose and process groups of columns. I encourage you to try it out now.
+
+:::{.challenge}
+Aggregate the plastic counts at the country-year level, ensuring that the `num_events` and `volunteers` columns remain intact. When you’re done, store the result into a new variable called `plastics_countries_df`.
+:::
+
+Take a moment to pause the video and give it a try.
 
 ```{python}
-plastics_totals = (plastics_df
-    .drop("grand_total", "num_events", "volunteers")
+#| echo: false
+#| code-fold: true
+plastics_countries_df = (plastics_df
+    .drop("grand_total")
     .filter((pl.col("parent_company")!="Grand Total"),
             (pl.col("parent_company").is_not_null()))
-    .group_by("country", "year")
-    .agg(pl.exclude("country", "year", "parent_company").drop_nulls().sum())
+    .group_by("region", "country_code", "country", "year")
+    .agg(
+        cs.numeric().exclude("num_events", "volunteers").sum(),
+        cs.by_index(-2, -1).drop_nulls().first())
     )
 ```
 
+Fantastic! Now that we have our cleaned and aggregated dataset, let’s talk about total plastic counts.
+
+To calculate the total number of plastic items inspected, you’d typically list all relevant columns and sum them up: `total_count=pl.col("empty")+pl.col("hdpe")+pl.col("ldpe")+` and so on. But imagine if you had hundreds of columns instead of eight! This approach would quickly become overwhelming.
+
+Luckily, there’s a clever trick to make this task more manageable: pivoting. By reorganizing the data into a different format, we can simplify calculations and enable more flexible analysis.
+
+In the next section, we’ll dive into pivoting and explore how to reshape `plastics_countries_df` for deeper insights.
+
+Let’s keep going!
+
+# VIDEO {greenscreen} ~ 9 min
+
+Let’s take a moment to reflect on two common ways of organizing the same data: wide and long formats.
+
+On the left, we see a wide format dataframe. Here, each row represents a single observation, and the variables are spread across multiple columns.
+
+On the right, we have the same data in a long format. In this version:
+
+- The first two columns, known as ID or index variables, are repeated for each observation.
+- A new column, `plastic_type`, gathers the names of the measured variables.
+- The final column, `quantity`, contains the values corresponding to those variables.
+
+:::::{.columns .column-screen-inset}
+:::{.column width="60%"}
+
+<!-- #### "Wide" data -->
+
 ```{python}
-#| eval: false
-
-# LEFT AS AN EXERCISE FOR THE USER
-# fill the missing values in the parent_company column with the phrase "Grand Total". 
-# Since the parent company column is no longer informative, we can drop it.
-plastics_totals_1 = (plastics_df
-    .drop("grand_total", "num_events", "volunteers")
-    .with_columns(pl.col("parent_company").fill_null("Grand Total"))
-    .filter(pl.col("parent_company")=="Grand Total")
-    .drop("parent_company")
+#| echo: false
+#| code-fold: true
+#| include: false
+(plastics_countries_df
+    .slice(2,1)
+    .select(~cs.by_index(0, 1, -1, -2))
     )
-# What did we miss?
-(plastics_totals_1
-    .join(plastics_totals, on=["country", "year"], how="anti")
-    )
-
-(plastics_totals
-    .join(plastics_totals_1, on=["country", "year"], how="anti")
-    )
-
-# does not have row for the total
-tmp1_df = (plastics_df
-    .filter(pl.col("country")=="Slovenia",
-            pl.col("year")==2020)
-    )
-
-# does not have any records other than the total
-tmp2_df = (plastics_df
-    .filter(pl.col("country")=="United Arab Emirates",
-            pl.col("year")==2020)
-    )
-
-tmp2_df = (plastics_totals
-    .filter(pl.col("country").is_null())
-    )
-
 ```
 
+:::
+:::{.column width="40%"}
 
-We do have `grand_total` column which seems to be a sum of columns `empty:pvc` describing counts for different type of plastic. Let's say our goal is to make a chart describing the composition of trash by plastic type in different countries. In order to calculate proportions as we did previously, we need to have multiple observations for each country, one for each plastic type. Then we will calculate proportion over the country (and year).
+<!-- #### "Long" data -->
 
 ```{python}
-plastics_long_df = (plastics_df
-    .drop("grand_total", "num_events", "volunteers")
-    .with_columns(pl.col("parent_company").fill_null("Grand Total"))
-    .filter(pl.col("parent_company")=="Grand Total")
-    .drop("parent_company")
-    #.unpivot(index=["country", "year"], variable_name="plastic_type", value_name="quantity")
-    .unpivot(index=cs.by_name("country", "year"), variable_name="plastic_type", value_name="quantity")
-    .with_columns(pl.col("quantity").fill_null(0))
+#| echo: false
+#| code-fold: true
+#| include: false
+(plastics_countries_df
+    .slice(2,1)
+    .select(~cs.by_index(0, 1, -1, -2))
+    .unpivot(index=cs.by_index(0,1), variable_name="plastic_type", value_name="quantity")
+    .sort("country", "plastic_type")
     )
-# In `.unpivot()` the `on` argument is optional. Everything other than index
+```
+:::
+:::::
+
+These two formats represent the exact same data, but the way they’re structured can have a big impact on how we work with them.
+
+- Wide Format:
+    - Easier for humans to read, especially in spreadsheets.
+    - Good for summarizing data at a glance.
+
+- Long Format:
+    - Preferred for computations, visualizations, and many data analysis tools.
+    - Simplifies aggregations and calculations.
+
+When working with data, being able to switch between these formats is essential. Many analysis tasks, like creating summaries or visualizations, become much easier when the data is in long format.
+
+The process of transforming data from wide to long is called unpivoting or melting. This makes sense because the data seems to “melt” down into fewer columns while increasing the number of rows.
+
+When we unpivot data, we typically end up with three columns:
+
+- ID (or Index): These are the identifying variables that stay constant across the observations.
+- Key (or Variable Name): This gathers the names of the measured variables into a single column.
+- Value: This records the corresponding values for each of the variables.
+
+In our case the *ID* variables are `region`, `country_code`, `country`, and `year`. We will name the *key* column `plastic_type`. The column containing *values* will be called `quantity`.
+
+Our first task is to unpivot the plastic count columns, transforming `plastics_countries_df` into a long format. This will simplify how we analyze and summarize the data.
+
+As we’ve seen, the long-format data typically consists of three primary columns:
+
+- ID columns that uniquely identify each group or observation.
+- Key column that gathers variable names.
+- Value column that stores the corresponding values for each variable.
+
+Let’s begin by checking out the documentation for the `.unpivot()` method. This function gives us precise control over how to reshape the data.
+
+<!-- ![](img/unpivot_docs.png) -->
+
+`.unpivot()` takes four arguments:
+
+- `on`: Specifies the columns to be unpivoted.
+- `index`: Indicates which columns to keep as ID columns. You can use `polars.selectors` to specify these.
+- `variable_name`: Sets the name for the Key column.
+- `value_name`: Sets the name for the Value column.
+
+Note that the `on` argument is optional. If you don’t specify it, any column not listed as an `index` will be unpivoted automatically.
+
+Here’s how we can transform the dataset into a long format. We can select the index columns either by name or by position. We can also, optionally, specify the `on` argument to make it extra clear which columns should be melted.
+
+```{python}
+#| code-fold: true
+#| echo: false
+#| include: false
+(plastics_countries_df
+    .unpivot(index=cs.by_name("region", "country_code", "country", "year", "num_events", "volunteers"), 
+            variable_name="plastic_type", value_name="quantity")
+    )
+
+# which is the same as
+(plastics_countries_df
+    .unpivot(index=cs.by_index(0, 1, 2, 3, -2, -1), 
+            on=cs.by_index(range(4,12)),
+            variable_name="plastic_type", value_name="quantity")
+    )
 ```
 
+Both approaches produce the same result:
 
-Pivot is making the data wider
+- The columns `region`, `country_code`, `country`, `year`, `num_events`, and `volunteers` are preserved as ID columns.
+- The plastic types (e.g., empty, hdpe, etc.) become the values in the `plastic_type` column.
+- The corresponding counts are stored in the `quantity` column.
+
+Once the data is in long format, it becomes much easier to perform calculations. For instance, let’s group the data by `region`, `country_code`, `country`, `year`, `num_events`, and `volunteers`, and calculate the total quantity of plastic collected:
 
 ```{python}
-(plastics_long_df
-    .pivot(on="year", values="quantity")
+#| echo: false
+#| include: false
+#| code-fold: true
+(plastics_countries_df
+    .unpivot(index=cs.by_name("region", "country_code", "country", "year", "num_events", "volunteers"), 
+            variable_name="plastic_type", value_name="quantity")
+    .group_by("region", "country_code", "country", "year", "num_events", "volunteers")
+    .agg(pl.col("quantity").sum())
     )
-# In `.pivot()` the `index` is optional. All remaining columns not specified in `on` and `values` will be used.
-# either index or values need to be specified
 ```
 
-```{python}
-(plastics_long_df
-    .pivot(on="year", index="country", values="quantity", aggregate_function='sum')
-    )
+And there we have it — a simple aggregation of total plastic quantities by country and year! This process highlights the power of unpivoting: it organizes our data in a way that makes calcultions across multiple columns more straightforward.
 
-plastics_campaigns_df = (plastics_long_df
-    .pivot(on="year", index=["country", "plastic_type"], values="quantity")
-    .group_by("country")
-    .agg(pl.all().exclude("country", "plastic_type").fill_null(0).sum())
+We now have 106 records of Break From Plastics campaign activity in every country in 2019 and 2020. We have total number of events every year, number of volunteers who participated every year and the quantity of plastics collected and sorted through.
+
+How would you answer this question: What are the top 5 countries in terms of the growth in productivity, defined is the number of plastic processed per event? So we are not just interested in productivity every year, but also how it has grown from 2019 to 2020. I am looking at Taiwan, for example that engaged the mind-blowing 31 thousand volunteers and sorted through 120 thousand pieces of plastic in just 2 huge events held in 2019. Now that's an achievement! Especially if they managed to keep the level of engagement up the following year. 
+
+
+We can certainly calculate productivity per event as `quantity` divided by `num_events`, but how would you calculate the growth in productivity for every country? We need to pivot the productivity column across years and calculate the growth from the pivoted data. 
+
+<!-- ![](img/pivot_docs.png) -->
+
+Pivot method has these main arguments:
+- `on` specifies which column(s) should be pivoted
+- `index` optional selector for which columns will NOT be pivoted - i.e. those that will stay unchanged
+- `values` where should the values for the pivoted columns come from.  
+
+The `index` column is optional. It can be inferred from the other arguments, meaning that everything which is not in `on` or `values` will be treated as an `index` set of columns.
+
+You can pivot multiple columns at once. Just indicate several columns in the `values` argument and the pivoted table will have one column for combination of the factor in `on` and each or the `values` columns. So here in our example I have a categorical variable `year` with 2 levels (2019/2020). I am interested in seeing `productivity` split by year into `productivity_2019` and `productivity_2020` columns. But I can at the same time pivot `quantity`, so I also have `quantity_2019` and `quantity_2020`.
+
+Before I do the pivot, I want to drop the `num_events` and `volunteers` since I am not doing anything with them (even though you could argue it makes sense to pivot them by year as well). But at this time, we are not interested in these columns so we can just drop them. The reason I do it, is so that I dont have to specify the `index` argument in the `pivot` function, relying on `polars` to figure it out for me. 
+
+```{python}
+#| echo: false
+#| include: false
+#| code-fold: true
+(plastics_countries_df
+    .unpivot(index=cs.by_name("region", "country_code", "country", "year", "num_events", "volunteers"), 
+            variable_name="plastic_type", value_name="quantity")
+    .group_by("region", "country_code", "country", "year", "num_events", "volunteers")
+    .agg(pl.col("quantity").sum())
+    .with_columns(productivity=pl.col("quantity")/pl.col("num_events"))
+    .drop("num_events", "volunteers")
+    .pivot(on=cs.by_name("year"), values=cs.by_name("productivity", "quantity"))
+    .with_columns(prod_growth=pl.col("productivity_2020")/pl.col("productivity_2019")-1)
+    .filter(pl.col("prod_growth").is_not_null())
+    .sort("prod_growth", descending=True)
+    .head(10)
 )
 
-(plastics_campaigns_df    
-    .filter(pl.col("country").is_in(["Germany", "Netherlands", "Switzerland", "France", "Spain", "Italy"]))
+```
+
+```{python}
+#| echo: false
+#| include: false
+#| code-fold: true
+(plastics_countries_df
+    .filter(pl.col("country")=="Germany"))
+```
+
+# VIDEO {greenscreen} ~ 6 min
+
+Before we go any further, I want to quickly introduce you to the power of `great_tables` for producing engaing and informative tables. We will create a nice-looking table showing top-10 countries with the most impressive productivity growth. As we discussed earlier, the core function is `GT()` you also know that the default styling can be done with `.opt_stylize()` method. This is enough to produce decent looking table, but I want to show you a few more tricks.
+
+First of all, we have two groups of columns which are somehow related. A group of columns about quantity of plastic processed and a group of columns about productivity. We can introduce spanners - a grouping of columns in the table, where we can place a meaningful label. In `GT` this can accomplished with `.tab_spanner()`. As almost all methods in `great_tables()`, `.tab_spanner()` relies on `polars` selectors. So we can scoop all columns starting with `prod` under the Productivity spanner, and all columns starting with `quantity` under the other spanner.
+
+The second group of functions in `great_tables` is related to columns. These methods will start with `.cols_` You can move and hide columns using `.cols_move()` and `.cols_hide()` without modifying the underlying data. Sometimes, it might be useful because the data is also used for something else, other than the table visualization and you don't want to shuffle the columns around just because you need to show them in the table in a particular order. In our case, we want to move the quantity group closer to the beginning of the table. There's also a convenient column labeler `.cols_label()`, which allows you to create arbitrary visual lables for columns without modifying the data. Again, in our table, because we introduced table spanners, we want some column names to be duplicates of each other, for example year numbers. But in `polars` all column names should be unique.
+
+Finally, the third block of functions I want to talk to you about is formatting. You can specify special formatting rules for one or more columns using `.fmt_` method. There are many pre-defined methods for formatting numbers, integers, percentages etc, including exoting column contents like flags and icons. The 3-letter country codes can serve as indentifiers for country flags and we will use this column format in our table. As with many other function in `GT` we are relying on polars.selectors to fetch the columns and then specify decimals, forced `+/-` sign, etc.
+
+We will use the default styling in `.opt_stylize()` but later in this module we will have a look at custom styling function for creating more effective communication.
+
+As with plots, it is good to annotate the table. You can add table header with title and subtitle, as well as the caption, called source note where you cite the souce of your data.
+
+```{python}
+#| echo: false
+#| include: false
+#| code-fold: true
+top10_productivity_tbl = (plastics_countries_df
+    .unpivot(index=cs.by_name("region", "country_code", "country", "year", "num_events", "volunteers"), 
+            variable_name="plastic_type", value_name="quantity")
+    .group_by("region", "country_code", "country", "year", "num_events", "volunteers")
+    .agg(pl.col("quantity").sum())
+    .with_columns(productivity=pl.col("quantity")/pl.col("num_events"))
+    .drop("num_events", "volunteers")
+    .pivot(on=cs.by_name("year"), values=cs.by_name("productivity", "quantity"))
+    .with_columns(prod_growth=pl.col("productivity_2020")/pl.col("productivity_2019")-1)
+    .filter(pl.col("prod_growth").is_not_null())
+    .sort("prod_growth", descending=True)
+    .head(10)
+)
+
+(top10_productivity_tbl
     .pipe(GT)
-    .cols_label(
-        country="Country")
-    .tab_spanner("Year", columns=["2019", "2020"])
-    .tab_header(
-        title = "Break Free From Plastics campaigns",
-        subtitle = "Brand plastic counts in some European countries")
-    .tab_source_note(
-        source_note="Source: BFFP data via TidyTuesday 2021-01-26"
-    )
+    .tab_spanner(label="Productivity", columns=cs.starts_with("prod"))
+    .tab_spanner(label="Quantity", columns=cs.starts_with("quantity"))
+    .cols_move(columns=cs.starts_with("quantity"), after="country")
+    .cols_hide("region")
+    .cols_label(productivity_2019="2019",
+                productivity_2020="2020",
+                quantity_2019="2019",
+                quantity_2020="2020")
+    .cols_label(country="",
+                prod_growth="Growth",
+                country_code="")
+    .fmt_number(columns=cs.starts_with("productivity"), decimals=1)
+    .fmt_number(columns=cs.starts_with("quantity"), decimals=0)
+    .fmt_percent(columns=cs.matches("prod_growth"), decimals=0, force_sign=True)
+    .fmt_flag(columns=cs.matches("country_code"))
+    .tab_header(title="Top 10 countried by the increase in plastic sorting productivity in 2019-2020",
+            subtitle="Productivity is number of plastic samples processed per event")
+    .tab_source_note("Source: Break Free From Plastic campaigns 2019, 2020")
+    .opt_stylize(style=1)
 )
-
 ```
 
-# joins
+You may argue whether this table is informative, but it sure looks nice. And in the process of preparing it we have learned quite a lot about pivoting and great tables.
+
+I think it is your time to practice. Identifying the different types of plastic requires good knowledge of the different types of materials. Some materials were identified as belonging to predefined classes, while other samples were left unclassified (and ended up in the `o` ("other") or `empty` categories). Identification rate (measured in %) then is the proportion of total pieces of plastic that were assigned to predefined categories (and not in other or empty). We wonder if the increase in the engagement (number of volunteers signed up for BFFP events) leads to improvement of identification rate? 
+
+:::{.challenge}
+Put together a table of top 10 countries where identification rate improved the most between 2019 and 2020. Insrease in the rate should be measured as simple difference between the two rates. Also, please calculate the percent increase/decrease in volunteer engagement for these countries. 
+:::
+
+There could be several ways to solve this task. In my table the top country is South Africa and the bottom country in Bangladesh. Pause a video and give this task a try! When you come back we will walk through a solution together and discuss the learning from the pivoting lesson.
+
+```{python}
+#| echo: false
+#| include: false
+#| code-fold: true
+top_10_id_rate_increase = (plastics_countries_df
+    .drop("num_events")
+    .unpivot(index=cs.by_name("region", "country_code", "country", "year", "volunteers"), 
+            variable_name="plastic_type", value_name="quantity")
+    .with_columns(pl.col("plastic_type").is_in(["empty", "o"]).alias("plastic_unidentified"))
+    .group_by("region", "country_code", "country", "year", "volunteers", "plastic_unidentified")
+    .agg(pl.col("quantity").sum())
+    .with_columns( (pl.col("quantity")/pl.col("quantity").sum())
+                    .over("region", "country_code", "country", "year", "volunteers")
+                    .alias("id_rate"))
+    .filter(~pl.col("plastic_unidentified"))
+    .drop("quantity", "plastic_unidentified")
+    .pivot(on=cs.by_name("year"), values=cs.by_name("volunteers", "id_rate"))
+    .with_columns(volunteer_growth=pl.col("volunteers_2020")/pl.col("volunteers_2019")-1,
+                id_rate_increase=pl.col("id_rate_2020")-pl.col("id_rate_2019"))
+    .filter(pl.col("volunteer_growth").is_not_null(),
+            pl.col("id_rate_increase").is_not_null())
+    .sort("id_rate_increase", descending=True)
+    .head(10)
+)
+top_10_id_rate_increase
+```
+
+You are done already? If not, then here are some tips. 
+
+- You can create a boolean variable of whether a piece of plastic is identified or not. Include it into the list of grouping variables and calculate totals by it. Then pivot on this variable. This will allow you to calculate an identification rate.
+
+- Alternatively, you can calculate the identification rate using the `.over()` method as we did in the previous module and then just filter out the rows you dont need.
+
+- Pivot both `volunteers` and `id_rate` on `year`. Make sure you drop all other columns which are not part of your index valriables.
+
+- Its a good idea to filter out records containing null in either one of the growth metrics. This will eliminate countries which did not participate in BFFP campaigns one of the years.
+
+If you find these tips helpful pause again and try solving the task. Otherwise, hang on, we will discuss the solution to this challenge together momentarily.
+
+```{python}
+#| echo: false
+#| include: false
+#| code-fold: true
+(top_10_id_rate_increase
+    .pipe(GT)
+    .tab_spanner(label="Indentification", columns=cs.starts_with("id_rate"))
+    .tab_spanner(label="Volunteers", columns=cs.starts_with("volunteer"))
+    #.cols_move(columns=cs.starts_with("quantity"), after="country")
+    .cols_hide("region")
+    .cols_label(cases={
+                "volunteers_2019": "2019",
+                "volunteers_2020": "2020",
+                "id_rate_2019": "2019",
+                "id_rate_2020": "2020"
+                })
+    .cols_label(country="",
+                volunteer_growth="Growth",
+                id_rate_increase="Increase %",
+                country_code="")
+    .fmt_percent(columns=cs.starts_with("id_rate"), decimals=1)
+    .fmt_number(columns=cs.starts_with("volunteers"), decimals=0)
+    .fmt_percent(columns=cs.matches("volunteer_growth"), decimals=0, force_sign=True)
+    .fmt_percent(columns=cs.matches("id_rate_increase"), decimals=1, force_sign=True)
+    .fmt_flag(columns=cs.matches("country_code"))
+    .tab_header(title="Top 10 countried by the increase in plastic indentification in 2019-2020",
+            subtitle="Indentification rate is proportion of plastic samples assigned to one of BFFP categories")
+    .tab_source_note("Source: Break Free From Plastic campaigns 2019, 2020")
+    .opt_stylize(style=1)
+)
+```
+
+Whew! You did it! Was it hard? Well, I am sure you have learned a lot and should be proud of yourself! One thing you can be sure of is that although this task is a little contrived and the data is a little dirty, the process of solving it not untypical for the daily job of a data analyst. The data analysis tasks in real life do not come nicely packaged and most of the data requires substantial amount of care before it can be usable.
+
+So, let us talk through this solution together.
+
+- The first unpivoting should be quite straightforward. We list all ID columns in the `index` argument and provide new names for the key and value columns, just as we discussed earlier.
+- Then we create an "plastic_unidentified" variable in our data frame, which indicates whether a plastic waste is indentified by type or not. If the `plastic_type` takes "empty" or "o" value, our `plastic_unidentified` variable will contain the boolean value of `True`. You know how to write `pl.col("plastic_type")=="empty" | pl.col("plastic_type")=="o"` with explicit logical OR, but here I show you how to use `.is_in()` method with a list argument. Same result!
+- Then we group by everything *including* this new column and summarize. This should be familiar.
+- We dont need `num_events` column. Let's drop it so it does not interfere in our pivoting.
+- We are interested in calculating the proportion of identified plastic. At this moment you have two choices:
+    - Calculate the proportion using `.over` using expression `(pl.col("quantity")/pl.col("quantity").sum())` and then only keep the records where `plastic_unidentified` is False (using `~` for negation). The relevant lines would look something like this:
+
+```{python}
+#| echo: false
+#| eval: false
+    .with_columns( (pl.col("quantity")/pl.col("quantity").sum())
+                    .over("region", "country_code", "country", "year", "volunteers")
+                    .alias("id_rate"))
+    .filter(~pl.col("plastic_unidentified"))
+```
+
+    - Alternatively, we can pivot the `plastic_unidentified` and compute the proportion across the two new columns (named True and False). This option would look something like this:
+
+```{python}
+#| echo: false
+#| eval: false
+    .pivot(on=cs.by_name("plastic_unidentified"), values=cs.by_name("quantity"))
+    .with_columns(id_rate=pl.col("false")/(pl.col("true")+pl.col("false")))
+    .drop("true", "false")
+```
+
+- Finally we need to pivot on year. Here we pivot both `volunteers` and newly created `id_rate` because our task was to show change in both. As we discussed earlier, this will create total of 4 columns because there are 2 levels in `year` column and we are pivoting 2 variables.
+- Our last step is to calculate the volunteer growth and the identification rate increase. One is percent growth and the other is a simple difference in percent values. Drop the records where either one of them is Null and sort by `id_rate_increase`. Then take top 10 records only. 
+
+
+# JOINS (NOTREADY YET) ~ 30 min
 
 ```{python}
 band_members = pl.DataFrame({
@@ -250,7 +652,6 @@ print("People dataset dimensions:", fact_ppl_df.shape[0])
 print("Energy dataset dimensions:", fact_energy_df.shape[0])
 ```
 
-# left join
 
 How many records will be returned if we perform left join on this? Correct answer is 237. Creates missing values.
 

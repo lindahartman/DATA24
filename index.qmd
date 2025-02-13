@@ -2,6 +2,9 @@
 title: "Data Literacy with Python"
 ---
 
+
+## VIDEO {studio} ~ 10  min
+
 Welcome to Data Literacy with Python!
 
 Let me ask you something: Can you imagine living in today’s world but being unable to read? Think about it—street signs wouldn’t make sense, advertisements would just be noise, and most of the internet? Completely out of reach.
@@ -12,16 +15,15 @@ But here’s the thing: today’s world doesn’t just run on words. It runs on 
 
 Every day, we’re creating over 400 million terabytes of data. That’s every single day. And here’s a wild stat—90% of all the world’s data was created in just the last two years.
 
-This explosion of information is transforming how we make decisions, whether it’s in business, science, or society as a whole. But here’s the catch: to keep up, you need to know how to make sense of it.
+This explosion of information is transforming how we make decisions, whether it’s in business, science, or society as a whole. To keep up, you need to know how to make sense of it.
 
 Data isn’t just numbers on a screen—it’s stories waiting to be uncovered. And understanding data has become just as important as being able to read or write.
-
 
 That’s where this course comes in.
 
 We’re going to teach you how to take raw, messy data and turn it into something meaningful. You’ll work with rectangular data—the kind you find in spreadsheets or databases.
 
-And don’t worry—this isn’t just about working with numbers. It’s about answering real-world questions, solving problems, and making decisions based on insights you uncover.
+And don’t worry—this isn’t just about crunching numbers. It’s about answering real-world questions, solving problems, and making decisions based on insights you uncover.
 
 By the end of this course, you’ll have the skills to transform data into knowledge.
 
@@ -29,7 +31,7 @@ Let’s talk about the tools you need to work with data.
 
 You might be tempted by low-code or no-code solutions—those point-and-click interfaces that make everything seem so easy. And sure, they’re great for quick wins. But when it comes to serious data analysis, they have some big limitations.
 
-Here’s the thing: data analysis isn’t just about getting answers—it’s about getting credible answers.
+Data analysis isn’t just about getting answers—it’s about getting **credible** answers.
 
 To trust your insights, you need to leave a trail. Think about it—during analysis, you make dozens of tiny decisions:
 
@@ -51,21 +53,17 @@ Python is the world’s most popular programming language, and for good reason. 
 
 The Python ecosystem for data analysis is enormous. Whatever your question, there’s a good chance Python has a library—or ten—that can help.
 
-Data analysis is unique—it’s less about traditional programming and more about crafting a story with your data. Your code should be clear and intuitive, not just for you, but for anyone who needs to understand your work.
-
-And that includes “future you”—because six months from now, you might not even recognize your own analysis without clear documentation!
+Data analysis is unique—it’s less about traditional programming and more about crafting a story with your data. Your code should be clear and intuitive, not just for you, but for *anyone* who needs to understand your work. And that includes “future you”—because six months from now, you might not even recognize your own analysis without clear documentation!
 
 So, as we dive into this course, we’ll emphasize simplicity, transparency, and readability. Because great analysis isn’t just about crunching numbers—it’s about telling a story that stands the test of time.
 
-Data analysis is evolving.
-
-Today, some of the most cutting-edge tools are built on high-performance programming languages like Rust, Java, or C++. Why? Because these languages are fast—lightning fast. But here’s the best part: you don’t need to write in these languages to enjoy their benefits.
+Data analysis is evolving. Today, some of the most cutting-edge tools are built on high-performance programming languages like Rust, Java, or C++. Why? Because these languages are fast—lightning fast. But here’s the best part: you don’t need to write in these languages to enjoy their benefits.
 
 Modern tools now separate the user interface from the engine. That means the algorithms working behind the scenes are the same, no matter which scripting language you use.
 
 Initiatives like Apache Arrow go even further—they create standardized data formats, making it easy to move between tools and platforms without losing performance or compatibility.
 
-In this course, we’re diving into tools built on Rust—one of the fastest, most efficient programming languages out there. Specifically, we’ll use uv for managing packages and environments and polars for data wrangling.
+In this course, we’re diving into tools built on Rust—one of the fastest, most efficient programming languages out there. Specifically, we’ll use `uv` for managing packages and environments and polars for data wrangling.
 
 These tools are not just fast—they’re scalable.
 
@@ -80,7 +78,9 @@ The datasets may be small, but the questions and challenges we tackle are univer
 Let’s get started on this exciting journey into the world of data literacy!
 
 
-## Shell
+# VIDEO {studio} ~ 7 min
+
+<!-- ## Shell -->
 
 Before we dive into the thrilling world of data analysis, let’s pause and talk about something fundamental: your computer. That’s right, the device you’re watching this on is more than just a tool—it’s the backbone of your data analysis journey. Set it up well, and it will help you create reliable, reproducible, and stunning analytic projects.
 
@@ -96,7 +96,7 @@ Once you’re ready, we’ll discuss folders—yes, the simple yet crucial task 
 Find and open the terminal on your computer. Take that first step toward becoming a power user!
 :::
 
-## On files and folders
+<!-- ## On files and folders -->
 
 Now that you’ve found your terminal, it’s time to talk about something fundamental to every data analysis project: files and folders.
 
@@ -110,15 +110,15 @@ Let’s take a moment to explore this on your computer.
 
 - On Windows, you can open File Explorer by clicking the icon on your taskbar or pressing the Windows key + E. Once it’s open, you’ll see something like this:
 
-![](img/win_explorer.png)
+<!-- ![](img/win_explorer.png) -->
 
 - On Mac, you’ll use an app called Finder. Just click its icon in the Dock, and you’ll see a view like this:
 
-![](img/mac_finder.png)
+<!-- ![](img/mac_finder.png) -->
 
 - On Linux, it’s often just called Files, and the interface may vary depending on your distribution. On my Ubuntu setup, it looks like this:
 
-![](img/linux-files.png)
+<!-- ![](img/linux-files.png) -->
 
 Inside these interfaces, folders are easy to spot with their distinct icons. Click on one, and you’ll dive inside to see its contents—maybe more files, maybe more folders.
 
@@ -126,7 +126,7 @@ Now, every operating system has a home base for your personal files. This is typ
 
 While it’s tempting to store everything on your Desktop for easy access, this isn’t the best long-term solution. A cluttered Desktop can make it harder to stay organized, and let’s be honest—it doesn’t look great either.
 
-![](img/desktop.jpeg)
+<!-- ![](img/desktop.jpeg) -->
 
 Instead, consider creating a dedicated folder for your data analysis projects. For example, you could use your Documents folder or create a new folder called Projects. If your Documents folder is synced to the cloud—like with OneDrive or iCloud—think carefully about whether that’s the right place for large datasets. Cloud storage is precious, and you might want to save that space for smaller files like presentations or text documents.
 
@@ -134,13 +134,14 @@ Don’t worry about backups just yet—we’ll cover that later when we dive int
 
 Once you’ve chosen your perfect home base, we’ll move on to the next step: learning how to navigate your files and folders using the command line. Trust me, it’s easier than it sounds, and it will make your workflow so much more efficient!
 
-## Navigating in the command line
+# VIDEO {studio} ~ 6 min
+<!-- ## Navigating in the command line -->
 
-Alright, let’s open up your terminal! Don’t worry—this isn’t as intimidating as it might look. I’m going to guide you through some simple steps that will help you make sense of this dark text window, and these skills will serve you every time you use the command line.
+Alright, let’s open up your terminal! Don’t worry—this is not as intimidating as it might look. I’m going to guide you through some simple steps that will help you make sense of this dark text window, and these skills will serve you every time you use the command line.
 
-First, take a look at your screen. See that little blinking line? That’s called the cursor, and it’s where you’ll type commands. To the left of the cursor, you’ll notice something else—this is called the system prompt. It’s a little symbol or combination of symbols, like $, >, or %. Think of it as your computer saying, “I’m ready for your command!”
+First, take a look at your screen. See that little blinking line? That’s called the cursor, and it’s where you will type commands. To the left of the cursor, you’ll notice something else—this is called the system prompt. It’s a little symbol or combination of symbols, like $, >, or %. Think of it as your computer saying, “I’m ready for your command, Master!”
 
-But before you start typing anything, let’s ask an important question: “Where am I?”
+But before you start typing anything, let’s ask an important question: “Where am I?”. Not in terms of geography, but in terms of files and folders on your computer.
 
 When you open your terminal, it starts in a specific location in your computer’s file system. This location is called a directory, and it’s similar to a folder in your file explorer. But which folder or directory are you in right now?
 
@@ -152,34 +153,38 @@ Go ahead and type pwd (or cd on Windows) and hit Enter. Your terminal will respo
 
 For example, my terminal tells me this:
 
+<!-- 
 ```
 Dmytro@dell-xps-9570: $ pwd  
 /home/Dmytro  
-```
+``` 
+-->
 
 This means my terminal has opened in my user directory, /home/Dmytro/. That’s the folder where my personal files are stored.
 
 Now that we know where we are, the next logical question is: “What’s here?”
 
-To find out, use the command ls. This stands for “list,” and it will show you everything inside the current directory—both files and other directories.
+To find out, use the command `ls`. This stands for “list,” and it will show you everything inside the current directory—both files and folders.
 
-Here’s what my terminal shows when I type ls:
+Here’s what my terminal shows when I type `ls`:
 
+<!-- 
 ```
 Dmytro@dell-xps-9570:~$ ls  
  'Calibre Library'  Pictures           Projects  
  Desktop            Public             Videos  
  Documents          Downloads          Templates  
  Zotero             Music              Scanned_Document_House.pdf  
-```
+``` 
+-->
 
 As you can see, I have a mix of directories and one lonely PDF document I prepared for the tax authorities. I recognize all of these files—they’re the same ones I’d see if I opened my Files app and navigated to my user directory.
 
-So, in just two simple commands—pwd to figure out where you are and ls to see what’s inside—you’ve already gained some control over the terminal. Pretty cool, right?
+So, in just two simple commands—`pwd` to figure out where you are and `ls` to see what’s inside—you’ve already gained some control over the terminal. Pretty cool, right?
 
-Now that you know how to figure out where you are on your computer, we’ll take it a step further and learn how to move around the file system using the terminal. Stay with me—you’re doing great!
+Now that you know how to figure out where you are on your computer, we’ll take it a step further and learn how to move around the file system using the terminal. 
 
-The command you’ll need is cd, which stands for “change directory.” This is how you “step into” a folder or directory from the terminal.
+The command you’ll need is `cd`, which stands for “change directory.” This is how you “step into” a folder or directory from the terminal.
 
 Let’s say you see a folder named Pictures in your current directory, and you want to navigate into it. All you have to do is type:
 
@@ -189,7 +194,7 @@ cd Pictures
 
 Hit Enter, and you’ll notice that the prefix—the text before the system prompt—changes. This tells you that you’re now inside the Pictures directory.
 
-Want to double-check where you are? Use the pwd command again, and it will confirm your new location. If you want to see what’s inside the Pictures folder, just type ls.
+Want to double-check where you are? Use the `pwd` command again, and it will confirm your new location. If you want to see what’s inside the Pictures folder, just type `ls` again.
 
 But what if you want to go back to where you were before? Easy! Just type:
 
@@ -199,28 +204,32 @@ cd ..
 
 The two dots (..) mean “go up one level.” Hit Enter, and you’ll be back in the directory you started from.
 
-Let me show you an example of a full roundtrip:
+Let me show you an example of a full roundtrip: cd Pictures - pwd - cd .. - pwd
 
-```
+
+<!-- ```
 Dmytro@dell-xps-9570:~$ cd Pictures  
 Dmytro@dell-xps-9570:~/Pictures$ pwd  
 /home/Dmytro/Pictures  
 Dmytro@dell-xps-9570:~/Pictures$ cd ..  
 Dmytro@dell-xps-9570:~$ pwd  
 /home/Dmytro  
-```
+``` -->
 
 See how simple that was? Using just `cd` and `cd ..`, you can navigate up and down the directory tree.
 
 Now it’s your turn! Play around with these commands. Practice navigating into folders and back out again. There are faster ways to move around your file system, but for now, these basic steps are more than enough to get you started. Once you’re comfortable with these movements, please, take an effort to navigate to the directory, where you decided to store your project files.
 
-:::{.challenge}
+<!-- :::{.challenge}
 Using `cd`, `cd ..` and `ls`, navigate to the directory, where you decided to store your project files.
-:::
+::: -->
 
 When you have done that, join me in the next section, where we’ll begin installing some software to set up your data analysis environment. I’ll see you there!
 
-## Installing uv
+
+# VIDEO {studio} ~ 3 min
+
+<!-- ## Installing uv -->
 
 Alright, now it’s time to roll up our sleeves and install one of the most exciting tools in modern Python development—uv!
 
@@ -228,7 +237,7 @@ uv is an incredibly fast Python installation and environment manager, written in
 
 When I say “fast,” I mean lightning fast—orders of magnitude faster than its popular counterparts! Just look at this chart:
 
-![](img/uv-perf-chart.png)
+<!-- ![](img/uv-perf-chart.png) -->
 
 Not only is uv fast, but it’s also environmentally friendly. Yes, it’s saving the planet! By reducing the time and energy it takes for data centers to rebuild their test and development environments daily, uv contributes to a smaller carbon footprint.
 
@@ -239,26 +248,26 @@ Now let’s get started with the installation. Open your terminal and type the f
 :::{.challenge}
 
 On Mac or Linux, use the following command after the system prompt:
-```
+<!-- ```
 curl -LsSf https://astral.sh/uv/install.sh | sh
-```
+``` -->
 
 On Windown, type the following:
 
-```
+<!-- ```
 powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
-```
+``` -->
 :::
 
 If you already have Python installed, you can also install uv using one of Python’s existing package managers. On Mac, it’s even possible to install it through Homebrew. I’ll include a link to the official documentation with detailed instructions below this video.
 
-:::{.challenge}
+<!-- :::{.challenge}
 Check out `uv` installation instructions at https://docs.astral.sh/uv/getting-started/installation/
-:::
+::: -->
 
 Once the installation is complete, let’s check if everything worked. In your terminal, type `uv`. You should see output that looks something like this:
 
-```
+<!-- ```
 uv
 
 #> An extremely fast Python package manager.
@@ -269,13 +278,14 @@ uv
 #>  run      Run a command or script
 #>  init     Create a new project
 #>  ...
-```
+``` -->
 
 If you see that, congratulations! You’ve successfully installed uv. 
 
 From now on, we’ll use uv to manage everything, including installing Python itself. Stay with me as we continue setting up your computing environment. I’ll see you in the next section!
 
-## Managing python installation
+# VIDEO {studio} ~ 10 min
+<!-- ## Managing python installation -->
 
 uv isn’t just a package and environment manager—it also handles Python installations effortlessly. Let’s start by checking if uv can detect an existing Python installation on your system.
 
@@ -297,7 +307,7 @@ Here’s my advice: While you can use the Python installation that uv detects, i
 
 Python environment management has historically been a mess! XKCD even made a [famous comic](https://xkcd.com/1987/) about it. 
 
-![](https://imgs.xkcd.com/comics/python_environment_2x.png)
+<!-- ![](https://imgs.xkcd.com/comics/python_environment_2x.png) -->
 
 Yeah, it can get pretty bad. But don’t worry—with uv, that nightmare is a thing of the past. If you’re ready to let uv manage your Python installation, run this command: 
 
@@ -322,19 +332,19 @@ Note that the second command navigates you into the folder (remember, we learned
 
 If you prefer, you could create the folder yourself and then initialize it with uv. Here’s how that would look:
 
-```
+<!-- ```
 $ mkdir data-literacy-project
 $ cd data-literacy-project
 $ uv init
-```
+``` -->
 Either way, once you’re inside the folder, it’s ready to go! You can explore what uv has created for you by running `ls`. One of the files you’ll see is pyproject.toml. This is your project’s manifest—a file where uv tracks metadata about your project, including its dependencies (the libraries it needs).
 
 Speaking of dependencies, let’s add some libraries. Run the following commands:
 
-```
+<!-- ```
 $ uv add gapminder plotnine polars pyarrow great_tables
 $ uv add --dev setuptools jupyter ipykernel pyyaml nbformat nbclient jupyterlab-quarto
-```
+``` -->
 
 These commands install several Python libraries we’ll use throughout the course. Here we separated the main packages we need for analysis and visualization (listed here in the first line), from the auxilliary packages used to set up a computing environment, the tools we are going to use. The idea is that your Python code relying on main dependencies may stay the same, while the computing setup may look completely different. In this course we will be using Jupyter notebooks, but the same analysis can be performed in Python script files in an IDE, such as VS Studio Code or Positron.
 
@@ -349,7 +359,7 @@ cat pyproject.toml
 ``` 
 
 When you hit enter, you’ll see something like this:
-
+<!-- 
 ```yaml
 [project]
 name = "data-literacy-project"
@@ -375,15 +385,15 @@ dev-dependencies = [
     "pyyaml>=6.0.2",
     "setuptools>=75.6.0",
 ]
-```
+``` -->
 This file, pyproject.toml, serves as a “manifest” for your project. It keeps track of metadata like your project name, version, and—most importantly—dependencies. Each time you add a new library with uv add, it’s recorded here.
 
 Now, here’s something happening behind the scenes: uv created a hidden folder called .venv. This stands for “virtual environment,” and it’s where all your project’s libraries and dependencies live. Hidden files and folders don’t show up when you run `ls`— not unless you add the -a flag to the command, so `ls -a` will, in fact, show that you have this `.venv` folder in your project directory. But don’t worry that this folder stays hidden, you’ll rarely, if ever, need to open it. uv manages this folder for you, so you can focus on your work without getting bogged down in the details.
 
 Here’s the most important thing to know: the .venv folder is what makes your project self-contained. All your dependencies are stored there, safe and separate from anything else on your system. This is especially useful if you want to share your work later—a topic we’ll cover in the final module of this course.
 
-
-## Launch Jupyter
+# VIDEO {studio} ~ 12 min
+<!-- ## Launch Jupyter -->
 
 Finally, let’s talk about Jupyter, one of the most transformative tools for interactive data analysis.
 
@@ -401,15 +411,15 @@ When you run this command, your terminal will remain busy while Jupyter Lab is r
 
 You’ll see a screen like this:
 
-![](img/jlab-1.png)
+<!-- ![](img/jlab-1.png) -->
 
 Click the large blue button in the top left corner—or press Ctrl-Shift-L (or Cmd-Shift-L on a Mac)—to open a Launcher.
 
-![](img/jlab-2.png)
+<!-- ![](img/jlab-2.png) -->
 
 In the Launcher, click the "Python 3 (ipykernel)" button under the "Notebook" section. This will open a new tab in Jupyter Lab, where you’ll see an empty document that looks like this:
 
-![](img/jupyterlab-2.png)
+<!-- ![](img/jupyterlab-2.png) -->
 
 Now, let’s take a closer look at the Jupyter Notebook interface. A notebook is made up of cells, which can be either code cells or text cells. By default, the first cell is created for you, and it’s set to "code." The cursor will already be placed in the cell, ready for you to start typing Python code.
 

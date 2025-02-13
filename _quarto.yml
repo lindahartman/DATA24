@@ -22,7 +22,6 @@ website:
       - icon: facebook
         href: https://www.facebook.com/lunduniversity
   navbar:
-    logo: "brand/LU_logo.png"
     left:
       - href: index.qmd
         text: Home
