@@ -317,7 +317,7 @@ Tip
 </div>
 </div>
 <p>The <code>pl.col()</code> wrapper is super flexible, and it’s going to be central as we build more advanced expressions in Polars. For instance, you can use <code>pl.col()</code> to refer to multiple columns simultaneously:</p>
-<div id="a3aaa614" class="cell" data-execution_count="12">
+<div id="882e583a" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"country_code"</span>, <span class="st">"country"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
@@ -391,7 +391,7 @@ Tip
 </div>
 </div>
 <p>Sometimes, typing out long column names can feel like a chore, especially when you’re working with many columns. But don’t worry — Polars makes it easy to select columns by their position in the dataset. For example, this code selects the second and third columns by their numerical index:</p>
-<div id="90f1fb9a" class="cell" data-execution_count="13">
+<div id="acbb5cbd" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.nth(<span class="dv">1</span>,<span class="dv">2</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
@@ -478,7 +478,7 @@ Caution
 </div>
 </div>
 <p>What about negative numbers? They’re a handy shortcut for selecting columns from the back of the dataset. For instance, <code>-1</code> refers to the last column, and this code will select the first and last columns:</p>
-<div id="bba7dbed" class="cell" data-execution_count="14">
+<div id="5571985f" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.nth(<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
@@ -565,7 +565,7 @@ Caution
 </div>
 </div>
 <p>Now, let’s talk about the opposite of <code>select()</code> — the <code>drop()</code> method. The <code>drop()</code> method removes specific columns from your dataset, leaving everything else intact. For example:</p>
-<div id="d0881028" class="cell" data-execution_count="15">
+<div id="26a0682a" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    .drop(pl.col(<span class="st">"country"</span>), pl.col(<span class="st">"region"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
@@ -665,7 +665,7 @@ Caution
 </div>
 </div>
 <p>Dopping is equivalent to selecting all columns <strong>except</strong> the ones you want to exclude. Here’s how could would write it using in terms of selection:</p>
-<div id="e8205f90" class="cell" data-execution_count="16">
+<div id="8d843c68" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.<span class="bu">all</span>().exclude(<span class="st">"country"</span>, <span class="st">"region"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
@@ -793,7 +793,7 @@ Challenge
 </div>
 </div>
 <p>Please, pause the video and try couple of different ways of selecting these columns.</p>
-<div id="a2b0c12c" class="cell" data-execution_count="17">
+<div id="7fc64609" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"pop_clean_fuels_cooking_mln"</span>), pl.col(<span class="st">"prop_clean_fuels_cooking_pct"</span>))) </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>

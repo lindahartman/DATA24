@@ -157,7 +157,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
   <li><a href="#video-2-greenscreen-5-min" id="toc-video-2-greenscreen-5-min" class="nav-link" data-scroll-target="#video-2-greenscreen-5-min">VIDEO 2 {greenscreen} ~ 5 min</a></li>
   <li><a href="#video-3-greenscreen-10-min" id="toc-video-3-greenscreen-10-min" class="nav-link" data-scroll-target="#video-3-greenscreen-10-min">VIDEO 3 {greenscreen} ~ 10 min</a></li>
   <li><a href="#video-4-greenscreen-9-min" id="toc-video-4-greenscreen-9-min" class="nav-link" data-scroll-target="#video-4-greenscreen-9-min">VIDEO 4 {greenscreen} ~ 9 min</a></li>
-  <li><a href="#video-5-greenscreen-12-min" id="toc-video-5-greenscreen-12-min" class="nav-link" data-scroll-target="#video-5-greenscreen-12-min">VIDEO 5 {greenscreen} ~ 12 min</a></li>
+  <li><a href="#video-5-greenscreen-7-min" id="toc-video-5-greenscreen-7-min" class="nav-link" data-scroll-target="#video-5-greenscreen-7-min">VIDEO 5 {greenscreen} ~ 7 min</a></li>
   <li><a href="#video-6-greenscreen-10-min" id="toc-video-6-greenscreen-10-min" class="nav-link" data-scroll-target="#video-6-greenscreen-10-min">VIDEO 6 {greenscreen} ~ 10 min</a></li>
   <li><a href="#video-7-greenscreen-7-min" id="toc-video-7-greenscreen-7-min" class="nav-link" data-scroll-target="#video-7-greenscreen-7-min">VIDEO 7 {greenscreen} ~ 7 min</a></li>
   <li><a href="#video-8-greenscreen-12-min" id="toc-video-8-greenscreen-12-min" class="nav-link" data-scroll-target="#video-8-greenscreen-12-min">VIDEO 8 {greenscreen} ~ 12 min</a></li>
@@ -244,37 +244,15 @@ Have a look at the [full interview here](https://mode.com/blog/whos-behind-the-n
 <section id="video-3-greenscreen-10-min" class="level1">
 <h1>VIDEO 3 {greenscreen} ~ 10 min</h1>
 <!-- ## First plot -->
-<p>Now, it’s time to create our very first plot! Here is a question we would like to answer using <code>gapminder</code> data:</p>
-<div class="callout callout-style-default callout-question callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Question
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Do people in rich countries live longer than people in poor countries?</p>
-</div>
-</div>
-<p>The answer may be quite intuitive, but we will continue our investigation further</p>
-<div class="callout callout-style-default callout-question callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Question
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>How does the relationship between GDP per capita and Life expectancy look like? Is this relationship linear? Non-linear?</li>
-<li>Are there exceptions to the general rule (outliers)?</li>
-</ul>
-</div>
-</div>
+<p>Now, it’s time to create our very first plot! Here is a question we would like to answer using <code>gapminder</code> data: Do people in rich countries live longer than people in poor countries?</p>
+<!-- :::{.question}
+Do people in rich countries live longer than people in poor countries? 
+::: -->
+<p>The answer may be quite intuitive, but we will continue our investigation further: How does the relationship between GDP per capita and Life expectancy look like? Is this relationship linear? Non-linear? Are there any exceptions to the general rule?</p>
+<!-- :::{.question}
+- How does the relationship between GDP per capita and Life expectancy look like? Is this relationship linear? Non-linear? 
+- Are there exceptions to the general rule (outliers)?
+::: -->
 <p>In order to answer these questions, we will create a plot from <code>gapminder</code> data. Here’s the code we’ll use. Take a moment to copy this code verbatim from your screen.</p>
 <p>When writing Python code with <code>plotnine</code> — and later when we use <code>polars</code> — you’ll notice that we often wrap our code in parentheses. This is a great habit to get into because it allows us to break our code into multiple lines without worrying about indentation.</p>
 <p>Let’s walk through this step by step.</p>
@@ -288,8 +266,12 @@ Question
 <p>The result is a simple yet meaningful scatter plot. It shows a positive, non-linear relationship between GDP per capita on the x-axis and life expectancy on the y-axis. Does this align with what you initially expected? Or does it challenge your assumptions? Already, you can see how visualizing data helps uncover patterns and stories that might not be obvious at first glance.</p>
 <p>Take your time to review the code and compare it to the plot we created. Understanding this connection — how the code you write translates directly into what you see on the screen — is the key to mastering data visualization.</p>
 <p>In fact, the structure of most plots in <code>plotnine</code> (and its R counterpart, <code>ggplot2</code>) can be summarized with a simple template:</p>
-<pre><code>ggplot(data = &lt;DATA&gt;) + 
-  &lt;GEOM_FUNCTION&gt;(mapping = aes(&lt;MAPPINGS&gt;))</code></pre>
+<!-- 
+```
+ggplot(data = <DATA>) + 
+  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+``` 
+-->
 <p>This template is incredibly flexible and serves as the foundation for almost every visualization we’ll create.</p>
 <p>In the remainder of this lesson, we’ll explore how to extend and customize this template to create a wide variety of visualizations. Each new element we add will open up even more possibilities.</p>
 <p>I’ll see you in the next one!</p>
@@ -297,20 +279,11 @@ Question
 <section id="video-4-greenscreen-9-min" class="level1">
 <h1>VIDEO 4 {greenscreen} ~ 9 min</h1>
 <!-- ## Axis -->
-<p>Hello again! Ready for a challenge? I’ve got a question for you:</p>
-<div class="callout callout-style-default callout-challenge callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Challenge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>How has life expectancy changed over time?</p>
-</div>
-</div>
+<p>Hello again! Ready for a challenge? I’ve got a question for you: How has life expectancy changed over time? <!-- 
+:::{.challenge}
+How has life expectancy changed over time?
+::: 
+--></p>
 <p>Take a moment to think about it. Better yet, try answering it by modifying the code we wrote in the last lesson.</p>
 <p>Here’s a quick hint before you pause the video: The <code>gapminder</code> dataset includes a column called <code>year</code>, which can go on the x-axis. Use that to tweak the code and see what you find. I’ll wait right here while you try it out!</p>
 <p>Pause the video now and give it a shot. See you in a moment!</p>
@@ -320,28 +293,18 @@ Challenge
 <p>Instead of geom_point, try using geom_jitter. This will add a tiny bit of random noise to spread out the points so they’re easier to see.</p>
 <p>Here’s how you do it:</p>
 <p>Run this code and check out the difference. Much better, right? Now we can see the points more clearly.</p>
-<p>Let’s keep going with this little game. Here’s your next challenge:</p>
-<div class="callout callout-style-default callout-challenge callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Challenge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Can you visualize life expectancy by continent?</p>
-</div>
-</div>
+<p>Let’s keep going with this little game. Here’s your next challenge: Can you visualize life expectancy by continent?</p>
+<!-- :::{.challenge}
+Visualize life expectancy by continent
+::: -->
 <p>Think about which variable should go on the x-axis this time. Which continent do you think tends to have the highest life expectancy? Modify your code and give it a shot. Pause the video, try it out, and come back when you’re ready.</p>
 <!-- *...pause for effect...* -->
 <p>Great job! What do we see here? Looks like life expectancy in Oceania is quite high, although there aren’t many points for that region. Europe is a close second. On the other hand, Africa seems to have the lowest life expectancy overall, judging by the density of points at the lower end of the y-axis.</p>
 <p>Here’s another question: Which continent has the widest spread in life expectancy values? That’s right—it’s Asia. There’s quite a bit of variation there, which is something we’ll dig into in more detail later in the course.</p>
 <p>Fantastic work so far! Take a moment to review what you’ve done, and I’ll see you in the next section!</p>
 </section>
-<section id="video-5-greenscreen-12-min" class="level1">
-<h1>VIDEO 5 {greenscreen} ~ 12 min</h1>
+<section id="video-5-greenscreen-7-min" class="level1">
+<h1>VIDEO 5 {greenscreen} ~ 7 min</h1>
 <!-- ## Aestetical mapping -->
 <p>&lt;…Walks in, looking thoughtful….&gt;</p>
 <p>Oh, hey there! You know, I’ve been thinking—what if we could combine the graphs from the last two challenges and show the relationship between not just two variables, but three?</p>
@@ -434,7 +397,7 @@ scale_x_log10()
 <p>Notice something? The color, size, and alpha settings aren’t part of the aes() function. That’s because these properties aren’t mapped to any variable in the data. Instead, they’re applied uniformly to every point in the plot.</p>
 <p>Let’s break it down:</p>
 <ul>
-<li><code>color="blue"</code>: The color is set as a character string, wrapped in quotes. You can experiment with other colors too—try red, green, or even hex codes like “#FF5733”.</li>
+<li><code>color="blue"</code>: The color is set as a character string, wrapped in quotes. You can experiment with other colors too—try red, green, or even hex codes like “#FF5755”.</li>
 <li><code>size=2:</code> The size of the points is specified as a number, in millimeters. Increase the size to make the points larger or decrease it for smaller ones.</li>
 <li><code>alpha=0.1</code>: Transparency is a decimal value between 0 and 1, where 0 is completely transparent and 1 is fully opaque.</li>
 </ul>
@@ -445,20 +408,10 @@ scale_x_log10()
 <li>2 is a triangle,</li>
 <li>20 is a small filled circle.</li>
 </ul>
-<p>Here’s a challenge for you</p>
-<div class="callout callout-style-default callout-challenge callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Challenge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Change the shape argument in the code to explore different shapes. Try values between 0 and 25, and see how your graph changes. You’ll find the full list of shapes in the plotnine documentation.</p>
-</div>
-</div>
+<p>Here’s a challenge for you. Change the shape argument in the code to explore different shapes. Try values between 0 and 25, and see how your graph changes. You’ll find the full list of shapes in the plotnine documentation. <!-- 
+:::{.challenge}
+Change the shape argument in the code to explore different shapes. 
+::: --></p>
 <p>So, what do you think? With just a few tweaks, we’ve turned our scatter plot into a clean and stylish visual. Customizing non-data-linked properties like this is a great way to emphasize certain elements of your data without overwhelming your audience.</p>
 <p>In the next lesson, we’ll explore even more ways to take your visualizations to the next level. See you there!</p>
 </section>
@@ -543,22 +496,10 @@ scale_x_log10()
 <p>Create a boxplot of life expectancy over time, treating year as a categorical variable. Using this plot, can you detect when the interquartile range of life expectancy—the middle 50% of values—was the smallest?</p>
 <p>Then apply the same concept to gdpPercap.</p>
 <p>Create a boxplot of GDP per capita by year, but this time keep it on a logarithmic scale. Remember that we used the scale_y_log10() function to make the data easier to interpret. Compare the interquartile range of GDP per capita in 2007 with that in 1952. Is the world today more or less diverse in terms of economic inequality?</p>
-<div class="callout callout-style-default callout-challenge callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Challenge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Make a boxplot of life expectancy by year. When was interquartile range of life expectancy the smallest?</li>
-<li>Make the same plot of gdpPercap (on a log scale) per year. Is the world today more or less diverse than in 1952?</li>
-</ul>
-</div>
-</div>
+<!-- :::{.challenge}
+- Make a boxplot of life expectancy by year. When was interquartile range of life expectancy the smallest?
+- Make the same plot of gdpPercap (on a log scale) per year. Is the world today more or less diverse than in 1952?
+::: -->
 <p>Go ahead and give it a try. Pause the video and come back once you have your answer!</p>
 <p>Looking at these two plots, you might notice a fascinating pattern.</p>
 <p>You’re absolutely right: economic inequality has grown in the recent decades. In 1952, the world was much poorer, but there was a greater sense of uniformity across nations. By 2007, while the world is significantly wealthier on average, the disparities have widened.</p>
@@ -572,52 +513,22 @@ Challenge
 <p>One of the most exciting features of plotnine is the sheer variety of geoms—the building blocks for visualizing data. Start typing geom_ in your code editor, and you’ll see a list of options pop up. It’s like a treasure chest of possibilities, and each geom offers a unique perspective on your data.</p>
 <p>Let’s put your skills to the test with a few new challenges!</p>
 <p>Histograms are perfect for exploring the distribution of a single variable. Let’s start with life expectancy. Create a histogram and observe the shape of the distribution. How many peaks—or modes—does it have? Play around with the <code>bins</code> parameter. Adjusting the number of bins changes the granularity of your histogram, which can affect how you interpret the distribution. What value of bins seems reasonable to you?</p>
-<div class="callout callout-style-default callout-challenge callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Challenge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Make a histogram of life expectancy. What is the shape of the distribution? How many modes (peaks) does the distribution of life expectancy have? What value of the <code>bins</code> parameter look reasonable?</p>
-</div>
-</div>
+<!-- :::{.challenge}
+Make a histogram of life expectancy. What is the shape of the distribution? How many modes (peaks) does the distribution of life expectancy have? What value of the `bins` parameter look reasonable?
+::: -->
 <p>Next up: density plots. These are smoothed-out versions of histograms, showing the probability distribution of your data.</p>
 <p>Create a simple density plot for life expectancy. You can do it! Start typing and you will find the function you need. Do you see it? What if you want to compare distributions across continents? Add a color aesthetic.</p>
-<div class="callout callout-style-default callout-challenge callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Challenge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Build a density function. How would you compare density functions of different continents?</p>
-</div>
-</div>
+<!-- :::{.challenge}
+Build a density function. How would you compare density functions of different continents? 
+::: -->
 <p>Right! You can split the data by continent by adding a color aesthetic and linking it to the variable <code>continent</code>. Or take it one step further! Use the <code>fill</code> aesthetic (in addition to color) to fill the areas under the curves. Add some transparency with <code>alpha</code> for a cleaner visualization like this:</p>
 <p>These plots help us see how life expectancy varies not just overall, but also within each continent. Notice any interesting patterns? What might explain the peaks—or modes—you see in the distributions?</p>
 <p>Now let’s level up with 2D density plots. These are excellent for visualizing relationships between two variables. Start by creating a density plot of log GDP per capita vs.&nbsp;life expectancy (use geom_density_2d() function):</p>
-<div class="callout callout-style-default callout-challenge callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Challenge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Build a graph using <code>geom_density2d()</code> for log GDP per capita vs life expectancy. How many clusters of datapoints can you identify? What if you look at it by continent?</p>
-</div>
-</div>
+<!-- :::{.challenge}
+Build a graph using `geom_density2d()` for log GDP per capita vs life expectancy. How many clusters of datapoints can you identify? What if you look at it by continent?
+::: -->
 <p>What do you see? Notice the two distinct clusters? One cluster represents countries that are poorer and have lower life expectancy, while the other includes those that are wealthier and healthier.</p>
-<p>Now let’s break it down by continent.</p>
+<p>Now let’s break it down by continent. Add a color aesthetic to see how regions of the world are distributed.</p>
 <!-- :::{.challenge}
 Add a color aesthetic to see how regions of the world are distributed
 ::: -->
@@ -636,22 +547,10 @@ Add a color aesthetic to see how regions of the world are distributed
 <p>The result? A clean, organized set of charts where each panel highlights the GDP-per-capita and life expectancy trends for a specific continent. Faceting is especially helpful when the number of panels is manageable, and it lets us compare trends within each group side by side.</p>
 <p>Let’s take this idea further. What happens to the relationship between GDP per capita and life expectancy over time?</p>
 <p>Try faceting by year instead of continent.See if you can answer these questions</p>
-<div class="callout callout-style-default callout-question callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Question
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Do the slopes of the trend lines change over the years?</li>
-<li>How does the clustering of data points evolve as time progresses?</li>
-</ul>
-</div>
-</div>
+<!-- :::{.question}
+- Do the slopes of the trend lines change over the years?
+- How does the clustering of data points evolve as time progresses?
+::: -->
 <p>This exercise offers an incredible opportunity to see how historical events, global growth, and inequality have shaped the world over decades.</p>
 <!-- :::{.challenge}
 Facet the following plot by year, keeping the linear smoother. You can edit this sample code

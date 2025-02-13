@@ -99,18 +99,18 @@ Now that we know what we’re working with, let’s roll up our sleeves and star
 # VIDEO 3 {greenscreen} ~ 10 min
 <!-- ## First plot -->
 
-Now, it’s time to create our very first plot! Here is a question we would like to answer using `gapminder` data: 
+Now, it’s time to create our very first plot! Here is a question we would like to answer using `gapminder` data: Do people in rich countries live longer than people in poor countries? 
 
-:::{.question}
+<!-- :::{.question}
 Do people in rich countries live longer than people in poor countries? 
-:::
+::: -->
 
-The answer may be quite intuitive, but we will continue our investigation further
+The answer may be quite intuitive, but we will continue our investigation further: How does the relationship between GDP per capita and Life expectancy look like? Is this relationship linear? Non-linear? Are there any exceptions to the general rule?
 
-:::{.question}
+<!-- :::{.question}
 - How does the relationship between GDP per capita and Life expectancy look like? Is this relationship linear? Non-linear? 
 - Are there exceptions to the general rule (outliers)?
-:::
+::: -->
 
 In order to answer these questions, we will create a plot from `gapminder` data. Here’s the code we’ll use. Take a moment to copy this code verbatim from your screen. 
 
@@ -148,10 +148,12 @@ Take your time to review the code and compare it to the plot we created. Underst
 
 In fact, the structure of most plots in `plotnine` (and its R counterpart, `ggplot2`) can be summarized with a simple template:
 
+<!-- 
 ```
 ggplot(data = <DATA>) + 
   <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
-```
+``` 
+-->
 
 This template is incredibly flexible and serves as the foundation for almost every visualization we’ll create.
 
@@ -162,11 +164,12 @@ I’ll see you in the next one!
 # VIDEO 4 {greenscreen} ~ 9 min
 <!-- ## Axis -->
 
-Hello again! Ready for a challenge? I’ve got a question for you:
-
+Hello again! Ready for a challenge? I’ve got a question for you: How has life expectancy changed over time?
+<!-- 
 :::{.challenge}
 How has life expectancy changed over time?
-:::
+::: 
+-->
 
 Take a moment to think about it. Better yet, try answering it by modifying the code we wrote in the last lesson.
 
@@ -206,11 +209,11 @@ geom_jitter(mapping = aes(x='year', y='lifeExp'))
 
 Run this code and check out the difference. Much better, right? Now we can see the points more clearly.
 
-Let’s keep going with this little game. Here’s your next challenge:
+Let’s keep going with this little game. Here’s your next challenge: Can you visualize life expectancy by continent?
 
-:::{.challenge}
-Can you visualize life expectancy by continent?
-:::
+<!-- :::{.challenge}
+Visualize life expectancy by continent
+::: -->
 
 Think about which variable should go on the x-axis this time. Which continent do you think tends to have the highest life expectancy? Modify your code and give it a shot. Pause the video, try it out, and come back when you’re ready.
 
@@ -232,7 +235,7 @@ Here’s another question: Which continent has the widest spread in life expecta
 
 Fantastic work so far! Take a moment to review what you’ve done, and I’ll see you in the next section!
 
-# VIDEO 5 {greenscreen} ~ 12 min
+# VIDEO 5 {greenscreen} ~ 7 min
 <!-- ## Aestetical mapping -->
 
 <...Walks in, looking thoughtful....>
@@ -464,7 +467,7 @@ Notice something? The color, size, and alpha settings aren’t part of the aes()
 
 Let’s break it down:
 
-- `color="blue"`: The color is set as a character string, wrapped in quotes. You can experiment with other colors too—try red, green, or even hex codes like "#FF5733".
+- `color="blue"`: The color is set as a character string, wrapped in quotes. You can experiment with other colors too—try red, green, or even hex codes like "#FF5755".
 - `size=2:` The size of the points is specified as a number, in millimeters. Increase the size to make the points larger or decrease it for smaller ones.
 - `alpha=0.1`: Transparency is a decimal value between 0 and 1, where 0 is completely transparent and 1 is fully opaque.
 
@@ -475,11 +478,11 @@ Finally, let’s talk about shapes. In plotnine, shapes are represented by numbe
 - 2 is a triangle,
 - 20 is a small filled circle.
 
-Here’s a challenge for you
-
+Here’s a challenge for you. Change the shape argument in the code to explore different shapes. Try values between 0 and 25, and see how your graph changes. You’ll find the full list of shapes in the plotnine documentation.
+<!-- 
 :::{.challenge}
-Change the shape argument in the code to explore different shapes. Try values between 0 and 25, and see how your graph changes. You’ll find the full list of shapes in the plotnine documentation.
-:::
+Change the shape argument in the code to explore different shapes. 
+::: -->
 
 So, what do you think? With just a few tweaks, we’ve turned our scatter plot into a clean and stylish visual. Customizing non-data-linked properties like this is a great way to emphasize certain elements of your data without overwhelming your audience.
 
@@ -684,10 +687,10 @@ Then apply the same concept to gdpPercap.
 
 Create a boxplot of GDP per capita by year, but this time keep it on a logarithmic scale. Remember that we used the scale_y_log10() function to make the data easier to interpret. Compare the interquartile range of GDP per capita in 2007 with that in 1952. Is the world today more or less diverse in terms of economic inequality?
 
-:::{.challenge}
+<!-- :::{.challenge}
 - Make a boxplot of life expectancy by year. When was interquartile range of life expectancy the smallest?
 - Make the same plot of gdpPercap (on a log scale) per year. Is the world today more or less diverse than in 1952?
-:::
+::: -->
 
 Go ahead and give it a try. Pause the video and come back once you have your answer!
 
@@ -732,9 +735,9 @@ Let’s put your skills to the test with a few new challenges!
 
 Histograms are perfect for exploring the distribution of a single variable. Let’s start with life expectancy. Create a histogram and observe the shape of the distribution. How many peaks—or modes—does it have? Play around with the `bins` parameter. Adjusting the number of bins changes the granularity of your histogram, which can affect how you interpret the distribution. What value of bins seems reasonable to you?
 
-:::{.challenge}
+<!-- :::{.challenge}
 Make a histogram of life expectancy. What is the shape of the distribution? How many modes (peaks) does the distribution of life expectancy have? What value of the `bins` parameter look reasonable?
-:::
+::: -->
 
 ```{python}
 #| echo: false
@@ -750,9 +753,9 @@ Next up: density plots. These are smoothed-out versions of histograms, showing t
 
 Create a simple density plot for life expectancy. You can do it! Start typing and you will find the function you need. Do you see it? What if you want to compare distributions across continents? Add a color aesthetic.
 
-:::{.challenge}
+<!-- :::{.challenge}
 Build a density function. How would you compare density functions of different continents? 
-:::
+::: -->
 
 ```{python}
 #| echo: false
@@ -790,9 +793,9 @@ These plots help us see how life expectancy varies not just overall, but also wi
 
 Now let’s level up with 2D density plots. These are excellent for visualizing relationships between two variables. Start by creating a density plot of log GDP per capita vs. life expectancy (use geom_density_2d() function):
 
-:::{.challenge}
+<!-- :::{.challenge}
 Build a graph using `geom_density2d()` for log GDP per capita vs life expectancy. How many clusters of datapoints can you identify? What if you look at it by continent?
-:::
+::: -->
 
 
 ```{python}
@@ -808,7 +811,7 @@ scale_x_log10()
 
 What do you see? Notice the two distinct clusters? One cluster represents countries that are poorer and have lower life expectancy, while the other includes those that are wealthier and healthier.
 
-Now let’s break it down by continent. 
+Now let’s break it down by continent. Add a color aesthetic to see how regions of the world are distributed. 
 
 <!-- :::{.challenge}
 Add a color aesthetic to see how regions of the world are distributed
@@ -858,10 +861,10 @@ Let’s take this idea further. What happens to the relationship between GDP per
 
 Try faceting by year instead of continent.See if you can answer these questions
 
-:::{.question}
+<!-- :::{.question}
 - Do the slopes of the trend lines change over the years?
 - How does the clustering of data points evolve as time progresses?
-:::
+::: -->
 
 This exercise offers an incredible opportunity to see how historical events, global growth, and inequality have shaped the world over decades.
 

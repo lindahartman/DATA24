@@ -104,17 +104,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <style>
-div.callout-question.callout {
-  border-left-color: pink;
-}
-div.callout-question.callout-style-default > .callout-header {
-  background-color: rgb(from pink r g b / 13%);
-}
-div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
-  content: '🧠';
-  background-image: none;
-}
 div.callout-challenge.callout {
   border-left-color: firebrick;
 }
@@ -124,6 +113,17 @@ div.callout-challenge.callout-style-default > .callout-header {
 div.callout-challenge .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-challenge.callout-style-default .callout-icon::before, div.callout-challenge.callout-titled .callout-icon::before {
   content: '🛠️';
+  background-image: none;
+}
+div.callout-question.callout {
+  border-left-color: pink;
+}
+div.callout-question.callout-style-default > .callout-header {
+  background-color: rgb(from pink r g b / 13%);
+}
+div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
+  content: '🧠';
   background-image: none;
 }
 </style>
@@ -260,7 +260,7 @@ Note
 </div>
 </div>
 <p>Here’s the code to bring this data into our workspace:</p>
-<div id="6dd7a53c" class="cell" data-execution_count="2">
+<div id="30474b19" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plastics_df <span class="op">=</span> pl.read_csv(<span class="st">'bffp/BFFplastics.csv'</span>)</span>
@@ -275,7 +275,7 @@ Note
 <p>In your notebook you can see the code for importing the data, as well as a DataFrame containing a data dictionary — a detailed description of the variables in this dataset.</p>
 <p>So far, we’ve always imported data from CSV files or pre-built datasets. But now, it’s time to talk about creating data frames by hand. This is super handy when working with small examples, prototypes, or mock data. To do that, we need to talk about two foundational Python data structures: dictionaries and lists.</p>
 <p>Think of a dictionary as a way to describe an object. It’s a collection of “key-value” pairs—like writing down standard characteristics of something along with their values. Dictionaries are specified with curly brackets <code>{}</code>. Let’s say I want to describe my bike:</p>
-<div id="af0e2195" class="cell" data-execution_count="3">
+<div id="abc2ccae" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Bicycle <span class="op">=</span> {</span>
@@ -289,7 +289,7 @@ Note
 </div>
 <p>Here, each characteristic—like Type or Size—has one value. Easy, right? But what if I also wanted to describe the bikes of my twins? I’d need three records, not one.</p>
 <p>This is where lists come in. A list is a collection of items—typically of the same type—and it’s denoted with square brackets <code>[]</code>. Let’s use lists to describe all the bikes in my garage:</p>
-<div id="c2c31282" class="cell" data-execution_count="4">
+<div id="e2940099" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Bikes <span class="op">=</span> {</span>
@@ -302,7 +302,7 @@ Note
 </details>
 </div>
 <p>Now, we have a dictionary of lists, representing three bikes. To turn this into a Polars DataFrame, all we need to do is pass it to the <code>pl.DataFrame()</code> function:</p>
-<div id="ac2ff11d" class="cell" data-execution_count="5">
+<div id="844670bb" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bikes_df <span class="op">=</span> pl.DataFrame(Bikes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -489,7 +489,7 @@ Challenge
 </section>
 <section id="joins-6-12-notready-yet-30-min" class="level1">
 <h1>JOINS 6-12 (NOTREADY YET) ~ 30 min</h1>
-<div id="8499bbaf" class="cell" data-execution_count="23">
+<div id="b6b18eb0" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>band_members <span class="op">=</span> pl.DataFrame({</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"name"</span>: [<span class="st">"Mick"</span>, <span class="st">"John"</span>, <span class="st">"Paul"</span>],</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"band"</span>: [<span class="st">"Stones"</span>, <span class="st">"Beatles"</span>, <span class="st">"Beatles"</span>] </span>
@@ -501,7 +501,7 @@ Challenge
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Left join</p>
-<div id="9637152a" class="cell" data-execution_count="24">
+<div id="bfb04fd8" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(band_members</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>.join(band_instruments, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"left"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
@@ -548,7 +548,7 @@ Challenge
 </div>
 </div>
 <p>Full join</p>
-<div id="afc2f83b" class="cell" data-execution_count="25">
+<div id="bb59427f" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(band_members</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>.join(band_instruments, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"full"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
@@ -611,7 +611,7 @@ Challenge
 </div>
 </div>
 </div>
-<div id="e8a00709" class="cell" data-execution_count="26">
+<div id="f7495805" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(band_members</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>.join(band_instruments, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"full"</span>, coalesce<span class="op">=</span><span class="va">True</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
@@ -668,7 +668,7 @@ Challenge
 </div>
 </div>
 <p>Inner join (Default)</p>
-<div id="a4c3faaf" class="cell" data-execution_count="27">
+<div id="437bab1a" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(band_members</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>.join(band_instruments, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"inner"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
@@ -710,7 +710,7 @@ Challenge
 </div>
 </div>
 <p>Anti join</p>
-<div id="837a29c0" class="cell" data-execution_count="28">
+<div id="c1b954c9" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(band_members</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>.join(band_instruments, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"anti"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
@@ -744,7 +744,7 @@ Challenge
 </div>
 </div>
 <p>And reverse. Note the swapped order of datasets.</p>
-<div id="b17ddd36" class="cell" data-execution_count="29">
+<div id="eb479c83" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(band_instruments</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>.join(band_members, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"anti"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
@@ -785,7 +785,7 @@ Challenge
 <p>For the curious right join allows you to perform left join in the opposite direction (without swapping the datasets). You should do “right join” only as the last resort, when you can not change the dataset order.</p>
 <p>Full join introduces missing value, inner join drops records, left join does both, but thats what you probably want. Anti-join is useful for checking which records will get dropped if you perform an inner join. Do it in both directions!</p>
 <p>There’s something that’s called “semi-join” but it is more like a filter. It will return the left dataset WITHOUT any additional information, filtered to only those records you have on the right.</p>
-<div id="37b9b03c" class="cell" data-execution_count="30">
+<div id="8a9fb63b" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(band_instruments</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>.join(band_members, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"semi"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
@@ -823,14 +823,14 @@ Challenge
 </div>
 </div>
 <p>Let’s look at the data.</p>
-<div id="d283d7de" class="cell" data-execution_count="31">
+<div id="a8bdf4b0" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fact_area_df <span class="op">=</span> pl.read_csv(<span class="st">"cia/factbook_area_2024.csv"</span>, null_values<span class="op">=</span><span class="st">"NA"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>fact_comm_df <span class="op">=</span> pl.read_csv(<span class="st">"cia/factbook_comm_transport_2024.csv"</span>, null_values<span class="op">=</span><span class="st">"NA"</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>fact_econ_df <span class="op">=</span> pl.read_csv(<span class="st">"cia/factbook_economy_security_2024.csv"</span>, null_values<span class="op">=</span><span class="st">"NA"</span>)</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>fact_energy_df <span class="op">=</span> pl.read_csv(<span class="st">"cia/factbook_energy_environment_2024.csv"</span>, null_values<span class="op">=</span><span class="st">"NA"</span>)</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>fact_ppl_df <span class="op">=</span> pl.read_csv(<span class="st">"cia/factbook_people_society_2024.csv"</span>, null_values<span class="op">=</span><span class="st">"NA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="a14a741e" class="cell" data-execution_count="32">
+<div id="1c9303a7" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"People dataset dimensions:"</span>, fact_ppl_df.shape[<span class="dv">0</span>])</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Energy dataset dimensions:"</span>, fact_energy_df.shape[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -839,7 +839,7 @@ Energy dataset dimensions: 226</code></pre>
 </div>
 </div>
 <p>How many records will be returned if we perform left join on this? Correct answer is 237. Creates missing values.</p>
-<div id="5b8d086b" class="cell" data-execution_count="33">
+<div id="7c5259b1" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fact_ppl_df</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    .join(fact_energy_df, on<span class="op">=</span>[<span class="st">"name"</span>, <span class="st">"slug"</span>, <span class="st">"region"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
@@ -1188,7 +1188,7 @@ Energy dataset dimensions: 226</code></pre>
 </div>
 </div>
 <p>The inner join drops “unmatched” observations from both sides</p>
-<div id="45783124" class="cell" data-execution_count="34">
+<div id="58898f83" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    fact_ppl_df</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    .join(fact_energy_df, on<span class="op">=</span>[<span class="st">"name"</span>, <span class="st">"slug"</span>, <span class="st">"region"</span>], how<span class="op">=</span><span class="st">"inner"</span>)</span>
@@ -1199,7 +1199,7 @@ Energy dataset dimensions: 226</code></pre>
 </div>
 </div>
 <p>Full join will keep unmatched observations on both sides.</p>
-<div id="a71aa1b0" class="cell" data-execution_count="35">
+<div id="cb2860f2" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    fact_ppl_df</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    .join(fact_energy_df, on<span class="op">=</span>[<span class="st">"name"</span>, <span class="st">"slug"</span>, <span class="st">"region"</span>], how<span class="op">=</span><span class="st">"full"</span>, coalesce<span class="op">=</span><span class="va">True</span>)</span>
@@ -1210,7 +1210,7 @@ Energy dataset dimensions: 226</code></pre>
 </div>
 </div>
 <p>Join all of these datasets.</p>
-<div id="5471630c" class="cell" data-execution_count="36">
+<div id="c64762ee" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fact_all_df <span class="op">=</span> (</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    fact_area_df</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    .join(fact_econ_df, on<span class="op">=</span>[<span class="st">"name"</span>, <span class="st">"slug"</span>, <span class="st">"region"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
@@ -1219,7 +1219,7 @@ Energy dataset dimensions: 226</code></pre>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    .join(fact_ppl_df, on<span class="op">=</span>[<span class="st">"name"</span>, <span class="st">"slug"</span>, <span class="st">"region"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="bc08eadf" class="cell" data-execution_count="37">
+<div id="40c19cef" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    ggplot(fact_all_df)<span class="op">+</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    geom_point(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">"gdp_composition_by_sector_of_origin_services"</span>, y<span class="op">=</span><span class="st">"energy_consumption_per_capita"</span>, color<span class="op">=</span><span class="st">"region"</span>, size<span class="op">=</span><span class="st">"population_total"</span>))<span class="op">+</span></span>
@@ -1237,7 +1237,7 @@ Energy dataset dimensions: 226</code></pre>
 </div>
 </div>
 </div>
-<div id="d7d4d98d" class="cell" data-execution_count="38">
+<div id="e6c1af09" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    ggplot(fact_all_df)<span class="op">+</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    geom_point(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">"military_expenditures"</span>, y<span class="op">=</span><span class="st">"total_fertility_rate"</span>, color<span class="op">=</span><span class="st">"region"</span>, size<span class="op">=</span><span class="st">"population_total"</span>))<span class="op">+</span></span>
@@ -1256,7 +1256,7 @@ Energy dataset dimensions: 226</code></pre>
 </div>
 <section id="stacking" class="level2">
 <h2 class="anchored" data-anchor-id="stacking">Stacking</h2>
-<div id="2e5392dc" class="cell" data-execution_count="39">
+<div id="a59ccdd4" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># indoor air pollution</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>hhap_deaths <span class="op">=</span> pl.read_csv(<span class="st">"hhap/hhap_deaths.csv"</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>clean_fuels <span class="op">=</span> pl.read_csv(<span class="st">"hhap/clean_fuels_cooking.csv"</span>)</span>
@@ -1265,7 +1265,7 @@ Energy dataset dimensions: 226</code></pre>
 <p>Another common type of operation is stacking two identical datasets together (vertically). This is possible to do when the meaning of the columns in the datasets is the same and we are interested in combining two parts of identical data into a new and larger dataset.</p>
 <p>Recall that in our household air pollution case study we had three files: - <code>hhap_deaths</code> - containing death cases, associated with air pollution - <code>fuel_types</code> - describing information about the fuels used by population in different countries for household needs - <code>clean_fuels</code> - containing the fraction of population in each country with access to clean fulels for cooking</p>
 <p>All three of these datasets contain three identical columns describing the country of observation: <code>region</code>, <code>country_code</code> and <code>country</code>. The countries listed in each of the datasets is largely similar, but not completely overlapping. Let’s see if we can compile a single master set of all countries with the codes and the regions they belong to. Because the data is recorded over many years each of the datasets contains many duplicates entries. This problem will be even larger when we stack the data from several datasets together, so we will need to ensure the records in our final (combined) dataset are unique.</p>
-<div id="eaab0004" class="cell" data-execution_count="40">
+<div id="e38f2b71" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>idcols<span class="op">=</span>cs.by_name(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>country_regions <span class="op">=</span> (hhap_deaths.select(idcols)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    .vstack(fuel_types.select(idcols))</span>
@@ -1275,7 +1275,7 @@ Energy dataset dimensions: 226</code></pre>
 </div>
 <p>Note, that here we created a temporary object idcols, which will store only selector object for the three columns we are interested in. Polar selectors are independent entities which can live both inside the querying contexts as well as in the global environment, i.e.&nbsp;in memory accessible</p>
 <p>Lets compare our country codes with the full list of codes issued by ISO. Here’s a file with all Alpha 2 and Alpha 3 codes issued to nation states and territories.</p>
-<div id="41a71a86" class="cell" data-execution_count="41">
+<div id="7411437f" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>iso_df <span class="op">=</span> pl.read_csv(<span class="st">"hhap/CountryCodes_Alpha2_Alpha3.csv"</span>)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>(country_regions</span>
