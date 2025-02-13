@@ -4,7 +4,7 @@ engine: python3
 ---
 
 
-# VIDEO {greenscreen} ~ 9 min
+# VIDEO 1 {greenscreen} ~ 9 min
 
 Hello and welcome back to Data Literacy with Python!
 
@@ -177,7 +177,7 @@ Let’s break this down:
 
 By cleaning the data in this way, we ensure that our analysis is based on individual contributions, not pre-summarized totals.
 
-# VIDEO {greenscreen} ~ 3 min
+# VIDEO 2 {greenscreen} ~ 3 min
 
 Now, let’s talk about the two special columns in our dataset: `num_events` and `volunteers`. These capture the number of counting events and the number of volunteers who participated in the cleanup campaigns.
 
@@ -221,7 +221,7 @@ In the next section, we’ll dive into pivoting and explore how to reshape `plas
 
 Let’s keep going!
 
-# VIDEO {greenscreen} ~ 9 min
+# VIDEO 4 {greenscreen} ~ 9 min
 
 Let’s take a moment to reflect on two common ways of organizing the same data: wide and long formats.
 
@@ -399,7 +399,7 @@ Before I do the pivot, I want to drop the `num_events` and `volunteers` since I 
     .filter(pl.col("country")=="Germany"))
 ```
 
-# VIDEO {greenscreen} ~ 6 min
+# VIDEO 5 {greenscreen} ~ 6 min
 
 Before we go any further, I want to quickly introduce you to the power of `great_tables` for producing engaing and informative tables. We will create a nice-looking table showing top-10 countries with the most impressive productivity growth. As we discussed earlier, the core function is `GT()` you also know that the default styling can be done with `.opt_stylize()` method. This is enough to produce decent looking table, but I want to show you a few more tricks.
 
@@ -570,7 +570,7 @@ So, let us talk through this solution together.
 - Our last step is to calculate the volunteer growth and the identification rate increase. One is percent growth and the other is a simple difference in percent values. Drop the records where either one of them is Null and sort by `id_rate_increase`. Then take top 10 records only. 
 
 
-# JOINS (NOTREADY YET) ~ 30 min
+# JOINS 6-12 (NOTREADY YET) ~ 30 min
 
 ```{python}
 band_members = pl.DataFrame({
