@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -104,17 +70,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <style>
-div.callout-challenge.callout {
-  border-left-color: firebrick;
-}
-div.callout-challenge.callout-style-default > .callout-header {
-  background-color: rgb(from firebrick r g b / 13%);
-}
-div.callout-challenge .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-challenge.callout-style-default .callout-icon::before, div.callout-challenge.callout-titled .callout-icon::before {
-  content: '🛠️';
-  background-image: none;
-}
 div.callout-question.callout {
   border-left-color: pink;
 }
@@ -124,6 +79,17 @@ div.callout-question.callout-style-default > .callout-header {
 div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
   content: '🧠';
+  background-image: none;
+}
+div.callout-challenge.callout {
+  border-left-color: firebrick;
+}
+div.callout-challenge.callout-style-default > .callout-header {
+  background-color: rgb(from firebrick r g b / 13%);
+}
+div.callout-challenge .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-challenge.callout-style-default .callout-icon::before, div.callout-challenge.callout-titled .callout-icon::before {
+  content: '🛠️';
   background-image: none;
 }
 </style>
@@ -187,14 +153,14 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#video-1-greenscreen-4-min" id="toc-video-1-greenscreen-4-min" class="nav-link active" data-scroll-target="#video-1-greenscreen-4-min">VIDEO 1 {greenscreen} ~ 4 min</a></li>
-  <li><a href="#video-2-greenscreen-12-min" id="toc-video-2-greenscreen-12-min" class="nav-link" data-scroll-target="#video-2-greenscreen-12-min">VIDEO 2 {greenscreen} ~ 12 min</a></li>
-  <li><a href="#video-3-greenscreen-12-min" id="toc-video-3-greenscreen-12-min" class="nav-link" data-scroll-target="#video-3-greenscreen-12-min">VIDEO 3 {greenscreen} ~ 12 min</a></li>
-  <li><a href="#video-4-greenscreen-7-min" id="toc-video-4-greenscreen-7-min" class="nav-link" data-scroll-target="#video-4-greenscreen-7-min">VIDEO 4 {greenscreen} ~ 7 min</a></li>
-  <li><a href="#video-5-greenscreen-12-min" id="toc-video-5-greenscreen-12-min" class="nav-link" data-scroll-target="#video-5-greenscreen-12-min">VIDEO 5 {greenscreen} ~ 12 min</a></li>
-  <li><a href="#video-6-greenscreen-3-min" id="toc-video-6-greenscreen-3-min" class="nav-link" data-scroll-target="#video-6-greenscreen-3-min">VIDEO 6 {greenscreen} ~ 3 min</a></li>
-  <li><a href="#video-7-greenscreen-11-min" id="toc-video-7-greenscreen-11-min" class="nav-link" data-scroll-target="#video-7-greenscreen-11-min">VIDEO 7 {greenscreen} ~ 11 min</a></li>
-  <li><a href="#video-8-greenscreen-14-min" id="toc-video-8-greenscreen-14-min" class="nav-link" data-scroll-target="#video-8-greenscreen-14-min">VIDEO 8 {greenscreen} ~ 14 min</a></li>
+  <li><a href="#video-1-data-greenscreen-4-min" id="toc-video-1-data-greenscreen-4-min" class="nav-link active" data-scroll-target="#video-1-data-greenscreen-4-min">VIDEO 1: DATA {greenscreen} ~ 4 min</a></li>
+  <li><a href="#video-2-import-greenscreen-12-min" id="toc-video-2-import-greenscreen-12-min" class="nav-link" data-scroll-target="#video-2-import-greenscreen-12-min">VIDEO 2: IMPORT {greenscreen} ~ 12 min</a></li>
+  <li><a href="#video-3-select-greenscreen-12-min" id="toc-video-3-select-greenscreen-12-min" class="nav-link" data-scroll-target="#video-3-select-greenscreen-12-min">VIDEO 3 SELECT {greenscreen} ~ 12 min</a></li>
+  <li><a href="#video-4-selectors-greenscreen-7-min" id="toc-video-4-selectors-greenscreen-7-min" class="nav-link" data-scroll-target="#video-4-selectors-greenscreen-7-min">VIDEO 4 SELECTORS {greenscreen} ~ 7 min</a></li>
+  <li><a href="#video-5-filter-greenscreen-12-min" id="toc-video-5-filter-greenscreen-12-min" class="nav-link" data-scroll-target="#video-5-filter-greenscreen-12-min">VIDEO 5 FILTER {greenscreen} ~ 12 min</a></li>
+  <li><a href="#video-6-deaths-data-greenscreen-3-min" id="toc-video-6-deaths-data-greenscreen-3-min" class="nav-link" data-scroll-target="#video-6-deaths-data-greenscreen-3-min">VIDEO 6 DEATHS DATA {greenscreen} ~ 3 min</a></li>
+  <li><a href="#video-7-with_columns-greenscreen-11-min" id="toc-video-7-with_columns-greenscreen-11-min" class="nav-link" data-scroll-target="#video-7-with_columns-greenscreen-11-min">VIDEO 7 WITH_COLUMNS {greenscreen} ~ 11 min</a></li>
+  <li><a href="#video-8-summaries-greenscreen-14-min" id="toc-video-8-summaries-greenscreen-14-min" class="nav-link" data-scroll-target="#video-8-summaries-greenscreen-14-min">VIDEO 8 SUMMARIES {greenscreen} ~ 14 min</a></li>
   <li><a href="#video-9-greenscreen-3-min" id="toc-video-9-greenscreen-3-min" class="nav-link" data-scroll-target="#video-9-greenscreen-3-min">VIDEO 9 {greenscreen} ~ 3 min</a></li>
   </ul>
 </nav>
@@ -221,671 +187,121 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </header>
 
 
-<section id="video-1-greenscreen-4-min" class="level1">
-<h1>VIDEO 1 {greenscreen} ~ 4 min</h1>
+<section id="video-1-data-greenscreen-4-min" class="level1">
+<h1>VIDEO 1: DATA {greenscreen} ~ 4 min</h1>
 <!-- ## Data -->
-<p>Welcome to the module on data wrangling! In the last lesson, we explored a small, but exciting gapminder dataset, and created quite a few visualizations with it. But in real-world scenarios, datasets are often much larger. This brings new challenges, like focusing on specific subsets of data—perhaps observations from a single time period or a selection of variables related to a particular phenomenon.</p>
+<p>Welcome to the module on data wrangling! In the last lesson, we explored a small, but exciting gapminder dataset, and created quite a few visualizations with it. But in real-world scenarios, datasets are often much larger. This brings new challenges, like focusing on specific subsets of data-perhaps observations from a single time period or a selection of variables related to a particular phenomenon.</p>
 <p>In this module, we’ll learn how to subset data and create meaningful summaries that provide a high-level overview of trends or differences between groups. Summarized data is often presented in tables, so we’ll also introduce a package for creating clear, professional-looking tables.</p>
 <p>Most importantly, we’ll dive into the blazingly fast Polars package for data manipulation. As I mentioned earlier, Polars is powered by Rust, a high-performance programming language. Its core functionality is exposed to Python but can also be accessed from other languages. This means the data wrangling skills you gain here will be transferable beyond Python.</p>
-<p>But first, let’s load the necessary packages for this module. In Python, it’s common to use the alias <code>pl</code> for Polars. We’ll also use a submodule called polars.selectors, aliasing it as cs — don’t worry, we’ll cover selectors in more detail soon. We’ll also import everything from Plotnine for data visualization and bring in the main function from the <code>great_tables</code> package for generating beautifully looking tables.</p>
+<p>But first, let’s load the necessary packages for this module. In Python, it’s common to use the alias <code>pl</code> for Polars. We’ll also use a submodule called polars.selectors, aliasing it as <code>cs</code> - don’t worry, we’ll cover selectors in more detail soon. We’ll also import everything from Plotnine for data visualization and bring in the main function from the <code>great_tables</code> package for generating beautifully looking tables.</p>
 <p>Here’s the setup code. Place it in its own cell in your notebook and run it:</p>
-<p>Now, let’s explore our dataset. We’ll be looking at the WHO data about household pollution curated by the Our World In Data website.</p>
-<p>Household air pollution is primarily caused by burning polluting fuels like wood, animal dung, charcoal, agricultural waste, and kerosene in open fires or inefficient stoves. Globally, 2.1 billion people rely on these fuels for cooking, heating, and lighting. The poor combustion of these fuels leads to numerous health issues, such as pneumonia in children, and chronic diseases like obstructive pulmonary disease, lung cancer, stroke, and cardiovascular problems in adults.</p>
-<p>This is a complex problem, and like many complex problems, it can be examined from different perspectives. We have three datasets to work with:</p>
+<p>&lt; PAUSE &gt;</p>
+<p>Now, let’s explore our data. We’ll be looking at the WHO dataset about household pollution around the world.</p>
+<p>Household air pollution is primarily caused by burning polluting fuels like wood, animal dung, charcoal, agricultural waste, and kerosene using open fires or inefficient stoves. Over 2 billion of people around the world rely on these fuels for cooking, heating, and lighting. The poor combustion of these fuels leads to numerous health issues, such as pneumonia in children, and chronic diseases like obstructive pulmonary disease, lung cancer, stroke, and cardiovascular problems in adults.</p>
+<p>This is a complex problem, and like many complex problems, it can be examined from different angles. We have three datasets to work with:</p>
 <ul>
 <li>Causes of death linked to household pollution</li>
 <li>Types of fuel used for cooking in various countries</li>
 <li>Proportion of the population with access to clean cooking fuels</li>
 </ul>
-<p>Each dataset offers a unique angle on this issue. Let’s dive in and start exploring!</p>
+<p>Each dataset offers a unique perspective on this issue. Let’s dive in and start exploring!</p>
 </section>
-<section id="video-2-greenscreen-12-min" class="level1">
-<h1>VIDEO 2 {greenscreen} ~ 12 min</h1>
+<section id="video-2-import-greenscreen-12-min" class="level1">
+<h1>VIDEO 2: IMPORT {greenscreen} ~ 12 min</h1>
 <!-- # Part I. Basics -->
-<p>In this section, we’ll start working with the datasets about household air pollution. These datasets are stored as comma-separated values, or CSV files. CSV is a simple text format often used for storing tabular data. Think of it as a stripped-down version of Excel—just the data, no formatting or formulas. In fact, you can even open CSV files directly in Excel if you want to take a look at them.</p>
-<p>We’ve prepared these datasets for you and stored them in the course repository on GitHub. While Polars allows us to read files directly from remote locations, you can also download the files and load them from your local project directory.</p>
-<p>Here’s the code to load the three datasets we’ll use:</p>
+<p>In this section, we’ll start working with the datasets about household air pollution. These datasets are stored as comma-separated values, or CSV files. CSV is a simple text format often used for storing tabular data. Think of it as a stripped-down version of Excel - just the data, no formatting or formulas. In fact, you can even open CSV files directly in Excel, if you want to take a look at them.</p>
+<p>We’ve prepared these datasets for you and stored them in the course repository on GitHub. While Polars allows us to read files directly from remote locations, you can also download the files and the load them into Python from your local project directory.</p>
+<p>Here’s the code to read the three datasets we’ll use. Add these lines to a new cell in your notebook and run it.</p>
+<p>&lt; PAUSE &gt;</p>
 <!-- # Indoor air pollution datasets -->
-<p>Let’s break this down. We’re using the <code>read_csv()</code> function from Polars to load the data. This function takes a single mandatory argument: the file path, written as a string in quotes. The equal sign indicates that we assign the content of the file to the variable, listed on the left. The <code>pl.read_csv()</code> returns a data frame. So, from now on, we can simply refer to this variable name whenever we need to access the dataframe which we read fromm the CSV file without needing to re-import it.</p>
+<p>Let’s break this down. We’re using the <code>read_csv()</code> function from Polars to load the data. This function takes a single mandatory argument: the file path, written as a string in quotes. The equal sign indicates that we assign the content of the file to the variable, listed on the left. The function is located in the <code>polars</code> package. This is why it is prepended with <code>pl.</code> prefix.</p>
+<p>The <code>read_csv()</code> function returns a data frame. So, from now on, we can simply refer to <code>h-hap</code> underscore <code>deaths</code> (<code>hhap_deaths</code>) whenever we need to access the first dataframe without needing to re-import it.</p>
 <!-- ## Data Overview -->
-<p>To understand the data we’re working with, it’s helpful to preview it in a few ways. For instance, simply typing the name of a dataset—like clean_fuels—will display a preview of the first five and last five rows of the corresponding data frame.</p>
-<p>Rows in a data frame are often referred to as observations or records, while columns are known as variables or features. If you want to see more rows than the default preview, you can use the .head() method and specify the number of rows to display:</p>
-<p>You may have noticed the parentheses around the code block. This lets you write the code across multiple lines without worrying about indentation.</p>
+<p>To understand the data we’re working with, it’s helpful to preview it in a few ways. For instance, simply typing the name of a dataset - like <code>clean_fuels</code> - will display a preview of the first five and last five rows of the corresponding data frame.</p>
+<p>Rows in a data frame are often referred to as observations or records, while columns are known as variables or features. If you want to see more rows than the default preview, you can use the <code>.head()</code> method and specify the number of rows to display:</p>
+<p>&lt; PAUSE &gt;</p>
+<p>You may have noticed the parentheses around the code block. This lets you write the code across multiple lines without worrying about indentation. To make the code more readable I will place new methods on a new line. In conventional Python coding style this would not be allowed, because indentation in Python matters. But because we wrap our code into outer patherenthesis, Python will overlook the arbitrary formating of code. In this case we prioritize readability over the standard coding style.</p>
 <p>Previewing the first few rows gives you an initial sense of the dataset’s structure and content. If you’re curious about the last few rows, there’s also a <code>.tail()</code> method you can use in a similar way.</p>
 <p>For a broader overview of your data, you can use the <code>.describe()</code> method:</p>
+<p>&lt; PAUSE &gt;</p>
 <p>The <code>.describe()</code> method provides a statistical summary of numerical columns, including metrics like the mean, standard deviation, minimum, maximum, and various quantiles. It’s especially useful for large datasets when you want to quickly understand key metrics.</p>
 <p>One thing to note: if a column contains missing values, Polars will display these as <code>null</code>. Polars treats missing values as “contagious,” so any operation involving them will also result in missing values in the output. This behavior applies to all statistical operations. We’ll see more examples of this later.</p>
 <p>Both <code>.head()</code> and <code>.describe()</code> return a data frame, which means you can chain these operations together. Method chaining is a powerful coding style that helps you write clean, readable, and maintainable code.</p>
-<p>Here are a couple of challenges for you to practice combining the functions into a method chain:</p>
-<div class="callout callout-style-default callout-challenge callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Challenge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Take first 25 records of <code>clean_fuels</code> data frame and then calculate statistical summary</li>
-<li>Compute statistical summary of the whole data and then present only quantile summaries of each column. The quantiles include minimum, maximum, as well as the 25th, 50th and 75th quantile.</li>
-</ul>
-</div>
-</div>
+<p>Here are a couple of challenges for you to practice combining the functions into a method chain: Take first 25 records of <code>clean_fuels</code> data frame and calculate statistical summary. When you are done, compute statistical summary of the whole dataset and then present only quantile summaries of each column. The quantiles include minimum, maximum, as well as the 25th, 50th and 75th quantiles.</p>
+<!-- 
+:::{.challenge}
+- Take first 25 records of `clean_fuels` data frame and then calculate statistical summary
+- Compute statistical summary of the whole data and then present only quantile summaries of each column. The quantiles include minimum, maximum, as well as the 25th, 50th and 75th quantile.
+::: 
+-->
+<p>&lt; PAUSE &gt;</p>
 <p>Sometimes, datasets have many columns, making it difficult to gain a full overview using methods like <code>head()</code> or <code>describe()</code>. For these cases, Polars provides a particularly useful method called <code>glimpse()</code>.</p>
 <p>When you <code>glimpse()</code>, the dataset’s structure is displayed horizontally. Each variable is listed as a row, making it easier to scan through all columns, even if you’re working with a limited screen space. Here’s how it looks in action:</p>
-<p>Now, here’s a question for you: what happens if you try to use <code>glimpse()</code> in a method chain?</p>
-<div class="callout callout-style-default callout-question callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Question
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Can you chain the operation <code>head()</code> after calling <code>glimpse()</code>? What do you think the output will be?</p>
-</div>
-</div>
+<p>&lt; PAUSE &gt;</p>
+<p>Now, here’s a question for you: What happens if you try to use <code>glimpse()</code> in a method chain? Can you chain the operation <code>head()</code> after calling <code>glimpse()</code>? What do you think the output will be?</p>
+<!-- :::{.question}
+Can you chain the operation `head()` after calling `glimpse()`? What do you think the output will be?
+::: -->
+<p>&lt; PAUSE &gt;</p>
 <p>The answer is: no, you cannot. <code>glimpse()</code>, does not return you a data frame. Instead, the output of <code>glimpse()</code> is the text printout meant solely for viewing. No further operations can be applied to it. If you attempt to chain additional methods, you’ll encounter an error. Give it a try if you want! Polars will throw an error saying that the <code>head()</code> method cannot be applied to a <code>NoneType</code>, which is the type of output <code>glimpse()</code> returns.</p>
 <p>If you understand how to use <code>head()</code>, <code>tail()</code>, <code>describe()</code>, and <code>glimpse()</code>, you have powerful tools at your disposal to explore and familiarize yourself with any dataset before diving deeper into your analysis.</p>
 </section>
-<section id="video-3-greenscreen-12-min" class="level1">
-<h1>VIDEO 3 {greenscreen} ~ 12 min</h1>
+<section id="video-3-select-greenscreen-12-min" class="level1">
+<h1>VIDEO 3 SELECT {greenscreen} ~ 12 min</h1>
 <!-- ## select/drop -->
 <p>One of the most common tasks in data analysis is selecting specific variables or columns from a dataset. Let’s start by pulling out the country information from the <code>clean_fuels</code> data. Pause the video for a moment and try running this code:</p>
+<p>&lt; PAUSE &gt;</p>
 <p>Here, we’re using the <code>select()</code> method to isolate a column. Notice how the column name is wrapped in the <code>pl.col()</code> function. This wrapper explicitly tells Polars that we’re referring to a column in the dataframe.</p>
-<p>But here’s something cool—you can skip the <code>pl.col()</code> wrapper in certain cases! For example, this code:</p>
+<p>But here’s something cool-you can skip the <code>pl.col()</code> wrapper in certain cases! For example, this code:</p>
+<p>&lt; SMALL PAUSE &gt;</p>
 <p>…does the exact same thing as this:</p>
+<p>&lt; PAUSE &gt;</p>
 <p>Pretty neat, right? The <code>select()</code> method can directly interpret strings as column names, making your code a little cleaner and quicker to write.</p>
-<p>When you wrap a column name in <code>pl.col()</code>, you’re creating an expression. An expression is like a recepie — it doesn’t do anything on its own. For example, if you run this code:</p>
+<p>When you wrap a column name in <code>pl.col()</code>, you’re creating an expression. An expression is like a recepie - it doesn’t do anything on its own. For example, if you run this code:</p>
+<p>&lt; SMALL PAUSE &gt;</p>
 <p>…nothing happens. It just returns something called an “unevaluated expression”. But when you evaluate that expression in the context of a dataset, it returns something useful. For instance:</p>
-<p>Here, the <code>select()</code> method acts as an evaluation environment, turning the <code>pl.col()</code> expression into actual data.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>select()</code> is one of the several methods in Polars that can evaluate expressions. While <code>select()</code> is highly versatile and can do other things as well, for now, we’ll focus on its simplest use case: extracting columns from a data frame.</p>
-</div>
-</div>
+<p>&lt; PAUSE &gt;</p>
+<p>Here, the <code>select()</code> method acts as an evaluation environment, turning the <code>pl.col()</code> expression into actual data. <code>select()</code> is one of the several methods in Polars that can evaluate expressions. While <code>select()</code> is highly versatile and can do other things as well, for now, we’ll focus on its simplest use case: extracting columns from a data frame.</p>
+<!-- :::{.callout-tip}
+`select()` is one of the several methods in Polars that can evaluate expressions. 
+::: -->
 <p>The <code>pl.col()</code> wrapper is super flexible, and it’s going to be central as we build more advanced expressions in Polars. For instance, you can use <code>pl.col()</code> to refer to multiple columns simultaneously:</p>
-<div id="882e583a" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"country_code"</span>, <span class="st">"country"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
-<div><style>
-.dataframe > thead > tr,
-.dataframe > tbody > tr {
-  text-align: right;
-  white-space: pre-wrap;
-}
-</style>
-<small>shape: (6_402, 2)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">country_code</th>
-<th data-quarto-table-cell-role="th">country</th>
-</tr>
-<tr class="even">
-<th>str</th>
-<th>str</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>"SSD"</td>
-<td>"South Sudan"</td>
-</tr>
-<tr class="even">
-<td>"NIU"</td>
-<td>"Niue"</td>
-</tr>
-<tr class="odd">
-<td>"TKL"</td>
-<td>"Tokelau"</td>
-</tr>
-<tr class="even">
-<td>"COK"</td>
-<td>"Cook Islands"</td>
-</tr>
-<tr class="odd">
-<td>"PLW"</td>
-<td>"Palau"</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>"AUT"</td>
-<td>"Austria"</td>
-</tr>
-<tr class="even">
-<td>"DEU"</td>
-<td>"Germany"</td>
-</tr>
-<tr class="odd">
-<td>"SWE"</td>
-<td>"Sweden"</td>
-</tr>
-<tr class="even">
-<td>"PRT"</td>
-<td>"Portugal"</td>
-</tr>
-<tr class="odd">
-<td>"IND"</td>
-<td>"India"</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<p>Sometimes, typing out long column names can feel like a chore, especially when you’re working with many columns. But don’t worry — Polars makes it easy to select columns by their position in the dataset. For example, this code selects the second and third columns by their numerical index:</p>
-<div id="acbb5cbd" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.nth(<span class="dv">1</span>,<span class="dv">2</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
-<div><style>
-.dataframe > thead > tr,
-.dataframe > tbody > tr {
-  text-align: right;
-  white-space: pre-wrap;
-}
-</style>
-<small>shape: (6_402, 2)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">country_code</th>
-<th data-quarto-table-cell-role="th">country</th>
-</tr>
-<tr class="even">
-<th>str</th>
-<th>str</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>"SSD"</td>
-<td>"South Sudan"</td>
-</tr>
-<tr class="even">
-<td>"NIU"</td>
-<td>"Niue"</td>
-</tr>
-<tr class="odd">
-<td>"TKL"</td>
-<td>"Tokelau"</td>
-</tr>
-<tr class="even">
-<td>"COK"</td>
-<td>"Cook Islands"</td>
-</tr>
-<tr class="odd">
-<td>"PLW"</td>
-<td>"Palau"</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>"AUT"</td>
-<td>"Austria"</td>
-</tr>
-<tr class="even">
-<td>"DEU"</td>
-<td>"Germany"</td>
-</tr>
-<tr class="odd">
-<td>"SWE"</td>
-<td>"Sweden"</td>
-</tr>
-<tr class="even">
-<td>"PRT"</td>
-<td>"Portugal"</td>
-</tr>
-<tr class="odd">
-<td>"IND"</td>
-<td>"India"</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Caution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Column indices in Polars are 0-based. That means the first column is index 0, the second column is index 1, and so on.</p>
-</div>
-</div>
+<p>&lt; PAUSE &gt;</p>
+<p>Sometimes, typing out long column names can feel like a chore, especially when you’re working with many columns. But don’t worry - Polars makes it easy to select columns by their position in the dataset. For example, this code selects the second and third columns by their numerical index:</p>
+<p>&lt; PAUSE &gt;</p>
+<p>Note that the column indices in Polars are 0-based. That means the first column is index 0, the second column is index 1, and so on.</p>
 <p>What about negative numbers? They’re a handy shortcut for selecting columns from the back of the dataset. For instance, <code>-1</code> refers to the last column, and this code will select the first and last columns:</p>
-<div id="5571985f" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.nth(<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
-<div><style>
-.dataframe > thead > tr,
-.dataframe > tbody > tr {
-  text-align: right;
-  white-space: pre-wrap;
-}
-</style>
-<small>shape: (6_402, 2)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">region</th>
-<th data-quarto-table-cell-role="th">prop_clean_fuels_cooking_pct</th>
-</tr>
-<tr class="even">
-<th>str</th>
-<th>f64</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>"Africa"</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<td>"Western Pacific"</td>
-<td>98.5</td>
-</tr>
-<tr class="odd">
-<td>"Western Pacific"</td>
-<td>28.3</td>
-</tr>
-<tr class="even">
-<td>"Western Pacific"</td>
-<td>72.7</td>
-</tr>
-<tr class="odd">
-<td>"Western Pacific"</td>
-<td>29.45</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>"Europe"</td>
-<td>100.0</td>
-</tr>
-<tr class="even">
-<td>"Europe"</td>
-<td>100.0</td>
-</tr>
-<tr class="odd">
-<td>"Europe"</td>
-<td>100.0</td>
-</tr>
-<tr class="even">
-<td>"Europe"</td>
-<td>100.0</td>
-</tr>
-<tr class="odd">
-<td>"South-East Asia"</td>
-<td>11.1</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Caution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A note of caution: Selecting columns by the order of their occurence can be risky. If your dataset’s structure changes, you might accidentally select the wrong columns. So, use the nth() function sparingly.</p>
-</div>
-</div>
-<p>Now, let’s talk about the opposite of <code>select()</code> — the <code>drop()</code> method. The <code>drop()</code> method removes specific columns from your dataset, leaving everything else intact. For example:</p>
-<div id="26a0682a" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    .drop(pl.col(<span class="st">"country"</span>), pl.col(<span class="st">"region"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
-<div><style>
-.dataframe > thead > tr,
-.dataframe > tbody > tr {
-  text-align: right;
-  white-space: pre-wrap;
-}
-</style>
-<small>shape: (6_402, 4)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">country_code</th>
-<th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th">pop_clean_fuels_cooking_mln</th>
-<th data-quarto-table-cell-role="th">prop_clean_fuels_cooking_pct</th>
-</tr>
-<tr class="even">
-<th>str</th>
-<th>i64</th>
-<th>f64</th>
-<th>f64</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>"SSD"</td>
-<td>2022</td>
-<td>0.0</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<td>"NIU"</td>
-<td>2022</td>
-<td>0.002</td>
-<td>98.5</td>
-</tr>
-<tr class="odd">
-<td>"TKL"</td>
-<td>2022</td>
-<td>0.0004</td>
-<td>28.3</td>
-</tr>
-<tr class="even">
-<td>"COK"</td>
-<td>2022</td>
-<td>0.013</td>
-<td>72.7</td>
-</tr>
-<tr class="odd">
-<td>"PLW"</td>
-<td>2022</td>
-<td>0.007</td>
-<td>29.45</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>"AUT"</td>
-<td>1990</td>
-<td>7.72</td>
-<td>100.0</td>
-</tr>
-<tr class="even">
-<td>"DEU"</td>
-<td>1990</td>
-<td>79.12</td>
-<td>100.0</td>
-</tr>
-<tr class="odd">
-<td>"SWE"</td>
-<td>1990</td>
-<td>8.57</td>
-<td>100.0</td>
-</tr>
-<tr class="even">
-<td>"PRT"</td>
-<td>1990</td>
-<td>9.95</td>
-<td>100.0</td>
-</tr>
-<tr class="odd">
-<td>"IND"</td>
-<td>1990</td>
-<td>96.58</td>
-<td>11.1</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<p>Dopping is equivalent to selecting all columns <strong>except</strong> the ones you want to exclude. Here’s how could would write it using in terms of selection:</p>
-<div id="8d843c68" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.<span class="bu">all</span>().exclude(<span class="st">"country"</span>, <span class="st">"region"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
-<div><style>
-.dataframe > thead > tr,
-.dataframe > tbody > tr {
-  text-align: right;
-  white-space: pre-wrap;
-}
-</style>
-<small>shape: (6_402, 4)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">country_code</th>
-<th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th">pop_clean_fuels_cooking_mln</th>
-<th data-quarto-table-cell-role="th">prop_clean_fuels_cooking_pct</th>
-</tr>
-<tr class="even">
-<th>str</th>
-<th>i64</th>
-<th>f64</th>
-<th>f64</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>"SSD"</td>
-<td>2022</td>
-<td>0.0</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<td>"NIU"</td>
-<td>2022</td>
-<td>0.002</td>
-<td>98.5</td>
-</tr>
-<tr class="odd">
-<td>"TKL"</td>
-<td>2022</td>
-<td>0.0004</td>
-<td>28.3</td>
-</tr>
-<tr class="even">
-<td>"COK"</td>
-<td>2022</td>
-<td>0.013</td>
-<td>72.7</td>
-</tr>
-<tr class="odd">
-<td>"PLW"</td>
-<td>2022</td>
-<td>0.007</td>
-<td>29.45</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>"AUT"</td>
-<td>1990</td>
-<td>7.72</td>
-<td>100.0</td>
-</tr>
-<tr class="even">
-<td>"DEU"</td>
-<td>1990</td>
-<td>79.12</td>
-<td>100.0</td>
-</tr>
-<tr class="odd">
-<td>"SWE"</td>
-<td>1990</td>
-<td>8.57</td>
-<td>100.0</td>
-</tr>
-<tr class="even">
-<td>"PRT"</td>
-<td>1990</td>
-<td>9.95</td>
-<td>100.0</td>
-</tr>
-<tr class="odd">
-<td>"IND"</td>
-<td>1990</td>
-<td>96.58</td>
-<td>11.1</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
+<p>&lt; PAUSE &gt;</p>
+<p>A note of caution: Selecting columns by the order of their appearance can be risky. If your dataset’s structure changes, you might accidentally select the wrong columns. So, use the <code>nth()</code> function sparingly.</p>
+<p>Now, let’s talk about the opposite of <code>select()</code> - the <code>drop()</code> method. The <code>drop()</code> method removes specific columns from your dataset, leaving everything else intact. For example:</p>
+<p>&lt; PAUSE &gt;</p>
+<p>Dropping is equivalent to selecting all columns <strong>except</strong> the ones you want to exclude. Here’s how could would write it using in terms of selection:</p>
+<p>&lt; PAUSE &gt;</p>
 <p>The <code>pl.all()</code> function refers to all columns, and the <code>exclude()</code> method lets you refine the selection by removing specific ones.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <p>A quick reminder: dropping columns doesn’t modify your original dataset. It only affects the result of that query. Unless you explicitly overwrite the original dataframe, everything stays the same. So feel free to experiment!</p>
-</div>
-</div>
-<p>Now it’s your turn. Select the columns related to the number and the proportion of the people with access to clean fuels. Try using both selection <em>by name</em>, <em>by index</em>, and dropping the columns you dont need.</p>
-<div class="callout callout-style-default callout-challenge callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Challenge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Select the columns related to the number and the proportion of people with access to clean fuel for cooking from the <code>clean_fuels</code> dataset.</p>
-</div>
-</div>
+<p>Now it’s your turn. Select the columns related to the number and the proportion of the people with access to clean fuels. Try both <em>selecting</em> by name or index, and <em>dropping</em> the columns you dont need.</p>
+<!-- :::{.challenge}
+Select the columns related to the number and the proportion of people with access to clean fuel for cooking from the `clean_fuels` dataset.
+::: -->
 <p>Please, pause the video and try couple of different ways of selecting these columns.</p>
-<div id="7fc64609" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"pop_clean_fuels_cooking_mln"</span>), pl.col(<span class="st">"prop_clean_fuels_cooking_pct"</span>))) </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    .select(pl.nth(<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>))) </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
-<div><style>
-.dataframe > thead > tr,
-.dataframe > tbody > tr {
-  text-align: right;
-  white-space: pre-wrap;
-}
-</style>
-<small>shape: (6_402, 2)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">pop_clean_fuels_cooking_mln</th>
-<th data-quarto-table-cell-role="th">prop_clean_fuels_cooking_pct</th>
-</tr>
-<tr class="even">
-<th>f64</th>
-<th>f64</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>0.0</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<td>0.002</td>
-<td>98.5</td>
-</tr>
-<tr class="odd">
-<td>0.0004</td>
-<td>28.3</td>
-</tr>
-<tr class="even">
-<td>0.013</td>
-<td>72.7</td>
-</tr>
-<tr class="odd">
-<td>0.007</td>
-<td>29.45</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>7.72</td>
-<td>100.0</td>
-</tr>
-<tr class="even">
-<td>79.12</td>
-<td>100.0</td>
-</tr>
-<tr class="odd">
-<td>8.57</td>
-<td>100.0</td>
-</tr>
-<tr class="even">
-<td>9.95</td>
-<td>100.0</td>
-</tr>
-<tr class="odd">
-<td>96.58</td>
-<td>11.1</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
+<p>&lt; PAUSE &gt;</p>
 <p>Got it? Great! Both approaches (selecting specific columns or dropping the ones you don’t need) give you the same result. Expressions like these make your analysis more dynamic and efficient, so you can quickly adapt to different datasets or scenarios.</p>
 </section>
-<section id="video-4-greenscreen-7-min" class="level1">
-<h1>VIDEO 4 {greenscreen} ~ 7 min</h1>
+<section id="video-4-selectors-greenscreen-7-min" class="level1">
+<h1>VIDEO 4 SELECTORS {greenscreen} ~ 7 min</h1>
 <!-- ## selectors -->
-<p>Selecting columns is such a common task that Polars has a dedicated module for it. It is called <code>polars.selectors</code>. This module provides a collection of methods specifically designed to simplify picking columns from a data frame. <code>polars.selectors</code> is often aliased as cs for convenience.</p>
+<p>Selecting columns is such a common task that Polars has a dedicated module for it. It is called <code>polars.selectors</code>. This module provides a collection of methods specifically designed to simplify picking columns from a data frame. <code>polars.selectors</code> is often aliased as <code>cs</code> for convenience.</p>
 <!-- :::{.callout-note}
 Have a look at the [documentation for selectors](https://docs.pola.rs/api/python/stable/reference/selectors.html). 
 ::: -->
 <p>Let’s make sure we import the selectors module:</p>
+<p>&lt; PAUSE &gt;</p>
 <p>Among the most useful selectors are, of course, selectors by name and by column index (for which we might not really need selectors, because those can be picked out with <code>pl.col()</code> and <code>pl.nth()</code>).</p>
-<p>Selecting first and last columns are so common, there are useful shortthands <code>cs.first()</code> and <code>cs.last()</code>. To select all columns other than the one you specified, you can use the tilde ~ operator. Tilde operator works with all methods in <code>cs.</code> module and negates the selection. For example <code>~cs.last()</code> refers to all columns other than the last one.</p>
+<p>&lt; PAUSE &gt;</p>
+<p>Selecting first and last columns are so common, there are useful shorthands <code>cs.first()</code> and <code>cs.last()</code>. To select all columns <em>other</em> than the one you specified, you can use the tilde ~ operator. Tilde operator works with all methods in the <code>cs.</code> module and negates the selection. For example <code>~cs.last()</code> refers to all columns other than the last one.</p>
 <p>Selectors can target columns based on their data types! For example, <code>cs.numeric()</code> picks all numeric columns. And if you want non-numeric columns, you can just negate it with ~.</p>
 <p>And now it is your turn! Practice selecting first, everyhing other than the first, as well as all non-numeric columns. Use selector class for this. Pause the video and give it a try!</p>
+<p>&lt; PAUSE &gt;</p>
 <!-- :::{.challenge}
 Use `polars.selectors` aliased as `cs.` to select
 - first column
@@ -893,24 +309,27 @@ Use `polars.selectors` aliased as `cs.` to select
 - all non-numeric columns
 ::: -->
 <p>Fantastic work! With a wide menu of selector methods, plus column and index-based expressions like <code>pl.col()</code> and <code>pl.nth()</code>, Polars gives you incredible flexibility in working with your data. These tools will become invaluable as we move into crafting more complex expressions.</p>
-<p>Stay tuned — there’s a lot more to explore!</p>
+<p>Stay tuned - there’s a lot more to explore!</p>
 </section>
-<section id="video-5-greenscreen-12-min" class="level1">
-<h1>VIDEO 5 {greenscreen} ~ 12 min</h1>
+<section id="video-5-filter-greenscreen-12-min" class="level1">
+<h1>VIDEO 5 FILTER {greenscreen} ~ 12 min</h1>
 <!-- ## Filter -->
-<p>Now let’s talk about filtering — an essential part of data analysis. In Polars, you can use filtering to subset your dataset based on logical conditions, using the magic of expressions. Logical operations are one of the simplest and most common use cases for expressions. For example, you can compare every value in the <code>region</code> column to the string “Europe”. If there’s a match, Polars returns True; otherwise, it returns False.</p>
+<p>Now let’s talk about filtering - an essential part of data analysis. In Polars, you can use filtering to subset your dataset based on logical conditions, using the magic of expressions. Logical operations are one of the simplest and most common use cases for expressions. For example, you can compare every value in the <code>region</code> column to the string “Europe”. If there’s a match, Polars returns True; otherwise, it returns False.</p>
 <p>Let’s see how this works in code:</p>
+<p>&lt; PAUSE &gt;</p>
 <p>Here, the <code>filter()</code> method applies the logical condition, and only rows where the region is “Europe” are included in the result. Notice that for exact comparisons, we use the double equals sign <code>==</code>. Similarly, for inequalities, we can use operators like <code>&lt;=</code>, <code>&gt;=</code>, <code>&lt;</code>, or <code>&gt;</code>. Not equal is spelled out as <code>!=</code>.</p>
-<p>But filtering doesn’t stop there — you can combine multiple conditions to create more complex filters.</p>
+<p>But filtering doesn’t stop there - you can combine multiple conditions to create more complex filters.</p>
 <p>Here’s a challenge for you. Can you find all the countries in Europe where the majority of the population lacked access to clean fuels for cooking at the end of 2022? Take a moment to write this expression. Pause the video if you need to.</p>
+<p>&lt; PAUSE &gt;</p>
 <!-- :::{.challenge}
 Were there any countries in Europe in 2022 where the majority of people lacked access to clean fuel for cooking?
 ::: -->
-<p>What did you get? Oh, wow! Over half the population of Bosnia still lacks access to clean fuels for cooking. That’s a powerful insight!</p>
+<p>What did you get? Oh, wow! Over half the population of Bosnia still lacks access to clean fuels for cooking. That’s a striking insight!</p>
 <p>Let’s zoom in on Bosnia to better understand the data. Bosnia’s country code is “BIH”, but you can also use country name to filter, if you prefer.</p>
-<p>We are interested in tracking how the proportion of the population with access to clean fuels for cooking has changed over the years. Let’s create a plot, with the year on the x-axis and the proportion of population on the y-axis.</p>
-<p>If you remember from the Plotnine module, the dataset goes into the first argument of the ggplot function.</p>
+<p>&lt; PAUSE &gt;</p>
+<p>We are interested in tracking how the proportion of the population with access to clean fuels for cooking has changed over the years. Let’s create a plot, with the year on the x-axis and the proportion of population on the y-axis. If you remember from the Plotnine module, the dataset goes into the first argument of the ggplot function.</p>
 <p>Here’s one way to do this:</p>
+<p>&lt; PAUSE &gt;</p>
 <p>This works, but the code feels a little cluttered. It’s not immediately clear where the dataset comes from.</p>
 <p>Let’s clean this up using the <code>.pipe()</code> method. The <code>.pipe()</code> method hands the data to the <code>ggplot()</code> function, placing it as the first argument.</p>
 <!-- 
@@ -928,98 +347,112 @@ ggplot(df)
 
 ``` 
 -->
-<p>This keeps the code clean and modular. Everything after <code>.pipe(ggplot)</code> is Plotnine-specific code.</p>
+<p>Pipe keeps the code clean and modular. Everything after <code>.pipe(ggplot)</code> is Plotnine-specific code.</p>
+<p>&lt; PAUSE &gt;</p>
 <p>Nice!</p>
 <p>What if you’re not sure how a country’s name is spelled in the dataset? For example, is it “Czech Republic” or just “Czechia”?</p>
 <p>In this case, you can use partial string matching to find it.</p>
-<p>Here, we use the <code>str.starts_with()</code> method, which checks if strings in the <code>country</code> column start with the letters “Cz.” Ah, there it is — “Czechia”!</p>
+<p>&lt; PAUSE &gt;</p>
+<p>Here, we use the <code>str.starts_with()</code> method, which checks if strings in the <code>country</code> column start with the letters “Cz.” Ah, there it is - “Czechia”!</p>
 <p>Polars offers several handy string operations. For example:</p>
 <ul>
-<li>str.starts_with()</li>
-<li>str.ends_with()</li>
-<li>str.contains()</li>
+<li><code>str.starts_with()</code></li>
+<li><code>str.ends_with()</code> and</li>
+<li><code>str.contains()</code></li>
 </ul>
 <p>You’ll see more of these as we progress, but these three are powerful enough to help you tackle the following challenge.</p>
 <p>Filter the data for your own country and visualize the proportion of people with access to clean fuels. Once you’re happy with the subset of your data, use ggplot and everything you’ve learned about Plotnine to create a polished visualization.</p>
+<p>&lt; PAUSE &gt;</p>
 <!-- :::{.challenge}
 Visualize the proportion of people with access to clean fuels in your own country
 ::: -->
 <p>This looks fantastic! Great work visualizing your country’s data.</p>
 <p>In the next section, we’ll explore adding more columns to our dataset and practice advanced subsetting and visualization techniques. Stay tuned!</p>
 </section>
-<section id="video-6-greenscreen-3-min" class="level1">
-<h1>VIDEO 6 {greenscreen} ~ 3 min</h1>
+<section id="video-6-deaths-data-greenscreen-3-min" class="level1">
+<h1>VIDEO 6 DEATHS DATA {greenscreen} ~ 3 min</h1>
 <!-- ## More practice with filtering -->
 <p>Let’s apply what we’ve learned about filtering to visualize the causes of death in some European countries.</p>
-<p>This dataset contains both summarized and detailed breakdowns of deaths for every country and year. Take a look at the column labeled cause_of_death. When this column says “All causes,” it represents the total deaths for that country and year—a sum of all the other rows.</p>
+<p>&lt; PAUSE &gt;</p>
+<p>This dataset contains both summarized and detailed breakdowns of deaths for every country and year. Take a look at the column labeled <code>cause_of_death</code>. When this column says “All causes,” it represents the total deaths for that country and year-a sum of all the other rows.</p>
 <p>Let’s zoom in on Bosnia for a single year, say 2010, to understand this better.</p>
+<p>&lt; PAUSE &gt;</p>
 <p>One of the rows is labeled “All causes” with 4,816 deaths. This total matches the sum of the individual causes of death. While it’s useful to have the total, it can lead to double counting if we include it in our analysis.</p>
 <p>Now let’s expand our view to include all European countries for which we have death data. We’ll exclude the totals and focus on trends for each specific cause of death. Faceting will help us visualize these trends country by country.</p>
-<p>Most of the trends appear to be decreasing, which is good news. However, even with free y-axis scales for each country, the differences in scale make it hard to compare trends across countries. Look at Moldova! There’s a dramatic improvement in death cases here. Meanwhile, heart- and stroke-related deaths in neighboring Russia are on the rise.</p>
+<p>&lt; PAUSE &gt;</p>
+<p>Most of the trends appear to be decreasing, which is good news. However, even with free y-axis for each country, the differences in scale make it hard to compare trends across countries. Look at Moldova! There’s a dramatic improvement in death cases here. Meanwhile, heart- and stroke-related deaths in the close-by Russia are on the rise.</p>
 <p>It would be good to put these numbers in perspective using population of these countries. Is this something we could calculate from our <code>clean_fuels</code> dataset?</p>
 </section>
-<section id="video-7-greenscreen-11-min" class="level1">
-<h1>VIDEO 7 {greenscreen} ~ 11 min</h1>
+<section id="video-7-with_columns-greenscreen-11-min" class="level1">
+<h1>VIDEO 7 WITH_COLUMNS {greenscreen} ~ 11 min</h1>
 <!-- # mutating(with_columns) -->
 <p>Remember, the <code>clean_fuels</code> data told us both the number of people with access to non-polluting fuels and the proportion of the population they represent, expressed as a percentage. With this, we can reverse-engineer the population for each country.</p>
 <p>To create new variables, we use the <code>with_columns()</code> method. This method lets us add or modify columns using expressions.</p>
 <p>Let’s start by converting the percentage of people with access to clean fuels into a true proportion by dividing it by 100.</p>
-<p>Here, we create a new column called <code>prop</code>. The expression starts with <code>pl.col("prop_clean_fuels_cooking_pct")</code>, and then we specify the operation: dividing by 100. Easy enough, right?</p>
+<p>&lt; PAUSE &gt;</p>
+<p>Here, we create a new column called <code>prop</code>. The expression starts with a column name, and then we specify the operation: dividing by 100. The <code>prop</code> on the left of the equal sign will become a new column name. Easy enough, right?</p>
 <p>Now that we have the true proportion, we can calculate the total population. Let’s divide the population by proportion.</p>
-<p>Notice that I wrapped the division operation in parentheses to ensure it’s evaluated correctly. I also used the alias() method to specify a name for the new column: <code>population</code>. This code calculates and adds two new columns:</p>
+<p>&lt; PAUSE &gt;</p>
+<p>Notice that I wrapped the division operation in parentheses to ensure it’s evaluated correctly. I also used the <code>alias()</code> method to specify a name for the new column: <code>population</code>. This code calculates and adds two new columns:</p>
 <ul>
-<li><code>prop</code>: the true proportion of the population with access to clean fuels.</li>
+<li><code>prop</code>: the true proportion of the population with access to clean fuels, and</li>
 <li><code>population</code>: the estimated total population for each row.</li>
 </ul>
 <p>This looks good. Lets assign it to a variable and inspect the updated dataset.</p>
-<p>Oh, look! We’ve got some <code>NaN</code> values in the <code>population</code> column. These appear because we divided by zero wherever the proportion was zero. Division by zero is, understandably, illegal in most places — and in Python, it results in <code>NaN</code>.</p>
-<p><code>NaN</code>, or “Not a Number,” is a special marker for missing or undefined values. It propagates through calculations, which means any further operations on these rows will also result in <code>NaN</code>. This is why the mean and standard deviation of the population column are also <code>NaN</code> in the summary.</p>
+<p>&lt; PAUSE &gt;</p>
+<p>Oh, look! We’ve got some <code>NaN</code>, or “Not a Number”, values in the <code>population</code> column. These appear because we divided by zero wherever the proportion was zero. Division by zero is, understandably, illegal in most places - and in Python, it results in <code>NaN</code>.</p>
+<p><code>NaN</code> is a special marker for missing or undefined values. Missing values in Polars propagate through calculations, which means any further operations on these rows will also result in missing values. This is why the mean and standard deviation of the population column are also <code>NaN</code> in the summary.</p>
 <p>Let’s see how many rows in our dataset contain illegal population estimates. We can use the <code>.is_nan()</code> method, which evaluates whether a column contains <code>NaN</code> values.</p>
-<p>Uh-oh! 35 rows! Perhaps <code>fuel_types</code>, the third data source we looked at in the beginning, could be a better source of population data?</p>
-<p>The <code>fuel_types</code> dataset contains both the proportion of people using a specific cooking fuel and the absolute number of users. Since it includes multiple estimates for each country and year — one for each fuel type — it might give us more opportunities to calculate valid population estimates.</p>
+<p>&lt; PAUSE &gt;</p>
+<p>Uh-oh! 35 rows! Perhaps <code>fuel_types</code>, the third dataset, could be a better source of population data?</p>
+<p>The <code>fuel_types</code> dataset contains both the proportion of people using a specific cooking fuel and the absolute number of users. Since it includes multiple estimates for each country and year - one for each fuel type - it might give us more opportunities to calculate valid population estimates.</p>
 <p>Go ahead and add a population column to the <code>fuel_types</code> dataset. Save the extended data frame under a new name - we will need it later.</p>
+<p>&lt; PAUSE &gt;</p>
 <!-- :::{.challenge}
 Add a population estimate to the `fuel_types` dataset and save it under a new variable name
 ::: -->
 <p>This looks promising! Let’s have a look at our favorite Bosnia</p>
-<p>Interesting! We still get some <code>NaN</code> values, for example, look here: in 2022 no one was using Kerosene to cook food. Thanks goodness! But now we get several estimates of Bosnia’s population — 3.0, 3.5, 3.53, 3.48 million. These slight differences arise from rounding imprecisions in the proportions or the number of people using the specific fuel type. While these variations are minor, they make it tricky to work with the data directly.</p>
-<p>Wouldn’t it be nice to level out these immaterial differences, by say, averaging? In the next section, we’ll learn how to do just that: grouping and aggregating. Stay tuned!</p>
+<p>&lt; PAUSE &gt;</p>
+<p>Interesting! We still get some <code>NaN</code> values, for example, look here: in 2022 no one was using Kerosene to cook food. Thanks goodness! But now we get several estimates of Bosnia’s population - 3.0, 3.5, 3.53, 3.48 million. These slight differences arise from rounding imprecisions in the proportions or the number of people using the specific fuel type. While these variations are minor, they make it tricky to work with the data directly.</p>
+<p>Wouldn’t it be nice to level out these differences, by say, averaging? In the next section, we’ll learn how to do just that: grouping and aggregating. Stay tuned!</p>
 </section>
-<section id="video-8-greenscreen-14-min" class="level1">
-<h1>VIDEO 8 {greenscreen} ~ 14 min</h1>
+<section id="video-8-summaries-greenscreen-14-min" class="level1">
+<h1>VIDEO 8 SUMMARIES {greenscreen} ~ 14 min</h1>
 <!-- # summarizing (group_by, agg) -->
 <p>One of the most important tasks for data analysts is creating summaries of the data, particularly by groups. In our newly prepared dataset, we’re interested in summarizing the total population for each country by year. In Polars, this is a two-step process. First, we define the groups using <code>.group_by()</code>. Then, we aggregate the data using <code>.agg()</code>.</p>
-<p>This gives us a mean population estimate for each country and year. But you might notice something peculiar—some countries and years still show <code>NaN</code> values for the population. These missing values are a result of the division by zero we encountered earlier. To address this, we have a couple of options:</p>
-<ol type="1">
-<li>Drop the missing values directly before averaging, using .drop_nans().</li>
-<li>Filter out zero-valued records in the “proportion of population with access to clean fuels”, which was used in the denominator when calculating the population column.</li>
-</ol>
-<p>Now, let’s build on this idea. What if we wanted to summarize populations at a higher level — say, by region — and visualize how total population changes over time?</p>
+<p>&lt; PAUSE &gt;</p>
+<p>This gives us a mean population estimate for each country and year. But you might notice something peculiar-some countries and years still show <code>NaN</code> values for the population. These missing values are a result of the division by zero we encountered earlier. To address this, we have a couple of options:</p>
+<p>We could drop the missing values directly before averaging, using <code>.drop_nans()</code>; OR We could filter out zero-valued records in the “proportion of population with access to clean fuels”, which was used in the denominator of the population column.</p>
+<p>&lt; PAUSE &gt;</p>
+<p>Now, let’s build on this idea. What if we wanted to summarize populations at a higher level - say, by region - and visualize how total population changes over time?</p>
 <p>Give it a try! I suggest you start by by calculating the average population for each country and year. Then, you can group this data by region and year, summing the populations for all countries in each region. Finally, plot the results.</p>
 <p>Take your time and think through what type of aggregation you would need to do.</p>
-<!-- :::{.challenge}
+<p>&lt; PAUSE &gt; <!-- :::{.challenge}
 Plot the total population per region over time.
-::: -->
+::: --></p>
 <p>When we visualize the results, the trends are striking. Populations in Africa and Southeast Asia are growing at a much faster pace compared to other regions. For Africa, this growth rate might even be accelerating. On the other hand, regions like Asia and the Western Pacific show signs of population growth slowing down. These insights help us understand global population dynamics and can inform policies in areas like health, infrastructure, and environmental planning.</p>
 <p>Now that we’ve explored population estimates and regional dynamics, let’s take on another challenge: examining the changes in the popularity of different cooking fuels worldwide.</p>
-<p>Here’s your next task:</p>
-<!-- :::{.challenge}
+<p>Here’s your new task: Visualize the total number of people using each type of fuel for cooking, for every year, worldwide.</p>
+<p>&lt; PAUSE &gt; <!-- :::{.challenge}
 Visualize the total number of people using each type of fuel for cooking, for every year, worldwide.
-::: -->
+::: --></p>
 <p>This plot looks fantastic! By aggregating by fuel type and year, we can clearly see trends in fuel usage globally. But we can take this further. What if we wanted to break this data down by region? Faceting would allow us to examine the trends within each world region more closely.</p>
+<p>&lt; PAUSE &gt;</p>
 <p>With this plot, we can see unique trends for every region. Across the globe, electricity and gas are becoming more prevalent. Yet, biomass remains crucial in regions like Africa and Southeast Asia. However, there’s still a challenge here. Because the number of people using each fuel type varies so widely across regions, it’s difficult to compare the energy mix within each region.</p>
 <p>To make the energy mix clearer, we can represent the share of the population relying on each fuel type within a region. This requires dividing the number of people using each fuel by the annual total population for the region. We’ll use Polars’ <code>.over()</code> method to calculate these totals for subgroups without collapsing the data.</p>
-<p>I wrap the expression into parenthesis and pass it to <code>.over()</code> method which defines the scope for the <code>.sum()</code> operation. Note that this is different from aggregation, because the number of rows actually does not change. Lets visualize it!</p>
-<p>What a graph! What a story! In Africa, biomass remains dominant, though natural gas is beginning to make inroads. The Americas, Europe, and Eastern Mediterranean rely heavily on gas, with electricity emerging as a significant player in Europe and the Western Pacific. Southeast Asia, meanwhile, is undergoing a rapid transition from biomass to gas — a remarkable shift in just a few decades. This visualization gives us a profound understanding of how cooking fuel usage has evolved globally and regionally over time.</p>
+<p>&lt; PAUSE &gt;</p>
+<p>I wrap the expression into parenthesis and pass it to the <code>.over()</code> method which defines the scope for the <code>.sum()</code> operation. Note that this is different from aggregation, because the number of rows actually does not change. Lets visualize it!</p>
+<p>&lt; PAUSE &gt;</p>
+<p>What a graph! What a story! In Africa, biomass remains dominant, though natural gas is beginning to make inroads. The Americas, Europe, and Eastern Mediterranean rely heavily on gas, with electricity emerging as a significant player in Europe and the Western Pacific. Southeast Asia, meanwhile, is undergoing a rapid transition from biomass to gas - a remarkable shift in just a few decades. This visualization gives us a profound understanding of how cooking fuel usage has evolved globally and regionally over time.</p>
 </section>
 <section id="video-9-greenscreen-3-min" class="level1">
 <h1>VIDEO 9 {greenscreen} ~ 3 min</h1>
-<p>It’s time for you to take on another challenge — one that highlights the global reliance on coal and charcoal for cooking.</p>
-<!-- :::{.challenge}
+<p>It’s time for you to take on another challenge - one that highlights the global reliance on coal and charcoal for cooking. Create a column chart showing the top 10 countries by the number of people using coal and charcoal for cooking in 2022. Color the columns by continent. How many of these top-10 countries are in Africa?</p>
+<p>&lt; PAUSE &gt; <!-- :::{.challenge}
 Create a column chart showing the top 10 countries by the number of people using coal and charcoal for cooking in 2022. Color the columns by continent. How many of these top-10 countries are in Africa?
-::: -->
-<p>Seven — possibly eight, if you include Somalia — of the top-10 countries using coal for cooking are in Africa! Many African nations rely heavily on these highly polluting and dangerous carbon-based fuels. Ensuring access to cleaner, safer energy sources is essential to improving health outcomes and accelerating the transition to sustainable energy.</p>
-<p>In the next section, we’ll learn how to combine datasets through joins and reshape them using pivots—powerful tools for transforming and enriching our analyses. See you soon, as we dive deeper into the art and science of data manipulation!</p>
+::: --></p>
+<p>Seven - possibly eight, if you include Somalia - of the top-10 countries using coal for cooking are in Africa! Many African nations rely heavily on these highly polluting and dangerous carbon-based fuels. Ensuring access to cleaner, safer energy sources is essential to improving health outcomes and accelerating the transition to sustainable energy.</p>
+<p>In the next section, we’ll learn how to combine datasets through joins and reshape them using pivots - powerful tools for transforming and enriching our analyses. See you soon, as we dive deeper into the art and science of data manipulation!</p>
 
 
 </section>

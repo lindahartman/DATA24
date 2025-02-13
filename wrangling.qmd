@@ -4,18 +4,21 @@ format: html
 engine: python3
 ---
 
-# VIDEO 1 {greenscreen} ~ 4 min
+# VIDEO 1: DATA {greenscreen} ~ 4 min
 <!-- ## Data -->
 
-Welcome to the module on data wrangling! In the last lesson, we explored a small, but exciting gapminder dataset, and created quite a few visualizations with it. But in real-world scenarios, datasets are often much larger. This brings new challenges, like focusing on specific subsets of data—perhaps observations from a single time period or a selection of variables related to a particular phenomenon.
+Welcome to the module on data wrangling! In the last lesson, we explored a small, but exciting gapminder dataset, and created quite a few visualizations with it. But in real-world scenarios, datasets are often much larger. This brings new challenges, like focusing on specific subsets of data-perhaps observations from a single time period or a selection of variables related to a particular phenomenon.
 
 In this module, we’ll learn how to subset data and create meaningful summaries that provide a high-level overview of trends or differences between groups. Summarized data is often presented in tables, so we’ll also introduce a package for creating clear, professional-looking tables.
 
 Most importantly, we’ll dive into the blazingly fast Polars package for data manipulation. As I mentioned earlier, Polars is powered by Rust, a high-performance programming language. Its core functionality is exposed to Python but can also be accessed from other languages. This means the data wrangling skills you gain here will be transferable beyond Python.
 
-But first, let’s load the necessary packages for this module. In Python, it’s common to use the alias `pl` for Polars. We’ll also use a submodule called polars.selectors, aliasing it as cs — don’t worry, we’ll cover selectors in more detail soon. We’ll also import everything from Plotnine for data visualization and bring in the main function from the `great_tables` package for generating beautifully looking tables.
+But first, let’s load the necessary packages for this module. In Python, it’s common to use the alias `pl` for Polars. We’ll also use a submodule called polars.selectors, aliasing it as `cs` - don’t worry, we’ll cover selectors in more detail soon. We’ll also import everything from Plotnine for data visualization and bring in the main function from the `great_tables` package for generating beautifully looking tables.
 
-Here’s the setup code. Place it in its own cell in your notebook and run it:
+Here’s the setup code. Place it in its own cell in your notebook and run it: 
+
+< PAUSE >
+
 ```{python}
 #| label: setup
 #| echo: false
@@ -27,26 +30,28 @@ from plotnine import *
 from great_tables import GT
 ```
 
-Now, let’s explore our dataset. We’ll be looking at the WHO data about household pollution curated by the Our World In Data website.
+Now, let’s explore our data. We’ll be looking at the WHO dataset about household pollution around the world.
 
-Household air pollution is primarily caused by burning polluting fuels like wood, animal dung, charcoal, agricultural waste, and kerosene in open fires or inefficient stoves. Globally, 2.1 billion people rely on these fuels for cooking, heating, and lighting. The poor combustion of these fuels leads to numerous health issues, such as pneumonia in children, and chronic diseases like obstructive pulmonary disease, lung cancer, stroke, and cardiovascular problems in adults.
+Household air pollution is primarily caused by burning polluting fuels like wood, animal dung, charcoal, agricultural waste, and kerosene using open fires or inefficient stoves. Over 2 billion of people around the world rely on these fuels for cooking, heating, and lighting. The poor combustion of these fuels leads to numerous health issues, such as pneumonia in children, and chronic diseases like obstructive pulmonary disease, lung cancer, stroke, and cardiovascular problems in adults.
 
-This is a complex problem, and like many complex problems, it can be examined from different perspectives. We have three datasets to work with:
+This is a complex problem, and like many complex problems, it can be examined from different angles. We have three datasets to work with:
 
 - Causes of death linked to household pollution
 - Types of fuel used for cooking in various countries
 - Proportion of the population with access to clean cooking fuels
 
-Each dataset offers a unique angle on this issue. Let’s dive in and start exploring!
+Each dataset offers a unique perspective on this issue. Let’s dive in and start exploring!
 
-# VIDEO 2 {greenscreen} ~ 12 min
+# VIDEO 2: IMPORT {greenscreen} ~ 12 min
 <!-- # Part I. Basics -->
 
-In this section, we’ll start working with the datasets about household air pollution. These datasets are stored as comma-separated values, or CSV files. CSV is a simple text format often used for storing tabular data. Think of it as a stripped-down version of Excel—just the data, no formatting or formulas. In fact, you can even open CSV files directly in Excel if you want to take a look at them.
+In this section, we’ll start working with the datasets about household air pollution. These datasets are stored as comma-separated values, or CSV files. CSV is a simple text format often used for storing tabular data. Think of it as a stripped-down version of Excel - just the data, no formatting or formulas. In fact, you can even open CSV files directly in Excel, if you want to take a look at them.
 
-We’ve prepared these datasets for you and stored them in the course repository on GitHub. While Polars allows us to read files directly from remote locations, you can also download the files and load them from your local project directory.
+We’ve prepared these datasets for you and stored them in the course repository on GitHub. While Polars allows us to read files directly from remote locations, you can also download the files and the load them into Python from your local project directory.
 
-Here’s the code to load the three datasets we’ll use:
+Here’s the code to read the three datasets we’ll use. Add these lines to a new cell in your notebook and run it.
+
+< PAUSE >
 
 <!-- # Indoor air pollution datasets -->
 
@@ -59,13 +64,18 @@ fuel_types = pl.read_csv("hhap/cooking_by_fuel_type.csv")
 clean_fuels = pl.read_csv("hhap/clean_fuels_cooking.csv")
 ```
 
-Let’s break this down. We’re using the `read_csv()` function from Polars to load the data. This function takes a single mandatory argument: the file path, written as a string in quotes. The equal sign indicates that we assign the content of the file to the variable, listed on the left. The `pl.read_csv()` returns a data frame. So, from now on, we can simply refer to this variable name whenever we need to access the dataframe which we read fromm the CSV file without needing to re-import it.
+Let’s break this down. We’re using the `read_csv()` function from Polars to load the data. This function takes a single mandatory argument: the file path, written as a string in quotes. The equal sign indicates that we assign the content of the file to the variable, listed on the left. The function is located in the `polars` package. This is why it is prepended with  `pl.` prefix. 
+
+The `read_csv()` function returns a data frame. So, from now on, we can simply refer to `h-hap` underscore `deaths` (`hhap_deaths`) whenever we need to access the first dataframe without needing to re-import it.
 
 <!-- ## Data Overview -->
 
-To understand the data we’re working with, it’s helpful to preview it in a few ways. For instance, simply typing the name of a dataset—like clean_fuels—will display a preview of the first five and last five rows of the corresponding data frame.
+To understand the data we’re working with, it’s helpful to preview it in a few ways. For instance, simply typing the name of a dataset - like `clean_fuels` - will display a preview of the first five and last five rows of the corresponding data frame.
 
-Rows in a data frame are often referred to as observations or records, while columns are known as variables or features. If you want to see more rows than the default preview, you can use the .head() method and specify the number of rows to display:
+Rows in a data frame are often referred to as observations or records, while columns are known as variables or features. If you want to see more rows than the default preview, you can use the `.head()` method and specify the number of rows to display:
+
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -74,11 +84,13 @@ Rows in a data frame are often referred to as observations or records, while col
     .head(10))
 ```
 
-You may have noticed the parentheses around the code block. This lets you write the code across multiple lines without worrying about indentation.
+You may have noticed the parentheses around the code block. This lets you write the code across multiple lines without worrying about indentation. To make the code more readable I will place new methods on a new line. In conventional Python coding style this would not be allowed, because indentation in Python matters. But because we wrap our code into outer patherenthesis, Python will overlook the arbitrary formating of code. In this case we prioritize readability over the standard coding style.
 
 Previewing the first few rows gives you an initial sense of the dataset’s structure and content. If you’re curious about the last few rows, there’s also a `.tail()` method you can use in a similar way.
 
 For a broader overview of your data, you can use the `.describe()` method:
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -94,12 +106,17 @@ One thing to note: if a column contains missing values, Polars will display thes
 
 Both `.head()` and `.describe()` return a data frame, which means you can chain these operations together. Method chaining is a powerful coding style that helps you write clean, readable, and maintainable code. 
 
-Here are a couple of challenges for you to practice combining the functions into a method chain:
+Here are a couple of challenges for you to practice combining the functions into a method chain: Take first 25 records of `clean_fuels` data frame and calculate statistical summary. When you are done, compute statistical summary of the whole dataset and then present only quantile summaries of each column. The quantiles include minimum, maximum, as well as the 25th, 50th and 75th quantiles.
 
+<!-- 
 :::{.challenge}
 - Take first 25 records of `clean_fuels` data frame and then calculate statistical summary
 - Compute statistical summary of the whole data and then present only quantile summaries of each column. The quantiles include minimum, maximum, as well as the 25th, 50th and 75th quantile.
-:::
+::: 
+-->
+
+< PAUSE >
+
 
 ```{python}
 #| echo: false
@@ -118,6 +135,8 @@ Sometimes, datasets have many columns, making it difficult to gain a full overvi
 
 When you `glimpse()`, the dataset’s structure is displayed horizontally. Each variable is listed as a row, making it easier to scan through all columns, even if you’re working with a limited screen space. Here's how it looks in action:
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -126,20 +145,24 @@ When you `glimpse()`, the dataset’s structure is displayed horizontally. Each 
     .glimpse())
 ```
 
-Now, here's a question for you: what happens if you try to use `glimpse()` in a method chain? 
+Now, here's a question for you: What happens if you try to use `glimpse()` in a method chain? Can you chain the operation `head()` after calling `glimpse()`? What do you think the output will be?
 
-:::{.question}
+<!-- :::{.question}
 Can you chain the operation `head()` after calling `glimpse()`? What do you think the output will be?
-:::
+::: -->
+
+< PAUSE >
 
 The answer is: no, you cannot. `glimpse()`, does not return you a data frame. Instead, the output of `glimpse()` is the text printout meant solely for viewing. No further operations can be applied to it. If you attempt to chain additional methods, you’ll encounter an error. Give it a try if you want! Polars will throw an error saying that the `head()` method cannot be applied to a `NoneType`, which is the type of output `glimpse()` returns.
 
 If you understand how to use `head()`, `tail()`, `describe()`, and `glimpse()`, you have powerful tools at your disposal to explore and familiarize yourself with any dataset before diving deeper into your analysis.
 
-# VIDEO 3 {greenscreen} ~ 12 min
+# VIDEO 3 SELECT {greenscreen} ~ 12 min
 <!-- ## select/drop -->
 
 One of the most common tasks in data analysis is selecting specific variables or columns from a dataset. Let’s start by pulling out the country information from the `clean_fuels` data. Pause the video for a moment and try running this code:
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -151,7 +174,9 @@ One of the most common tasks in data analysis is selecting specific variables or
 
 Here, we’re using the `select()` method to isolate a column. Notice how the column name is wrapped in the `pl.col()` function. This wrapper explicitly tells Polars that we’re referring to a column in the dataframe.
 
-But here’s something cool—you can skip the `pl.col()` wrapper in certain cases! For example, this code:
+But here’s something cool-you can skip the `pl.col()` wrapper in certain cases! For example, this code:
+
+< SMALL PAUSE >
 
 ```{python}
 #| echo: false
@@ -171,9 +196,13 @@ But here’s something cool—you can skip the `pl.col()` wrapper in certain cas
     .select(pl.col("country_code"), pl.col("country")))  
 ```
 
+< PAUSE >
+
 Pretty neat, right? The `select()` method can directly interpret strings as column names, making your code a little cleaner and quicker to write.
 
-When you wrap a column name in `pl.col()`, you’re creating an expression. An expression is like a recepie — it doesn’t do anything on its own. For example, if you run this code:
+When you wrap a column name in `pl.col()`, you’re creating an expression. An expression is like a recepie - it doesn’t do anything on its own. For example, if you run this code:
+
+< SMALL PAUSE >
 
 ```{python}
 #| echo: false
@@ -182,8 +211,9 @@ When you wrap a column name in `pl.col()`, you’re creating an expression. An e
 pl.col("country_code")
 ```
 
-
 ...nothing happens. It just returns something called an "unevaluated expression". But when you evaluate that expression in the context of a dataset, it returns something useful. For instance:
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -193,72 +223,94 @@ pl.col("country_code")
     .select(pl.col("country_code")))  
 ```
 
-Here, the `select()` method acts as an evaluation environment, turning the `pl.col()` expression into actual data. 
+Here, the `select()` method acts as an evaluation environment, turning the `pl.col()` expression into actual data. `select()` is one of the several methods in Polars that can evaluate expressions. While `select()` is highly versatile and can do other things as well, for now, we’ll focus on its simplest use case: extracting columns from a data frame. 
 
-:::{.callout-tip}
-`select()` is one of the several methods in Polars that can evaluate expressions. While `select()` is highly versatile and can do other things as well, for now, we’ll focus on its simplest use case: extracting columns from a data frame.
-:::
+<!-- :::{.callout-tip}
+`select()` is one of the several methods in Polars that can evaluate expressions. 
+::: -->
 
 The `pl.col()` wrapper is super flexible, and it’s going to be central as we build more advanced expressions in Polars. For instance, you can use `pl.col()` to refer to multiple columns simultaneously:
 
+< PAUSE >
+
 ```{python}
+#| echo: false
+#| code-fold: true
+#| include: false
 (clean_fuels  
     .select(pl.col("country_code", "country")))  
 ```
 
-Sometimes, typing out long column names can feel like a chore, especially when you’re working with many columns. But don’t worry — Polars makes it easy to select columns by their position in the dataset. For example, this code selects the second and third columns by their numerical index:
+Sometimes, typing out long column names can feel like a chore, especially when you’re working with many columns. But don’t worry - Polars makes it easy to select columns by their position in the dataset. For example, this code selects the second and third columns by their numerical index:
+
+< PAUSE >
 
 ```{python}
+#| echo: false
+#| code-fold: true
+#| include: false
 (clean_fuels  
     .select(pl.nth(1,2)))  
 ```
 
-:::{.callout-caution}
-Column indices in Polars are 0-based. That means the first column is index 0, the second column is index 1, and so on. 
-:::
+Note that the column indices in Polars are 0-based. That means the first column is index 0, the second column is index 1, and so on. 
 
 What about negative numbers? They’re a handy shortcut for selecting columns from the back of the dataset. For instance, `-1` refers to the last column, and this code will select the first and last columns:
 
+< PAUSE >
+
 ```{python}
+#| echo: false
+#| code-fold: true
+#| include: false
 (clean_fuels  
     .select(pl.nth(0, -1)))  
 ```
 
-:::{.callout-caution}
-A note of caution: Selecting columns by the order of their occurence can be risky. If your dataset’s structure changes, you might accidentally select the wrong columns. So, use the nth() function sparingly.
-:::
+A note of caution: Selecting columns by the order of their appearance can be risky. If your dataset’s structure changes, you might accidentally select the wrong columns. So, use the `nth()` function sparingly.
 
-Now, let’s talk about the opposite of `select()` — the `drop()` method. The `drop()` method removes specific columns from your dataset, leaving everything else intact. For example:
+Now, let’s talk about the opposite of `select()` - the `drop()` method. The `drop()` method removes specific columns from your dataset, leaving everything else intact. For example:
+
+< PAUSE >
 
 ```{python}
+#| echo: false
+#| code-fold: true
+#| include: false
 (clean_fuels  
     .drop(pl.col("country"), pl.col("region")))  
 ```
 
-Dopping is equivalent to selecting all columns **except** the ones you want to exclude. Here’s how could would write it using in terms of selection:
+Dropping is equivalent to selecting all columns **except** the ones you want to exclude. Here’s how could would write it using in terms of selection:
+
+< PAUSE >
 
 ```{python}
+#| echo: false
+#| code-fold: true
+#| include: false
 (clean_fuels  
     .select(pl.all().exclude("country", "region")))  
 ```
 
 The `pl.all()` function refers to all columns, and the `exclude()` method lets you refine the selection by removing specific ones. 
 
-:::{.callout-note}
-
 A quick reminder: dropping columns doesn’t modify your original dataset. It only affects the result of that query. Unless you explicitly overwrite the original dataframe, everything stays the same. So feel free to experiment!
 
-:::
+Now it’s your turn. Select the columns related to the number and the proportion of the people with access to clean fuels. Try both *selecting* by name or index, and *dropping* the columns you dont need.
 
-Now it’s your turn. Select the columns related to the number and the proportion of the people with access to clean fuels. Try using both selection *by name*, *by index*, and dropping the columns you dont need.
-
-:::{.challenge}
+<!-- :::{.challenge}
 Select the columns related to the number and the proportion of people with access to clean fuel for cooking from the `clean_fuels` dataset.
-:::
+::: -->
 
 Please, pause the video and try couple of different ways of selecting these columns. 
 
+< PAUSE >
+
 ```{python}
+#| echo: false
+#| code-fold: true
+#| include: false
 (clean_fuels  
     .select(pl.col("pop_clean_fuels_cooking_mln"), pl.col("prop_clean_fuels_cooking_pct"))) 
 
@@ -271,16 +323,18 @@ Please, pause the video and try couple of different ways of selecting these colu
 
 Got it? Great! Both approaches (selecting specific columns or dropping the ones you don’t need) give you the same result. Expressions like these make your analysis more dynamic and efficient, so you can quickly adapt to different datasets or scenarios.
 
-# VIDEO 4 {greenscreen} ~ 7 min
+# VIDEO 4 SELECTORS {greenscreen} ~ 7 min
 <!-- ## selectors -->
 
-Selecting columns is such a common task that Polars has a dedicated module for it. It is called `polars.selectors`. This module provides a collection of methods specifically designed to simplify picking columns from a data frame. `polars.selectors` is often aliased as cs for convenience. 
+Selecting columns is such a common task that Polars has a dedicated module for it. It is called `polars.selectors`. This module provides a collection of methods specifically designed to simplify picking columns from a data frame. `polars.selectors` is often aliased as `cs` for convenience. 
 
 <!-- :::{.callout-note}
 Have a look at the [documentation for selectors](https://docs.pola.rs/api/python/stable/reference/selectors.html). 
 ::: -->
 
 Let's make sure we import the selectors module:
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -290,6 +344,8 @@ import polars.selectors as cs
 ```
 
 Among the most useful selectors are, of course, selectors by name and by column index (for which we might not really need selectors, because those can be picked out with `pl.col()` and `pl.nth()`). 
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -305,11 +361,13 @@ Among the most useful selectors are, of course, selectors by name and by column 
 )
 ```
 
-Selecting first and last columns are so common, there are useful shortthands `cs.first()` and `cs.last()`. To select all columns other than the one you specified, you can use the tilde ~ operator. Tilde operator works with all methods in `cs.` module and negates the selection. For example `~cs.last()` refers to all columns other than the last one.
+Selecting first and last columns are so common, there are useful shorthands `cs.first()` and `cs.last()`. To select all columns *other* than the one you specified, you can use the tilde ~ operator. Tilde operator works with all methods in the `cs.` module and negates the selection. For example `~cs.last()` refers to all columns other than the last one.
 
 Selectors can target columns based on their data types! For example, `cs.numeric()` picks all numeric columns. And if you want non-numeric columns, you can just negate it with ~.
 
 And now it is your turn! Practice selecting first, everyhing other than the first, as well as all non-numeric columns. Use selector class for this. Pause the video and give it a try!
+
+< PAUSE >
 
 <!-- :::{.challenge}
 Use `polars.selectors` aliased as `cs.` to select
@@ -341,14 +399,16 @@ Use `polars.selectors` aliased as `cs.` to select
 
 Fantastic work! With a wide menu of selector methods, plus column and index-based expressions like `pl.col()` and `pl.nth()`, Polars gives you incredible flexibility in working with your data. These tools will become invaluable as we move into crafting more complex expressions.
 
-Stay tuned — there’s a lot more to explore!
+Stay tuned - there’s a lot more to explore!
 
-# VIDEO 5 {greenscreen} ~ 12 min
+# VIDEO 5 FILTER {greenscreen} ~ 12 min
 <!-- ## Filter -->
 
-Now let’s talk about filtering — an essential part of data analysis. In Polars, you can use filtering to subset your dataset based on logical conditions, using the magic of expressions. Logical operations are one of the simplest and most common use cases for expressions. For example, you can compare every value in the `region` column to the string "Europe". If there’s a match, Polars returns True; otherwise, it returns False.
+Now let’s talk about filtering - an essential part of data analysis. In Polars, you can use filtering to subset your dataset based on logical conditions, using the magic of expressions. Logical operations are one of the simplest and most common use cases for expressions. For example, you can compare every value in the `region` column to the string "Europe". If there’s a match, Polars returns True; otherwise, it returns False.
 
 Let’s see how this works in code:
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -361,9 +421,11 @@ Let’s see how this works in code:
 
 Here, the `filter()` method applies the logical condition, and only rows where the region is "Europe" are included in the result. Notice that for exact comparisons, we use the double equals sign `==`. Similarly, for inequalities, we can use operators like `<=`, `>=`, `<`, or `>`. Not equal is spelled out as `!=`.
 
-But filtering doesn’t stop there — you can combine multiple conditions to create more complex filters. 
+But filtering doesn’t stop there - you can combine multiple conditions to create more complex filters. 
 
 Here's a challenge for you. Can you find all the countries in Europe where the majority of the population lacked access to clean fuels for cooking at the end of 2022? Take a moment to write this expression. Pause the video if you need to.
+
+< PAUSE >
 
 <!-- :::{.challenge}
 Were there any countries in Europe in 2022 where the majority of people lacked access to clean fuel for cooking?
@@ -382,9 +444,11 @@ Were there any countries in Europe in 2022 where the majority of people lacked a
 )
 ```
 
-What did you get? Oh, wow! Over half the population of Bosnia still lacks access to clean fuels for cooking. That’s a powerful insight!
+What did you get? Oh, wow! Over half the population of Bosnia still lacks access to clean fuels for cooking. That’s a striking insight!
 
 Let’s zoom in on Bosnia to better understand the data. Bosnia’s country code is "BIH", but you can also use country name to filter, if you prefer.
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -396,11 +460,11 @@ clean_fuels
 )
 ```
 
-We are interested in tracking how the proportion of the population with access to clean fuels for cooking has changed over the years. Let's create a plot, with the year on the x-axis and the proportion of population on the y-axis.
-
-If you remember from the Plotnine module, the dataset goes into the first argument of the ggplot function.
+We are interested in tracking how the proportion of the population with access to clean fuels for cooking has changed over the years. Let's create a plot, with the year on the x-axis and the proportion of population on the y-axis.  If you remember from the Plotnine module, the dataset goes into the first argument of the ggplot function.
 
 Here’s one way to do this:
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -432,7 +496,9 @@ ggplot(df)
 ``` 
 -->
 
-This keeps the code clean and modular. Everything after `.pipe(ggplot)` is Plotnine-specific code.
+Pipe keeps the code clean and modular. Everything after `.pipe(ggplot)` is Plotnine-specific code.
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -451,6 +517,8 @@ What if you’re not sure how a country’s name is spelled in the dataset? For 
 
 In this case, you can use partial string matching to find it.
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -459,17 +527,19 @@ In this case, you can use partial string matching to find it.
     .filter(pl.col("country").str.starts_with("Cz")))
 ```
 
-Here, we use the `str.starts_with()` method, which checks if strings in the `country` column start with the letters “Cz.” Ah, there it is — “Czechia”! 
+Here, we use the `str.starts_with()` method, which checks if strings in the `country` column start with the letters “Cz.” Ah, there it is - “Czechia”! 
 
 Polars offers several handy string operations. For example:
 
-- str.starts_with()
-- str.ends_with()
-- str.contains()
+- `str.starts_with()`
+- `str.ends_with()` and 
+- `str.contains()`
 
 You’ll see more of these as we progress, but these three are powerful enough to help you tackle the following challenge.
 
 Filter the data for your own country and visualize the proportion of people with access to clean fuels. Once you’re happy with the subset of your data, use ggplot and everything you’ve learned about Plotnine to create a polished visualization.
+
+< PAUSE >
 
 <!-- :::{.challenge}
 Visualize the proportion of people with access to clean fuels in your own country
@@ -493,10 +563,12 @@ This looks fantastic! Great work visualizing your country’s data.
 
 In the next section, we’ll explore adding more columns to our dataset and practice advanced subsetting and visualization techniques. Stay tuned!
 
-# VIDEO 6 {greenscreen} ~ 3 min
+# VIDEO 6 DEATHS DATA {greenscreen} ~ 3 min
 <!-- ## More practice with filtering -->
 
 Let’s apply what we’ve learned about filtering to visualize the causes of death in some European countries.
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -505,9 +577,11 @@ Let’s apply what we’ve learned about filtering to visualize the causes of de
 hhap_deaths
 ```
 
-This dataset contains both summarized and detailed breakdowns of deaths for every country and year. Take a look at the column labeled cause_of_death. When this column says "All causes," it represents the total deaths for that country and year—a sum of all the other rows.
+This dataset contains both summarized and detailed breakdowns of deaths for every country and year. Take a look at the column labeled `cause_of_death`. When this column says "All causes," it represents the total deaths for that country and year-a sum of all the other rows.
 
 Let’s zoom in on Bosnia for a single year, say 2010, to understand this better.
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -522,6 +596,8 @@ Let’s zoom in on Bosnia for a single year, say 2010, to understand this better
 One of the rows is labeled "All causes" with 4,816 deaths. This total matches the sum of the individual causes of death. While it’s useful to have the total, it can lead to double counting if we include it in our analysis. 
 
 Now let’s expand our view to include all European countries for which we have death data. We’ll exclude the totals and focus on trends for each specific cause of death. Faceting will help us visualize these trends country by country.
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -539,11 +615,11 @@ Now let’s expand our view to include all European countries for which we have 
     )
 ```
 
-Most of the trends appear to be decreasing, which is good news. However, even with free y-axis scales for each country, the differences in scale make it hard to compare trends across countries. Look at Moldova! There’s a dramatic improvement in death cases here. Meanwhile, heart- and stroke-related deaths in neighboring Russia are on the rise.
+Most of the trends appear to be decreasing, which is good news. However, even with free y-axis for each country, the differences in scale make it hard to compare trends across countries. Look at Moldova! There’s a dramatic improvement in death cases here. Meanwhile, heart- and stroke-related deaths in the close-by Russia are on the rise.
 
 It would be good to put these numbers in perspective using population of these countries. Is this something we could calculate from our `clean_fuels` dataset?
 
-# VIDEO 7 {greenscreen} ~ 11 min
+# VIDEO 7 WITH_COLUMNS {greenscreen} ~ 11 min
 <!-- # mutating(with_columns) -->
 
 Remember, the `clean_fuels` data told us both the number of people with access to non-polluting fuels and the proportion of the population they represent, expressed as a percentage. With this, we can reverse-engineer the population for each country.
@@ -551,6 +627,8 @@ Remember, the `clean_fuels` data told us both the number of people with access t
 To create new variables, we use the `with_columns()` method. This method lets us add or modify columns using expressions.
 
 Let’s start by converting the percentage of people with access to clean fuels into a true proportion by dividing it by 100.
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -561,9 +639,11 @@ Let’s start by converting the percentage of people with access to clean fuels 
 )
 ```
 
-Here, we create a new column called `prop`. The expression starts with `pl.col("prop_clean_fuels_cooking_pct")`, and then we specify the operation: dividing by 100. Easy enough, right?
+Here, we create a new column called `prop`. The expression starts with a column name, and then we specify the operation: dividing by 100. The `prop` on the left of the equal sign will become a new column name. Easy enough, right?
 
 Now that we have the true proportion, we can calculate the total population. Let's divide the population by proportion. 
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -575,12 +655,14 @@ clean_fuels_pop_df = (clean_fuels
 )
 ```
 
-Notice that I wrapped the division operation in parentheses to ensure it’s evaluated correctly. I also used the alias() method to specify a name for the new column: `population`. This code calculates and adds two new columns:
+Notice that I wrapped the division operation in parentheses to ensure it’s evaluated correctly. I also used the `alias()` method to specify a name for the new column: `population`. This code calculates and adds two new columns:
 
-- `prop`: the true proportion of the population with access to clean fuels.
+- `prop`: the true proportion of the population with access to clean fuels, and
 - `population`: the estimated total population for each row.
 
 This looks good. Lets assign it to a variable and inspect the updated dataset.
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -589,11 +671,13 @@ This looks good. Lets assign it to a variable and inspect the updated dataset.
 clean_fuels_pop_df.describe()
 ```
 
-Oh, look! We’ve got some `NaN` values in the `population` column. These appear because we divided by zero wherever the proportion was zero. Division by zero is, understandably, illegal in most places — and in Python, it results in `NaN`.
+Oh, look! We’ve got some `NaN`, or "Not a Number", values in the `population` column. These appear because we divided by zero wherever the proportion was zero. Division by zero is, understandably, illegal in most places - and in Python, it results in `NaN`.
 
-`NaN`, or "Not a Number," is a special marker for missing or undefined values. It propagates through calculations, which means any further operations on these rows will also result in `NaN`. This is why the mean and standard deviation of the population column are also `NaN` in the summary.
+`NaN` is a special marker for missing or undefined values. Missing values in Polars propagate through calculations, which means any further operations on these rows will also result in missing values. This is why the mean and standard deviation of the population column are also `NaN` in the summary.
 
 Let's see how many rows in our dataset contain illegal population estimates. We can use the `.is_nan()` method, which evaluates whether a column contains `NaN` values.
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -603,11 +687,13 @@ Let's see how many rows in our dataset contain illegal population estimates. We 
     .filter(pl.col("population").is_nan()))
 ```
 
-Uh-oh! 35 rows! Perhaps `fuel_types`, the third data source we looked at in the beginning, could be a better source of population data?
+Uh-oh! 35 rows! Perhaps `fuel_types`, the third dataset, could be a better source of population data?
 
-The `fuel_types` dataset contains both the proportion of people using a specific cooking fuel and the absolute number of users. Since it includes multiple estimates for each country and year — one for each fuel type — it might give us more opportunities to calculate valid population estimates.
+The `fuel_types` dataset contains both the proportion of people using a specific cooking fuel and the absolute number of users. Since it includes multiple estimates for each country and year - one for each fuel type - it might give us more opportunities to calculate valid population estimates.
 
 Go ahead and add a population column to the `fuel_types` dataset. Save the extended data frame under a new name - we will need it later.
+
+< PAUSE >
 
 <!-- :::{.challenge}
 Add a population estimate to the `fuel_types` dataset and save it under a new variable name
@@ -624,6 +710,8 @@ fuel_types_pop_df = (fuel_types
 
 This looks promising! Let's have a look at our favorite Bosnia
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -633,14 +721,16 @@ This looks promising! Let's have a look at our favorite Bosnia
 )
 ```
 
-Interesting! We still get some `NaN` values, for example, look here: in 2022 no one was using Kerosene to cook food. Thanks goodness! But now we get several estimates of Bosnia’s population — 3.0, 3.5, 3.53, 3.48 million. These slight differences arise from rounding imprecisions in the proportions or the number of people using the specific fuel type. While these variations are minor, they make it tricky to work with the data directly.
+Interesting! We still get some `NaN` values, for example, look here: in 2022 no one was using Kerosene to cook food. Thanks goodness! But now we get several estimates of Bosnia’s population - 3.0, 3.5, 3.53, 3.48 million. These slight differences arise from rounding imprecisions in the proportions or the number of people using the specific fuel type. While these variations are minor, they make it tricky to work with the data directly.
 
-Wouldn’t it be nice to level out these immaterial differences, by say, averaging? In the next section, we’ll learn how to do just that: grouping and aggregating. Stay tuned!
+Wouldn’t it be nice to level out these differences, by say, averaging? In the next section, we’ll learn how to do just that: grouping and aggregating. Stay tuned!
 
-# VIDEO 8 {greenscreen} ~ 14 min
+# VIDEO 8 SUMMARIES {greenscreen} ~ 14 min
 <!-- # summarizing (group_by, agg) -->
 
 One of the most important tasks for data analysts is creating summaries of the data, particularly by groups. In our newly prepared dataset, we’re interested in summarizing the total population for each country by year. In Polars, this is a two-step process. First, we define the groups using `.group_by()`. Then, we aggregate the data using `.agg()`.
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -652,10 +742,12 @@ One of the most important tasks for data analysts is creating summaries of the d
 )
 ```
 
-This gives us a mean population estimate for each country and year. But you might notice something peculiar—some countries and years still show `NaN` values for the population. These missing values are a result of the division by zero we encountered earlier. To address this, we have a couple of options:
+This gives us a mean population estimate for each country and year. But you might notice something peculiar-some countries and years still show `NaN` values for the population. These missing values are a result of the division by zero we encountered earlier. To address this, we have a couple of options:
 
-1. Drop the missing values directly before averaging, using .drop_nans().
-2. Filter out zero-valued records in the "proportion of population with access to clean fuels", which was used in the denominator when calculating the population column.
+We could drop the missing values directly before averaging, using `.drop_nans()`; OR
+We could filter out zero-valued records in the "proportion of population with access to clean fuels", which was used in the denominator of the population column.
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -676,12 +768,13 @@ This gives us a mean population estimate for each country and year. But you migh
 )
 ```
 
-Now, let’s build on this idea. What if we wanted to summarize populations at a higher level — say, by region — and visualize how total population changes over time? 
+Now, let’s build on this idea. What if we wanted to summarize populations at a higher level - say, by region - and visualize how total population changes over time? 
 
 Give it a try! I suggest you start by by calculating the average population for each country and year. Then, you can group this data by region and year, summing the populations for all countries in each region. Finally, plot the results. 
 
 Take your time and think through what type of aggregation you would need to do.
 
+< PAUSE >
 <!-- :::{.challenge}
 Plot the total population per region over time.
 ::: -->
@@ -706,8 +799,9 @@ When we visualize the results, the trends are striking. Populations in Africa an
 
 Now that we’ve explored population estimates and regional dynamics, let’s take on another challenge: examining the changes in the popularity of different cooking fuels worldwide.
 
-Here’s your next task:
+Here’s your new task: Visualize the total number of people using each type of fuel for cooking, for every year, worldwide.
 
+< PAUSE >
 <!-- :::{.challenge}
 Visualize the total number of people using each type of fuel for cooking, for every year, worldwide.
 ::: -->
@@ -728,6 +822,8 @@ Visualize the total number of people using each type of fuel for cooking, for ev
 
 This plot looks fantastic! By aggregating by fuel type and year, we can clearly see trends in fuel usage globally. But we can take this further. What if we wanted to break this data down by region? Faceting would allow us to examine the trends within each world region more closely.
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -747,6 +843,8 @@ With this plot, we can see unique trends for every region. Across the globe, ele
 
 To make the energy mix clearer, we can represent the share of the population relying on each fuel type within a region. This requires dividing the number of people using each fuel by the annual total population for the region. We’ll use Polars’ `.over()` method to calculate these totals for subgroups without collapsing the data.
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -760,7 +858,9 @@ To make the energy mix clearer, we can represent the share of the population rel
 )
 ```
 
-I wrap the expression into parenthesis and pass it to `.over()` method which defines the scope for the `.sum()` operation. Note that this is different from aggregation, because the number of rows actually does not change. Lets visualize it!
+I wrap the expression into parenthesis and pass it to the `.over()` method which defines the scope for the `.sum()` operation. Note that this is different from aggregation, because the number of rows actually does not change. Lets visualize it!
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -783,12 +883,13 @@ I wrap the expression into parenthesis and pass it to `.over()` method which def
 )
 ```
 
-What a graph! What a story! In Africa, biomass remains dominant, though natural gas is beginning to make inroads. The Americas, Europe, and Eastern Mediterranean rely heavily on gas, with electricity emerging as a significant player in Europe and the Western Pacific. Southeast Asia, meanwhile, is undergoing a rapid transition from biomass to gas — a remarkable shift in just a few decades. This visualization gives us a profound understanding of how cooking fuel usage has evolved globally and regionally over time.
+What a graph! What a story! In Africa, biomass remains dominant, though natural gas is beginning to make inroads. The Americas, Europe, and Eastern Mediterranean rely heavily on gas, with electricity emerging as a significant player in Europe and the Western Pacific. Southeast Asia, meanwhile, is undergoing a rapid transition from biomass to gas - a remarkable shift in just a few decades. This visualization gives us a profound understanding of how cooking fuel usage has evolved globally and regionally over time.
 
 # VIDEO 9 {greenscreen} ~ 3 min
 
-It’s time for you to take on another challenge — one that highlights the global reliance on coal and charcoal for cooking.
+It’s time for you to take on another challenge - one that highlights the global reliance on coal and charcoal for cooking. Create a column chart showing the top 10 countries by the number of people using coal and charcoal for cooking in 2022. Color the columns by continent. How many of these top-10 countries are in Africa?
 
+< PAUSE >
 <!-- :::{.challenge}
 Create a column chart showing the top 10 countries by the number of people using coal and charcoal for cooking in 2022. Color the columns by continent. How many of these top-10 countries are in Africa?
 ::: -->
@@ -815,6 +916,6 @@ Create a column chart showing the top 10 countries by the number of people using
     )
 ```
 
-Seven — possibly eight, if you include Somalia — of the top-10 countries using coal for cooking are in Africa! Many African nations rely heavily on these highly polluting and dangerous carbon-based fuels. Ensuring access to cleaner, safer energy sources is essential to improving health outcomes and accelerating the transition to sustainable energy.
+Seven - possibly eight, if you include Somalia - of the top-10 countries using coal for cooking are in Africa! Many African nations rely heavily on these highly polluting and dangerous carbon-based fuels. Ensuring access to cleaner, safer energy sources is essential to improving health outcomes and accelerating the transition to sustainable energy.
 
-In the next section, we’ll learn how to combine datasets through joins and reshape them using pivots—powerful tools for transforming and enriching our analyses. See you soon, as we dive deeper into the art and science of data manipulation!
+In the next section, we’ll learn how to combine datasets through joins and reshape them using pivots - powerful tools for transforming and enriching our analyses. See you soon, as we dive deeper into the art and science of data manipulation!
