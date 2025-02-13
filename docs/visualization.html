@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -104,17 +70,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <style>
-div.callout-challenge.callout {
-  border-left-color: firebrick;
-}
-div.callout-challenge.callout-style-default > .callout-header {
-  background-color: rgb(from firebrick r g b / 13%);
-}
-div.callout-challenge .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-challenge.callout-style-default .callout-icon::before, div.callout-challenge.callout-titled .callout-icon::before {
-  content: '🛠️';
-  background-image: none;
-}
 div.callout-question.callout {
   border-left-color: pink;
 }
@@ -124,6 +79,17 @@ div.callout-question.callout-style-default > .callout-header {
 div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
   content: '🧠';
+  background-image: none;
+}
+div.callout-challenge.callout {
+  border-left-color: firebrick;
+}
+div.callout-challenge.callout-style-default > .callout-header {
+  background-color: rgb(from firebrick r g b / 13%);
+}
+div.callout-challenge .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-challenge.callout-style-default .callout-icon::before, div.callout-challenge.callout-titled .callout-icon::before {
+  content: '🛠️';
   background-image: none;
 }
 </style>
@@ -187,20 +153,19 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a></li>
-  <li><a href="#libraries" id="toc-libraries" class="nav-link" data-scroll-target="#libraries">Libraries</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
-  <li><a href="#first-plot" id="toc-first-plot" class="nav-link" data-scroll-target="#first-plot">First plot</a></li>
-  <li><a href="#axis" id="toc-axis" class="nav-link" data-scroll-target="#axis">Axis</a></li>
-  <li><a href="#aestetical-mapping" id="toc-aestetical-mapping" class="nav-link" data-scroll-target="#aestetical-mapping">Aestetical mapping</a></li>
-  <li><a href="#more-aesthetics" id="toc-more-aesthetics" class="nav-link" data-scroll-target="#more-aesthetics">More aesthetics</a></li>
-  <li><a href="#non-data-linked-properties" id="toc-non-data-linked-properties" class="nav-link" data-scroll-target="#non-data-linked-properties">Non-data linked properties</a></li>
-  <li><a href="#geometrical-objects" id="toc-geometrical-objects" class="nav-link" data-scroll-target="#geometrical-objects">Geometrical objects</a></li>
-  <li><a href="#trend-lines" id="toc-trend-lines" class="nav-link" data-scroll-target="#trend-lines">Trend lines</a></li>
-  <li><a href="#factors" id="toc-factors" class="nav-link" data-scroll-target="#factors">Factors</a></li>
-  <li><a href="#more-geoms" id="toc-more-geoms" class="nav-link" data-scroll-target="#more-geoms">More geoms</a></li>
-  <li><a href="#faceting" id="toc-faceting" class="nav-link" data-scroll-target="#faceting">Faceting</a></li>
-  <li><a href="#labeling-and-styling-the-chart" id="toc-labeling-and-styling-the-chart" class="nav-link" data-scroll-target="#labeling-and-styling-the-chart">Labeling and styling the chart</a></li>
+  <li><a href="#video-1-greenscreen-7-min" id="toc-video-1-greenscreen-7-min" class="nav-link active" data-scroll-target="#video-1-greenscreen-7-min">VIDEO 1 {greenscreen} ~ 7 min</a></li>
+  <li><a href="#video-2-greenscreen-5-min" id="toc-video-2-greenscreen-5-min" class="nav-link" data-scroll-target="#video-2-greenscreen-5-min">VIDEO 2 {greenscreen} ~ 5 min</a></li>
+  <li><a href="#video-3-greenscreen-10-min" id="toc-video-3-greenscreen-10-min" class="nav-link" data-scroll-target="#video-3-greenscreen-10-min">VIDEO 3 {greenscreen} ~ 10 min</a></li>
+  <li><a href="#video-4-greenscreen-9-min" id="toc-video-4-greenscreen-9-min" class="nav-link" data-scroll-target="#video-4-greenscreen-9-min">VIDEO 4 {greenscreen} ~ 9 min</a></li>
+  <li><a href="#video-5-greenscreen-12-min" id="toc-video-5-greenscreen-12-min" class="nav-link" data-scroll-target="#video-5-greenscreen-12-min">VIDEO 5 {greenscreen} ~ 12 min</a></li>
+  <li><a href="#video-6-greenscreen-10-min" id="toc-video-6-greenscreen-10-min" class="nav-link" data-scroll-target="#video-6-greenscreen-10-min">VIDEO 6 {greenscreen} ~ 10 min</a></li>
+  <li><a href="#video-7-greenscreen-7-min" id="toc-video-7-greenscreen-7-min" class="nav-link" data-scroll-target="#video-7-greenscreen-7-min">VIDEO 7 {greenscreen} ~ 7 min</a></li>
+  <li><a href="#video-8-greenscreen-12-min" id="toc-video-8-greenscreen-12-min" class="nav-link" data-scroll-target="#video-8-greenscreen-12-min">VIDEO 8 {greenscreen} ~ 12 min</a></li>
+  <li><a href="#video-9-greenscreen-12-min" id="toc-video-9-greenscreen-12-min" class="nav-link" data-scroll-target="#video-9-greenscreen-12-min">VIDEO 9 {greenscreen} ~ 12 min</a></li>
+  <li><a href="#video-10-greenscreen-5-min" id="toc-video-10-greenscreen-5-min" class="nav-link" data-scroll-target="#video-10-greenscreen-5-min">VIDEO 10 {greenscreen} ~ 5 min</a></li>
+  <li><a href="#video-11-greenscreen-12-min" id="toc-video-11-greenscreen-12-min" class="nav-link" data-scroll-target="#video-11-greenscreen-12-min">VIDEO 11 {greenscreen} ~ 12 min</a></li>
+  <li><a href="#video-12-greenscreen-10-min" id="toc-video-12-greenscreen-10-min" class="nav-link" data-scroll-target="#video-12-greenscreen-10-min">VIDEO 12 {greenscreen} ~ 10 min</a></li>
+  <li><a href="#video-13-greenscreen-7-min" id="toc-video-13-greenscreen-7-min" class="nav-link" data-scroll-target="#video-13-greenscreen-7-min">VIDEO 13 {greenscreen} ~ 7 min</a></li>
   </ul>
 </nav>
     </div>
@@ -226,8 +191,9 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </header>
 
 
-<section id="welcome" class="level2">
-<h2 class="anchored" data-anchor-id="welcome">Welcome</h2>
+<section id="video-1-greenscreen-7-min" class="level1">
+<h1>VIDEO 1 {greenscreen} ~ 7 min</h1>
+<!-- ## Welcome -->
 <p>Welcome to the lesson on data visualization!</p>
 <p>Data visualization is one of the most important skills in data analysis. Why? Because a well-made chart can reveal patterns, trends, and insights that might otherwise stay hidden in a spreadsheet. It’s like turning a jumble of numbers into a picture that tells a story.</p>
 <p>But let’s be honest—visualizing data can sometimes feel overwhelming. There are so many types of charts to choose from and endless options for customizing them. Scatter plots, bar graphs, heatmaps—what should you use? And even after you pick a plot, there are all these parameters: axis, labels, color scales, gridlines… It’s easy to feel like you’re drowning in options!</p>
@@ -236,36 +202,22 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <p>Now, let’s take a step back into history for a moment. In 1999, a statistician named Leland Wilkinson published a groundbreaking book called The Grammar of Graphics. Think of it like this: Just as grammar gives structure to language, Wilkinson’s framework gave structure to statistical graphics. He introduced a way to think about and construct plots systematically, rather than relying on intuition or tradition alone.</p>
 <p>His ideas were revolutionary and influenced countless tools for making visualizations. One of the most famous examples is the R package <code>ggplot2</code>, created by Hadley Wickham. Wickham built on Wilkinson’s Grammar of Graphics and created what is now considered one of the most powerful and popular visualization tools in the world of data science.</p>
 <p>In 2017 a passionate Python developer from Uganda by the name Hassan Kibridge ported <code>ggplot2</code> into Python. His project became known as <code>plotnine</code> and it soon became a universal success. Here’s the story of <code>plotnine</code> in his own words:</p>
-<blockquote class="blockquote">
-<p>I discovered this “Grammar of Graphics” thing and found it elegant and powerful. So, I wanted to be able to use it in Python, my preferred programming language for data analysis. I read the key text on the subject by Leland Wilkinson and while I had a good grasp of it, translating it into a usable system would have been a huge undertaking. Hadley Wickham had done so for his doctorate and came up with ggplot2. While I was not confident enough to take this on, I felt that it was quite revolutionary and someone was going to implement it for Python.</p>
-<p>And it happened—a project came up that allowed people to seemingly make plots in Python using a grammar just like ggplot2. I started using it but soon discovered that it did not implement a grammar, it just faked one, and it broke down when you tried to make more complicated plots. Since this project was open source, I contributed to improving it. Yet to fix what was lacking grew into a complete overhaul, and this endeavor is what became Plotnine. The first release of which came out in July 2017 after about 3 years of on-and-off development.</p>
-<p>To my surprise, Plotnine has been more successful than I imagined. For it, I have twice received the Google Open Source Peer Bonus Award—a recognition from Google employees towards open source software that is essential to their work. I have helped someone who was working on a COVID-19 vaccine trial solve a small problem they had run into with Plotnine. And, there is a book or two about it.</p>
-</blockquote>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Have a look at the <a href="https://mode.com/blog/whos-behind-the-numbers-hassan-kibirige">full interview here</a> as well as Hassan’s <a href="https://www.youtube.com/watch?v=q816IZuqVNo">talk at the posit::conf(2023)</a> in Chicago.</p>
-</div>
-</div>
+<!-- ## VOICE OVER
+
+> I discovered this "Grammar of Graphics" thing and found it elegant and powerful. So, I wanted to be able to use it in Python, my preferred programming language for data analysis. I read the key text on the subject by Leland Wilkinson and while I had a good grasp of it, translating it into a usable system would have been a huge undertaking. Hadley Wickham had done so for his doctorate and came up with ggplot2. While I was not confident enough to take this on, I felt that it was quite revolutionary and someone was going to implement it for Python.
+>
+> And it happened—a project came up that allowed people to seemingly make plots in Python using a grammar just like ggplot2. I started using it but soon discovered that it did not implement a grammar, it just faked one, and it broke down when you tried to make more complicated plots. Since this project was open source, I contributed to improving it. Yet to fix what was lacking grew into a complete overhaul, and this endeavor is what became Plotnine. The first release of which came out in July 2017 after about 3 years of on-and-off development.
+>
+> To my surprise, Plotnine has been more successful than I imagined. For it, I have twice received the Google Open Source Peer Bonus Award—a recognition from Google employees towards open source software that is essential to their work. I have helped someone who was working on a COVID-19 vaccine trial solve a small problem they had run into with Plotnine. And, there is a book or two about it.  
+-->
+<!-- :::{.callout-tip}
+Have a look at the [full interview here](https://mode.com/blog/whos-behind-the-numbers-hassan-kibirige) as well as Hassan's [talk at the posit::conf(2023)](https://www.youtube.com/watch?v=q816IZuqVNo) in Chicago.
+::: -->
 <p>While the syntax of <code>plotnine</code> might feel a bit different from typical Python code, don’t worry—there’s a reason for it! The goal is to keep the grammar intact, and that consistency makes it easy to learn and incredibly flexible to use.</p>
 <p>In this lesson, we’ll dive into <code>plotnine</code> and explore how it allows you to create clear, beautiful, and insightful visualizations. We’ll guide you step by step so you can quickly become comfortable with its intuitive and expressive syntax.</p>
 <p>So, join us on this journey into the wonderful world of data visualization. By the end, you’ll be creating plots that don’t just look good but also communicate your data’s story effectively. Let’s get started!</p>
-</section>
-<section id="libraries" class="level2">
-<h2 class="anchored" data-anchor-id="libraries">Libraries</h2>
+<!-- ## Libraries -->
 <p>Before we dive in, let’s talk about the tools and libraries we’ll be using in this lesson.</p>
-<div id="769f8283" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gapminder <span class="im">import</span> gapminder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>First up is polars, the powerful data analysis library we’ll be relying on throughout the course. If you’re familiar with Python, you know it’s common practice to use shorthand or aliases when importing libraries. For polars, the standard alias is pl, so that’s what we’ll use here. Anytime we call a function from polars, it will be prefixed with <code>pl.</code> — simple and consistent.</p>
 <p>Now, when it comes to our visualization library, plotnine, we’ll take a slightly different approach. Instead of using a prefix, we’ll import all its functions directly into our workspace. This means we’ll use the from plotnine import * syntax, which essentially says, “Hey Python, bring in everything from plotnine!” Why? Because it makes our plotting code cleaner, easier to read, and more expressive.</p>
 <p>Finally, let’s talk about the dataset we’ll be exploring today. It comes from the gapminder package. If you’re not familiar with Gapminder, it’s a non-profit organization founded by Hans Rosling and his children back in 2005. Their mission? To promote a better understanding of global development through data—focusing on health, economics, and the environment.</p>
@@ -273,134 +225,10 @@ Tip
 <p>Hans Rosling himself is famous for his captivating TED Talk in 2007, where he used data to tell the story of global development. He spoke about life expectancy, GDP, and even the humble washing machine—and how it changed the world. If you haven’t watched that talk yet, I can’t recommend it enough. It’s a masterclass in how to make data come alive.</p>
 <p>So, with our tools in hand and an inspiring dataset at our fingertips, we’re ready to start exploring and visualizing. Let’s get to it!</p>
 </section>
-<section id="data" class="level2">
-<h2 class="anchored" data-anchor-id="data">Data</h2>
+<section id="video-2-greenscreen-5-min" class="level1">
+<h1>VIDEO 2 {greenscreen} ~ 5 min</h1>
+<!-- ## Data -->
 <p>The dataset has been conveniently imported for us by the <code>gapminder</code> package. To get started, we can simply type <code>gapminder</code> into our console and hit Enter. When we do that, we’ll see a preview of the data in the form of a table — what we call a DataFrame. In this table, each row represents an observation, and each column represents a variable.</p>
-<div id="12547000" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gapminder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">country</th>
-<th data-quarto-table-cell-role="th">continent</th>
-<th data-quarto-table-cell-role="th">year</th>
-<th data-quarto-table-cell-role="th">lifeExp</th>
-<th data-quarto-table-cell-role="th">pop</th>
-<th data-quarto-table-cell-role="th">gdpPercap</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>Afghanistan</td>
-<td>Asia</td>
-<td>1952</td>
-<td>28.801</td>
-<td>8425333</td>
-<td>779.445314</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>Afghanistan</td>
-<td>Asia</td>
-<td>1957</td>
-<td>30.332</td>
-<td>9240934</td>
-<td>820.853030</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>Afghanistan</td>
-<td>Asia</td>
-<td>1962</td>
-<td>31.997</td>
-<td>10267083</td>
-<td>853.100710</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>Afghanistan</td>
-<td>Asia</td>
-<td>1967</td>
-<td>34.020</td>
-<td>11537966</td>
-<td>836.197138</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>Afghanistan</td>
-<td>Asia</td>
-<td>1972</td>
-<td>36.088</td>
-<td>13079460</td>
-<td>739.981106</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1699</td>
-<td>Zimbabwe</td>
-<td>Africa</td>
-<td>1987</td>
-<td>62.351</td>
-<td>9216418</td>
-<td>706.157306</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1700</td>
-<td>Zimbabwe</td>
-<td>Africa</td>
-<td>1992</td>
-<td>60.377</td>
-<td>10704340</td>
-<td>693.420786</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1701</td>
-<td>Zimbabwe</td>
-<td>Africa</td>
-<td>1997</td>
-<td>46.809</td>
-<td>11404948</td>
-<td>792.449960</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1702</td>
-<td>Zimbabwe</td>
-<td>Africa</td>
-<td>2002</td>
-<td>39.989</td>
-<td>11926563</td>
-<td>672.038623</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1703</td>
-<td>Zimbabwe</td>
-<td>Africa</td>
-<td>2007</td>
-<td>43.487</td>
-<td>12311143</td>
-<td>469.709298</td>
-</tr>
-</tbody>
-</table>
-
-<p>1704 rows × 6 columns</p>
-</div>
-</div>
-</div>
 <p>This dataset has 1,704 rows and 6 columns, so it’s fairly compact but still rich with information. Let’s walk through what each of these columns means:</p>
 <ul>
 <li><p><strong>country</strong>: This column lists the names of countries. If you take a look at the data, you’ll notice it starts with Afghanistan at the top and ends with Zimbabwe at the bottom. It seems the data is sorted alphabetically by country.</p></li>
@@ -413,8 +241,9 @@ Tip
 <p>Altogether, these six columns give us a fascinating lens through which to explore global trends in health, wealth, and population growth. The dataset might look simple at first glance, but it’s packed with stories waiting to be uncovered.</p>
 <p>Now that we know what we’re working with, let’s roll up our sleeves and start exploring!</p>
 </section>
-<section id="first-plot" class="level2">
-<h2 class="anchored" data-anchor-id="first-plot">First plot</h2>
+<section id="video-3-greenscreen-10-min" class="level1">
+<h1>VIDEO 3 {greenscreen} ~ 10 min</h1>
+<!-- ## First plot -->
 <p>Now, it’s time to create our very first plot! Here is a question we would like to answer using <code>gapminder</code> data:</p>
 <div class="callout callout-style-default callout-question callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -448,19 +277,6 @@ Question
 </div>
 <p>In order to answer these questions, we will create a plot from <code>gapminder</code> data. Here’s the code we’ll use. Take a moment to copy this code verbatim from your screen.</p>
 <p>When writing Python code with <code>plotnine</code> — and later when we use <code>polars</code> — you’ll notice that we often wrap our code in parentheses. This is a great habit to get into because it allows us to break our code into multiple lines without worrying about indentation.</p>
-<div id="ad9c439d" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>geom_point(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>))</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-4-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>Let’s walk through this step by step.</p>
 <p>Inside the outer parentheses, the first thing we write is <code>ggplot</code>. This is the foundational function in <code>plotnine</code>, and it stands for <strong>Grammar of Graphics plot</strong>. Then, in parentheses again, we pass the dataset we want to use — in this case, <code>gapminder</code>.</p>
 <p>After that, we add a plus sign. The Grammar of Graphics, which <code>plotnine</code> is built on, thinks of plots as being made up of layers. The <code>+</code> sign we added tells Python that we’re adding more layers or components to our plot. Think of it as saying, “Wait, there’s more!”</p>
@@ -478,8 +294,9 @@ Question
 <p>In the remainder of this lesson, we’ll explore how to extend and customize this template to create a wide variety of visualizations. Each new element we add will open up even more possibilities.</p>
 <p>I’ll see you in the next one!</p>
 </section>
-<section id="axis" class="level2">
-<h2 class="anchored" data-anchor-id="axis">Axis</h2>
+<section id="video-4-greenscreen-9-min" class="level1">
+<h1>VIDEO 4 {greenscreen} ~ 9 min</h1>
+<!-- ## Axis -->
 <p>Hello again! Ready for a challenge? I’ve got a question for you:</p>
 <div class="callout callout-style-default callout-challenge callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -498,36 +315,10 @@ Challenge
 <p>Here’s a quick hint before you pause the video: The <code>gapminder</code> dataset includes a column called <code>year</code>, which can go on the x-axis. Use that to tweak the code and see what you find. I’ll wait right here while you try it out!</p>
 <p>Pause the video now and give it a shot. See you in a moment!</p>
 <!-- *...pause for effect...* -->
-<div id="f672b5b7" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>geom_point(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>))</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-5-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>Done? Excellent! Let’s take a look at what we’ve got. Nice work! You should see a scatter plot showing life expectancy over time.</p>
 <p>Hmm… notice how some of the points are stacked on top of each other? That’s called overplotting, and it’s pretty common when you have a lot of data points at the same x or y values. Don’t worry—it’s easy to fix!</p>
 <p>Instead of geom_point, try using geom_jitter. This will add a tiny bit of random noise to spread out the points so they’re easier to see.</p>
 <p>Here’s how you do it:</p>
-<div id="8cbede3a" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>geom_jitter(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>))</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-6-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>Run this code and check out the difference. Much better, right? Now we can see the points more clearly.</p>
 <p>Let’s keep going with this little game. Here’s your next challenge:</p>
 <div class="callout callout-style-default callout-challenge callout-titled">
@@ -545,252 +336,98 @@ Challenge
 </div>
 <p>Think about which variable should go on the x-axis this time. Which continent do you think tends to have the highest life expectancy? Modify your code and give it a shot. Pause the video, try it out, and come back when you’re ready.</p>
 <!-- *...pause for effect...* -->
-<div id="03ff0d23" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>geom_jitter(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'continent'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>))</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-7-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>Great job! What do we see here? Looks like life expectancy in Oceania is quite high, although there aren’t many points for that region. Europe is a close second. On the other hand, Africa seems to have the lowest life expectancy overall, judging by the density of points at the lower end of the y-axis.</p>
 <p>Here’s another question: Which continent has the widest spread in life expectancy values? That’s right—it’s Asia. There’s quite a bit of variation there, which is something we’ll dig into in more detail later in the course.</p>
 <p>Fantastic work so far! Take a moment to review what you’ve done, and I’ll see you in the next section!</p>
 </section>
-<section id="aestetical-mapping" class="level2">
-<h2 class="anchored" data-anchor-id="aestetical-mapping">Aestetical mapping</h2>
+<section id="video-5-greenscreen-12-min" class="level1">
+<h1>VIDEO 5 {greenscreen} ~ 12 min</h1>
+<!-- ## Aestetical mapping -->
 <p>&lt;…Walks in, looking thoughtful….&gt;</p>
 <p>Oh, hey there! You know, I’ve been thinking—what if we could combine the graphs from the last two challenges and show the relationship between not just two variables, but three?</p>
 <p>Now, don’t worry—we’re not diving into “three-dimensional” plots just yet. Instead, we can represent a third variable using color. Let me show you what I mean.</p>
 <p>Here’s modified code that maps the continent variable to the color aesthetic:</p>
-<div id="e3df47f5" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>geom_jitter(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>))</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-8-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>Run this code and take a look.</p>
 <!-- *...pause for effect...* -->
 <p>What do you see? Now we can see more clearly how life expectancy has changed over time by continent. For example, the points representing Africa stay clustered near the lower end of the y-axis throughout the years, while Europe’s points are generally higher. Oceania is there too, but it’s barely noticeable because there are so few observations. Pretty cool, right?</p>
 <p>Now, I’ve got a question for you: What happens if we switch the mappings of continent and year? Give it a try!</p>
-<div class="callout callout-style-default callout-challenge callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Challenge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Switch the mappings of continent and year in this sample code</p>
-<pre><code>(
+<!-- :::{.challenge}
+Switch the mappings of continent and year in this sample code
+
+```
+(
 ggplot(gapminder)+
 geom_jitter(mapping = aes(x='year', y='lifeExp', color='continent'))
-)</code></pre>
-</div>
-</div>
-<div id="fbdf52fd" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># switch aesthetics</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>geom_jitter(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'continent'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'year'</span>))</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-9-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
+)
+```
+::: -->
 <!-- *...pause for effect...* -->
 <p>Done? Great! Do you still find this graph useful? Why or why not?</p>
 <p>Now let’s tweak it a bit more. What if, instead of mapping color to year, we mapped it to country? Give it a try!</p>
-<div class="callout callout-style-default callout-challenge callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Challenge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Map color to country in this sample code:</p>
-<pre><code>(
+<!-- :::{.challenge}
+Map color to country in this sample code:
+```
+(
 ggplot(gapminder)+
 geom_jitter(mapping = aes(x='continent', y='lifeExp', color='year'))
-)</code></pre>
-</div>
-</div>
-<div id="449bd762" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># color by country</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>geom_jitter(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'continent'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'country'</span>))</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-10-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
+)
+```
+::: -->
 <p>What changed? How does mapping color to country differ from mapping it to year? Take a moment to think about it. What do you think is the main limitation of using the color aesthetic?</p>
 <p>Alright, here’s one last challenge for this section: Can you add a splash of color to our original graph of life expectancy by GDP per capita? Let’s color the points by continent.</p>
-<div class="callout callout-style-default callout-challenge callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Challenge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Color the points by continent in this sample code:</p>
-<pre><code>(
+<!-- :::{.challenge}
+Color the points by continent in this sample code:
+```
+(
 ggplot(gapminder) +
 geom_point(mapping = aes(x='gdpPercap', y='lifeExp'))
-)</code></pre>
-</div>
-</div>
+)
+```
+::: -->
 <p>Take a moment to run your code and see what you get.</p>
-<div id="820f200f" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>geom_point(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>))</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-11-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <!-- Pause. -->
 <p>Amazing! By adding color, we can now spot trends and patterns more easily. But did you notice something else? There are a few outliers in this plot. Can you tell which continent those points belong to?</p>
 <p>The points look a little crowded. But you know, you can always transform GDP per capita to a logarithmic scale for better visualization. Just add <code>scale_x_log10()</code> as an additional layer to your graph, like that:</p>
-<div id="6a065f8e" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># transform the scales</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>geom_point(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>))<span class="op">+</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>scale_x_log10()</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-12-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>You’re making fantastic progress! Well done! In the next section, we’ll explore even more aesthetics that can help us tell richer stories with our data. See you there!</p>
 </section>
-<section id="more-aesthetics" class="level2">
-<h2 class="anchored" data-anchor-id="more-aesthetics">More aesthetics</h2>
+<section id="video-6-greenscreen-10-min" class="level1">
+<h1>VIDEO 6 {greenscreen} ~ 10 min</h1>
+<!-- ## More aesthetics -->
 <p>Hello again!</p>
 <p>So far, we’ve explored some powerful ways to visualize data using the x, y, and color aesthetics. With these, we’ve been able to represent three variables in a single plot. Pretty amazing, right?</p>
 <p>Now, let’s quickly recap what we’ve learned about the color aesthetic. When we map a categorical variable like continent to color, plotnine automatically picks a distinct palette for each category. This works great when there are just a few categories, but as the number of categories grows, the colors start to blur together and lose their effectiveness.</p>
 <p>On the other hand, when we map a continuous variable like year to color, we get a gradient. While individual values can be harder to pinpoint, the overall trends are beautifully highlighted by the gradient’s brightness.</p>
 <p>Alright, as promised, let me introduce you to another fantastic aesthetic: size.</p>
 <p>Imagine we could vary the size of the points in our graph to represent something meaningful—like the population of a country. That would let us visualize not three, but four variables at the same time. Let’s give it a shot. Here’s the code:</p>
-<div id="51130452" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>geom_point(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>, size<span class="op">=</span><span class="st">'pop'</span>))<span class="op">+</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>scale_x_log10()</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-13-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>WRun this and take a moment to appreciate the result. Isn’t it gorgeous?</p>
 <p>Now we can see the journey of countries like China and India over time. Their points stand out because of their large populations. Under the logarithmic transformation of the x-axis, the relationship between GDP per capita and life expectancy starts to look more linear—but not quite!</p>
 <p>Notice the outliers on the far right? They all seem to be from Asian countries. Are these countries rich or poor? Rich, right? But their life expectancy doesn’t quite follow the trend we see in Europe or the Americas. Fascinating, isn’t it?</p>
 <p>Now, let me share one more aesthetic property with you: shape.</p>
 <p>Shape can be a great tool for visualizing low-cardinality categorical variables, like continent. Instead of just using circles, we can use distinct shapes for each category. This lets us pack even more information into the same graph.</p>
 <p>Ready for a challenge? Let’s push the limits and visualize five dimensions in a single plot. Modify the previous example to map year to color and continent to shape. Take a moment and try it. I’ll wait.</p>
-<div class="callout callout-style-default callout-challenge callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Challenge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Map year to color and continent to shape in this sample code</p>
-<pre><code>(
+<!-- :::{.challenge}
+Map year to color and continent to shape in this sample code 
+```
+(
 ggplot(gapminder)+
 geom_point(mapping = aes(x='gdpPercap', y='lifeExp', color='continent', size='pop'))+
 scale_x_log10()
-)</code></pre>
-</div>
-</div>
+)
+```
+::: -->
 <!-- *...pause for effect...* -->
-<div id="fb8107f7" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># map year to color and continent to shape</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>geom_point(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'year'</span>, size<span class="op">=</span><span class="st">'pop'</span>, shape<span class="op">=</span><span class="st">'continent'</span>))<span class="op">+</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>scale_x_log10()</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-14-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>What do you notice? Can you tell whether those Asian outliers come from small or large countries? Are they from earlier or later time periods?</p>
 <p>These are the kinds of questions we can answer when we use multiple aesthetics thoughtfully. Isn’t it amazing how much information we can pack into a single visualization?</p>
 <p>Fantastic work today! In the next lesson, we’ll continue exploring new tools and techniques to take your visualizations even further. See you soon!</p>
 </section>
-<section id="non-data-linked-properties" class="level2">
-<h2 class="anchored" data-anchor-id="non-data-linked-properties">Non-data linked properties</h2>
+<section id="video-7-greenscreen-7-min" class="level1">
+<h1>VIDEO 7 {greenscreen} ~ 7 min</h1>
+<!-- ## Non-data linked properties -->
 <p>Welcome back!</p>
 <p>So far, we’ve packed a lot of information into single graphs using data-mapped aesthetics like color, size, and shape. While this approach is powerful, let’s face it—combining too many aesthetics can make a plot feel busy and overwhelming.</p>
 <p>Sometimes, less is more. A clean and simple graph, highlighting just one or two aspects of the data, can be just as insightful—and a lot easier on the eyes.</p>
 <p>Now, the default style in plotnine is already quite nice, but there may come a time when you want to tweak things to better suit your storytelling. So, let’s look at how to customize graphs using non-data-linked properties—those that aren’t mapped to a variable but instead apply globally to all points in the graph.</p>
 <p>Here’s an example. What if we want all the points in our plot to be the same color, say blue? And what if we also want to adjust their size and transparency? Here’s the code to do that:</p>
-<div id="71d99da7" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>geom_point(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>),</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>            alpha<span class="op">=</span><span class="fl">0.1</span>, size<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-15-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>Go ahead, give this a try.</p>
 <!-- Pause for effect. -->
 <p>Beautiful, isn’t it? All the points are now blue, with a larger size and a soft transparency that makes overlapping points blend together nicely. This transparency, or alpha, helps highlight areas where the data is dense—like shadows on a heatmap.</p>
@@ -825,80 +462,26 @@ Challenge
 <p>So, what do you think? With just a few tweaks, we’ve turned our scatter plot into a clean and stylish visual. Customizing non-data-linked properties like this is a great way to emphasize certain elements of your data without overwhelming your audience.</p>
 <p>In the next lesson, we’ll explore even more ways to take your visualizations to the next level. See you there!</p>
 </section>
-<section id="geometrical-objects" class="level2">
-<h2 class="anchored" data-anchor-id="geometrical-objects">Geometrical objects</h2>
+<section id="video-8-greenscreen-12-min" class="level1">
+<h1>VIDEO 8 {greenscreen} ~ 12 min</h1>
+<!-- ## Geometrical objects -->
 <p>Welcome back! Let’s dive into another exciting aspect of creating visualizations in plotnine: geometrical objects, or geom_ functions.</p>
 <p>These geom_ functions are the building blocks of your plots, allowing you to highlight different aspects of your data. By swapping or combining geom_ layers, you can tell entirely new stories with the same dataset.</p>
 <p>For example, what if we wanted to show the development of life expectancy over time for each country? We could use geom_line() to connect individual data points belonging to the same country.</p>
 <p>Here’s the code to do just that:</p>
-<div id="12cf71b8" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>geom_line(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>          group<span class="op">=</span><span class="st">'country'</span>, color<span class="op">=</span><span class="st">'continent'</span>))</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-16-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>Note that we have a new aesthetics called <code>group</code>. It indicates which points need to be connected together to for a line. Here we are drawing one line per country. Take a moment to run this and see what you get.</p>
 <!-- Pause for effect. -->
 <p>Do you see it? Each country now has its own line, colored by continent. It’s fascinating to watch life expectancy trends unfold over time. But look closely—you might notice some sharp, sudden drops for certain countries. What do you think caused these declines? Wars? Epidemics?</p>
 <p>We’ll learn how to zoom in on these tragic moments and identify the affected countries later in the course, once we’ve mastered some data wrangling with Polars. For now, make a mental note of this question so you can return to it later.</p>
 <p>Another powerful geometrical object is geom_boxplot(). This creates a “box-and-whisker” plot that illustrates the distribution of values within categories.</p>
 <p>For example, let’s visualize how life expectancy varies by continent:</p>
-<div id="c7956bd7" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>geom_boxplot(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'continent'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>))</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-17-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>Run the code and take a look.</p>
 <!-- Pause for effect. -->
 <p>The box represents the interquartile range—the middle 50% of data—while the line inside the box marks the median. The “whiskers” extend to show the 95% confidence interval, and any points outside this range are plotted as individual outliers.</p>
 <p>Now, wouldn’t it be great to combine this boxplot with our jittered points from earlier? This would help us see both the overall distribution and the outliers more clearly. Let’s layer them together:</p>
-<div id="1c76b07e" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>geom_jitter(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'continent'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>))<span class="op">+</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>geom_boxplot(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'continent'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>))</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-18-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <!-- Pause for effect. -->
 <p>Looks great, doesn’t it? But notice something—there’s some duplication in our code. We had to repeat the same mappings for both geom_jitter and geom_boxplot. That’s fine for now, but it can become cumbersome as your visualizations grow more complex.</p>
 <p>Here’s a trick to make your code cleaner: you can move shared mappings to the parent ggplot() function. This way, every layer will “inherit” these mappings automatically:</p>
-<div id="a0e34d6a" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder, mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'continent'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>))<span class="op">+</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>geom_jitter()<span class="op">+</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>geom_boxplot()</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-19-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>See? No more repeating yourself! You can still add layer-specific settings or arguments within individual geom_ functions if needed.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -915,95 +498,44 @@ Tip
 </div>
 <p>Great job so far! In the next lesson, we’ll explore even more ways to enhance your visualizations. See you there!</p>
 </section>
-<section id="trend-lines" class="level2">
-<h2 class="anchored" data-anchor-id="trend-lines">Trend lines</h2>
+<section id="video-9-greenscreen-12-min" class="level1">
+<h1>VIDEO 9 {greenscreen} ~ 12 min</h1>
+<!-- ## Trend lines -->
 <p>Welcome back! Now, let’s take a closer look at the relationship between GDP per capita and life expectancy.</p>
 <p>At first glance, life expectancy seems to improve as countries get richer. But is this relationship consistent across continents? Let’s find out by adding trend lines to our plot.</p>
 <p>Trends are essentially linear regression lines. You might remember them from school—they represent the best-fit line through your data. Here’s how we can add them to highlight differences in this relationship by continent:</p>
-<div id="5e448366" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder, mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>)) <span class="op">+</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>geom_point(alpha<span class="op">=</span><span class="fl">0.5</span>) <span class="op">+</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>geom_smooth(method<span class="op">=</span><span class="st">'lm'</span>) <span class="op">+</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>scale_x_log10()</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-20-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>Take a moment to run the code and see the result.</p>
 <!-- Pause for effect. -->
 <p>What do you observe? By default, geom_smooth() creates a regression line for each continent, and plotnine even adds confidence intervals—those shaded gray areas around the lines. These intervals give us an idea of how well the model fits the data.</p>
 <p>We also used the alpha argument to make our points semi-transparent. Why? It reduces visual clutter and lets the trend lines stand out more. Did you know that transparency can also be mapped to a variable? That’s right—just like color or size, you can use alpha as a mapping aesthetic to make transparency vary based on your data. Try experimenting with that later!</p>
 <p>Here’s a task for you: Modify the code we just used so that instead of creating separate regression lines for each continent, plotnine creates a single trend line for all data points.</p>
 <p>Here’s the code to start with:</p>
-<div class="callout callout-style-default callout-challenge callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Challenge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Create a single regression line for all data points modifying this sample code</p>
-<pre><code>(
+<!-- :::{.challenge}
+Create a single regression line for all data points modifying this sample code
+```
+(
 ggplot(gapminder, mapping = aes(x='gdpPercap', y='lifeExp', color='continent'))+
 geom_point(alpha=0.5)+
 geom_smooth(method='lm')+
 scale_x_log10()
-)</code></pre>
-</div>
-</div>
+)
+```
+::: -->
 <p>Take a moment to think about it. How can you combine the points colored by continent with a single global regression line?</p>
 <p>There’s more than one way to solve this problem—see what you can come up with!</p>
 <p>Did you find this challenge hard? It’s ok! Let’s step through it together!</p>
 <p>In our previous example, we declared all the mappings—x, y, and color—at the global level, in the ggplot() function. This means that every layer inherited these mappings. While this works well for most situations, it’s not what we need here.</p>
 <p>To build a single trend line for all data points, we must ensure that the color aesthetic applies only to the points and not to the trend line. How do we do that? By moving the color mapping from the global level into the geom_point() function.</p>
 <p>Here’s how the updated code looks:</p>
-<div id="2d52f23b" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder, mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>))<span class="op">+</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>geom_point(aes(color<span class="op">=</span><span class="st">'continent'</span>), alpha<span class="op">=</span><span class="fl">0.5</span>)<span class="op">+</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>geom_smooth(method<span class="op">=</span><span class="st">'lm'</span>)<span class="op">+</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>scale_x_log10()</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-21-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>By moving the color aesthetic into geom_point(), it now affects only the points layer. Notice that it’s still wrapped in the aes() function because it remains a data-linked property. Meanwhile, the trend line—added by geom_smooth()—inherits only the global mappings for x and y. This creates a single linear model across all continents, as we wanted.</p>
 <p>Take a moment to observe how this subtle adjustment changes the visualization and makes the trend line easier to interpret.</p>
 <p>Some of you might have come up with an alternative solution. Instead of changing the color aesthetic’s scope, we can override it directly within the geom_smooth() layer. In this case, the color aesthetic remains global, but we specify a non-data-linked property for the trend line, such as making it black:</p>
-<div id="0aa28fad" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder, mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>))<span class="op">+</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>geom_point(alpha<span class="op">=</span><span class="fl">0.5</span>)<span class="op">+</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>geom_smooth(method<span class="op">=</span><span class="st">'lm'</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">+</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>scale_x_log10()</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-22-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>Here, <code>geom_smooth()</code> ignores the global color aesthetic and instead applies the color black uniformly to the trend line. The result? A single black trend line stands out clearly, while the points remain color-coded by continent.</p>
 <p>Both approaches work well, and the choice depends on how you want to structure your code and highlight different layers. Managing global and layer-specific mappings is a powerful feature in plotnine that gives you flexibility in creating clean, insightful plots.</p>
 </section>
-<section id="factors" class="level2">
-<h2 class="anchored" data-anchor-id="factors">Factors</h2>
+<section id="video-10-greenscreen-5-min" class="level1">
+<h1>VIDEO 10 {greenscreen} ~ 5 min</h1>
+<!-- ## Factors -->
 <p>Do you want to learn a nifty trick that can improve your data visualization? This method can be useful when you want to visualize a continuous variable which has a limited number of distinct values.</p>
 <p>Imagine we’re working with <code>year</code>, which is technically a continuous variable. But for some visualizations it might make more sense to treat each year as a separate category. How do we do that without modifying the data?</p>
 <p>Simple! Instead of referencing year as a string (<code>'year'</code>), wrap it in <code>factor()</code>, like this <code>'factor(year)'</code>. This shorthand plotnine function converts a continuous variable into a categorical one on the fly, with each distinct value treated as its own category.</p>
@@ -1028,40 +560,14 @@ Challenge
 </div>
 </div>
 <p>Go ahead and give it a try. Pause the video and come back once you have your answer!</p>
-<div id="631b5873" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>geom_boxplot(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'factor(year)'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, group<span class="op">=</span><span class="st">'year'</span>))</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-23-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="b5d1d10b" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>geom_boxplot(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'factor(year)'</span>, y<span class="op">=</span><span class="st">'gdpPercap'</span>, group<span class="op">=</span><span class="st">'year'</span>)) <span class="op">+</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>scale_y_log10()</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-24-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>Looking at these two plots, you might notice a fascinating pattern.</p>
 <p>You’re absolutely right: economic inequality has grown in the recent decades. In 1952, the world was much poorer, but there was a greater sense of uniformity across nations. By 2007, while the world is significantly wealthier on average, the disparities have widened.</p>
 <p>And those outliers? Intriguing, aren’t they? Three countries stand apart from the rest in the 1952. Which ones could they be? We’ll revisit these mysteries after diving into data wrangling techniques.</p>
 <p>Great work on these challenges! These exercises show the power of visualizing data in different ways and how little tricks like factor() can make your plots much clearer. Next, we’ll explore other types of plots that can uncover even more insights. Stay tuned, and I’ll see you in the next lesson!</p>
 </section>
-<section id="more-geoms" class="level2">
-<h2 class="anchored" data-anchor-id="more-geoms">More geoms</h2>
+<section id="video-11-greenscreen-12-min" class="level1">
+<h1>VIDEO 11 {greenscreen} ~ 12 min</h1>
+<!-- ## More geoms -->
 <p>By now, you’ve learned so much about using plotnine to create insightful visualizations. But we’ve barely scratched the surface!</p>
 <p>One of the most exciting features of plotnine is the sheer variety of geoms—the building blocks for visualizing data. Start typing geom_ in your code editor, and you’ll see a list of options pop up. It’s like a treasure chest of possibilities, and each geom offers a unique perspective on your data.</p>
 <p>Let’s put your skills to the test with a few new challenges!</p>
@@ -1079,19 +585,6 @@ Challenge
 <p>Make a histogram of life expectancy. What is the shape of the distribution? How many modes (peaks) does the distribution of life expectancy have? What value of the <code>bins</code> parameter look reasonable?</p>
 </div>
 </div>
-<div id="beae8adb" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>geom_histogram(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'lifeExp'</span>), bins<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-25-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>Next up: density plots. These are smoothed-out versions of histograms, showing the probability distribution of your data.</p>
 <p>Create a simple density plot for life expectancy. You can do it! Start typing and you will find the function you need. Do you see it? What if you want to compare distributions across continents? Add a color aesthetic.</p>
 <div class="callout callout-style-default callout-challenge callout-titled">
@@ -1107,46 +600,7 @@ Challenge
 <p>Build a density function. How would you compare density functions of different continents?</p>
 </div>
 </div>
-<div id="28e8e440" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>geom_density(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'lifeExp'</span>))</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-26-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="624f9a5f" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>geom_density(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>))</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-27-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>Right! You can split the data by continent by adding a color aesthetic and linking it to the variable <code>continent</code>. Or take it one step further! Use the <code>fill</code> aesthetic (in addition to color) to fill the areas under the curves. Add some transparency with <code>alpha</code> for a cleaner visualization like this:</p>
-<div id="7f13ce7e" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>geom_density(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>, fill<span class="op">=</span><span class="st">'continent'</span>), alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-28-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>These plots help us see how life expectancy varies not just overall, but also within each continent. Notice any interesting patterns? What might explain the peaks—or modes—you see in the distributions?</p>
 <p>Now let’s level up with 2D density plots. These are excellent for visualizing relationships between two variables. Start by creating a density plot of log GDP per capita vs.&nbsp;life expectancy (use geom_density_2d() function):</p>
 <div class="callout callout-style-default callout-challenge callout-titled">
@@ -1162,71 +616,18 @@ Challenge
 <p>Build a graph using <code>geom_density2d()</code> for log GDP per capita vs life expectancy. How many clusters of datapoints can you identify? What if you look at it by continent?</p>
 </div>
 </div>
-<div id="d1e7cd19" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>geom_density_2d(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>))<span class="op">+</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>scale_x_log10()</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-29-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>What do you see? Notice the two distinct clusters? One cluster represents countries that are poorer and have lower life expectancy, while the other includes those that are wealthier and healthier.</p>
 <p>Now let’s break it down by continent.</p>
-<div class="callout callout-style-default callout-challenge callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Challenge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Add a color aesthetic to see how regions of the world are distributed</p>
-</div>
-</div>
-<div id="db36c328" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>geom_density_2d(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>))<span class="op">+</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>scale_x_log10()</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-30-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
+<!-- :::{.challenge}
+Add a color aesthetic to see how regions of the world are distributed
+::: -->
 <p>Isn’t that fascinating? The lower cluster is primarily made up of African countries, while the higher cluster mostly includes Europe and Oceania. Asia? It’s scattered across both clusters, reflecting its diversity in economic and health outcomes. These exercises highlight the flexibility and power of plotnine. Whether it’s histograms, density plots, or advanced 2D density visualizations, each plot adds a new layer of understanding to your data.</p>
 </section>
-<section id="faceting" class="level2">
-<h2 class="anchored" data-anchor-id="faceting">Faceting</h2>
+<section id="video-12-greenscreen-10-min" class="level1">
+<h1>VIDEO 12 {greenscreen} ~ 10 min</h1>
+<!-- ## Faceting -->
 <p>When your graph starts to feel a bit too crowded—perhaps with too many layers or overlapping aesthetics—there’s a simple solution: faceting. Faceting allows you to split your data into separate panels, creating multiple similar graphs for subsets of your data. This can make complex trends easier to spot and comparisons much clearer.</p>
 <p>In plotnine, faceting is incredibly easy to use. Let’s revisit one of our earlier graphs and apply faceting to organize it by continent.</p>
-<div id="a43b818e" class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder, mapping <span class="op">=</span> aes(x <span class="op">=</span> <span class="st">'gdpPercap'</span>, y <span class="op">=</span> <span class="st">'lifeExp'</span>)) <span class="op">+</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  geom_point() <span class="op">+</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  geom_smooth(color<span class="op">=</span><span class="st">"blue"</span>) <span class="op">+</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  scale_x_log10() <span class="op">+</span> </span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  facet_wrap(<span class="st">'continent'</span>)</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-31-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>Here’s what’s happening:</p>
 <ul>
 <li><code>facet_wrap('continent')</code> instructs plotnine to create a separate panel for each unique value in the continent column.</li>
@@ -1252,55 +653,35 @@ Question
 </div>
 </div>
 <p>This exercise offers an incredible opportunity to see how historical events, global growth, and inequality have shaped the world over decades.</p>
-<div class="callout callout-style-default callout-challenge callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Challenge
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Facet the following plot by year, keeping the linear smoother. You can edit this sample code</p>
-<pre><code>(
+<!-- :::{.challenge}
+Facet the following plot by year, keeping the linear smoother. You can edit this sample code
+```
+(
 ggplot(gapminder, mapping = aes(x = 'gdpPercap', y = 'lifeExp')) +
   geom_point() +
   geom_smooth(color='blue') +
   scale_x_log10() + 
   facet_wrap('continent')
-)</code></pre>
-</div>
-</div>
-<div id="94ebf9e2" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># facet by year</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>ggplot(data <span class="op">=</span> gapminder, mapping <span class="op">=</span> aes(x <span class="op">=</span> <span class="st">'gdpPercap'</span>, y <span class="op">=</span> <span class="st">'lifeExp'</span>)) <span class="op">+</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  geom_point() <span class="op">+</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  geom_smooth(color<span class="op">=</span><span class="st">'blue'</span>) <span class="op">+</span></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  scale_x_log10() <span class="op">+</span> </span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  facet_wrap(<span class="st">'year'</span>)</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-32-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
+)
+```
+::: -->
 <p>With everything we’ve learned so far, we can summarize the plotnine template as follows::</p>
-<pre><code>(
-ggplot(&lt;DATA&gt;) + 
-  &lt;GEOM_FUNCTION&gt;(mapping = aes(&lt;MAPPINGS&gt;)) + 
-  &lt;SCALE_FUNCTION&gt; +
-  &lt;FACET_FUNCTION&gt;
-)</code></pre>
+<!-- 
+```
+(
+ggplot(<DATA>) + 
+  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>)) + 
+  <SCALE_FUNCTION> +
+  <FACET_FUNCTION>
+)
+``` 
+-->
 <p>Faceting is a powerful addition to your visualization toolkit, especially when your data has distinct groups or categories. Whether you’re analyzing trends over continents or time, faceting can make your insights clearer and more impactful.</p>
 <p>So, go ahead—try faceting your own graphs. You’ll be amazed at what you uncover!</p>
 </section>
-<section id="labeling-and-styling-the-chart" class="level2">
-<h2 class="anchored" data-anchor-id="labeling-and-styling-the-chart">Labeling and styling the chart</h2>
+<section id="video-13-greenscreen-7-min" class="level1">
+<h1>VIDEO 13 {greenscreen} ~ 7 min</h1>
+<!-- ## Labeling and styling the chart -->
 <p>We’ve built our chart layer by layer, and now it’s time to refine it for presentation—whether for your boss, a client, or publication. The final touches, like annotations and labels, can make all the difference in ensuring your audience understands your insights clearly.</p>
 <p>Let’s start with some practical data transformations. Instead of showing GDP per capita in raw numbers, wouldn’t it be better to express it in thousands of dollars? Similarly, population is easier to interpret when expressed in millions.</p>
 <p>With plotnine, we don’t need to preprocess our data for this. You can specify transformations directly in your chart code. For example <code>gdpPercap/1e3</code> divides GDP per capita by 1,000, and uses scientific notation (1e3) for convenience. Similarly, you can use <code>pop/1e6</code> to show population in millions.</p>
@@ -1311,54 +692,9 @@ ggplot(&lt;DATA&gt;) +
 <li>Labels for x, y, and any mapped aesthetics, like color or size.</li>
 </ul>
 <p>Here’s an example of a polished, annotated chart:</p>
-<div id="edcf17e6" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>ggplot(data <span class="op">=</span> gapminder) <span class="op">+</span> </span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  geom_point(mapping <span class="op">=</span> aes(x <span class="op">=</span> <span class="st">'gdpPercap/1e3'</span>, y <span class="op">=</span> <span class="st">'lifeExp'</span>, size<span class="op">=</span><span class="st">'pop/1e6'</span>, color<span class="op">=</span><span class="st">'continent'</span>)) <span class="op">+</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  scale_x_log10() <span class="op">+</span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  facet_wrap(<span class="st">'year'</span>) <span class="op">+</span> </span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  labs(title<span class="op">=</span><span class="st">"Life Expectancy vs GDP per capita over time"</span>,</span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>        subtitle<span class="op">=</span><span class="st">"In the past 50 years, life expectancy has improved in the world"</span>,</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>        caption<span class="op">=</span><span class="st">"Source: Gapminder foundation, www.gapminder.org"</span>,</span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">"GDP per capita, '000 USD"</span>,</span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">"Life expectancy, years"</span>,</span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">"Continent"</span>,</span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span><span class="st">"Population, mln"</span>)</span>
-<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-33-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>Each label corresponds to the aesthetics used in the aes() mappings. Make sure all mapped aesthetics are labeled, even if they appear in just one layer.</p>
 <p>Now, let’s make your chart stand out! plotnine offers pre-selected themes that adjust the colors, fonts, and overall style of your plots.</p>
 <p>One of my favorites is <code>theme_minimal()</code>. It simplifies the design, creating a clean and modern look:</p>
-<div id="9a11a767" class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>ggplot(data <span class="op">=</span> gapminder) <span class="op">+</span> </span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  geom_point(mapping <span class="op">=</span> aes(x <span class="op">=</span> <span class="st">'gdpPercap/1e3'</span>, y <span class="op">=</span> <span class="st">'lifeExp'</span>, size<span class="op">=</span><span class="st">'pop/1e6'</span>, color<span class="op">=</span><span class="st">'continent'</span>)) <span class="op">+</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  scale_x_log10() <span class="op">+</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  facet_wrap(<span class="st">'year'</span>) <span class="op">+</span> </span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  labs(title<span class="op">=</span><span class="st">"Life Expectancy vs GDP per capita over time"</span>,</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>        subtitle<span class="op">=</span><span class="st">"In the past 50 years, life expectancy has improved in the world"</span>,</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>        caption<span class="op">=</span><span class="st">"Source: Gapminder foundation, www.gapminder.org"</span>,</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">"GDP per capita, '000 USD"</span>,</span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">"Life expectancy, years"</span>,</span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">"Continent"</span>,</span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span><span class="st">"Population, mln"</span>) <span class="op">+</span></span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>  theme_minimal()</span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="visualization_files/figure-html/cell-34-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>plotnine offers plenty of built-in themes to match your purpose:</p>
 <ul>
 <li>theme_dark() for a sleek, high-contrast look.</li>
@@ -1367,8 +703,7 @@ ggplot(&lt;DATA&gt;) +
 <li>theme_538() for a polished, professional newsroom feel.</li>
 </ul>
 <p>Themes contributed by the community can add even more variety. So, explore, experiment, and find the one that best suits your data story.</p>
-<p>Congratulations!</p>
-<p>You’ve learned about aesthetics, scales, different types of geoms and now you also know how to annotate and apply themes to your visuals to make them more compelling. With these skills, you’re ready to create polished, professional-quality charts that truly stand out.</p>
+<p>Congratulations! You’ve learned about aesthetics, scales, different types of geoms and now you also know how to annotate and apply themes to your visuals to make them more compelling. With these skills, you’re ready to create polished, professional-quality charts that truly stand out.</p>
 <p>Good luck, and we can’t wait to see the insights you’ll uncover!</p>
 
 

@@ -3,7 +3,7 @@ title: "Data Literacy with Python"
 ---
 
 
-## VIDEO {studio} ~ 10  min
+## VIDEO 1 {studio} ~ 12  min
 
 Welcome to Data Literacy with Python!
 
@@ -78,7 +78,7 @@ The datasets may be small, but the questions and challenges we tackle are univer
 Let’s get started on this exciting journey into the world of data literacy!
 
 
-# VIDEO {studio} ~ 7 min
+# VIDEO 2 {studio} ~ 7 min
 
 <!-- ## Shell -->
 
@@ -134,7 +134,7 @@ Don’t worry about backups just yet—we’ll cover that later when we dive int
 
 Once you’ve chosen your perfect home base, we’ll move on to the next step: learning how to navigate your files and folders using the command line. Trust me, it’s easier than it sounds, and it will make your workflow so much more efficient!
 
-# VIDEO {studio} ~ 6 min
+# VIDEO 3 {studio} ~ 6 min
 <!-- ## Navigating in the command line -->
 
 Alright, let’s open up your terminal! Don’t worry—this is not as intimidating as it might look. I’m going to guide you through some simple steps that will help you make sense of this dark text window, and these skills will serve you every time you use the command line.
@@ -226,8 +226,7 @@ Using `cd`, `cd ..` and `ls`, navigate to the directory, where you decided to st
 
 When you have done that, join me in the next section, where we’ll begin installing some software to set up your data analysis environment. I’ll see you there!
 
-
-# VIDEO {studio} ~ 3 min
+# VIDEO 4 {studio} ~ 3 min
 
 <!-- ## Installing uv -->
 
@@ -284,7 +283,8 @@ If you see that, congratulations! You’ve successfully installed uv.
 
 From now on, we’ll use uv to manage everything, including installing Python itself. Stay with me as we continue setting up your computing environment. I’ll see you in the next section!
 
-# VIDEO {studio} ~ 10 min
+# VIDEO 5 {studio} ~ 10 min
+
 <!-- ## Managing python installation -->
 
 uv isn’t just a package and environment manager—it also handles Python installations effortlessly. Let’s start by checking if uv can detect an existing Python installation on your system.
@@ -392,7 +392,7 @@ Now, here’s something happening behind the scenes: uv created a hidden folder 
 
 Here’s the most important thing to know: the .venv folder is what makes your project self-contained. All your dependencies are stored there, safe and separate from anything else on your system. This is especially useful if you want to share your work later—a topic we’ll cover in the final module of this course.
 
-# VIDEO {studio} ~ 12 min
+# VIDEO 6 {studio} ~ 12 min
 <!-- ## Launch Jupyter -->
 
 Finally, let’s talk about Jupyter, one of the most transformative tools for interactive data analysis.
