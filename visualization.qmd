@@ -7,7 +7,7 @@ bibliography: data24web.bib
 # VIDEO 1 {greenscreen} ~ 7 min
 <!-- ## Welcome -->
 
-Welcome to the lesson on data visualization!
+Welcome to the lesson on data visualization! 
 
 Data visualization is one of the most important skills in data analysis. Why? Because a well-made chart can reveal patterns, trends, and insights that might otherwise stay hidden in a spreadsheet. It’s like turning a jumble of numbers into a picture that tells a story.
 

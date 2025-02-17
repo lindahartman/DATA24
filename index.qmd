@@ -5,7 +5,7 @@ title: "Data Literacy with Python"
 
 ## VIDEO 1 {studio} ~ 12  min
 
-Welcome to Data Literacy with Python!
+Welcome to Data Literacy with Python! 
 
 Let me ask you something: Can you imagine living in today’s world but being unable to read? Think about it—street signs wouldn’t make sense, advertisements would just be noise, and most of the internet? Completely out of reach.
 
@@ -255,7 +255,7 @@ On Mac or Linux, use the following command after the system prompt:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ``` 
 
-On Windown, type the following:
+On Windows, type the following:
 
 ```
 powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
