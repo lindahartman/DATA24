@@ -4,25 +4,27 @@ engine: python3
 ---
 
 
-# VIDEO 1 {greenscreen} ~ 9 min
+# VIDEO 1 BFFP data {greenscreen} ~ 9 min
 
 Hello and welcome back to Data Literacy with Python!
 
-We’re continuing our exciting journey into data wrangling—a cornerstone of data analysis and storytelling. If you’ve been with us through the previous modules, congratulations! You’ve covered a lot of ground and gained some serious data skills.
+We’re continuing our exciting journey into data wrangling — a cornerstone of analysis and storytelling. If you’ve been following along, congratulations! You’ve covered a lot of ground and gained some serious data skills.
 
 Let’s quickly recap:
 
-- We explored subsetting data, learning how to select specific rows and columns with functions like `.select()`, `.drop()`, and the powerful suite of polars.selectors.
-- For observations, we used `.head()` and `.tail()` to view subsets and `.filter()` to fine-tune our subsetting of the data.
-- We mastered creating new columns using expressions wrapped in `.with_columns().`
-- And finally, we learned how to summarize data using `.group_by()` and `.agg()`, creating insightful summaries of our datasets.
+- We learned how to subset data, selecting specific columns using `.select()`, `.drop()`, and the powerful suite of `polars.selectors`. We used `.head()`, `.tail()` and `.filter()` to pick out key observations.
+- We mastered creating new columns with expressions inside `.with_columns().`
+- Finally, we explored summarizing data using `.group_by()` and `.agg()`, generating meaningful insights from our datasets.
 
-These are all foundational skills, and you’re doing great!
+These are all essential skills, and you’re doing great!
 
-But now, it’s time to level up. Today, we’re tackling data reshaping and joins, two powerful techniques for reorganizing and enriching your datasets. I also promised you some nice-looking tables, and I intend to deliver! We’ll be using the amazing `great_tables` library for our table designs. Let’s load up the libraries and dive right in.
+But now, it’s time to level up. Today, we’re tackling data reshaping and joins, two powerful techniques for reorganizing and enriching datasets. I also promised you some nice-looking tables, and I intend to deliver! We’ll be using the amazing `great_tables` library for our table designs. Let’s load up the libraries and dive right in.
+
+< PAUSE >
 
 ```{python}
 #| label: setup
+#| echo: false
 #| code-fold: true
 import polars as pl
 import polars.selectors as cs
@@ -30,21 +32,29 @@ from plotnine import *
 from great_tables import GT
 ```
 
-Today’s dataset comes from the Break from Plastics environmental campaign — a sample of data with a powerful story. Here's the description of the data:
+Today’s dataset comes from the *Break from Plastics* environmental campaign — a sample with a powerful story. Here's a quck overview:
 
-::: {.callout-note collapse=true}
+< PAUSE >
+
+<!-- ::: {.callout-note collapse=true}
 In 2020, thanks to our members and allies, Break Free From Plastic engaged 14,734 volunteers in 55 countries to conduct 575 brand audits. These volunteers collected 346,494 pieces of plastic waste, 63% of which was marked with a clear consumer brand. Despite the challenges of organizing during a global pandemic, our volunteers safely coordinated more brand audit events in more countries this year than in the previous two years. As a special activity during the pandemic, we also worked with over 300 waste pickers to highlight their roles as essential workers. Participants catalogued over 5,000 brands in this year’s global audit. Our analysis reveals the following as the 2020 Top 10 Global Polluters: The Coca-Cola Company; PepsiCo; Nestlé; Unilever; Mondelez International; Mars, Inc.; Procter & Gamble; Philip Morris International; Colgate-Palmolive; and Perfetti Van Melle. 
-:::
+::: -->
 
-Here's the code to bring this data into our workspace:
+Have a look at the code that brings this data into our workspace:
+
+< PAUSE >
 
 ```{python}
 #| code-fold: true
+#| echo: false
+#| include: false
 plastics_df = pl.read_csv('bffp/BFFplastics.csv')
 
 plastics_docs = pl.DataFrame({
     'Variable': ['region', 'country_code' , 'country', 'year', 'parent_company', 'empty', 'hdpe', 'ldpe', 'o', 'pet', 'pp', 'ps', 'pvc', 'grand_total', 'num_events', 'volunteers'],
+
     'Class': ['character','character','character', 'double', 'character', 'double', 'double', 'double', 'double', 'double', 'double', 'double', 'double', 'double', 'double', 'double'],
+    
     'Description': ['Region', 'Alpha 3 ISO 3166 code','Country of cleanup', 'Year (2019 or 2020)', 'Source of plastic (company name)', 'Category left empty count', 'High density polyethylene count (Plastic milk containers, plastic bags, bottle caps, trash cans, oil cans, plastic lumber, toolboxes, supplement containers)', 'Low density polyethylene count (Plastic bags, Ziploc bags, buckets, squeeze bottles, plastic tubes, chopping boards)', 'Category marked other count', 'Polyester plastic count (Polyester fibers, soft drink bottles, food containers (also see plastic bottles)', 'Polypropylene count (Flower pots, bumpers, car interior trim, industrial fibers, carry-out beverage cups, microwavable food containers, DVD keep cases)', 'Polystyrene count (Toys, video cassettes, ashtrays, trunks, beverage/food coolers, beer cups, wine and champagne cups, carry-out food containers, Styrofoam)', 'PVC plastic count (Window frames, bottles for chemicals, flooring, plumbing pipes)', 'Grand total count (all types of plastic)', 'Number of counting events', 'Number of volunteers']
 })
 
@@ -58,6 +68,8 @@ Think of a dictionary as a way to describe an object. It’s a collection of "ke
 
 ```{python}
 #| code-fold: true
+#| echo: false
+#| include: false
 Bicycle = {
     'Type': 'Hybrid',
     'Size': 28,
@@ -73,6 +85,8 @@ This is where lists come in. A list is a collection of items—typically of the 
 
 ```{python}
 #| code-fold: true
+#| echo: false
+#| include: false
 Bikes = {
     'Type': ['Hybrid', 'MTX', 'BMX'],
     'Size': [28, 24, 26], 
@@ -86,6 +100,8 @@ Now, we have a dictionary of lists, representing three bikes. To turn this into 
 
 ```{python}
 #| code-fold: true
+#| echo: false
+#| include: false
 bikes_df = pl.DataFrame(Bikes)
 ```
 
@@ -101,6 +117,7 @@ The core function in Great Tables is `GT()`, and it works similarly to how we us
 
 ```{python}
 #| code-fold: true
+#| echo: false
 #| include: false
 (
 GT(plastics_docs)
@@ -177,7 +194,7 @@ Let’s break this down:
 
 By cleaning the data in this way, we ensure that our analysis is based on individual contributions, not pre-summarized totals.
 
-# VIDEO 2 {greenscreen} ~ 3 min
+# VIDEO 2 Aggregation {greenscreen} ~ 3 min
 
 Now, let’s talk about the two special columns in our dataset: `num_events` and `volunteers`. These capture the number of counting events and the number of volunteers who participated in the cleanup campaigns.
 
@@ -221,7 +238,7 @@ In the next section, we’ll dive into pivoting and explore how to reshape `plas
 
 Let’s keep going!
 
-# VIDEO 4 {greenscreen} ~ 9 min
+# VIDEO 4 Wide and long data {greenscreen} ~ 9 min
 
 Let’s take a moment to reflect on two common ways of organizing the same data: wide and long formats.
 
@@ -399,11 +416,11 @@ Before I do the pivot, I want to drop the `num_events` and `volunteers` since I 
     .filter(pl.col("country")=="Germany"))
 ```
 
-# VIDEO 5 {greenscreen} ~ 6 min
+# VIDEO 5 great tables {greenscreen} ~ 6 min
 
 Before we go any further, I want to quickly introduce you to the power of `great_tables` for producing engaing and informative tables. We will create a nice-looking table showing top-10 countries with the most impressive productivity growth. As we discussed earlier, the core function is `GT()` you also know that the default styling can be done with `.opt_stylize()` method. This is enough to produce decent looking table, but I want to show you a few more tricks.
 
-First of all, we have two groups of columns which are somehow related. A group of columns about quantity of plastic processed and a group of columns about productivity. We can introduce spanners - a grouping of columns in the table, where we can place a meaningful label. In `GT` this can accomplished with `.tab_spanner()`. As almost all methods in `great_tables()`, `.tab_spanner()` relies on `polars` selectors. So we can scoop all columns starting with `prod` under the Productivity spanner, and all columns starting with `quantity` under the other spanner.
+First of all, we have two groups of columns which are somehow related. A group of columns about *quantity* of plastic processed and a group of columns about *productivity*. We can introduce spanners - a grouping of columns in the table, where we can place a meaningful label. In `GT` this can accomplished with `.tab_spanner()`. As almost all methods in `great_tables()`, `.tab_spanner()` relies on `polars` selectors. So we can scoop all columns starting with `prod` under the Productivity spanner, and all columns starting with `quantity` under the other spanner.
 
 The second group of functions in `great_tables` is related to columns. These methods will start with `.cols_` You can move and hide columns using `.cols_move()` and `.cols_hide()` without modifying the underlying data. Sometimes, it might be useful because the data is also used for something else, other than the table visualization and you don't want to shuffle the columns around just because you need to show them in the table in a particular order. In our case, we want to move the quantity group closer to the beginning of the table. There's also a convenient column labeler `.cols_label()`, which allows you to create arbitrary visual lables for columns without modifying the data. Again, in our table, because we introduced table spanners, we want some column names to be duplicates of each other, for example year numbers. But in `polars` all column names should be unique.
 
@@ -457,10 +474,10 @@ top10_productivity_tbl = (plastics_countries_df
 
 You may argue whether this table is informative, but it sure looks nice. And in the process of preparing it we have learned quite a lot about pivoting and great tables.
 
-I think it is your time to practice. Identifying the different types of plastic requires good knowledge of the different types of materials. Some materials were identified as belonging to predefined classes, while other samples were left unclassified (and ended up in the `o` ("other") or `empty` categories). Identification rate (measured in %) then is the proportion of total pieces of plastic that were assigned to predefined categories (and not in other or empty). We wonder if the increase in the engagement (number of volunteers signed up for BFFP events) leads to improvement of identification rate? 
+I think it is your time to practice. Identifying the different types of plastic requires good knowledge of the different types of materials. Some materials were identified as belonging to predefined classes, while other samples were left unclassified (and ended up in the `o` ("other") or `empty` categories). Identification rate (measured in %) is the proportion of total pieces of plastic that were assigned to the predefined categories (and not to "other" or "empty"). We wonder if the increase in the engagement (number of volunteers signed up for BFFP events) leads to improvement of identification rate?
 
 :::{.challenge}
-Put together a table of top 10 countries where identification rate improved the most between 2019 and 2020. Insrease in the rate should be measured as simple difference between the two rates. Also, please calculate the percent increase/decrease in volunteer engagement for these countries. 
+Put together a table of top 10 countries where identification rate improved the most between 2019 and 2020. Insrease in the rate should be measured as a simple difference between the two rates. Also, please calculate the percent increase/decrease in volunteer engagement for these countries. 
 :::
 
 There could be several ways to solve this task. In my table the top country is South Africa and the bottom country in Bangladesh. Pause a video and give this task a try! When you come back we will walk through a solution together and discuss the learning from the pivoting lesson.
@@ -492,9 +509,9 @@ top_10_id_rate_increase = (plastics_countries_df
 top_10_id_rate_increase
 ```
 
-You are done already? If not, then here are some tips. 
+You are done already? If not, then here are some tips:
 
-- You can create a boolean variable of whether a piece of plastic is identified or not. Include it into the list of grouping variables and calculate totals by it. Then pivot on this variable. This will allow you to calculate an identification rate.
+- You can create a boolean variable of whether a piece of plastic is identified or not. Include it into the list of grouping variables and calculate totals by it. Then pivot on this variable. This will allow you to calculate the identification rate.
 
 - Alternatively, you can calculate the identification rate using the `.over()` method as we did in the previous module and then just filter out the rows you dont need.
 
@@ -567,7 +584,7 @@ So, let us talk through this solution together.
 ```
 
 - Finally we need to pivot on year. Here we pivot both `volunteers` and newly created `id_rate` because our task was to show change in both. As we discussed earlier, this will create total of 4 columns because there are 2 levels in `year` column and we are pivoting 2 variables.
-- Our last step is to calculate the volunteer growth and the identification rate increase. One is percent growth and the other is a simple difference in percent values. Drop the records where either one of them is Null and sort by `id_rate_increase`. Then take top 10 records only. 
+- Our last step is to calculate the volunteer growth and the identification rate increase. One is percent growth and the other is a simple difference in percent values. Drop the records where either one of them is Null and sort by `id_rate_increase`. Then take top 10 records only.
 
 
 # JOINS 6-12 (NOTREADY YET) ~ 30 min

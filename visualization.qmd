@@ -4,7 +4,7 @@ engine: python3
 bibliography: data24web.bib
 ---
 
-# VIDEO 1 {greenscreen} ~ 7 min
+# VIDEO 1 Grammar of Graphics {greenscreen} ~ 7 min
 <!-- ## Welcome -->
 
 Welcome to the lesson on data visualization!
@@ -66,10 +66,10 @@ Hans Rosling himself is famous for his captivating TED Talk in 2007, where he us
 
 So, with our tools in hand and an inspiring dataset at our fingertips, we’re ready to start exploring and visualizing. Let’s get to it!
 
-# VIDEO 2 {greenscreen} ~ 5 min
+# VIDEO 2 Data {greenscreen} ~ 5 min
 <!-- ## Data -->
 
-The dataset has been conveniently imported for us by the `gapminder` package. To get started, we can simply type `gapminder` into our console and hit Enter. When we do that, we’ll see a preview of the data in the form of a table — what we call a DataFrame. In this table, each row represents an observation, and each column represents a variable.
+The dataset has been conveniently imported for us by the `gapminder` package. To get started, we can simply type `gapminder` into our notebook cell and hit Enter. When we do that, we’ll see a preview of the data in the form of a table — what we call a DataFrame. In this table, each row represents an observation, and each column represents a variable.
 
 ```{python}
 #| echo: false
@@ -96,7 +96,7 @@ Altogether, these six columns give us a fascinating lens through which to explor
 
 Now that we know what we’re working with, let’s roll up our sleeves and start exploring!
 
-# VIDEO 3 {greenscreen} ~ 10 min
+# VIDEO 3 First Plot {greenscreen} ~ 10 min
 <!-- ## First plot -->
 
 Now, it’s time to create our very first plot! Here is a question we would like to answer using `gapminder` data: Do people in rich countries live longer than people in poor countries? 
@@ -161,7 +161,7 @@ In the remainder of this lesson, we’ll explore how to extend and customize thi
 
 I’ll see you in the next one!
 
-# VIDEO 4 {greenscreen} ~ 9 min
+# VIDEO 4 Axis {greenscreen} ~ 9 min
 <!-- ## Axis -->
 
 Hello again! Ready for a challenge? I’ve got a question for you: How has life expectancy changed over time?
@@ -235,7 +235,7 @@ Here’s another question: Which continent has the widest spread in life expecta
 
 Fantastic work so far! Take a moment to review what you’ve done, and I’ll see you in the next section!
 
-# VIDEO 5 {greenscreen} ~ 7 min
+# VIDEO 5 Aesthetical mappings {greenscreen} ~ 7 min
 <!-- ## Aestetical mapping -->
 
 <...Walks in, looking thoughtful....>
@@ -362,7 +362,7 @@ scale_x_log10()
 
 You’re making fantastic progress! Well done! In the next section, we’ll explore even more aesthetics that can help us tell richer stories with our data. See you there!
 
-# VIDEO 6 {greenscreen} ~ 10 min
+# VIDEO 6 More aesthetics {greenscreen} ~ 10 min
 <!-- ## More aesthetics -->
 
 Hello again!
@@ -432,7 +432,7 @@ These are the kinds of questions we can answer when we use multiple aesthetics t
 
 Fantastic work today! In the next lesson, we’ll continue exploring new tools and techniques to take your visualizations even further. See you soon!
 
-# VIDEO 7 {greenscreen} ~ 7 min
+# VIDEO 7 Non-data linked properties {greenscreen} ~ 7 min
 
 <!-- ## Non-data linked properties -->
 
@@ -489,7 +489,7 @@ So, what do you think? With just a few tweaks, we’ve turned our scatter plot i
 In the next lesson, we’ll explore even more ways to take your visualizations to the next level. See you there!
 
 
-# VIDEO 8 {greenscreen} ~ 12 min
+# VIDEO 8 Geometrical objects {greenscreen} ~ 12 min
 <!-- ## Geometrical objects -->
 
 Welcome back! Let’s dive into another exciting aspect of creating visualizations in plotnine: geometrical objects, or geom_ functions.
@@ -577,7 +577,7 @@ When building complex plots, start by adding one layer at a time. Once you’ve 
 
 Great job so far! In the next lesson, we’ll explore even more ways to enhance your visualizations. See you there!
 
-# VIDEO 9 {greenscreen} ~ 12 min
+# VIDEO 9 Trend lines {greenscreen} ~ 12 min
 
 <!-- ## Trend lines -->
 
@@ -669,7 +669,7 @@ Here, `geom_smooth()` ignores the global color aesthetic and instead applies the
 
 Both approaches work well, and the choice depends on how you want to structure your code and highlight different layers. Managing global and layer-specific mappings is a powerful feature in plotnine that gives you flexibility in creating clean, insightful plots.
 
-# VIDEO 10 {greenscreen} ~ 5 min
+# VIDEO 10 Factors {greenscreen} ~ 5 min
 
 <!-- ## Factors -->
 
@@ -724,7 +724,7 @@ And those outliers? Intriguing, aren’t they? Three countries stand apart from 
 
 Great work on these challenges! These exercises show the power of visualizing data in different ways and how little tricks like factor() can make your plots much clearer. Next, we’ll explore other types of plots that can uncover even more insights. Stay tuned, and I’ll see you in the next lesson!
 
-# VIDEO 11 {greenscreen} ~ 12 min
+# VIDEO 11 More geoms {greenscreen} ~ 12 min
 <!-- ## More geoms -->
 
 By now, you’ve learned so much about using plotnine to create insightful visualizations. But we’ve barely scratched the surface!
@@ -830,7 +830,7 @@ scale_x_log10()
 
 Isn’t that fascinating? The lower cluster is primarily made up of African countries, while the higher cluster mostly includes Europe and Oceania. Asia? It’s scattered across both clusters, reflecting its diversity in economic and health outcomes. These exercises highlight the flexibility and power of plotnine. Whether it’s histograms, density plots, or advanced 2D density visualizations, each plot adds a new layer of understanding to your data.
 
-# VIDEO 12 {greenscreen} ~ 10 min
+# VIDEO 12 Faceting {greenscreen} ~ 10 min
 <!-- ## Faceting -->
 
 When your graph starts to feel a bit too crowded—perhaps with too many layers or overlapping aesthetics—there’s a simple solution: faceting. Faceting allows you to split your data into separate panels, creating multiple similar graphs for subsets of your data. This can make complex trends easier to spot and comparisons much clearer.
@@ -912,7 +912,7 @@ Faceting is a powerful addition to your visualization toolkit, especially when y
 
 So, go ahead—try faceting your own graphs. You’ll be amazed at what you uncover!
 
-# VIDEO 13 {greenscreen} ~ 7 min
+# VIDEO 13 Labeling and styling {greenscreen} ~ 7 min
 <!-- ## Labeling and styling the chart -->
 
 We’ve built our chart layer by layer, and now it’s time to refine it for presentation—whether for your boss, a client, or publication. The final touches, like annotations and labels, can make all the difference in ensuring your audience understands your insights clearly.

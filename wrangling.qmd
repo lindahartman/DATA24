@@ -4,18 +4,18 @@ format: html
 engine: python3
 ---
 
-# VIDEO 1: DATA {greenscreen} ~ 4 min
+# VIDEO 1: Data {greenscreen} ~ 4 min
 <!-- ## Data -->
 
-Welcome to the module on data wrangling! In the last lesson, we explored a small, but exciting gapminder dataset, and created quite a few visualizations with it. But in real-world scenarios, datasets are often much larger. This brings new challenges, like focusing on specific subsets of data-perhaps observations from a single time period or a selection of variables related to a particular phenomenon.
+Welcome to the module on data wrangling! In the last lesson, we explored a small, but exciting `gapminder` dataset, and created quite a few visualizations with it. But in real-world scenarios, datasets are often much larger, which brings new challenges. We may need to focus on specific subsets - maybe observations from a single time period or a set of variables related to a particular phenomenon.
 
-In this module, we’ll learn how to subset data and create meaningful summaries that provide a high-level overview of trends or differences between groups. Summarized data is often presented in tables, so we’ll also introduce a package for creating clear, professional-looking tables.
+In this module, we’ll learn how to subset data and create meaningful summaries that provide a high-level overview of trends or differences between groups. Summarized data is typically presented in a tabular form, so we’ll also introduce a package for creating clear, professional-looking tables.
 
-Most importantly, we’ll dive into the blazingly fast Polars package for data manipulation. As I mentioned earlier, Polars is powered by Rust, a high-performance programming language. Its core functionality is exposed to Python but can also be accessed from other languages. This means the data wrangling skills you gain here will be transferable beyond Python.
+Most importantly, we’ll dive into the blazingly fast Polars package for data manipulation. As I mentioned earlier, Polars is powered by Rust, a high-performance programming language. Its core functionality is exposed to Python but can also be accessed from other languages. This means that the data wrangling skills you gain here will be transferable beyond Python.
 
-But first, let’s load the necessary packages for this module. In Python, it’s common to use the alias `pl` for Polars. We’ll also use a submodule called polars.selectors, aliasing it as `cs` - don’t worry, we’ll cover selectors in more detail soon. We’ll also import everything from Plotnine for data visualization and bring in the main function from the `great_tables` package for generating beautifully looking tables.
+But first, let’s load the necessary packages for this module. In Python, it’s common to use the alias `pl` for Polars. We’ll also use a submodule called `polars.selectors`, aliasing it as `cs` - don’t worry, we’ll cover selectors in more detail soon. We’ll also import everything from Plotnine for data visualization and bring in the main function from the `great_tables` package for generating beautifully looking tables.
 
-Here’s the setup code. Place it in its own cell in your notebook and run it: 
+Here’s the setup code. Place it in its own cell in your notebook and run it:
 
 < PAUSE >
 
@@ -32,20 +32,20 @@ from great_tables import GT
 
 Now, let’s explore our data. We’ll be looking at the WHO dataset about household pollution around the world.
 
-Household air pollution is primarily caused by burning polluting fuels like wood, animal dung, charcoal, agricultural waste, and kerosene using open fires or inefficient stoves. Over 2 billion of people around the world rely on these fuels for cooking, heating, and lighting. The poor combustion of these fuels leads to numerous health issues, such as pneumonia in children, and chronic diseases like obstructive pulmonary disease, lung cancer, stroke, and cardiovascular problems in adults.
+Household air pollution is primarily caused by burning polluting fuels like wood, animal dung, charcoal, agricultural waste, and kerosene using open fires or inefficient stoves. Over 2 billion people around the world rely on these fuels for cooking, heating, and lighting. The poor combustion of these fuels leads to numerous health issues, such as pneumonia in children, and chronic illnessess like obstructive pulmonary disease, lung cancer, stroke, and cardiovascular problems in adults.
 
-This is a complex problem, and like many complex problems, it can be examined from different angles. We have three datasets to work with:
+This is a complex issue, and like many complex issues, it can be examined from different angles. We have three datasets to work with:
 
 - Causes of death linked to household pollution
-- Types of fuel used for cooking in various countries
+- Types of fuel used for cooking in various countries, and
 - Proportion of the population with access to clean cooking fuels
 
 Each dataset offers a unique perspective on this issue. Let’s dive in and start exploring!
 
-# VIDEO 2: IMPORT {greenscreen} ~ 12 min
+# VIDEO 2: Data import {greenscreen} ~ 12 min
 <!-- # Part I. Basics -->
 
-In this section, we’ll start working with the datasets about household air pollution. These datasets are stored as comma-separated values, or CSV files. CSV is a simple text format often used for storing tabular data. Think of it as a stripped-down version of Excel - just the data, no formatting or formulas. In fact, you can even open CSV files directly in Excel, if you want to take a look at them.
+In this section, we’ll start working with the datasets about household air pollution. These datasets are stored as comma-separated value, or CSV files. CSV is a simple text format often used for storing tabular data. Think of it as a stripped-down version of Excel - just the data, no formatting or formulas. In fact, you can even open CSV files directly in Excel, if you want to take a look at them.
 
 We’ve prepared these datasets for you and stored them in the course repository on GitHub. While Polars allows us to read files directly from remote locations, you can also download the files and the load them into Python from your local project directory.
 
@@ -70,7 +70,7 @@ The `read_csv()` function returns a data frame. So, from now on, we can simply r
 
 <!-- ## Data Overview -->
 
-To understand the data we’re working with, it’s helpful to preview it in a few ways. For instance, simply typing the name of a dataset - like `clean_fuels` - will display a preview of the first five and last five rows of the corresponding data frame.
+To understand the data, it’s helpful to preview it. You do it in a few different ways. For instance, you can simply type the name of a dataset - like `clean_fuels`. It will display a preview of the first five and last five rows of the corresponding data frame.
 
 Rows in a data frame are often referred to as observations or records, while columns are known as variables or features. If you want to see more rows than the default preview, you can use the `.head()` method and specify the number of rows to display:
 
@@ -84,9 +84,9 @@ Rows in a data frame are often referred to as observations or records, while col
     .head(10))
 ```
 
-You may have noticed the parentheses around the code block. This lets you write the code across multiple lines without worrying about indentation. To make the code more readable I will place new methods on a new line. In conventional Python coding style this would not be allowed, because indentation in Python matters. But because we wrap our code into outer patherenthesis, Python will overlook the arbitrary formating of code. In this case we prioritize readability over the standard coding style.
+You may have noticed the parentheses around the code block. This little trick allows us to break the code into multiple lines without worrying about indentation. To keep things readable I will place each methods on a new line. Normally, Python enforces strict indentation rules. But because we wrap our code into outer patherentheses, we override that requirement. In this case, we prioritize readability over traditional coding style.
 
-Previewing the first few rows gives you an initial sense of the dataset’s structure and content. If you’re curious about the last few rows, there’s also a `.tail()` method you can use in a similar way.
+Previewing the first few rows gives us an initial sense of the dataset’s structure and content. If you’re curious about the last few rows, there’s also a `.tail()` method you can use in a similar way.
 
 For a broader overview of your data, you can use the `.describe()` method:
 
@@ -100,13 +100,16 @@ For a broader overview of your data, you can use the `.describe()` method:
     .describe())
 ```
 
-The `.describe()` method provides a statistical summary of numerical columns, including metrics like the mean, standard deviation, minimum, maximum, and various quantiles. It’s especially useful for large datasets when you want to quickly understand key metrics.
+The `.describe()` method provides a statistical summary of numerical columns, including key metrics like the mean, standard deviation, minimum, maximum, and various quantiles. It’s especially useful for quickly gaining insights into large datasets.
 
-One thing to note: if a column contains missing values, Polars will display these as `null`. Polars treats missing values as “contagious,” so any operation involving them will also result in missing values in the output. This behavior applies to all statistical operations. We’ll see more examples of this later.
+One important note: if a column contains missing values, Polars displays them as `null`. Since Polars treats missing values as “contagious,” any operation involving them will also produce missing values in the output. This behavior applies to all statistical operations, and we’ll explore more examples later.
 
-Both `.head()` and `.describe()` return a data frame, which means you can chain these operations together. Method chaining is a powerful coding style that helps you write clean, readable, and maintainable code. 
+Both `.head()` and `.describe()` return a DataFrame, allowing you to chain these operations together. Method chaining is a powerful technique that makes your code cleaner, more readable, and easier to maintain.
 
-Here are a couple of challenges for you to practice combining the functions into a method chain: Take first 25 records of `clean_fuels` data frame and calculate statistical summary. When you are done, compute statistical summary of the whole dataset and then present only quantile summaries of each column. The quantiles include minimum, maximum, as well as the 25th, 50th and 75th quantiles.
+Now, here are a couple of challenges for you to practice method chaining: 
+
+1. Take the first 25 records from `clean_fuels` DataFrame and generate a statistical summary. 
+2. COmpute the statistical summary of the entire dataset, and then extract only the quantile summaries for each column, including the minimum, maximum, and the 25th, 50th and 75th percentiiles.
 
 <!-- 
 :::{.challenge}
@@ -131,9 +134,9 @@ Here are a couple of challenges for you to practice combining the functions into
     .tail(5))
 ```
 
-Sometimes, datasets have many columns, making it difficult to gain a full overview using methods like `head()` or `describe()`. For these cases, Polars provides a particularly useful method called `glimpse()`.
+contain so many columns that methods like `.head()` or `.describe()` don’t provide a clear overview. In such cases, Polars offers a particularly useful method: `.glimpse()`.
 
-When you `glimpse()`, the dataset’s structure is displayed horizontally. Each variable is listed as a row, making it easier to scan through all columns, even if you’re working with a limited screen space. Here's how it looks in action:
+The `.glimpse()` method displays the dataset’s structure horizontally, listing each variable as a row. This format makes it easier to scan through all columns, even on a limited screen. Here’s how it looks in action::
 
 < PAUSE >
 
@@ -153,11 +156,11 @@ Can you chain the operation `head()` after calling `glimpse()`? What do you thin
 
 < PAUSE >
 
-The answer is: no, you cannot. `glimpse()`, does not return you a data frame. Instead, the output of `glimpse()` is the text printout meant solely for viewing. No further operations can be applied to it. If you attempt to chain additional methods, you’ll encounter an error. Give it a try if you want! Polars will throw an error saying that the `head()` method cannot be applied to a `NoneType`, which is the type of output `glimpse()` returns.
+The answer is: no, you cannot. `glimpse()`, does not return you a data frame. Instead, the output of `glimpse()` is the text printout meant solely for viewing. No further operations can be applied to it. If you attempt to chain additional methods, you’ll encounter an error. Give it a try! Polars will throw an error saying that the `head()` method cannot be applied to a `NoneType`, which is the type of output `glimpse()` returns.
 
 If you understand how to use `head()`, `tail()`, `describe()`, and `glimpse()`, you have powerful tools at your disposal to explore and familiarize yourself with any dataset before diving deeper into your analysis.
 
-# VIDEO 3 SELECT {greenscreen} ~ 12 min
+# VIDEO 3 Select/ Drop {greenscreen} ~ 12 min
 <!-- ## select/drop -->
 
 One of the most common tasks in data analysis is selecting specific variables or columns from a dataset. Let’s start by pulling out the country information from the `clean_fuels` data. Pause the video for a moment and try running this code:
@@ -323,7 +326,7 @@ Please, pause the video and try couple of different ways of selecting these colu
 
 Got it? Great! Both approaches (selecting specific columns or dropping the ones you don’t need) give you the same result. Expressions like these make your analysis more dynamic and efficient, so you can quickly adapt to different datasets or scenarios.
 
-# VIDEO 4 SELECTORS {greenscreen} ~ 7 min
+# VIDEO 4 Selectors {greenscreen} ~ 7 min
 <!-- ## selectors -->
 
 Selecting columns is such a common task that Polars has a dedicated module for it. It is called `polars.selectors`. This module provides a collection of methods specifically designed to simplify picking columns from a data frame. `polars.selectors` is often aliased as `cs` for convenience. 
@@ -401,7 +404,7 @@ Fantastic work! With a wide menu of selector methods, plus column and index-base
 
 Stay tuned - there’s a lot more to explore!
 
-# VIDEO 5 FILTER {greenscreen} ~ 12 min
+# VIDEO 5 Filter {greenscreen} ~ 12 min
 <!-- ## Filter -->
 
 Now let’s talk about filtering - an essential part of data analysis. In Polars, you can use filtering to subset your dataset based on logical conditions, using the magic of expressions. Logical operations are one of the simplest and most common use cases for expressions. For example, you can compare every value in the `region` column to the string "Europe". If there’s a match, Polars returns True; otherwise, it returns False.
@@ -563,7 +566,7 @@ This looks fantastic! Great work visualizing your country’s data.
 
 In the next section, we’ll explore adding more columns to our dataset and practice advanced subsetting and visualization techniques. Stay tuned!
 
-# VIDEO 6 DEATHS DATA {greenscreen} ~ 3 min
+# VIDEO 6 Deaths data {greenscreen} ~ 3 min
 <!-- ## More practice with filtering -->
 
 Let’s apply what we’ve learned about filtering to visualize the causes of death in some European countries.
@@ -619,7 +622,7 @@ Most of the trends appear to be decreasing, which is good news. However, even wi
 
 It would be good to put these numbers in perspective using population of these countries. Is this something we could calculate from our `clean_fuels` dataset?
 
-# VIDEO 7 WITH_COLUMNS {greenscreen} ~ 11 min
+# VIDEO 7 Mutating with columns {greenscreen} ~ 11 min
 <!-- # mutating(with_columns) -->
 
 Remember, the `clean_fuels` data told us both the number of people with access to non-polluting fuels and the proportion of the population they represent, expressed as a percentage. With this, we can reverse-engineer the population for each country.
@@ -725,7 +728,7 @@ Interesting! We still get some `NaN` values, for example, look here: in 2022 no 
 
 Wouldn’t it be nice to level out these differences, by say, averaging? In the next section, we’ll learn how to do just that: grouping and aggregating. Stay tuned!
 
-# VIDEO 8 SUMMARIES {greenscreen} ~ 14 min
+# VIDEO 8 Summaries {greenscreen} ~ 14 min
 <!-- # summarizing (group_by, agg) -->
 
 One of the most important tasks for data analysts is creating summaries of the data, particularly by groups. In our newly prepared dataset, we’re interested in summarizing the total population for each country by year. In Polars, this is a two-step process. First, we define the groups using `.group_by()`. Then, we aggregate the data using `.agg()`.
@@ -885,7 +888,7 @@ I wrap the expression into parenthesis and pass it to the `.over()` method which
 
 What a graph! What a story! In Africa, biomass remains dominant, though natural gas is beginning to make inroads. The Americas, Europe, and Eastern Mediterranean rely heavily on gas, with electricity emerging as a significant player in Europe and the Western Pacific. Southeast Asia, meanwhile, is undergoing a rapid transition from biomass to gas - a remarkable shift in just a few decades. This visualization gives us a profound understanding of how cooking fuel usage has evolved globally and regionally over time.
 
-# VIDEO 9 {greenscreen} ~ 3 min
+# VIDEO 9 Final plot {greenscreen} ~ 3 min
 
 It’s time for you to take on another challenge - one that highlights the global reliance on coal and charcoal for cooking. Create a column chart showing the top 10 countries by the number of people using coal and charcoal for cooking in 2022. Color the columns by continent. How many of these top-10 countries are in Africa?
 
