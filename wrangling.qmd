@@ -109,7 +109,7 @@ Both `.head()` and `.describe()` return a DataFrame, allowing you to chain these
 Now, here are a couple of challenges for you to practice method chaining: 
 
 1. Take the first 25 records from `clean_fuels` DataFrame and generate a statistical summary. 
-2. COmpute the statistical summary of the entire dataset, and then extract only the quantile summaries for each column, including the minimum, maximum, and the 25th, 50th and 75th percentiiles.
+2. Compute the statistical summary of the entire dataset, and then extract only the quantile summaries for each column, including the minimum, maximum, and the 25th, 50th and 75th percentiiles.
 
 <!-- 
 :::{.challenge}
@@ -134,7 +134,7 @@ Now, here are a couple of challenges for you to practice method chaining:
     .tail(5))
 ```
 
-contain so many columns that methods like `.head()` or `.describe()` don’t provide a clear overview. In such cases, Polars offers a particularly useful method: `.glimpse()`.
+Sometimes a dataset may have so many columns that methods like `.head()` or `.describe()` don’t quite give a full overview. In such cases, Polars offers a particularly useful method: `.glimpse()`.
 
 The `.glimpse()` method displays the dataset’s structure horizontally, listing each variable as a row. This format makes it easier to scan through all columns, even on a limited screen. Here’s how it looks in action::
 
@@ -156,7 +156,7 @@ Can you chain the operation `head()` after calling `glimpse()`? What do you thin
 
 < PAUSE >
 
-The answer is: no, you cannot. `glimpse()`, does not return you a data frame. Instead, the output of `glimpse()` is the text printout meant solely for viewing. No further operations can be applied to it. If you attempt to chain additional methods, you’ll encounter an error. Give it a try! Polars will throw an error saying that the `head()` method cannot be applied to a `NoneType`, which is the type of output `glimpse()` returns.
+The answer is: no, you cannot. `glimpse()`, does not return you a data frame. Instead, the output of `glimpse()` is the text printout meant solely for viewing. No further operations can be applied to it. If you attempt to chain additional methods, you’ll get an error. Give it a try! Polars will throw an error saying that the `head()` method cannot be applied to a `NoneType`, which is the type of output `glimpse()` returns.
 
 If you understand how to use `head()`, `tail()`, `describe()`, and `glimpse()`, you have powerful tools at your disposal to explore and familiarize yourself with any dataset before diving deeper into your analysis.
 
@@ -177,7 +177,7 @@ One of the most common tasks in data analysis is selecting specific variables or
 
 Here, we’re using the `select()` method to isolate a column. Notice how the column name is wrapped in the `pl.col()` function. This wrapper explicitly tells Polars that we’re referring to a column in the dataframe.
 
-But here’s something cool-you can skip the `pl.col()` wrapper in certain cases! For example, this code:
+But here’s something cool - you can skip the `pl.col()` wrapper in certain cases! For example, this code:
 
 < SMALL PAUSE >
 
@@ -270,7 +270,7 @@ What about negative numbers? They’re a handy shortcut for selecting columns fr
     .select(pl.nth(0, -1)))  
 ```
 
-A note of caution: Selecting columns by the order of their appearance can be risky. If your dataset’s structure changes, you might accidentally select the wrong columns. So, use the `nth()` function sparingly.
+A note of caution: Selecting columns by the order of their appearance can be risky. If your dataset’s structure changes, you might accidentally select the wrong columns. So, use the `nth()` method sparingly.
 
 Now, let’s talk about the opposite of `select()` - the `drop()` method. The `drop()` method removes specific columns from your dataset, leaving everything else intact. For example:
 
@@ -284,7 +284,7 @@ Now, let’s talk about the opposite of `select()` - the `drop()` method. The `d
     .drop(pl.col("country"), pl.col("region")))  
 ```
 
-Dropping is equivalent to selecting all columns **except** the ones you want to exclude. Here’s how could would write it using in terms of selection:
+Dropping is equivalent to selecting all columns **except** the ones you want to exclude. Here’s how could would write the dropping expression using in terms of selection:
 
 < PAUSE >
 
@@ -296,7 +296,7 @@ Dropping is equivalent to selecting all columns **except** the ones you want to 
     .select(pl.all().exclude("country", "region")))  
 ```
 
-The `pl.all()` function refers to all columns, and the `exclude()` method lets you refine the selection by removing specific ones. 
+The `pl.all()` function refers to all columns, and the `.exclude()` method lets you refine the selection by removing specific ones. 
 
 A quick reminder: dropping columns doesn’t modify your original dataset. It only affects the result of that query. Unless you explicitly overwrite the original dataframe, everything stays the same. So feel free to experiment!
 
@@ -324,7 +324,7 @@ Please, pause the video and try couple of different ways of selecting these colu
     .drop("region", "country_code", "country", "year"))
 ```
 
-Got it? Great! Both approaches (selecting specific columns or dropping the ones you don’t need) give you the same result. Expressions like these make your analysis more dynamic and efficient, so you can quickly adapt to different datasets or scenarios.
+Got it? Great! Both approaches, selection and dropping, give you the same result. Expressions like these make your analysis more dynamic and efficient, so you can quickly adapt to different datasets or scenarios.
 
 # VIDEO 4 Selectors {greenscreen} ~ 7 min
 <!-- ## selectors -->
@@ -346,7 +346,7 @@ Let's make sure we import the selectors module:
 import polars.selectors as cs
 ```
 
-Among the most useful selectors are, of course, selectors by name and by column index (for which we might not really need selectors, because those can be picked out with `pl.col()` and `pl.nth()`). 
+Among the most useful selectors are, of course, selectors by name and by column index. Although, for this we might not really need selectors, because those can be picked out with `pl.col()` and `pl.nth()`. 
 
 < PAUSE >
 
@@ -400,14 +400,14 @@ Use `polars.selectors` aliased as `cs.` to select
 
 ```
 
-Fantastic work! With a wide menu of selector methods, plus column and index-based expressions like `pl.col()` and `pl.nth()`, Polars gives you incredible flexibility in working with your data. These tools will become invaluable as we move into crafting more complex expressions.
+Fantastic work! With a wide menu of `polars.selectors`, plus the column and index-based expressions like `pl.col()` and `pl.nth()`, Polars gives you incredible flexibility in working with your data. These tools will become invaluable as we move into crafting more complex expressions.
 
 Stay tuned - there’s a lot more to explore!
 
 # VIDEO 5 Filter {greenscreen} ~ 12 min
 <!-- ## Filter -->
 
-Now let’s talk about filtering - an essential part of data analysis. In Polars, you can use filtering to subset your dataset based on logical conditions, using the magic of expressions. Logical operations are one of the simplest and most common use cases for expressions. For example, you can compare every value in the `region` column to the string "Europe". If there’s a match, Polars returns True; otherwise, it returns False.
+Now let’s talk about filtering - an essential part of data analysis. In Polars, you can use filtering to subset your data based on logical conditions, using the magic of expressions. Logical operations are one of the simplest and most common use cases for expressions. For example, you can compare every value in the `region` column to the string "Europe". If there’s a match, Polars returns True; otherwise, it returns False.
 
 Let’s see how this works in code:
 
@@ -424,9 +424,9 @@ Let’s see how this works in code:
 
 Here, the `filter()` method applies the logical condition, and only rows where the region is "Europe" are included in the result. Notice that for exact comparisons, we use the double equals sign `==`. Similarly, for inequalities, we can use operators like `<=`, `>=`, `<`, or `>`. Not equal is spelled out as `!=`.
 
-But filtering doesn’t stop there - you can combine multiple conditions to create more complex filters. 
+But filtering doesn’t stop there - you can combine multiple conditions to create more complex filters. Just write multiple expressions into the `.filter()` method, separating them with a comma!
 
-Here's a challenge for you. Can you find all the countries in Europe where the majority of the population lacked access to clean fuels for cooking at the end of 2022? Take a moment to write this expression. Pause the video if you need to.
+Here's a challenge for you. Can you find all the European countries where the majority of the population lacked access to clean fuels the end of 2022? Take a moment to write this expression. Pause the video if you need to.
 
 < PAUSE >
 
@@ -530,7 +530,7 @@ In this case, you can use partial string matching to find it.
     .filter(pl.col("country").str.starts_with("Cz")))
 ```
 
-Here, we use the `str.starts_with()` method, which checks if strings in the `country` column start with the letters “Cz.” Ah, there it is - “Czechia”! 
+Here, we use the `str.starts_with()` method, checking if the strings in the `country` column start with the letters “Cz.” Ah, there it is - “Czechia”! 
 
 Polars offers several handy string operations. For example:
 
@@ -580,7 +580,7 @@ Let’s apply what we’ve learned about filtering to visualize the causes of de
 hhap_deaths
 ```
 
-This dataset contains both summarized and detailed breakdowns of deaths for every country and year. Take a look at the column labeled `cause_of_death`. When this column says "All causes," it represents the total deaths for that country and year-a sum of all the other rows.
+This dataset contains both summarized and detailed breakdowns of deaths for every country and year. Take a look at the column labeled `cause_of_death`. When this column says "All causes," it represents the total deaths for that country and year - a sum of all the other rows.
 
 Let’s zoom in on Bosnia for a single year, say 2010, to understand this better.
 
@@ -654,7 +654,8 @@ Now that we have the true proportion, we can calculate the total population. Let
 #| include: false
 clean_fuels_pop_df = (clean_fuels
     .with_columns(prop=pl.col("prop_clean_fuels_cooking_pct")/100)
-    .with_columns( (pl.col("pop_clean_fuels_cooking_mln")/pl.col("prop")).alias("population"))
+    .with_columns( (pl.col("pop_clean_fuels_cooking_mln")/pl.col("prop"))
+                    .alias("population"))
 )
 ```
 
@@ -674,11 +675,11 @@ This looks good. Lets assign it to a variable and inspect the updated dataset.
 clean_fuels_pop_df.describe()
 ```
 
-Oh, look! We’ve got some `NaN`, or "Not a Number", values in the `population` column. These appear because we divided by zero wherever the proportion was zero. Division by zero is, understandably, illegal in most places - and in Python, it results in `NaN`.
+Oh, look! We’ve got some `NaN`, or "Not a Number", in the `population` column. These appear because we divided by zero, wherever the proportion was zero. Division by zero is, understandably, illegal in most places - and in Python, it results in `NaN`.
 
 `NaN` is a special marker for missing or undefined values. Missing values in Polars propagate through calculations, which means any further operations on these rows will also result in missing values. This is why the mean and standard deviation of the population column are also `NaN` in the summary.
 
-Let's see how many rows in our dataset contain illegal population estimates. We can use the `.is_nan()` method, which evaluates whether a column contains `NaN` values.
+Let's see how many rows in our dataset contain illegal population estimates. We can use the `.is_nan()` method, which evaluates whether a column contains a `NaN` value.
 
 < PAUSE >
 
@@ -745,10 +746,10 @@ One of the most important tasks for data analysts is creating summaries of the d
 )
 ```
 
-This gives us a mean population estimate for each country and year. But you might notice something peculiar-some countries and years still show `NaN` values for the population. These missing values are a result of the division by zero we encountered earlier. To address this, we have a couple of options:
+This gives us a mean population estimate for each country and year. But you might notice something suspicious - some countries and years still show `NaN` values for the population. These missing values are a result of the division by zero we encountered earlier. To address this, we have a couple of options:
 
 We could drop the missing values directly before averaging, using `.drop_nans()`; OR
-We could filter out zero-valued records in the "proportion of population with access to clean fuels", which was used in the denominator of the population column.
+We could filter out zero-valued records in the "proportion of population" column, which was used in the denominator of the population estimate.
 
 < PAUSE >
 
@@ -823,7 +824,7 @@ Visualize the total number of people using each type of fuel for cooking, for ev
 )
 ```
 
-This plot looks fantastic! By aggregating by fuel type and year, we can clearly see trends in fuel usage globally. But we can take this further. What if we wanted to break this data down by region? Faceting would allow us to examine the trends within each world region more closely.
+This plot looks fantastic! By aggregating by fuel type and year, we can clearly see trends in fuel usage globally. But we can take this further. What if we wanted to break this data down by region? Faceting would allow us to examine the trends within each region more closely.
 
 < PAUSE >
 
@@ -886,11 +887,11 @@ I wrap the expression into parenthesis and pass it to the `.over()` method which
 )
 ```
 
-What a graph! What a story! In Africa, biomass remains dominant, though natural gas is beginning to make inroads. The Americas, Europe, and Eastern Mediterranean rely heavily on gas, with electricity emerging as a significant player in Europe and the Western Pacific. Southeast Asia, meanwhile, is undergoing a rapid transition from biomass to gas - a remarkable shift in just a few decades. This visualization gives us a profound understanding of how cooking fuel usage has evolved globally and regionally over time.
+What a graph! What a story! In Africa, biomass remains dominant, though natural gas is beginning to make inroads. The Americas, Europe, and Eastern Mediterranean rely heavily on gas, with electricity emerging as a significant player in Europe and the Western Pacific. Southeast Asia, meanwhile, is undergoing a rapid transition from biomass to gas - a remarkable shift in just a few decades. This visualization gives us a profound understanding of how the popularity of cooking fuels has evolved globally and regionally over time.
 
 # VIDEO 9 Final plot {greenscreen} ~ 3 min
 
-It’s time for you to take on another challenge - one that highlights the global reliance on coal and charcoal for cooking. Create a column chart showing the top 10 countries by the number of people using coal and charcoal for cooking in 2022. Color the columns by continent. How many of these top-10 countries are in Africa?
+It’s time for you to take on another challenge - one that highlights the global reliance on coal and charcoal for cooking. Those are environmentally sensitive fuels and understanding thier use across the world is crucial. Create a column chart showing the top 10 countries by the number of people using coal and charcoal for cooking in 2022. Color the columns by continent. How many of these top-10 countries are in Africa?
 
 < PAUSE >
 <!-- :::{.challenge}
