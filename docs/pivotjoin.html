@@ -477,15 +477,27 @@ Challenge
 <li>clean_fuels – Proportion of the population with access to clean cooking fuels.</li>
 </ul>
 <p>We wanted to put the deaths attributable to household pollution into context by comparing them to the total population of each country in the respective years. However, the hhap_deaths dataset lacked population estimates. To work around this, we inferred population estimates by aggregating the fuel_types dataset and saved it as pop_years_df. Now, our goal is to merge these population estimates into hhap_deaths so that we can analyze deaths per million people.</p>
-<p>Let’s say we want to visualize European household pollution-related deaths per million population, broken down by cause of death:</p>
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Visualize European household pollution-related deaths per million population, broken down by cause of death:</p>
 <ul>
 <li>Perform a left join between hhap_deaths and pop_years_df using region, country, and year.</li>
 <li>Calculate deaths per million by dividing the deaths column by the inferred mean population.</li>
 <li>Filter the data to include only European countries and exclude summary rows (to avoid double-counting).</li>
 <li>Plot the results using ggplot.</li>
 </ul>
-<p>Here’s the code which allows us to observe trends in household pollution-related deaths over time, broken down by cause of death and country.</p>
+</div>
+</div>
 <p>&lt; PAUSE &gt;</p>
+<p>Here’s the code which allows us to observe trends in household pollution-related deaths over time, broken down by cause of death and country.</p>
 <p>Joins allow us to break free from the constraints of a single dataset and uncover deeper insights by integrating data from multiple sources. Mastering the skill of merging datasets is a powerful addition to your data analysis toolkit, enabling you to answer more complex questions and build richer analyses.</p>
 <p>In the next section, we’ll explore even more techniques for combining data from different sources. Stay tuned!</p>
 </section>

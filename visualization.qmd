@@ -23,6 +23,9 @@ His ideas were revolutionary and influenced countless tools for making visualiza
 
 In 2017 a passionate Python developer from Uganda by the name Hassan Kibridge ported `ggplot2` into Python. His project became known as `plotnine` and it soon became a universal success. Here's the story of `plotnine` in his own words:
 
+
+< PAUSE >
+
 <!-- ## VOICE OVER
 
 > I discovered this "Grammar of Graphics" thing and found it elegant and powerful. So, I wanted to be able to use it in Python, my preferred programming language for data analysis. I read the key text on the subject by Leland Wilkinson and while I had a good grasp of it, translating it into a usable system would have been a huge undertaking. Hadley Wickham had done so for his doctorate and came up with ggplot2. While I was not confident enough to take this on, I felt that it was quite revolutionary and someone was going to implement it for Python.
@@ -45,6 +48,8 @@ So, join us on this journey into the wonderful world of data visualization. By t
 <!-- ## Libraries -->
 
 Before we dive in, let’s talk about the tools and libraries we’ll be using in this lesson.
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -70,6 +75,8 @@ So, with our tools in hand and an inspiring dataset at our fingertips, we’re r
 <!-- ## Data -->
 
 The dataset has been conveniently imported for us by the `gapminder` package. To get started, we can simply type `gapminder` into our notebook cell and hit Enter. When we do that, we’ll see a preview of the data in the form of a table — what we call a DataFrame. In this table, each row represents an observation, and each column represents a variable.
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -116,6 +123,8 @@ In order to answer these questions, we will create a plot from `gapminder` data.
 
 When writing Python code with `plotnine` — and later when we use `polars` — you’ll notice that we often wrap our code in parentheses. This is a great habit to get into because it allows us to break our code into multiple lines without worrying about indentation.
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -148,6 +157,8 @@ Take your time to review the code and compare it to the plot we created. Underst
 
 In fact, the structure of most plots in `plotnine` (and its R counterpart, `ggplot2`) can be summarized with a simple template:
 
+< PAUSE >
+
 <!-- 
 ```
 ggplot(data = <DATA>) + 
@@ -177,6 +188,8 @@ Here’s a quick hint before you pause the video: The `gapminder` dataset includ
 
 Pause the video now and give it a shot. See you in a moment!
 
+< PAUSE >
+
 <!-- *...pause for effect...* -->
 
 ```{python}
@@ -196,6 +209,8 @@ Hmm... notice how some of the points are stacked on top of each other? That’s 
 Instead of geom_point, try using geom_jitter. This will add a tiny bit of random noise to spread out the points so they’re easier to see.
 
 Here’s how you do it:
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -218,6 +233,8 @@ Visualize life expectancy by continent
 Think about which variable should go on the x-axis this time. Which continent do you think tends to have the highest life expectancy? Modify your code and give it a shot. Pause the video, try it out, and come back when you’re ready.
 
 <!-- *...pause for effect...* -->
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -246,6 +263,8 @@ Now, don’t worry—we’re not diving into “three-dimensional” plots just 
 
 Here’s modified code that maps the continent variable to the color aesthetic:
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -257,6 +276,8 @@ geom_jitter(mapping = aes(x='year', y='lifeExp', color='continent'))
 ```
 
 Run this code and take a look.
+
+< PAUSE >
 
 <!-- *...pause for effect...* -->
 
@@ -274,6 +295,8 @@ geom_jitter(mapping = aes(x='year', y='lifeExp', color='continent'))
 )
 ```
 ::: -->
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -303,6 +326,8 @@ geom_jitter(mapping = aes(x='continent', y='lifeExp', color='year'))
 ```
 ::: -->
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -331,6 +356,8 @@ geom_point(mapping = aes(x='gdpPercap', y='lifeExp'))
 
 Take a moment to run your code and see what you get.
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -347,6 +374,8 @@ geom_point(mapping = aes(x='gdpPercap', y='lifeExp', color='continent'))
 Amazing! By adding color, we can now spot trends and patterns more easily. But did you notice something else? There are a few outliers in this plot. Can you tell which continent those points belong to?
 
 The points look a little crowded. But you know, you can always transform GDP per capita to a logarithmic scale for better visualization. Just add `scale_x_log10()` as an additional layer to your graph, like that:
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -376,6 +405,8 @@ On the other hand, when we map a continuous variable like year to color, we get 
 Alright, as promised, let me introduce you to another fantastic aesthetic: size.
 
 Imagine we could vary the size of the points in our graph to represent something meaningful—like the population of a country. That would let us visualize not three, but four variables at the same time. Let’s give it a shot. Here’s the code:
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -413,6 +444,8 @@ scale_x_log10()
 
 <!-- *...pause for effect...* -->
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -445,6 +478,8 @@ Sometimes, less is more. A clean and simple graph, highlighting just one or two 
 Now, the default style in plotnine is already quite nice, but there may come a time when you want to tweak things to better suit your storytelling. So, let’s look at how to customize graphs using non-data-linked properties—those that aren’t mapped to a variable but instead apply globally to all points in the graph.
 
 Here’s an example. What if we want all the points in our plot to be the same color, say blue? And what if we also want to adjust their size and transparency? Here’s the code to do that:
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -500,6 +535,8 @@ For example, what if we wanted to show the development of life expectancy over t
 
 Here’s the code to do just that:
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -523,6 +560,8 @@ Another powerful geometrical object is geom_boxplot(). This creates a “box-and
 
 For example, let’s visualize how life expectancy varies by continent:
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -541,6 +580,8 @@ The box represents the interquartile range—the middle 50% of data—while the 
 
 Now, wouldn’t it be great to combine this boxplot with our jittered points from earlier? This would help us see both the overall distribution and the outliers more clearly. Let’s layer them together:
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -557,6 +598,8 @@ geom_boxplot(mapping = aes(x='continent', y='lifeExp', color='continent'))
 Looks great, doesn’t it? But notice something—there’s some duplication in our code. We had to repeat the same mappings for both geom_jitter and geom_boxplot. That’s fine for now, but it can become cumbersome as your visualizations grow more complex.
 
 Here’s a trick to make your code cleaner: you can move shared mappings to the parent ggplot() function. This way, every layer will “inherit” these mappings automatically:
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -587,6 +630,8 @@ At first glance, life expectancy seems to improve as countries get richer. But i
 
 Trends are essentially linear regression lines. You might remember them from school—they represent the best-fit line through your data. Here’s how we can add them to highlight differences in this relationship by continent:
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -610,6 +655,8 @@ We also used the alpha argument to make our points semi-transparent. Why? It red
 Here's a task for you: Modify the code we just used so that instead of creating separate regression lines for each continent, plotnine creates a single trend line for all data points.
 
 Here’s the code to start with:
+
+< PAUSE >
 
 <!-- :::{.challenge}
 Create a single regression line for all data points modifying this sample code
@@ -635,6 +682,8 @@ To build a single trend line for all data points, we must ensure that the color 
 
 Here’s how the updated code looks:
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -652,6 +701,8 @@ By moving the color aesthetic into geom_point(), it now affects only the points 
 Take a moment to observe how this subtle adjustment changes the visualization and makes the trend line easier to interpret.
 
 Some of you might have come up with an alternative solution. Instead of changing the color aesthetic’s scope, we can override it directly within the geom_smooth() layer. In this case, the color aesthetic remains global, but we specify a non-data-linked property for the trend line, such as making it black:
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -694,6 +745,8 @@ Create a boxplot of GDP per capita by year, but this time keep it on a logarithm
 
 Go ahead and give it a try. Pause the video and come back once you have your answer!
 
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -739,6 +792,8 @@ Histograms are perfect for exploring the distribution of a single variable. Let�
 Make a histogram of life expectancy. What is the shape of the distribution? How many modes (peaks) does the distribution of life expectancy have? What value of the `bins` parameter look reasonable?
 ::: -->
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -756,6 +811,8 @@ Create a simple density plot for life expectancy. You can do it! Start typing an
 <!-- :::{.challenge}
 Build a density function. How would you compare density functions of different continents? 
 ::: -->
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -779,6 +836,8 @@ geom_density(mapping = aes(x='lifeExp', color='continent'))
 
 Right! You can split the data by continent by adding a color aesthetic and linking it to the variable `continent`. Or take it one step further! Use the `fill` aesthetic (in addition to color) to fill the areas under the curves. Add some transparency with `alpha` for a cleaner visualization like this:
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -797,6 +856,8 @@ Now let’s level up with 2D density plots. These are excellent for visualizing 
 Build a graph using `geom_density2d()` for log GDP per capita vs life expectancy. How many clusters of datapoints can you identify? What if you look at it by continent?
 ::: -->
 
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -817,6 +878,8 @@ Now let’s break it down by continent. Add a color aesthetic to see how regions
 Add a color aesthetic to see how regions of the world are distributed
 ::: -->
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -836,6 +899,8 @@ Isn’t that fascinating? The lower cluster is primarily made up of African coun
 When your graph starts to feel a bit too crowded—perhaps with too many layers or overlapping aesthetics—there’s a simple solution: faceting. Faceting allows you to split your data into separate panels, creating multiple similar graphs for subsets of your data. This can make complex trends easier to spot and comparisons much clearer.
 
 In plotnine, faceting is incredibly easy to use. Let’s revisit one of our earlier graphs and apply faceting to organize it by continent.
+
+< PAUSE >
 
 ```{python}
 #| echo: false
@@ -881,6 +946,8 @@ ggplot(gapminder, mapping = aes(x = 'gdpPercap', y = 'lifeExp')) +
 ```
 ::: -->
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -896,6 +963,8 @@ ggplot(data = gapminder, mapping = aes(x = 'gdpPercap', y = 'lifeExp')) +
 ```
 
 With everything we’ve learned so far, we can summarize the plotnine template as follows::
+
+< PAUSE >
 
 <!-- 
 ```
@@ -929,6 +998,8 @@ To make our chart clear and professional, we’ll use the labs() function. This 
 
 Here’s an example of a polished, annotated chart:
 
+< PAUSE >
+
 ```{python}
 #| echo: false
 #| code-fold: true
@@ -955,6 +1026,8 @@ Each label corresponds to the aesthetics used in the aes() mappings. Make sure a
 Now, let’s make your chart stand out! plotnine offers pre-selected themes that adjust the colors, fonts, and overall style of your plots.
 
 One of my favorites is `theme_minimal()`. It simplifies the design, creating a clean and modern look:
+
+< PAUSE >
 
 ```{python}
 #| echo: false

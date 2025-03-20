@@ -844,16 +844,21 @@ In the previous module, we explored WHO data on household pollution, which was s
 
 We wanted to put the deaths attributable to household pollution into context by comparing them to the total population of each country in the respective years. However, the hhap_deaths dataset lacked population estimates. To work around this, we inferred population estimates by aggregating the fuel_types dataset and saved it as pop_years_df. Now, our goal is to merge these population estimates into hhap_deaths so that we can analyze deaths per million people.
 
-Let’s say we want to visualize European household pollution-related deaths per million population, broken down by cause of death:
+:::{.challenge}
+
+Visualize European household pollution-related deaths per million population, broken down by cause of death:
 
 - Perform a left join between hhap_deaths and pop_years_df using region, country, and year.
 - Calculate deaths per million by dividing the deaths column by the inferred mean population.
 - Filter the data to include only European countries and exclude summary rows (to avoid double-counting).
 - Plot the results using ggplot.
+:::
+
+< PAUSE >
 
 Here's the code which allows us to observe trends in household pollution-related deaths over time, broken down by cause of death and country.
 
-< PAUSE >
+
 
 
 ```{python}
