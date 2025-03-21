@@ -494,7 +494,9 @@ geom_point(mapping = aes(x='gdpPercap', y='lifeExp'),
 )
 ```
 
-Go ahead, give this a try.
+Go ahead, pause and give this a try.
+
+< PAUSE >
 
 <!-- Pause for effect. -->
 
@@ -552,6 +554,7 @@ geom_line(mapping = aes(x='year', y='lifeExp',
 
 Note that we have a new aesthetics called `group`. It indicates which points need to be connected together to for a line. Here we are drawing one line per country. Take a moment to run this and see what you get.
 
+< PAUSE >  
 <!-- Pause for effect. -->
 
 Do you see it? Each country now has its own line, colored by continent. It’s fascinating to watch life expectancy trends unfold over time. But look closely—you might notice some sharp, sudden drops for certain countries. What do you think caused these declines? Wars? Epidemics?
@@ -574,8 +577,9 @@ geom_boxplot(mapping = aes(x='continent', y='lifeExp'))
 )
 ```
 
-Run the code and take a look.
+Pause, run the code and take a look.
 
+< PAUSE >  
 <!-- Pause for effect. -->
 
 The box represents the interquartile range—the middle 50% of data—while the line inside the box marks the median. The “whiskers” extend to show the 95% confidence interval, and any points outside this range are plotted as individual outliers.
@@ -648,6 +652,7 @@ scale_x_log10()
 
 Take a moment to run the code and see the result.
 
+< PAUSE >  
 <!-- Pause for effect. -->
 
 What do you observe? By default, geom_smooth() creates a regression line for each continent, and plotnine even adds confidence intervals—those shaded gray areas around the lines. These intervals give us an idea of how well the model fits the data.
