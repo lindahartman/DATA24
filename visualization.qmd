@@ -85,7 +85,7 @@ The dataset has been conveniently imported for us by the `gapminder` package. To
 gapminder
 ```
 
-This dataset has 1,704 rows and 6 columns, so it’s fairly compact but still rich with information. Let’s walk through what each of these columns means:
+This dataset has one thousand sevenhundred and four rows and 6 columns, so it’s fairly compact but still rich with information. Let’s walk through what each of these columns means:
 
 - **country**: This column lists the names of countries. If you take a look at the data, you’ll notice it starts with Afghanistan at the top and ends with Zimbabwe at the bottom. It seems the data is sorted alphabetically by country.
 
@@ -184,9 +184,7 @@ How has life expectancy changed over time?
 
 Take a moment to think about it. Better yet, try answering it by modifying the code we wrote in the last lesson.
 
-Here’s a quick hint before you pause the video: The `gapminder` dataset includes a column called `year`, which can go on the x-axis. Use that to tweak the code and see what you find. I’ll wait right here while you try it out!
-
-Pause the video now and give it a shot. See you in a moment!
+Here’s a quick hint before you pause the video: The `gapminder` dataset includes a column called `year`, which can go on the x-axis. Use that to tweak the code and see what you find. I’ll wait right here while you try it out! Pause the video now and give it a shot. See you in a moment!
 
 < PAUSE >
 
@@ -222,7 +220,11 @@ geom_jitter(mapping = aes(x='year', y='lifeExp'))
 )
 ```
 
-Run this code and check out the difference. Much better, right? Now we can see the points more clearly.
+Pause the video, run this code and check out the difference. 
+
+< PAUSE >
+
+Much better, right? Now we can see the points more clearly.
 
 Let’s keep going with this little game. Here’s your next challenge: Can you visualize life expectancy by continent?
 
@@ -259,7 +261,7 @@ Fantastic work so far! Take a moment to review what you’ve done, and I’ll se
 
 Oh, hey there! You know, I’ve been thinking—what if we could combine the graphs from the last two challenges and show the relationship between not just two variables, but three?
 
-Now, don’t worry—we’re not diving into “three-dimensional” plots just yet. Instead, we can represent a third variable using color. Let me show you what I mean.
+Now, don’t worry—we’re not diving into “three-dimensional” plots. Instead, we can represent a third variable using color. Let me show you what I mean.
 
 Here’s modified code that maps the continent variable to the color aesthetic:
 
@@ -281,7 +283,7 @@ Run this code and take a look.
 
 <!-- *...pause for effect...* -->
 
-What do you see? Now we can see more clearly how life expectancy has changed over time by continent. For example, the points representing Africa stay clustered near the lower end of the y-axis throughout the years, while Europe’s points are generally higher. Oceania is there too, but it’s barely noticeable because there are so few observations. Pretty cool, right?
+What do you see? Now we can see more clearly how life expectancy has changed over time by continent. For example, the points representing Africa stay clustered near the lower end of the y-axis throughout the years, while Europe’s points are generally higher. Oceania is there too, but it’s barely noticeable because there are so few observations. 
 
 Now, I’ve got a question for you: What happens if we switch the mappings of continent and year? Give it a try!
 
@@ -389,14 +391,14 @@ scale_x_log10()
 )
 ```
 
-You’re making fantastic progress! Well done! In the next section, we’ll explore even more aesthetics that can help us tell richer stories with our data. See you there!
+Well done! In the next section, we’ll explore even more aesthetics that can help us tell richer stories with our data. See you there!
 
 # VIDEO 6 More aesthetics {greenscreen} ~ 10 min
 <!-- ## More aesthetics -->
 
 Hello again!
 
-So far, we’ve explored some powerful ways to visualize data using the x, y, and color aesthetics. With these, we’ve been able to represent three variables in a single plot. Pretty amazing, right?
+So far, we’ve explored some powerful ways to visualize data using the x, y, and color aesthetics. With these, we’ve been able to represent three variables in a single plot. Very useful, right?
 
 Now, let’s quickly recap what we’ve learned about the color aesthetic. When we map a categorical variable like continent to color, plotnine automatically picks a distinct palette for each category. This works great when there are just a few categories, but as the number of categories grows, the colors start to blur together and lose their effectiveness.
 
