@@ -259,9 +259,9 @@ Fantastic work so far! Take a moment to review what you’ve done, and I’ll se
 
 <...Walks in, looking thoughtful....>
 
-Oh, hey there! You know, I’ve been thinking—what if we could combine the graphs from the last two challenges and show the relationship between not just two variables, but three?
+Oh, hi there! You know, I’ve been thinking — what if we could combine the graphs from the last two challenges and show the relationship between not just two variables, but three?
 
-Now, don’t worry—we’re not diving into “three-dimensional” plots. Instead, we can represent a third variable using color. Let me show you what I mean.
+Now, don’t worry — we’re not diving into “three-dimensional” plots. Instead, we can represent a third variable using color. Let me show you what I mean.
 
 Here’s modified code that maps the continent variable to the color aesthetic:
 
@@ -391,7 +391,7 @@ scale_x_log10()
 )
 ```
 
-Well done! In the next section, we’ll explore even more aesthetics that can help us tell richer stories with our data. See you there!
+Well done! Be proud of the type of visualizations you are already mastering! In the next section, we’ll explore even more aesthetics that can help us tell richer stories with our data. See you there!
 
 # VIDEO 6 More aesthetics {greenscreen} ~ 10 min
 <!-- ## More aesthetics -->
@@ -812,6 +812,10 @@ ggplot(gapminder)+
 geom_histogram(mapping = aes(x='lifeExp'), bins=100)
 )
 ```
+
+Pause the video and try it yourself! How many peaks—or modes—does it have? Play around with the `bins` parameter. Adjusting the number of bins changes the granularity of your histogram, which can affect how you interpret the distribution. What value of bins seems reasonable to you?
+
+< PAUSE >  
 
 Next up: density plots. These are smoothed-out versions of histograms, showing the probability distribution of your data.
 
