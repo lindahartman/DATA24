@@ -421,7 +421,7 @@ scale_x_log10()
 )
 ```
 
-WRun this and take a moment to appreciate the result. Isn’t it gorgeous?
+Run this and take a moment to appreciate the result. Isn’t it fascinating?
 
 Now we can see the journey of countries like China and India over time. Their points stand out because of their large populations. Under the logarithmic transformation of the x-axis, the relationship between GDP per capita and life expectancy starts to look more linear—but not quite!
 
@@ -508,7 +508,7 @@ Let’s break it down:
 
 - `color="blue"`: The color is set as a character string, wrapped in quotes. You can experiment with other colors too—try red, green, or even hex codes like "#FF5755".
 - `size=2:` The size of the points is specified as a number, in millimeters. Increase the size to make the points larger or decrease it for smaller ones.
-- `alpha=0.1`: Transparency is a decimal value between 0 and 1, where 0 is completely transparent and 1 is fully opaque.
+- `alpha=0.1`: transparency is controlled by a decimal value between 0 and 1, where 0 is completely transparent and 1 is fully opaque.
 
 Finally, let’s talk about shapes. In plotnine, shapes are represented by numbers. For example:
 
@@ -552,7 +552,7 @@ geom_line(mapping = aes(x='year', y='lifeExp',
 )
 ```
 
-Note that we have a new aesthetics called `group`. It indicates which points need to be connected together to for a line. Here we are drawing one line per country. Take a moment to run this and see what you get.
+Note that we have a new aesthetics called `group`. It indicates which points need to be connected together to a line. Here we are drawing one line per country. Take a moment to run this and see what you get.
 
 < PAUSE >  
 <!-- Pause for effect. -->
@@ -582,7 +582,7 @@ Pause, run the code and take a look.
 < PAUSE >  
 <!-- Pause for effect. -->
 
-The box represents the interquartile range—the middle 50% of data—while the line inside the box marks the median. The “whiskers” extend to show the 95% confidence interval, and any points outside this range are plotted as individual outliers.
+The box represents the interquartile range—the middle 50% of data—while the line inside the box marks the median. The “whiskers” give you an idea of the spread of the bulk of data, and any points outside this range are plotted as individual outliers.
 
 Now, wouldn’t it be great to combine this boxplot with our jittered points from earlier? This would help us see both the overall distribution and the outliers more clearly. Let’s layer them together:
 
@@ -793,7 +793,9 @@ One of the most exciting features of plotnine is the sheer variety of geoms—th
 
 Let’s put your skills to the test with a few new challenges!
 
-Histograms are perfect for exploring the distribution of a single variable. Let’s start with life expectancy. Create a histogram and observe the shape of the distribution. How many peaks—or modes—does it have? Play around with the `bins` parameter. Adjusting the number of bins changes the granularity of your histogram, which can affect how you interpret the distribution. What value of bins seems reasonable to you?
+Histograms are perfect for exploring the distribution of a single variable. Let’s start with life expectancy. 
+
+Pause the video, then create a histogram and observe the shape of the distribution. How many peaks—or modes—does it have? Play around with the `bins` parameter. Adjusting the number of bins changes the granularity of your histogram, which can affect how you interpret the distribution. What value of bins seems reasonable to you?
 
 <!-- :::{.challenge}
 Make a histogram of life expectancy. What is the shape of the distribution? How many modes (peaks) does the distribution of life expectancy have? What value of the `bins` parameter look reasonable?
