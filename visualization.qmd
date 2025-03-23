@@ -682,13 +682,15 @@ Take a moment to think about it. How can you combine the points colored by conti
 
 There’s more than one way to solve this problem—see what you can come up with!
 
+< PAUSE >
+
 Did you find this challenge hard? It's ok! Let's step through it together!
 
 In our previous example, we declared all the mappings—x, y, and color—at the global level, in the ggplot() function. This means that every layer inherited these mappings. While this works well for most situations, it’s not what we need here.
 
 To build a single trend line for all data points, we must ensure that the color aesthetic applies only to the points and not to the trend line. How do we do that? By moving the color mapping from the global level into the geom_point() function.
 
-Here’s how the updated code looks:
+Here’s what the updated code looks like:
 
 < PAUSE >
 
