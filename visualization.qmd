@@ -374,7 +374,7 @@ geom_point(mapping = aes(x='gdpPercap', y='lifeExp', color='continent'))
 
 <!-- Pause. -->
 
-Amazing! By adding color, we can now spot trends and patterns more easily. But did you notice something else? There are a few outliers in this plot. Can you tell which continent those points belong to?
+Very illustrative! By adding color, we can now spot trends and patterns more easily. But did you notice something else? There are a few outliers in this plot. Can you tell which continent those points belong to?
 
 The points look a little crowded. But you know, you can always transform GDP per capita to a logarithmic scale for better visualization. Just add `scale_x_log10()` as an additional layer to your graph, like that:
 
@@ -792,13 +792,11 @@ Great work on these challenges! These exercises show the power of visualizing da
 
 By now, you’ve learned so much about using plotnine to create insightful visualizations. But we’ve barely scratched the surface!
 
-One of the most exciting features of plotnine is the sheer variety of geoms—the building blocks for visualizing data. Start typing geom_ in your code editor, and you’ll see a list of options pop up. It’s like a treasure chest of possibilities, and each geom offers a unique perspective on your data.
+One of the most exciting features of plotnine is the sheer variety of geoms—the building blocks for visualizing data. Start typing geom_ in your notebook. Press TAB, and you’ll see a list of options pop up. It’s like a treasure chest of possibilities, and each geom offers a unique perspective on your data.
 
 Let’s put your skills to the test with a few new challenges!
 
 Histograms are perfect for exploring the distribution of a single variable. Let’s start with life expectancy. 
-
-Pause the video, then create a histogram and observe the shape of the distribution. How many peaks—or modes—does it have? Play around with the `bins` parameter. Adjusting the number of bins changes the granularity of your histogram, which can affect how you interpret the distribution. What value of bins seems reasonable to you?
 
 <!-- :::{.challenge}
 Make a histogram of life expectancy. What is the shape of the distribution? How many modes (peaks) does the distribution of life expectancy have? What value of the `bins` parameter look reasonable?
@@ -818,11 +816,10 @@ geom_histogram(mapping = aes(x='lifeExp'), bins=100)
 
 Pause the video and try it yourself! How many peaks—or modes—does it have? Play around with the `bins` parameter. Adjusting the number of bins changes the granularity of your histogram, which can affect how you interpret the distribution. What value of bins seems reasonable to you?
 
-< PAUSE >  
 
 Next up: density plots. These are smoothed-out versions of histograms, showing the probability distribution of your data.
 
-Create a simple density plot for life expectancy. You can do it! Start typing and you will find the function you need. Do you see it? What if you want to compare distributions across continents? Add a color aesthetic.
+Create a simple density plot for life expectancy. You can do it! Start typing 'geom_' press tab, and you will find the function you need. Do you see it? What if you want to compare distributions across continents? Add a color aesthetic.
 
 <!-- :::{.challenge}
 Build a density function. How would you compare density functions of different continents? 
