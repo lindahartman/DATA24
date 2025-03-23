@@ -257,8 +257,8 @@ Do people in rich countries live longer than people in poor countries?
 - Are there exceptions to the general rule (outliers)?
 ::: -->
 <p>In order to answer these questions, we will create a plot from <code>gapminder</code> data. Here’s the code we’ll use. Take a moment to copy this code verbatim from your screen.</p>
-<p>When writing Python code with <code>plotnine</code> — and later when we use <code>polars</code> — you’ll notice that we often wrap our code in parentheses. This is a great habit to get into because it allows us to break our code into multiple lines without worrying about indentation.</p>
 <p>&lt; PAUSE &gt;</p>
+<p>When writing Python code with <code>plotnine</code> — and later when we use <code>polars</code> — you’ll notice that we often wrap our code in parentheses. This is a great habit to get into because it allows us to break our code into multiple lines without worrying about indentation.</p>
 <p>Let’s walk through this step by step.</p>
 <p>Inside the outer parentheses, the first thing we write is <code>ggplot</code>. This is the foundational function in <code>plotnine</code>, and it stands for <strong>Grammar of Graphics plot</strong>. Then, in parentheses again, we pass the dataset we want to use — in this case, <code>gapminder</code>.</p>
 <p>After that, we add a plus sign. The Grammar of Graphics, which <code>plotnine</code> is built on, thinks of plots as being made up of layers. The <code>+</code> sign we added tells Python that we’re adding more layers or components to our plot. Think of it as saying, “Wait, there’s more!”</p>
@@ -363,7 +363,7 @@ geom_point(mapping = aes(x='gdpPercap', y='lifeExp'))
 <p>Take a moment to run your code and see what you get.</p>
 <p>&lt; PAUSE &gt;</p>
 <!-- Pause. -->
-<p>Amazing! By adding color, we can now spot trends and patterns more easily. But did you notice something else? There are a few outliers in this plot. Can you tell which continent those points belong to?</p>
+<p>Very illustrative! By adding color, we can now spot trends and patterns more easily. But did you notice something else? There are a few outliers in this plot. Can you tell which continent those points belong to?</p>
 <p>The points look a little crowded. But you know, you can always transform GDP per capita to a logarithmic scale for better visualization. Just add <code>scale_x_log10()</code> as an additional layer to your graph, like that:</p>
 <p>&lt; PAUSE &gt;</p>
 <p>Well done! Be proud of the type of visualizations you are already mastering! In the next section, we’ll explore even more aesthetics that can help us tell richer stories with our data. See you there!</p>
@@ -504,10 +504,11 @@ scale_x_log10()
 ::: -->
 <p>Take a moment to think about it. How can you combine the points colored by continent with a single global regression line?</p>
 <p>There’s more than one way to solve this problem—see what you can come up with!</p>
+<p>&lt; PAUSE &gt;</p>
 <p>Did you find this challenge hard? It’s ok! Let’s step through it together!</p>
 <p>In our previous example, we declared all the mappings—x, y, and color—at the global level, in the ggplot() function. This means that every layer inherited these mappings. While this works well for most situations, it’s not what we need here.</p>
 <p>To build a single trend line for all data points, we must ensure that the color aesthetic applies only to the points and not to the trend line. How do we do that? By moving the color mapping from the global level into the geom_point() function.</p>
-<p>Here’s how the updated code looks:</p>
+<p>Here’s what the updated code looks like:</p>
 <p>&lt; PAUSE &gt;</p>
 <p>By moving the color aesthetic into geom_point(), it now affects only the points layer. Notice that it’s still wrapped in the aes() function because it remains a data-linked property. Meanwhile, the trend line—added by geom_smooth()—inherits only the global mappings for x and y. This creates a single linear model across all continents, as we wanted.</p>
 <p>Take a moment to observe how this subtle adjustment changes the visualization and makes the trend line easier to interpret.</p>
@@ -519,13 +520,13 @@ scale_x_log10()
 <section id="video-10-factors-greenscreen-5-min" class="level1">
 <h1>VIDEO 10 Factors {greenscreen} ~ 5 min</h1>
 <!-- ## Factors -->
-<p>Do you want to learn a nifty trick that can improve your data visualization? This method can be useful when you want to visualize a continuous variable which has a limited number of distinct values.</p>
-<p>Imagine we’re working with <code>year</code>, which is technically a continuous variable. But for some visualizations it might make more sense to treat each year as a separate category. How do we do that without modifying the data?</p>
-<p>Simple! Instead of referencing year as a string (<code>'year'</code>), wrap it in <code>factor()</code>, like this <code>'factor(year)'</code>. This shorthand plotnine function converts a continuous variable into a categorical one on the fly, with each distinct value treated as its own category.</p>
+<p>Do you want to learn a nifty trick that can improve your data visualization? This method can be useful when you want to visualize a numeric variable which has a limited number of distinct values.</p>
+<p>Imagine we’re working with <code>year</code>, which is technically a numeric variable. But for some visualizations it might make more sense to treat each year as a separate category. How do we do that without modifying the data?</p>
+<p>Simple! Instead of referencing year as a string (<code>'year'</code>), wrap it in <code>factor()</code>, like this <code>'factor(year)'</code>. This shorthand plotnine function converts a numeric variable into a categorical one on the fly, with each distinct value treated as its own category.</p>
 <p>Let’s put this into practice with a couple of challenges!</p>
 <p>Create a boxplot of life expectancy over time, treating year as a categorical variable. Using this plot, can you detect when the interquartile range of life expectancy—the middle 50% of values—was the smallest?</p>
 <p>Then apply the same concept to gdpPercap.</p>
-<p>Create a boxplot of GDP per capita by year, but this time keep it on a logarithmic scale. Remember that we used the scale_y_log10() function to make the data easier to interpret. Compare the interquartile range of GDP per capita in 2007 with that in 1952. Is the world today more or less diverse in terms of economic inequality?</p>
+<p>Create a boxplot of GDP per capita by year, but this time keep it on a logarithmic scale, to make the data easier to interpret. As GDP per capita is now on the y-axis, use the scale_y_log10() function! Compare the interquartile range of GDP per capita in 2007 with that in 1952. Is the world today more or less diverse in terms of economic inequality?</p>
 <!-- :::{.challenge}
 - Make a boxplot of life expectancy by year. When was interquartile range of life expectancy the smallest?
 - Make the same plot of gdpPercap (on a log scale) per year. Is the world today more or less diverse than in 1952?
@@ -541,18 +542,16 @@ scale_x_log10()
 <h1>VIDEO 11 More geoms {greenscreen} ~ 12 min</h1>
 <!-- ## More geoms -->
 <p>By now, you’ve learned so much about using plotnine to create insightful visualizations. But we’ve barely scratched the surface!</p>
-<p>One of the most exciting features of plotnine is the sheer variety of geoms—the building blocks for visualizing data. Start typing geom_ in your code editor, and you’ll see a list of options pop up. It’s like a treasure chest of possibilities, and each geom offers a unique perspective on your data.</p>
+<p>One of the most exciting features of plotnine is the sheer variety of geoms—the building blocks for visualizing data. Start typing geom_ in your notebook. Press TAB, and you’ll see a list of options pop up. It’s like a treasure chest of possibilities, and each geom offers a unique perspective on your data.</p>
 <p>Let’s put your skills to the test with a few new challenges!</p>
 <p>Histograms are perfect for exploring the distribution of a single variable. Let’s start with life expectancy.</p>
-<p>Pause the video, then create a histogram and observe the shape of the distribution. How many peaks—or modes—does it have? Play around with the <code>bins</code> parameter. Adjusting the number of bins changes the granularity of your histogram, which can affect how you interpret the distribution. What value of bins seems reasonable to you?</p>
 <!-- :::{.challenge}
 Make a histogram of life expectancy. What is the shape of the distribution? How many modes (peaks) does the distribution of life expectancy have? What value of the `bins` parameter look reasonable?
 ::: -->
 <p>&lt; PAUSE &gt;</p>
-<p>Pause the video and try it yourself! How many peaks—or modes—does it have? Play around with the <code>bins</code> parameter. Adjusting the number of bins changes the granularity of your histogram, which can affect how you interpret the distribution. What value of bins seems reasonable to you?</p>
-<p>&lt; PAUSE &gt;</p>
+<p>Pause the video and try it yourself! Create a histogram and observe the shape of the distribution. How many peaks—or modes—does it have? Play around with the <code>bins</code> parameter. Adjusting the number of bins changes the granularity of your histogram, which can affect how you interpret the distribution. What value of bins seems reasonable to you?</p>
 <p>Next up: density plots. These are smoothed-out versions of histograms, showing the probability distribution of your data.</p>
-<p>Create a simple density plot for life expectancy. You can do it! Start typing and you will find the function you need. Do you see it? What if you want to compare distributions across continents? Add a color aesthetic.</p>
+<p>Create a simple density plot for life expectancy. You can do it! Start typing ‘geom_’ press tab, and you will find the function you need. Do you see it? What if you want to compare distributions across continents? Add a color aesthetic.</p>
 <!-- :::{.challenge}
 Build a density function. How would you compare density functions of different continents? 
 ::: -->
