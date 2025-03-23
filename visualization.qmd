@@ -814,7 +814,7 @@ geom_histogram(mapping = aes(x='lifeExp'), bins=100)
 )
 ```
 
-Pause the video and try it yourself! How many peaks—or modes—does it have? Play around with the `bins` parameter. Adjusting the number of bins changes the granularity of your histogram, which can affect how you interpret the distribution. What value of bins seems reasonable to you?
+Pause the video and try it yourself! Create a histogram and observe the shape of the distribution. How many peaks—or modes—does it have? Play around with the `bins` parameter. Adjusting the number of bins changes the granularity of your histogram, which can affect how you interpret the distribution. What value of bins seems reasonable to you?
 
 
 Next up: density plots. These are smoothed-out versions of histograms, showing the probability distribution of your data.
