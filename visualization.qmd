@@ -85,7 +85,7 @@ The dataset has been conveniently imported for us by the `gapminder` package. To
 gapminder
 ```
 
-This dataset has 1,704 rows and 6 columns, so it’s fairly compact but still rich with information. Let’s walk through what each of these columns means:
+This dataset has one thousand sevenhundred and four rows and 6 columns, so it’s fairly compact but still rich with information. Let’s walk through what each of these columns means:
 
 - **country**: This column lists the names of countries. If you take a look at the data, you’ll notice it starts with Afghanistan at the top and ends with Zimbabwe at the bottom. It seems the data is sorted alphabetically by country.
 
@@ -121,8 +121,6 @@ The answer may be quite intuitive, but we will continue our investigation furthe
 
 In order to answer these questions, we will create a plot from `gapminder` data. Here’s the code we’ll use. Take a moment to copy this code verbatim from your screen. 
 
-When writing Python code with `plotnine` — and later when we use `polars` — you’ll notice that we often wrap our code in parentheses. This is a great habit to get into because it allows us to break our code into multiple lines without worrying about indentation.
-
 < PAUSE >
 
 ```{python}
@@ -134,6 +132,9 @@ ggplot(gapminder)+
 geom_point(mapping=aes(x='gdpPercap', y='lifeExp'))
 )
 ```
+
+
+When writing Python code with `plotnine` — and later when we use `polars` — you’ll notice that we often wrap our code in parentheses. This is a great habit to get into because it allows us to break our code into multiple lines without worrying about indentation.
 
 Let’s walk through this step by step.
 
@@ -184,9 +185,7 @@ How has life expectancy changed over time?
 
 Take a moment to think about it. Better yet, try answering it by modifying the code we wrote in the last lesson.
 
-Here’s a quick hint before you pause the video: The `gapminder` dataset includes a column called `year`, which can go on the x-axis. Use that to tweak the code and see what you find. I’ll wait right here while you try it out!
-
-Pause the video now and give it a shot. See you in a moment!
+Here’s a quick hint before you pause the video: The `gapminder` dataset includes a column called `year`, which can go on the x-axis. Use that to tweak the code and see what you find. I’ll wait right here while you try it out! Pause the video now and give it a shot. See you in a moment!
 
 < PAUSE >
 
@@ -222,7 +221,11 @@ geom_jitter(mapping = aes(x='year', y='lifeExp'))
 )
 ```
 
-Run this code and check out the difference. Much better, right? Now we can see the points more clearly.
+Pause the video, run this code and check out the difference. 
+
+< PAUSE >
+
+Much better, right? Now we can see the points more clearly.
 
 Let’s keep going with this little game. Here’s your next challenge: Can you visualize life expectancy by continent?
 
@@ -257,9 +260,9 @@ Fantastic work so far! Take a moment to review what you’ve done, and I’ll se
 
 <...Walks in, looking thoughtful....>
 
-Oh, hey there! You know, I’ve been thinking—what if we could combine the graphs from the last two challenges and show the relationship between not just two variables, but three?
+Oh, hi there! You know, I’ve been thinking — what if we could combine the graphs from the last two challenges and show the relationship between not just two variables, but three?
 
-Now, don’t worry—we’re not diving into “three-dimensional” plots just yet. Instead, we can represent a third variable using color. Let me show you what I mean.
+Now, don’t worry — we’re not diving into “three-dimensional” plots. Instead, we can represent a third variable using color. Let me show you what I mean.
 
 Here’s modified code that maps the continent variable to the color aesthetic:
 
@@ -281,7 +284,7 @@ Run this code and take a look.
 
 <!-- *...pause for effect...* -->
 
-What do you see? Now we can see more clearly how life expectancy has changed over time by continent. For example, the points representing Africa stay clustered near the lower end of the y-axis throughout the years, while Europe’s points are generally higher. Oceania is there too, but it’s barely noticeable because there are so few observations. Pretty cool, right?
+What do you see? Now we can see more clearly how life expectancy has changed over time by continent. For example, the points representing Africa stay clustered near the lower end of the y-axis throughout the years, while Europe’s points are generally higher. Oceania is there too, but it’s barely noticeable because there are so few observations. 
 
 Now, I’ve got a question for you: What happens if we switch the mappings of continent and year? Give it a try!
 
@@ -371,7 +374,7 @@ geom_point(mapping = aes(x='gdpPercap', y='lifeExp', color='continent'))
 
 <!-- Pause. -->
 
-Amazing! By adding color, we can now spot trends and patterns more easily. But did you notice something else? There are a few outliers in this plot. Can you tell which continent those points belong to?
+Very illustrative! By adding color, we can now spot trends and patterns more easily. But did you notice something else? There are a few outliers in this plot. Can you tell which continent those points belong to?
 
 The points look a little crowded. But you know, you can always transform GDP per capita to a logarithmic scale for better visualization. Just add `scale_x_log10()` as an additional layer to your graph, like that:
 
@@ -389,14 +392,14 @@ scale_x_log10()
 )
 ```
 
-You’re making fantastic progress! Well done! In the next section, we’ll explore even more aesthetics that can help us tell richer stories with our data. See you there!
+Well done! Be proud of the type of visualizations you are already mastering! In the next section, we’ll explore even more aesthetics that can help us tell richer stories with our data. See you there!
 
 # VIDEO 6 More aesthetics {greenscreen} ~ 10 min
 <!-- ## More aesthetics -->
 
 Hello again!
 
-So far, we’ve explored some powerful ways to visualize data using the x, y, and color aesthetics. With these, we’ve been able to represent three variables in a single plot. Pretty amazing, right?
+So far, we’ve explored some powerful ways to visualize data using the x, y, and color aesthetics. With these, we’ve been able to represent three variables in a single plot. Very useful, right?
 
 Now, let’s quickly recap what we’ve learned about the color aesthetic. When we map a categorical variable like continent to color, plotnine automatically picks a distinct palette for each category. This works great when there are just a few categories, but as the number of categories grows, the colors start to blur together and lose their effectiveness.
 
@@ -419,7 +422,7 @@ scale_x_log10()
 )
 ```
 
-WRun this and take a moment to appreciate the result. Isn’t it gorgeous?
+Run this and take a moment to appreciate the result. Isn’t it fascinating?
 
 Now we can see the journey of countries like China and India over time. Their points stand out because of their large populations. Under the logarithmic transformation of the x-axis, the relationship between GDP per capita and life expectancy starts to look more linear—but not quite!
 
@@ -492,7 +495,9 @@ geom_point(mapping = aes(x='gdpPercap', y='lifeExp'),
 )
 ```
 
-Go ahead, give this a try.
+Go ahead, pause and give this a try.
+
+< PAUSE >
 
 <!-- Pause for effect. -->
 
@@ -504,7 +509,7 @@ Let’s break it down:
 
 - `color="blue"`: The color is set as a character string, wrapped in quotes. You can experiment with other colors too—try red, green, or even hex codes like "#FF5755".
 - `size=2:` The size of the points is specified as a number, in millimeters. Increase the size to make the points larger or decrease it for smaller ones.
-- `alpha=0.1`: Transparency is a decimal value between 0 and 1, where 0 is completely transparent and 1 is fully opaque.
+- `alpha=0.1`: transparency is controlled by a decimal value between 0 and 1, where 0 is completely transparent and 1 is fully opaque.
 
 Finally, let’s talk about shapes. In plotnine, shapes are represented by numbers. For example:
 
@@ -548,8 +553,9 @@ geom_line(mapping = aes(x='year', y='lifeExp',
 )
 ```
 
-Note that we have a new aesthetics called `group`. It indicates which points need to be connected together to for a line. Here we are drawing one line per country. Take a moment to run this and see what you get.
+Note that we have a new aesthetics called `group`. It indicates which points need to be connected together to a line. Here we are drawing one line per country. Take a moment to run this and see what you get.
 
+< PAUSE >  
 <!-- Pause for effect. -->
 
 Do you see it? Each country now has its own line, colored by continent. It’s fascinating to watch life expectancy trends unfold over time. But look closely—you might notice some sharp, sudden drops for certain countries. What do you think caused these declines? Wars? Epidemics?
@@ -572,11 +578,12 @@ geom_boxplot(mapping = aes(x='continent', y='lifeExp'))
 )
 ```
 
-Run the code and take a look.
+Pause, run the code and take a look.
 
+< PAUSE >  
 <!-- Pause for effect. -->
 
-The box represents the interquartile range—the middle 50% of data—while the line inside the box marks the median. The “whiskers” extend to show the 95% confidence interval, and any points outside this range are plotted as individual outliers.
+The box represents the interquartile range—the middle 50% of data—while the line inside the box marks the median. The “whiskers” give you an idea of the spread of the bulk of data, and any points outside this range are plotted as individual outliers.
 
 Now, wouldn’t it be great to combine this boxplot with our jittered points from earlier? This would help us see both the overall distribution and the outliers more clearly. Let’s layer them together:
 
@@ -646,6 +653,7 @@ scale_x_log10()
 
 Take a moment to run the code and see the result.
 
+< PAUSE >  
 <!-- Pause for effect. -->
 
 What do you observe? By default, geom_smooth() creates a regression line for each continent, and plotnine even adds confidence intervals—those shaded gray areas around the lines. These intervals give us an idea of how well the model fits the data.
@@ -674,13 +682,15 @@ Take a moment to think about it. How can you combine the points colored by conti
 
 There’s more than one way to solve this problem—see what you can come up with!
 
+< PAUSE >
+
 Did you find this challenge hard? It's ok! Let's step through it together!
 
 In our previous example, we declared all the mappings—x, y, and color—at the global level, in the ggplot() function. This means that every layer inherited these mappings. While this works well for most situations, it’s not what we need here.
 
 To build a single trend line for all data points, we must ensure that the color aesthetic applies only to the points and not to the trend line. How do we do that? By moving the color mapping from the global level into the geom_point() function.
 
-Here’s how the updated code looks:
+Here’s what the updated code looks like:
 
 < PAUSE >
 
@@ -724,11 +734,11 @@ Both approaches work well, and the choice depends on how you want to structure y
 
 <!-- ## Factors -->
 
-Do you want to learn a nifty trick that can improve your data visualization? This method can be useful when you want to visualize a continuous variable which has a limited number of distinct values.
+Do you want to learn a nifty trick that can improve your data visualization? This method can be useful when you want to visualize a numeric variable which has a limited number of distinct values.
 
-Imagine we’re working with `year`, which is technically a continuous variable. But for some visualizations it might make more sense to treat each year as a separate category. How do we do that without modifying the data?
+Imagine we’re working with `year`, which is technically a numeric variable. But for some visualizations it might make more sense to treat each year as a separate category. How do we do that without modifying the data?
 
-Simple! Instead of referencing year as a string (`'year'`), wrap it in `factor()`, like this `'factor(year)'`. This shorthand plotnine function converts a continuous variable into a categorical one on the fly, with each distinct value treated as its own category.
+Simple! Instead of referencing year as a string (`'year'`), wrap it in `factor()`, like this `'factor(year)'`. This shorthand plotnine function converts a numeric variable into a categorical one on the fly, with each distinct value treated as its own category.
 
 Let’s put this into practice with a couple of challenges!
 
@@ -736,7 +746,7 @@ Create a boxplot of life expectancy over time, treating year as a categorical va
 
 Then apply the same concept to gdpPercap. 
 
-Create a boxplot of GDP per capita by year, but this time keep it on a logarithmic scale. Remember that we used the scale_y_log10() function to make the data easier to interpret. Compare the interquartile range of GDP per capita in 2007 with that in 1952. Is the world today more or less diverse in terms of economic inequality?
+Create a boxplot of GDP per capita by year, but this time keep it on a logarithmic scale, to make the data easier to interpret. As GDP per capita is now on the y-axis, use the scale_y_log10() function! Compare the interquartile range of GDP per capita in 2007 with that in 1952. Is the world today more or less diverse in terms of economic inequality?
 
 <!-- :::{.challenge}
 - Make a boxplot of life expectancy by year. When was interquartile range of life expectancy the smallest?
@@ -782,11 +792,11 @@ Great work on these challenges! These exercises show the power of visualizing da
 
 By now, you’ve learned so much about using plotnine to create insightful visualizations. But we’ve barely scratched the surface!
 
-One of the most exciting features of plotnine is the sheer variety of geoms—the building blocks for visualizing data. Start typing geom_ in your code editor, and you’ll see a list of options pop up. It’s like a treasure chest of possibilities, and each geom offers a unique perspective on your data.
+One of the most exciting features of plotnine is the sheer variety of geoms—the building blocks for visualizing data. Start typing geom_ in your notebook. Press TAB, and you’ll see a list of options pop up. It’s like a treasure chest of possibilities, and each geom offers a unique perspective on your data.
 
 Let’s put your skills to the test with a few new challenges!
 
-Histograms are perfect for exploring the distribution of a single variable. Let’s start with life expectancy. Create a histogram and observe the shape of the distribution. How many peaks—or modes—does it have? Play around with the `bins` parameter. Adjusting the number of bins changes the granularity of your histogram, which can affect how you interpret the distribution. What value of bins seems reasonable to you?
+Histograms are perfect for exploring the distribution of a single variable. Let’s start with life expectancy. 
 
 <!-- :::{.challenge}
 Make a histogram of life expectancy. What is the shape of the distribution? How many modes (peaks) does the distribution of life expectancy have? What value of the `bins` parameter look reasonable?
@@ -804,9 +814,12 @@ geom_histogram(mapping = aes(x='lifeExp'), bins=100)
 )
 ```
 
+Pause the video and try it yourself! Create a histogram and observe the shape of the distribution. How many peaks—or modes—does it have? Play around with the `bins` parameter. Adjusting the number of bins changes the granularity of your histogram, which can affect how you interpret the distribution. What value of bins seems reasonable to you?
+
+
 Next up: density plots. These are smoothed-out versions of histograms, showing the probability distribution of your data.
 
-Create a simple density plot for life expectancy. You can do it! Start typing and you will find the function you need. Do you see it? What if you want to compare distributions across continents? Add a color aesthetic.
+Create a simple density plot for life expectancy. You can do it! Start typing 'geom_' press tab, and you will find the function you need. Do you see it? What if you want to compare distributions across continents? Add a color aesthetic.
 
 <!-- :::{.challenge}
 Build a density function. How would you compare density functions of different continents? 
