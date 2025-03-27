@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Sharing – DATA24</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-75f85ff3afe47a507ba5bdac098e00a3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-4a65af601ebb7923055384dba408bd6e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+div.callout-challenge.callout {
+  border-left-color: firebrick;
+}
+div.callout-challenge.callout-style-default > .callout-header {
+  background-color: rgb(from firebrick r g b / 13%);
+}
+div.callout-challenge .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-challenge.callout-style-default .callout-icon::before, div.callout-challenge.callout-titled .callout-icon::before {
+  content: '🛠️';
+  background-image: none;
+}
+div.callout-question.callout {
+  border-left-color: pink;
+}
+div.callout-question.callout-style-default > .callout-header {
+  background-color: rgb(from pink r g b / 13%);
+}
+div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
+  content: '🧠';
+  background-image: none;
+}
+</style>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./brand/LU_logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">DATA24</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./visualization.html"> 
+<span class="menu-text">Visualization</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./wrangling.html"> 
+<span class="menu-text">Wrangling</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./pivotjoin.html"> 
+<span class="menu-text">Pivots and joins</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./sharing.html" aria-current="page"> 
+<span class="menu-text">Sharing</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#video-1-reproducible-reports-with-quarto-6-min" id="toc-video-1-reproducible-reports-with-quarto-6-min" class="nav-link active" data-scroll-target="#video-1-reproducible-reports-with-quarto-6-min">VIDEO 1: Reproducible reports with Quarto ~ 6 min</a></li>
+  <li><a href="#video-2-quarto-report-from-notebook-5-min" id="toc-video-2-quarto-report-from-notebook-5-min" class="nav-link" data-scroll-target="#video-2-quarto-report-from-notebook-5-min">VIDEO 2: Quarto report from notebook ~ 5 min</a></li>
+  <li><a href="#video-3-quarto-styling-and-rendering-5-min" id="toc-video-3-quarto-styling-and-rendering-5-min" class="nav-link" data-scroll-target="#video-3-quarto-styling-and-rendering-5-min">VIDEO 3: Quarto styling and rendering ~ 5 min</a></li>
+  <li><a href="#video-4-rendering-the-final-report-5-min" id="toc-video-4-rendering-the-final-report-5-min" class="nav-link" data-scroll-target="#video-4-rendering-the-final-report-5-min">VIDEO 4: Rendering the final report ~ 5 min</a></li>
+  <li><a href="#video-5-sharing-the-project-5-min" id="toc-video-5-sharing-the-project-5-min" class="nav-link" data-scroll-target="#video-5-sharing-the-project-5-min">VIDEO 5: Sharing the project ~ 5 min</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Sharing</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="video-1-reproducible-reports-with-quarto-6-min" class="level1">
+<h1>VIDEO 1: Reproducible reports with Quarto ~ 6 min</h1>
+<p>We’re almost there! Over the last four modules, you’ve built a solid foundation in data analysis—from setting up a reproducible Python environment with uv and Jupyter Lab to crafting stunning visualizations and mastering Polars for data wrangling, reshaping, and joins. You’ve also learned how to document your findings in a Jupyter Notebook.</p>
+<p>And now - it’s time to share your insights with the world.</p>
+<p>But before we do, let’s talk about reproducibility — and one quirk of Jupyter notebooks that sometimes gives them a bad reputation.</p>
+<p>By now, you’ve probably noticed that Jupyter cells can be run in any order. You can scroll back up, re-run an earlier cell, tweak some code in the middle, or even insert new cells as you go. This flexibility is fantastic — it allows you to experiment, fix mistakes, and refine your analysis without starting over.</p>
+<p>But here’s a tiny problem</p>
+<p>Because cells don’t have to be executed sequentially, your dataset might be in a different state than you expect. Maybe you re-imported your data at some point, unaware that an earlier cell had filtered out some rows or modified a column. And because Jupyter doesn’t always throw an error when this happens, you might not even realize there’s an issue — until it’s too late.</p>
+<p>Now, imagine someone else — or even your future self — trying to re-run your notebook from top to bottom. Suddenly, things break. Missing columns. Unexpected outputs. Errors that weren’t there before.</p>
+<p>To avoid this problem, get into the habit of periodically re-running your notebook in order. Here’s how:</p>
+<ul>
+<li><p>Click Run in the top menu.</p></li>
+<li><p>Select Run All Above Selected Cell—this will execute everything from the top down to your current position.</p></li>
+<li><p>If you’re at the last cell, this ensures that your entire notebook runs from start to finish without errors.</p></li>
+</ul>
+<p>This one simple step can save you a lot of trouble—especially if you plan to share your work or revisit your notebook later. Trust me—your future self will thank you.</p>
+<p>While these challenges exist, there’s a fantastic solution: Quarto.</p>
+<p>Quarto is a powerful, multi-language publishing system that transforms your Jupyter notebooks (or Markdown files) into polished reports, presentations, websites, and even Word or PDF documents.</p>
+<p>The best part? Quarto automatically runs your notebook from top to bottom. This means your entire analysis is executed sequentially, ensuring that everything flows correctly into a beautifully formatted output—tables, text, images, and all.</p>
+<p>Before we start using Quarto, we need to install it—and thanks to uv, it’s super easy.</p>
+<p>First, open a terminal in your project folder and run:</p>
+<p>uv tool install quarto-cli</p>
+<p>This might take a little while, but once it’s done, Quarto will be installed and ready to go.</p>
+<p>To verify that everything is set up correctly, run:</p>
+<p>uv run quarto check</p>
+<p>This will launch Quarto’s diagnostics tool, and you should see a checklist with lots of OK signs confirming that everything is working.</p>
+<p>One of these checks will show the Python version that Quarto has detected. Look for the section labeled “Python 3 installation”—it should display the path to your current Python environment. If it matches your project setup, you’re good to go!</p>
+<p>We’ll be using Quarto inside Jupyter Lab, so hop back into your notebook—and I’ll meet you there!</p>
+</section>
+<section id="video-2-quarto-report-from-notebook-5-min" class="level1">
+<h1>VIDEO 2: Quarto report from notebook ~ 5 min</h1>
+<p>To make our report look even better, let’s add a Quarto header—also known as front matter—to the top of our notebook.</p>
+<p>Here’s how:</p>
+<pre><code>Insert a new Markdown cell at the top of your notebook: Click on the first cell in your notebook, Press A to add a new cell above. Press M to convert it to a Markdown cell.
+
+Copy and paste the text underneath this video into the new cell. It’s important to preserve the exact formatting, including indentation and line breaks.</code></pre>
+<p><pause></pause></p>
+<p>All set? Great! Let’s break it down.</p>
+<ul>
+<li><p>The three dashes (—) at the start and end mark this as a front matter block.</p></li>
+<li><p>Inside, we specify details like the title, subtitle, and author—all pretty straightforward.</p></li>
+<li><p>The date field is special: last-modified automatically updates whenever you save the file. Perfect for keeping your reports up to date!</p></li>
+</ul>
+<p>Now, run this Markdown cell by pressing Ctrl + Enter (Cmd + Enter on Mac). Since we have the Quarto extension installed in Jupyter Lab, this will render as a nicely formatted heading.</p>
+<p>Now, let’s generate our first Quarto report!</p>
+<p>First, Open a new terminal inside Jupyter Lab:</p>
+<pre><code>    Click the big blue "+" button on the left panel, OR
+
+    Click the small "+" button next to your notebook’s tab.
+
+    This opens the Launcher window.
+
+    Under "Other", click "Terminal".</code></pre>
+<p>This terminal is just like your system’s command line, and you can run all the same commands here. Since your original terminal is busy running Jupyter Lab, this new window will be more convenient.</p>
+<p>Assuming your notebook is named report.ipynb, type:</p>
+<pre><code>uv run quarto preview report.ipynb</code></pre>
+<p>If your file has a different name, replace report.ipynb with the correct filename.</p>
+<p>Here’s what happens:</p>
+<pre><code>uv run ensures the command runs in your current project environment—with the correct Python version, libraries, and dependencies.
+
+Quarto processes your notebook, executes all cells in order, and renders the output.</code></pre>
+<p>Once it’s done, you’ll see a message like this:</p>
+<p>#&gt; Watching files for changes<br>
+#&gt; Browse at http://localhost:3636/</p>
+<p>Click the link, and your formatted report will open in a new browser window!</p>
+<p>For the best experience, I suggest you arrange your screen so you can see both:</p>
+<pre><code>Jupyter Lab on one side, where you’re editing your notebook.
+
+The rendered Quarto report on the other side, updating live as you make changes.</code></pre>
+<p>And just like that—you’ve turned your Jupyter notebook into a polished, shareable report!</p>
+<p>Now that your Quarto report is up and running, here’s something really cool—every time you save your notebook, your Quarto report updates automatically!</p>
+<p>This means you can see your changes in real time without having to restart the rendering process. It’s an incredibly useful feature for fine-tuning the layout and formatting of your report.</p>
+<p>Let’s try it out! Experimenting with Formatting</p>
+<p>I have a small challenge for you:</p>
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Add a few section titles using Markdown headers (#, ##, ###).</p></li>
+<li><p>Make some text bold (<strong>bold</strong>) or italic (<em>italic</em>).</p></li>
+<li><p>Format your lists properly by adding bullet points (- item 1, - item 2).</p></li>
+<li><p>Save your notebook and watch your Quarto report update in real time!</p></li>
+</ul>
+</div>
+</div>
+<p>You’ll immediately see how Quarto transforms your notebook into a professional-looking document with just a few simple tweaks.</p>
+<p>Keep your Quarto report open, because in the next section, we’ll explore even more ways to style and enhance your report.</p>
+<p>See you in a bit!</p>
+</section>
+<section id="video-3-quarto-styling-and-rendering-5-min" class="level1">
+<h1>VIDEO 3: Quarto styling and rendering ~ 5 min</h1>
+<p>A great analytics report isn’t just about having the right data—it’s about clarity and focus. Your audience should be able to quickly grasp key insights without being distracted by unnecessary details.</p>
+<p>One way to achieve this is by structuring your notebook properly. In Jupyter, we have two main types of cells:</p>
+<pre><code>Markdown cells for text and explanations
+
+Code cells that generate outputs like tables, plots, or print statements</code></pre>
+<p>To keep things clear and readable, each code cell should ideally produce just one output—a printout, a table, or a plot. If you have a long block of code that does multiple things, consider splitting it into separate cells. This not only makes your report easier to follow but also gives you better control over your outputs.</p>
+<p>Now, let’s talk about a powerful Quarto feature: labels and cross-references.</p>
+<p>Every code cell in a Quarto report has a label, even if you don’t explicitly assign one—Quarto generates it automatically. But if you want to refer to specific outputs in your text—like a figure or table—you’ll need to assign meaningful labels yourself.</p>
+<p>Here’s how it works:</p>
+<pre><code>Figures should have labels that start with fig-.
+
+Tables should have labels that start with tab-.</code></pre>
+<p>This allows you to reference figures and tables directly in your text, and Quarto will automatically create hyperlinks to them. This makes your report more interactive and easier to navigate.</p>
+<p>To assign a label to a code cell, we use Quarto chunk options—a special type of comment that Quarto recognizes.</p>
+<p>You might already know that Python uses # for comments. Quarto extends this by using #| for special commands. These must be placed at the top of the cell, before any code.</p>
+<p>For example, to label a figure-generating cell, you’d write:</p>
+<p>#| label: fig-first-plot</p>
+<p>Later in your report, you can reference this figure using <strong>?@fig-first-plot</strong>. Quarto will automatically replace this with “Figure 1” and create a clickable link to the figure’s location.</p>
+<p>To add a caption to your figure, use another chunk option:</p>
+<p>#| fig-cap: “This is my first plot showing XYZ trends.”</p>
+<p>This ensures that a descriptive caption appears under your figure, helping your audience interpret the data correctly.</p>
+<p>If a cell produces a table, you should label it with tab-, like this:</p>
+<p>#| label: tab-summary-stats</p>
+<p>You can also add a table caption for clarity:</p>
+<p>#| tab-cap: “Summary statistics for dataset XYZ.”</p>
+<p>Then, in your text, you can refer to the table using <span class="citation" data-cites="tab-summary-stats">@tab-summary-stats</span>, and Quarto will handle the rest—linking it properly and ensuring consistent formatting.</p>
+<p>This small but powerful feature makes your reports much more professional by keeping figures and tables clearly referenced.</p>
+<p>Now, try adding some labels and captions to your own notebook! In the next section, we’ll explore even more ways to fine-tune your Quarto report.</p>
+<p><pause></pause></p>
+<p>The Markdown cells in your Quarto report don’t just display text—they can be formatted for clarity and impact. You can use:</p>
+<pre><code>Tabs to organize content
+
+Lists for structured information
+
+Callouts to highlight key points
+
+And much more!</code></pre>
+<p>To explore all the ways you can enhance your reports, check out the Quarto documentation—I’ll include the link right below this video.</p>
+<p>Sometimes, a code cell doesn’t produce a plot or a table, but instead prints intermediate results or debugging information. If that output isn’t essential to your audience, you can hide it from the final report using a chunk option.</p>
+<p>To do this, simply add:</p>
+<p>#| echo: false</p>
+<p>at the top of the code cell. This prevents the printed output from appearing in the final document while still executing the code behind the scenes.</p>
+<p>A few things to keep in mind:</p>
+<pre><code>There should be a space between #| and the command: #| echo: false.
+
+The word false is always lowercase in Quarto (unlike Python’s False or R’s FALSE).</code></pre>
+<p>If you want to hide code output across the entire document, you don’t have to modify each cell individually. Instead, you can set a default option in the front matter—the special Quarto header we added in the first cell.</p>
+<p>Let’s jump back to that cell, and I’ll show you how it’s done.</p>
+<p><pause></pause></p>
+<p>In the front matter of your document, you can set global code chunk options that apply to the entire report. This helps maintain a consistent style without manually adjusting each cell.</p>
+<p>To hide all code outputs by default, add the following line before the closing three dashes (—) in the front matter:</p>
+<p>echo: false</p>
+<p>Now, every code cell in your report will hide its output unless you explicitly override this setting. If you want to display the code in a specific cell, simply add:</p>
+<p>#| echo: true</p>
+<p>to that cell. Local settings always override global defaults, so you have full control over what your audience sees.</p>
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Try it out! Open a Jupyter notebook you created in this course and: - Add labels and captions to your figures (fig-) and tables (tab-). - Insert a Markdown cell under each figure or table, explaining key insights. - Refer to figures and tables using <strong>?@fig-label</strong> or <span class="citation" data-cites="tab-label">@tab-label</span> in your text. - Hide code printouts that don’t produce meaningful output, either: Globally (by setting echo: false in the front matter), or Individually (by adding #| echo: false to specific cells). - Ensure each cell outputs only one thing—a table, a plot, or text—for clarity.</p>
+</div>
+</div>
+<p>You’ve come a long way! Your Jupyter notebook is now filled with exciting discoveries and insights—and thanks to Quarto, it’s polished, structured, and ready to be shared. You’ve seen your changes reflected in real-time using the Quarto preview window, and now it’s time to take the final step: sharing your work with the world!</p>
+<p>Let’s do it!</p>
+</section>
+<section id="video-4-rendering-the-final-report-5-min" class="level1">
+<h1>VIDEO 4: Rendering the final report ~ 5 min</h1>
+<p>You’ve been working on your report interactively, running cells out of order to refine your insights and perfect the look and feel of the final product. But now, it’s time to run the report one last time before sending it out into the world.</p>
+<p>To ensure everything works as expected, you should execute all cells sequentially from top to bottom. The easiest way to do this in JupyterLab is:</p>
+<pre><code>Go to the "Run" menu.
+
+Select "Run All Cells"—or even better—
+
+Choose "Restart Kernel and Run All Cells."</code></pre>
+<p>Restarting the kernel ensures that your Python session starts fresh and runs every cell in the correct order. If you still have a Quarto preview running, once you save the notebook, your report should now appear in its final form.</p>
+<p>An alternative way to generate the final report is to use the command line, letting Quarto handle the rendering. This approach ensures that your report runs exactly as it would for a colleague on a different machine.</p>
+<p>If you’re still previewing your report in Quarto, first stop the preview session by returning to the terminal and pressing:</p>
+<pre><code>Ctrl + C (Windows/Linux)
+
+Cmd + C (Mac)</code></pre>
+<p>Then, run the following command:</p>
+<p>uv run quarto render report.ipynb –execute</p>
+<p>What does this command do?</p>
+<p>✔ Runs Quarto to process your report. ✔ Executes all code from scratch in a clean Python session. ✔ Ignores pre-computed results, ensuring all outputs are fresh. ✔ Uses the same environment as when you created the report, ensuring all required packages are available.</p>
+<p>Once completed, a fresh copy of your report will be saved in your project directory—ready to be shared.</p>
+<p>So far, we’ve seen how Quarto generates HTML reports that can be viewed in a browser. These are great for interactive use and web hosting, but sometimes you need a Word or PDF version for sharing with colleagues.</p>
+<p>Thankfully, Quarto supports multiple formats—it’s the Swiss Army knife of report generation! Try exporting your report to Word by adding the –to docx flag:</p>
+<p>uv run quarto render report.ipynb –to docx –execute</p>
+<p>You should now see a Word document in your working directory. Quarto offers many additional options, including the ability to render reports using templates and other customization features—I encourage you to explore these further! You’ll find a link to the Quarto documentation below this video.</p>
+<p>While HTML and Word exports work right out of the box, generating PDF reports requires one extra step.</p>
+<p>PDFs are created using LaTeX, an established typesetting system used in scientific publishing. Quarto comes with its own built-in LaTeX engine called TinyTeX, which we need to install first.</p>
+<p>Run the following command in the terminal:</p>
+<p>uv run quarto install tinytex</p>
+<p>This installs a lightweight LaTeX engine inside your Quarto setup, allowing you to produce beautiful, professional-looking PDFs from your reports.</p>
+<p>To confirm the installation, run:</p>
+<p>uv run quarto check</p>
+<p>You should see that the LaTeX engine is now pointing to TinyTeX, meaning everything is set up correctly. Now, to render your report as a PDF, simply run:</p>
+<p>uv run quarto render report.ipynb –to pdf –execute</p>
+<p>A PDF version of your report will appear in your project directory.</p>
+<p>Just like with Word documents, PDF reports can be customized using Quarto options. If you want to fine-tune the formatting or styling, check out the Quarto documentation for advanced features that will help you create polished, professional reports.</p>
+<p>We’re nearing the final stretch of this course! In the last video, we’ll discuss how to share your work and ensure that others can reproduce your results exactly as you compiled them.</p>
+<p>See you in a bit!</p>
+</section>
+<section id="video-5-sharing-the-project-5-min" class="level1">
+<h1>VIDEO 5: Sharing the project ~ 5 min</h1>
+<p>Congratulations! You’ve successfully completed an exciting project—from installing software to visualizing and exploring datasets, and finally, producing an analytical report that documents your entire journey. Now, it’s time to prepare this work to share with others.</p>
+<p>What Should You Include in the Project Folder?</p>
+<p>To share your project effectively, there are a few key elements to include:</p>
+<pre><code>pyproject.toml – This file contains the specifications for your project environment.
+
+Data – While we used GitHub to store the data in this course, if you used additional datasets or saved data locally, make sure to include them so others can replicate your results.
+
+Notebook File – Share the .ipynb file (like report.ipynb in our case), which contains the code, figures, and tables that document your analysis.
+
+Rendered Report – Consider including a rendered HTML, Word, or PDF version of the report, so your audience can preview the results before opening the notebook itself.</code></pre>
+<p>When you send your work to a colleague, they may not have the same setup as you, so it’s essential to ensure they can reproduce your results. Here’s how you can do that:</p>
+<pre><code>Environment Management – Thanks to uv's powerful environment management capabilities, many reproducibility concerns are taken care of. This ensures that your colleague will have the same environment to run the report.
+
+Computational Notebooks – Your notebook documents all exploratory data analysis steps, allowing others to follow along and reproduce your work.
+
+Rendered Quarto Report – For those without access to Python, the Quarto-rendered report provides insights that can still be accessed and understood without the underlying code.</code></pre>
+<p>As you prepare to share your project with others, consider leaving a “love note” to help them understand your work. In the world of programming and data analysis, these notes are called README files.</p>
+<p>In your Jupyter Notebook launcher menu, there’s an option to create a Markdown file (look for the button with a large purple “M” on it). In this document, you can outline step-by-step guidelines for reproducing your results. Because it’s a Markdown file, you can use all the formatting tools you’ve learned, like headings, lists, and text formatting. Be sure to include the shell commands that users need to run, wrapped in three backtick symbols (```), at the beginning and end of each command block.</p>
+<p>Here’s a simple structure for your README:</p>
+<pre><code>Install uv – Point your reader to the installation instructions on Astral’s website. You’ll find that installation differs slightly between Linux/Mac and Windows, so make sure to include the correct instructions for your audience’s operating system.
+
+Synchronize Project Requirements – Instruct your reader to run uv sync, which will download and install all the necessary packages listed in the pyproject.toml file. This ensures all dependencies are in place for the report to run correctly.
+
+Open the Report in Jupyter Lab – Finally, tell them how to open the report using the command uv run jupyter lab report.ipynb.</code></pre>
+<p>Here’s an example README.md file that I’ve put together for my colleagues to reproduce my results.</p>
+<p><pause> We highly recommend learning how to use a version control system, like Git, to share your code and collaborate on projects, especially through platforms like GitHub. While this course doesn’t cover Git in detail, we’ve included some useful links below to help you get started.</pause></p>
+<p>Thank you for being with us in this course! We hope you have learned a lot and feel confident in your ability to use Jupyter notebooks, Quarto, and the powerful tools we’ve covered to create interactive and well-structured analytical reports. You’ve gained valuable skills that will help you share insights clearly and effectively, whether through code, figures, tables, or polished final documents. We encourage you to continue exploring, experimenting, and improving your reporting techniques as you apply these skills in real-world projects. We wish you the best in your future endeavors and look forward to seeing the incredible work you will create!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Lund University</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Data Literacy with Python</p>
+</div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ Follow us on  
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/lunduniversity">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/lunduniversity/">
+      <i class="bi bi-instagram" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/school/lunduniversity/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/user/LundUniversity">
+      <i class="bi bi-youtube" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.facebook.com/lunduniversity">
+      <i class="bi bi-facebook" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -315,7 +315,8 @@ Please, pause the video and try couple of different ways of selecting these colu
 #| code-fold: true
 #| include: false
 (clean_fuels  
-    .select(pl.col("pop_clean_fuels_cooking_mln"), pl.col("prop_clean_fuels_cooking_pct"))) 
+    .select(pl.col("pop_clean_fuels_cooking_mln"), 
+            pl.col("prop_clean_fuels_cooking_pct"))) 
 
 (clean_fuels  
     .select(pl.nth(-2,-1))) 
@@ -758,10 +759,12 @@ We could filter out zero-valued records in the "proportion of population" column
 #| code-fold: true
 #| include: false
 # method 1
-(fuel_types_pop_df
+pop_years_df = (fuel_types_pop_df
     .group_by("region", "country", "year")
-    .agg(pl.col("population").drop_nans().mean())
+    .agg(pl.col("population").drop_nans().mean().alias("mean_pop"))
 )
+
+pop_years_df
 
 # method 2
 (fuel_types

@@ -502,7 +502,7 @@ top10_productivity_tbl = (plastics_countries_df
     .fmt_number(columns=cs.starts_with("quantity"), decimals=0)
     .fmt_percent(columns=cs.matches("prod_growth"), decimals=0, force_sign=True)
     .fmt_flag(columns=cs.matches("country_code"))
-    .tab_header(title="Top 10 countried by the increase in plastic sorting productivity in 2019-2020",
+    .tab_header(title="Top 10 countries by the increase in plastic sorting productivity in 2019-2020",
             subtitle="Productivity is number of plastic samples processed per event")
     .tab_source_note("Source: Break Free From Plastic campaigns 2019, 2020")
     .opt_stylize(style=1)

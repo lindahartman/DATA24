@@ -28,7 +28,7 @@ website:
       - visualization.qmd
       - wrangling.qmd
       - pivotjoin.qmd
-      - about.qmd
+      - sharing.qmd
 
 format:
   html:

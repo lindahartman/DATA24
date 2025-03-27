@@ -5,13 +5,25 @@ title: "Data Literacy with Python"
 
 ## VIDEO 1 Introduction {studio} ~ 12  min
 
+LINDA: 
+
 Welcome to Data Literacy with Python!
+
+Hi, I am Linda Hartman. I am an instructor of Data Analysis and Statistical Learning at Lund University
+
+DMYTRO: 
+
+And I am Dmytro Perepolkin. I help Linda develop interactive classroom experience through code-along sessions and hands-one excercises to help our students get started on their data analysis journey.
+
+LINDA: 
 
 Let me ask you something: Can you imagine living in today’s world but being unable to read? Think about it—street signs wouldn’t make sense, advertisements would just be noise, and most of the internet? Completely out of reach.
 
 Now, even with videos and voice assistants everywhere, written text is still the backbone of how we communicate and navigate life. Without it, you'd feel lost.
 
 But here’s the thing: today’s world doesn’t just run on words. It runs on data.
+
+DMYTRO: 
 
 Every day, we’re creating over 400 million terabytes of data. That’s every single day. And here’s a wild stat—90% of all the world’s data was created in just the last two years.
 
@@ -21,11 +33,15 @@ Data isn’t just numbers on a screen—it’s stories waiting to be uncovered. 
 
 That’s where this course comes in.
 
+LINDA: 
+
 We’re going to teach you how to take raw, messy data and turn it into something meaningful. You’ll work with rectangular data—the kind you find in spreadsheets or databases.
 
 And don’t worry—this isn’t just about crunching numbers. It’s about answering real-world questions, solving problems, and making decisions based on insights you uncover.
 
 By the end of this course, you’ll have the skills to transform data into knowledge.
+
+DMYTRO: 
 
 Let’s talk about the tools you need to work with data.
 
@@ -47,6 +63,8 @@ With a script, every step is recorded. You can spot mistakes, refine your work, 
 
 So, what’s the best language for scripting your data analysis?
 
+LINDA: 
+
 The answer is Python.
 
 Python is the world’s most popular programming language, and for good reason. Created in 1990 by Guido van Rossum, Python has become the go-to language for everything from building websites to powering cutting-edge AI. It may not be the fastest language out there, but it’s arguably the most readable. And in today’s data-driven world, readability matters more than ever. 
@@ -56,6 +74,8 @@ The Python ecosystem for data analysis is enormous. Whatever your question, ther
 Data analysis is unique—it’s less about traditional programming and more about crafting a story with your data. Your code should be clear and intuitive, not just for you, but for *anyone* who needs to understand your work. And that includes “future you”—because six months from now, you might not even recognize your own analysis without clear documentation!
 
 So, as we dive into this course, we’ll emphasize simplicity, transparency, and readability. Because great analysis isn’t just about crunching numbers—it’s about telling a story that stands the test of time.
+
+DMYTRO: 
 
 Data analysis is evolving. Today, some of the most cutting-edge tools are built on high-performance programming languages like Rust, Java, or C++. Why? Because these languages are fast—lightning fast. But here’s the best part: you don’t need to write in these languages to enjoy their benefits.
 
@@ -71,6 +91,8 @@ The examples we’ll explore together are small—easy to follow and understand.
 
 What’s even better? The interface doesn’t change.
 
+LINDA: 
+
 So whether you’re working on a personal project, academic research, or a large-scale business application, the skills you gain here will translate directly to the real world.
 
 The datasets may be small, but the questions and challenges we tackle are universal. By the end of this course, you’ll be equipped to uncover meaningful insights from your own data, no matter its size or complexity.
@@ -78,7 +100,7 @@ The datasets may be small, but the questions and challenges we tackle are univer
 Let’s get started on this exciting journey into the world of data literacy!
 
 
-# VIDEO 2 Shell {studio} ~ 7 min
+# VIDEO 2 Shell {studio} LINDA ~ 7 min
 
 <!-- ## Shell -->
 
@@ -94,6 +116,7 @@ Once you’re ready, we’ll discuss folders—yes, the simple yet crucial task 
 
 Find and open the terminal on your computer. Take that first step toward becoming a power user!
 
+< PAUSE >
 <!-- :::{.challenge}
 Find and open the terminal on your computer.
 ::: -->
@@ -112,14 +135,17 @@ Let’s take a moment to explore this on your computer.
 
 - On Windows, you can open File Explorer by clicking the icon on your taskbar or pressing the Windows key + E. Once it’s open, you’ll see something like this:
 
+< PAUSE >
 <!-- ![](img/win_explorer.png) -->
 
 - On Mac, you’ll use an app called Finder. Just click its icon in the Dock, and you’ll see a view like this:
 
+< PAUSE >
 <!-- ![](img/mac_finder.png) -->
 
-- On Linux, it’s often just called Files, and the interface may vary depending on your distribution. On my Ubuntu setup, it looks like this:
+- On Linux, it’s often just called Files, and the interface may vary depending on your distribution. On Ubuntu, it looks like this:
 
+< PAUSE >
 <!-- ![](img/linux-files.png) -->
 
 Inside these interfaces, folders are easy to spot with their distinct icons. Click on one, and you’ll dive inside to see its contents—maybe more files, maybe more folders.
@@ -128,18 +154,14 @@ Now, every operating system has a home base for your personal files. This is typ
 
 While it’s tempting to store everything on your Desktop for easy access, this isn’t the best long-term solution. A cluttered Desktop can make it harder to stay organized, and let’s be honest—it doesn’t look great either.
 
-<!-- ![](img/desktop.jpeg) -->
-
-Instead, consider creating a dedicated folder for your data analysis projects. For example, you could use your Documents folder or create a new folder called Projects. If your Documents folder is synced to the cloud—like with OneDrive or iCloud—think carefully about whether that’s the right place for large datasets. Cloud storage is precious, and you might want to save that space for smaller files like presentations or text documents.
-
-Don’t worry about backups just yet—we’ll cover that later when we dive into version control using Git and GitHub. For now, focus on picking a location that’s tidy, accessible, and works for you.
+Instead, consider creating a dedicated folder for your data analysis projects. For example, you could use your Documents folder or create a new folder called Projects. If your Documents folder is synced to the cloud — like with OneDrive or iCloud — think carefully about whether that’s the right place for large datasets. Cloud storage is precious, and you might want to save that space for smaller files like presentations or text documents. For the project files, we recommend that you pick a location that’s tidy, accessible, and works for you.
 
 Once you’ve chosen your perfect home base, we’ll move on to the next step: learning how to navigate your files and folders using the command line. Trust me, it’s easier than it sounds, and it will make your workflow so much more efficient!
 
-# VIDEO 3 Navigation {studio} ~ 6 min
+# VIDEO 3 Navigation {studio} DMYTRO ~ 6 min
 <!-- ## Navigating in the command line -->
 
-Alright, let’s open up your terminal! Don’t worry—this is not as intimidating as it might look. I’m going to guide you through some simple steps that will help you make sense of this dark text window, and these skills will serve you every time you use the command line.
+Alright, let’s open up your terminal! Don’t worry — this is not as intimidating as it might look. I’m going to guide you through some simple steps that will help you make sense of this dark text window, and these skills will serve you every time you use the command line.
 
 First, take a look at your screen. See that little blinking line? That’s called the cursor, and it’s where you will type commands. To the left of the cursor, you’ll notice something else—this is called the system prompt. It’s a little symbol or combination of symbols, like $, >, or %. Think of it as your computer saying, “I’m ready for your command, Master!”
 
@@ -162,7 +184,7 @@ Dmytro@dell-xps-9570: $ pwd
 ``` 
 -->
 
-This means my terminal has opened in my user directory, /home/Dmytro/. That’s the folder where my personal files are stored.
+This means my terminal has opened in my user directory. That’s the folder where my personal files are stored.
 
 Now that we know where we are, the next logical question is: “What’s here?”
 
@@ -230,7 +252,7 @@ Using `cd`, `cd ..` and `ls`, navigate to the directory, where you decided to st
 
 When you have done that, join me in the next section, where we’ll begin installing some software to set up your data analysis environment. I’ll see you there!
 
-# VIDEO 4 uv {studio} ~ 3 min
+# VIDEO 4 uv {studio} DMYTRO ~ 3 min
 
 <!-- ## Installing uv -->
 
@@ -291,7 +313,7 @@ If you see that, congratulations! You’ve successfully installed uv.
 
 From now on, we’ll use uv to manage everything, including installing Python itself. Stay with me as we continue setting up your computing environment. I’ll see you in the next section!
 
-# VIDEO 5 Python {studio} ~ 10 min
+# VIDEO 5 Python {studio} DMYTRO ~ 10 min
 
 <!-- ## Managing python installation -->
 
@@ -320,9 +342,11 @@ Python environment management has historically been a mess! XKCD even made a [fa
 
 Yeah, it can get pretty bad. But don’t worry—with uv, that nightmare is a thing of the past. If you’re ready to let uv manage your Python installation, run this command: 
 
+<!-- 
 ```
 uv python install
-```
+``` 
+-->
 
 This will install the latest and greatest version of Python, which will now be entirely supervised by uv. If the installation completes without errors, you’re officially set up with Python! To verify, you can run the uv python find command again, and it should show the new Python installation.
 
@@ -386,10 +410,10 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "gapminder>=0.1",
-    "great-tables>=0.15.0",
-    "plotnine>=0.14.3",
-    "polars>=1.17.1",
-    "pyarrow>=18.1.0",
+    "great-tables>=0.17.0",
+    "plotnine>=0.14.5",
+    "polars>=1.25.2",
+    "pyarrow>=19.0.1",
 ]
 
 [tool.uv]
@@ -397,26 +421,26 @@ dev-dependencies = [
     "ipykernel>=6.29.5",
     "jupyter>=1.1.1",
     "jupyterlab-quarto>=0.3.5",
-    "nbclient>=0.10.1",
+    "nbclient>=0.10.2",
     "nbformat>=5.10.4",
     "pyyaml>=6.0.2",
-    "setuptools>=75.6.0",
+    "setuptools>=77.0.3",
 ]
 ``` 
 -->
 
-This file, pyproject.toml, serves as a “manifest” for your project. It keeps track of metadata like your project name, version, and—most importantly—dependencies. Each time you add a new library with uv add, it’s recorded here.
+This file, pyproject.toml, serves as a “manifest” for your project. It keeps track of metadata like your project name, version, and—most importantly—dependencies. Each time you add a new library with `uv` add, it’s recorded here.
 
-Now, here’s something happening behind the scenes: uv created a hidden folder called .venv. This stands for “virtual environment,” and it’s where all your project’s libraries and dependencies live. Hidden files and folders don’t show up when you run `ls`— not unless you add the -a flag to the command, so `ls -a` will, in fact, show that you have this `.venv` folder in your project directory. But don’t worry that this folder stays hidden, you’ll rarely, if ever, need to open it. uv manages this folder for you, so you can focus on your work without getting bogged down in the details.
+Now, here’s something happening behind the scenes: `uv` created a hidden folder called `.venv`. This stands for “virtual environment,” and it’s where all your project’s libraries and dependencies live. Hidden files and folders don’t show up when you run `ls`— not unless you add the -a flag to the command, so `ls -a` will, in fact, show that you have this `.venv` folder in your project directory. But don’t worry that this folder stays hidden, you’ll rarely, if ever, need to open it. `uv` manages this folder for you, so you can focus on your work without getting bogged down in the details.
 
-Here’s the most important thing to know: the .venv folder is what makes your project self-contained. All your dependencies are stored there, safe and separate from anything else on your system. This is especially useful if you want to share your work later—a topic we’ll cover in the final module of this course.
+Here’s the most important thing to know: the `.venv` folder is what makes your project self-contained. All your dependencies are stored there, safe and separate from anything else on your system. This is especially useful if you want to share your work later — a topic we’ll cover in the final module of this course.
 
-# VIDEO 6 Jupyter {studio} ~ 12 min
+# VIDEO 6 Jupyter {studio} DMYTRO ~ 12 min
 <!-- ## Launch Jupyter -->
 
 Finally, let’s talk about Jupyter, one of the most transformative tools for interactive data analysis.
 
-Jupyter is more than just a tool—it’s a revolutionary concept. It provides a cross-platform environment for literate programming, where code, text, and results coexist seamlessly. Oh, and here’s a fun fact: the name "Jupyter" stands for Julia-Python-R, highlighting its roots as a language-agnostic platform for fast prototyping, experimentation, and sharing results. Today, the Jupyter ecosystem has grown immensely, with thousands of educators, practitioners, and enthusiasts gathering annually at JupyterCon, a conference dedicated to this amazing technology.
+Jupyter is more than just a tool — it’s a revolutionary concept. It provides a cross-platform environment for literate programming, where code, text, and results coexist seamlessly. Oh, and here’s a fun fact: the name "Jupyter" stands for Julia-Python-R, highlighting its roots as a language-agnostic platform for fast prototyping, experimentation, and sharing results. Today, the Jupyter ecosystem has grown immensely, with thousands of educators, practitioners, and enthusiasts gathering annually at JupyterCon, a conference dedicated to this amazing technology.
 
 At the heart of Jupyter is the Jupyter Notebook, a special format that allows you to write, execute, and save code, alongside text and rich results like visualizations. Behind the scenes, Jupyter maintains a live connection to the execution language—called a kernel. In our case, that’s Python.
 
@@ -445,11 +469,15 @@ Now, let’s take a closer look at the Jupyter Notebook interface. A notebook is
 Let’s try a quick example!
 
 Type the following code into the first cell:
+
+<!-- 
 ```
 from datetime import date
 print('Today is', date.today())
-```
-Press Ctrl-Enter (or Cmd-Enter on a Mac) to execute the code.
+``` 
+-->
+
+Press Ctrl-Enter (or Cmd-Enter on a Mac) to execute the code. You’ll see the output — today’s date — appear below the cell. 
 
 <!-- 
 :::{.challenge}
@@ -461,25 +489,51 @@ print('Today is', date.today())
 ::: 
 -->
 
-You’ll see the output—today’s date—appear below the cell. Notice how the cell turns grey, indicating you’ve exited "edit mode" and are now in command mode.
+Now, let's get comfortable navigating a Jupyter Notebook. One of the first things you'll need to master is switching between edit mode and command mode—and trust me, this will become second nature in no time!
 
-From command mode, you can do all sorts of things:
+Think of edit mode as the space where you actually type and modify code or text inside a cell. To enter edit mode, simply click anywhere inside the cell or press **Enter**. You'll know you're in edit mode when you see a blinking cursor inside the cell, ready for input.
 
-- Press B to insert a new cell below.
-- Press A to insert a cell above.
+To exit edit mode and return to command mode, either click outside the cell (on the left where the cell number appears) or hit **Escape** on your keyboard. You’ll notice a solid blue bar on the left—this means the cell is selected, but you’re no longer editing its contents.
 
-When you create a new cell, it won’t immediately be in edit mode. It’ll still be greyed out, waiting for further instructions.
+Go ahead and try switching between these modes a few times. Get a feel for how it works.
 
-Let’s say we want to explain what the code does. For that, we can turn the new cell into a text cell. To change the cell type, press M (for "Markdown"). Markdown is a simple formatting language that lets you write text with styling.
+<!-- 
+:::{.challenge}
+Type entering and exiting the edit mode in the cell you created. 
 
-Now, place your cursor in the cell to start typing your thoughts. You can even add styling! For example:
+- To enter: **click** or hit **Enter**
+- To exit: **click** outside or hit **Esc**
+::: 
+-->
 
-- Surround text with single stars `* text *` for *italics*.
-- Use double stars `** text **` to make text **bold**.
+Once you're in **command** mode, you can do all sorts of things without clicking around:
 
-Try it out! 
+- Press B (for below) to insert a new cell below the current one.
+- Press A (for above) to insert a new cell above.
 
-Add a brief description of what the code does, and play around with text formatting. When you’re done editing text in a Markdown cell, press Ctrl-Enter (or Cmd-Enter on a Mac) to render it as rich text. Your formatting—like italics, bold text, or headings—will all be applied instantly.
+Let’s say we want to explain what a piece of code does. To add a description, we first create a new cell below by pressing **B**. You’ll see a new cell appear, but notice that it’s greyed out—this means it’s waiting for further instructions.
+
+By default, new cells are code cells, meaning they expect Python code. But what if we want to write regular text?
+
+To turn a code cell into a text cell, simply press **M** (for Markdown). Markdown is a simple formatting language that allows you to write text with styling — things like bold text, italics, and even section headings.
+
+:::{.callout-note}
+You’ll know a cell is a Markdown cell when the square brackets on the left disappear, and the dropdown menu at the top of the notebook changes to say "Markdown".
+::: 
+
+Give it a try and add a new Markdown cell!
+
+Now that you've converted a cell to Markdown, it's time to add some content! Place your cursor inside the cell and start typing. The great thing about Markdown is that you can add styling to make your text more readable and visually appealing.
+
+Here are a few quick formatting tricks:
+
+- To create a heading, start a line with `#` sign. The more `#` symbols you use, the smaller the heading.
+- To make text italic, wrap it in single stars.
+- For bold text, use double stars.
+
+Try it out! Write a short description of what the code above does, and experiment with different formatting styles.
+
+Once you're done, press Ctrl + Enter (or Cmd + Enter on a Mac) to render the text. You’ll see your formatting instantly applied — headings will be bold and large, italicized text will appear slanted, and everything will look clean and structured.
 
 <!-- 
 :::{.challenge}
@@ -487,17 +541,41 @@ Add a description of what the code does, use text formatting. Conclude with Ctrl
 ::: 
 -->
 
-If you want to switch a Markdown cell back to code mode, it’s simple: press Y while in command mode. Now, the cell will behave like a code cell. Be cautious, though! If you type something invalid, the notebook will produce an error when you try to execute it.
+Need to turn a Markdown cell into a code cell? Hit **Y** and the cell will now behave like a code cell again. But be careful! If you still have the regular text in the cell, Jupyter will attempt to interpret it as Python code — and you'll likely see an error. To avoid this, always double-check your cell type before running it.
 
-To exit edit mode and return to command mode, press the Esc key on your keyboard. Once in command mode, you can navigate through cells using the arrow keys. This is helpful when you want to scroll through your notebook, locate a specific section, or insert new cells either above (A) or below (B).
+Once you've mastered switching between edit and command modes, navigating through your notebook becomes much easier. Here are a few handy shortcuts:
 
-To help you work more efficiently, here’s a pro tip: Jupyter Notebooks come with a host of useful shortcuts. Don’t worry, we’ll leave a list for you to refer to later.
+- Press Esc to exit edit mode and return to command mode.
+- Use the arrow keys to move between cells.
+- Press A to insert a new cell above the current one.
+- Press B to insert a new cell below.
 
-In the next module, you’ll use this environment to create stunning data visualizations. While it’s technically possible to write all your code in a single cell, it’s not recommended. You’ll soon learn that breaking your code into smaller, modular sections makes debugging much easier. Plus, combining code cells with text cells lets you document your thoughts, findings, and learning process.
+Jupyter Notebooks are designed to be efficient and interactive. Learning these shortcuts will save you time and keep your workflow smooth.
 
-Think of your notebook as exactly that—a notebook. Use it as a space for both experimentation and documentation. Interleave your code and text, and add section titles as you move through new chapters. In the final module, we’ll explore how to turn your notebook into a polished, professional report. So start structuring your work now, aiming for clarity and organization from the beginning.
+We’ll provide a full list of essential shortcuts below this video. Feel free to reference them as you go!
 
-I encourage you to play around with Jupyter Notebook! Try simple arithmetic operations in code cells and add comments in Markdown cells below them. Experiment with switching cell types, adding formatting, and organizing your notebook.
+Now that you know the basics of working with Jupyter Notebook, let’s talk about best practices.
+
+While it’s technically possible to write all your code in a single cell, it’s not a great idea. Instead, breaking your code into smaller, modular sections makes debugging much easier. You’ll also be able to test individual parts of your analysis without rerunning everything from scratch.
+
+But a Jupyter Notebook isn’t just for code — it’s also a powerful tool for documentation. By combining code cells with Markdown cells, you can add explanations, notes, and insights alongside your code. This makes your work easier to understand, both for you and for anyone else who reads your notebook in the future.
+
+Think of your notebook as exactly that—a notebook. A space for both experimentation and documentation. 
+
+- Use section titles to organize your work.
+- Add Markdown cells to explain your approach.
+- Keep your code clean and modular for better readability.
+
+In the final module, we’ll learn how to turn your notebook into a polished, professional report using Quarto. But the best way to get there is to start structuring your work now. Aim for clarity and organization from the beginning.
+
+Jupyter is meant to be interactive, so play around with it!
+
+- Try running some simple arithmetic operations in a code cell.
+- Add a Markdown cell below to describe what your code does.
+- Experiment with different formatting styles to make your notes more readable.
+- Practice switching between cell types and organizing your notebook logically.
+
+The more you explore, the more natural this workflow will feel. So go ahead—start experimenting! 
 
 <!-- 
 :::{.challenge}
@@ -507,6 +585,24 @@ I encourage you to play around with Jupyter Notebook! Try simple arithmetic oper
 ::: 
 -->
 
-When you’re ready to save your work, press Ctrl-S (or Cmd-S on Mac). Be sure to give your notebook a meaningful name and keep the file extension as .ipynb. This tells your system that the file is a Jupyter Notebook. I hope you have fun exploring this amazing tool! Jupyter notebooks are powerful, versatile, and central part of modern data analysis toolset. 
+When you're ready to save your work, simply press Ctrl-S (or Cmd-S on a Mac). Make sure to give your notebook a meaningful name, something that clearly reflects its purpose. And don’t forget to keep the .ipynb file extension — this tells your system that it’s a Jupyter notebook file. 
 
-And that’s it! The boring setup part is officially behind us. From here on, it’s all about diving into the exciting world of data analysis. Onward and upward!
+I hope you’re having fun exploring this amazing tool! Jupyter Notebooks are powerful, versatile, and an essential part of the modern data analysis toolkit. Whether you're exploring datasets, building models, or documenting your findings, this environment gives you the flexibility to do it all in one place.
+
+When you return to Jupyter Lab, finding your work is easy. Just look in the file explorer on the left, click on your notebook, and it will open exactly as you left it—ready for you to pick up where you left off.
+
+When you’re finished, it’s important to shut down Jupyter Lab properly:
+
+Go to File in the top menu. Select Shut Down. A warning will pop up—confirm your choice, and Jupyter Lab will close.
+
+This also releases your command line session, which was running in the background the entire time you were working in your notebook.
+
+Need to jump back in? Restarting Jupyter Lab is just as simple: Open your command line, navigate to your project directory, and type `uv run --with jupyter jupyter lab`.
+
+Since you’re launching Jupyter Lab from within your project folder, your Python environment will be activated automatically, and you’ll be ready to dive back into your work seamlessly!
+
+And that’s a wrap!
+
+The boring setup part is officially behind us. From here on, it’s all about diving into the exciting world of data analysis — writing code, uncovering insights, and making data come to life.
+
+Onward and upward! 
