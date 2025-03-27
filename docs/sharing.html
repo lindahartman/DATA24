@@ -67,17 +67,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-div.callout-question.callout {
-  border-left-color: pink;
-}
-div.callout-question.callout-style-default > .callout-header {
-  background-color: rgb(from pink r g b / 13%);
-}
-div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
-  content: '🧠';
-  background-image: none;
-}
 div.callout-challenge.callout {
   border-left-color: firebrick;
 }
@@ -87,6 +76,17 @@ div.callout-challenge.callout-style-default > .callout-header {
 div.callout-challenge .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-challenge.callout-style-default .callout-icon::before, div.callout-challenge.callout-titled .callout-icon::before {
   content: '🛠️';
+  background-image: none;
+}
+div.callout-question.callout {
+  border-left-color: pink;
+}
+div.callout-question.callout-style-default > .callout-header {
+  background-color: rgb(from pink r g b / 13%);
+}
+div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
+  content: '🧠';
   background-image: none;
 }
 </style>
@@ -260,6 +260,7 @@ Challenge
 </ul>
 </div>
 </div>
+<p>&lt; PAUSE &gt;</p>
 <p>You’ll immediately see how Quarto transforms your notebook into a professional-looking document with just a few simple tweaks.</p>
 <p>Keep your Quarto session running, because in the next section, we’ll explore even more ways to style and enhance your report.</p>
 <p>See you in a bit!</p>
@@ -293,13 +294,13 @@ Challenge
 <p>Then, in your text, you can refer to the table using <span class="citation" data-cites="tab-summary-stats">@tab-summary-stats</span>, and Quarto will handle the rest — linking it properly and ensuring consistent formatting.</p>
 <p>This small but powerful feature makes your reports much more professional by keeping figures and tables clearly referenced.</p>
 <p>Now, try adding some labels and captions to your own notebook! Keep the labels short and descriptive. The label code should make it easy for you to remember which output you are referring to.</p>
-<p><pause></pause></p>
+<p>&lt; PAUSE &gt;</p>
 <p>As you might have noticed, both Jupyter notebook and Quarto report includes the output along with the code which generated it. However, sometimes your non-technical audience may be distracted by the abundance of code. Perhaps it would be a good idea to hide it from the report?</p>
 <p>In order to accomplish that you can use <code>echo: false</code> chunk option. The code will be executed the behind the scenes and only the output will be included in the report.</p>
 <p>A few things to keep in mind: there should be a space between the Quarto comment <code>#|</code> and the command: <code>#| echo: false</code>. The word <code>false</code> is always lowercase in Quarto (unlike Python’s capitalized False or R’s all-caps FALSE).</p>
 <p>If you want to hide code output across the entire document, you don’t have to modify each cell individually. Instead, you can set a default option in the front matter — that is in define it in the the special Quarto header we added in the first cell.</p>
 <p>Let’s jump back to top of the notebook, and I’ll show you how it’s done.</p>
-<p><pause></pause></p>
+<p>&lt; PAUSE &gt;</p>
 <p>You can use the front matter to set global code chunk options that apply to the entire report. This helps maintain a consistent style without manually adjusting each cell.</p>
 <p>To hide all code outputs by default, add the following line before the closing three dashes (—) in the front matter:</p>
 <pre><code>echo: false</code></pre>
@@ -322,6 +323,7 @@ Challenge
 <p>Try it out! Open a Jupyter notebook you created in this course and: - Add labels and captions to your figures (fig-) and tables (tab-). - Insert a Markdown cell under each figure or table, explaining key insights. - Refer to figures and tables using <strong>?@fig-label</strong> or <span class="citation" data-cites="tab-label">@tab-label</span> in your text. - Hide code printouts that don’t produce meaningful output, either: Globally (by setting <code>echo: false</code> in the front matter), or individually (by adding <code>#| echo: false</code> to specific cells). - Ensure each cell outputs only one thing — a table, a plot, or text — for clarity.</p>
 </div>
 </div>
+<p>&lt; PAUSE &gt;</p>
 <p>You’ve come a long way! Your Jupyter notebook is now filled with exciting discoveries and insights — and thanks to Quarto, it’s polished, structured, and ready to be shared. You’ve seen your changes reflected in real-time using the Quarto preview window, and now it’s time to take the final step: sharing your work with the world!</p>
 <p>Let’s do it!</p>
 </section>
@@ -380,7 +382,7 @@ Challenge
 <li><p>Open the Report in Jupyter Lab – Finally, tell them how to open the report using the command <code>uv run jupyter lab report.ipynb</code>.</p></li>
 </ul>
 <p>Here’s an example of a <code>README.md</code> file that I’ve put together for my colleagues to reproduce my results.</p>
-<p><pause></pause></p>
+<p>&lt; PAUSE &gt;</p>
 <p>Finally, we highly recommend learning how to use a version control system, like Git, to share your code and collaborate on projects, especially through platforms like GitHub. While this course doesn’t cover Git in detail, we’ve included some useful links below to help you get started.</p>
 <p>Thank you for being with us in this course! We hope you have learned a lot and feel confident in your ability to use Jupyter notebooks, Quarto, and the powerful tools we’ve covered to create interactive and well-structured analytical reports. You’ve gained valuable skills that will help you share insights clearly and effectively, whether through code, figures, tables, or polished final documents. We encourage you to continue exploring, experimenting, and improving your reporting techniques as you apply these skills in real-world projects. We wish you the best in your future endeavors and look forward to seeing the incredible work you will create!</p>
 

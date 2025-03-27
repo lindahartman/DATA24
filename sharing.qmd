@@ -124,6 +124,8 @@ I suggest you try it out!
 
 :::
 
+< PAUSE >
+
 You’ll immediately see how Quarto transforms your notebook into a professional-looking document with just a few simple tweaks.
 
 Keep your Quarto session running, because in the next section, we’ll explore even more ways to style and enhance your report.
@@ -188,7 +190,7 @@ This small but powerful feature makes your reports much more professional by kee
 
 Now, try adding some labels and captions to your own notebook! Keep the labels short and descriptive. The label code should make it easy for you to remember which output you are referring to.
 
-<PAUSE> 
+< PAUSE > 
 
 As you might have noticed, both Jupyter notebook and Quarto report includes the output along with the code which generated it. However, sometimes your non-technical audience may be distracted by the abundance of code. Perhaps it would be a good idea to hide it from the report?
 
@@ -200,7 +202,7 @@ If you want to hide code output across the entire document, you don’t have to 
 
 Let’s jump back to top of the notebook, and I’ll show you how it’s done.
 
-<PAUSE> 
+< PAUSE > 
 
 You can use the front matter to set global code chunk options that apply to the entire report. This helps maintain a consistent style without manually adjusting each cell.
 
@@ -234,6 +236,8 @@ Try it out! Open a Jupyter notebook you created in this course and:
 - Hide code printouts that don’t produce meaningful output, either:  Globally (by setting `echo: false` in the front matter), or individually (by adding `#| echo: false` to specific cells).
 - Ensure each cell outputs only one thing — a table, a plot, or text — for clarity.
 :::
+
+< PAUSE >
 
 You’ve come a long way! Your Jupyter notebook is now filled with exciting discoveries and insights — and thanks to Quarto, it's polished, structured, and ready to be shared. You’ve seen your changes reflected in real-time using the Quarto preview window, and now it’s time to take the final step: sharing your work with the world!
 
@@ -341,7 +345,7 @@ Here’s a simple structure for your README:
 
 Here’s an example of a `README.md` file that I’ve put together for my colleagues to reproduce my results.
 
-<PAUSE>
+< PAUSE >
 
 Finally, we highly recommend learning how to use a version control system, like Git, to share your code and collaborate on projects, especially through platforms like GitHub. While this course doesn’t cover Git in detail, we’ve included some useful links below to help you get started.
 
