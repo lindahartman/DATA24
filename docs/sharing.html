@@ -67,17 +67,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-div.callout-challenge.callout {
-  border-left-color: firebrick;
-}
-div.callout-challenge.callout-style-default > .callout-header {
-  background-color: rgb(from firebrick r g b / 13%);
-}
-div.callout-challenge .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-challenge.callout-style-default .callout-icon::before, div.callout-challenge.callout-titled .callout-icon::before {
-  content: '🛠️';
-  background-image: none;
-}
 div.callout-question.callout {
   border-left-color: pink;
 }
@@ -87,6 +76,17 @@ div.callout-question.callout-style-default > .callout-header {
 div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
   content: '🧠';
+  background-image: none;
+}
+div.callout-challenge.callout {
+  border-left-color: firebrick;
+}
+div.callout-challenge.callout-style-default > .callout-header {
+  background-color: rgb(from firebrick r g b / 13%);
+}
+div.callout-challenge .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-challenge.callout-style-default .callout-icon::before, div.callout-challenge.callout-titled .callout-icon::before {
+  content: '🛠️';
   background-image: none;
 }
 </style>
@@ -182,78 +182,66 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 
 <section id="video-1-reproducible-reports-with-quarto-6-min" class="level1">
 <h1>VIDEO 1: Reproducible reports with Quarto ~ 6 min</h1>
-<p>We’re almost there! Over the last four modules, you’ve built a solid foundation in data analysis—from setting up a reproducible Python environment with uv and Jupyter Lab to crafting stunning visualizations and mastering Polars for data wrangling, reshaping, and joins. You’ve also learned how to document your findings in a Jupyter Notebook.</p>
+<p>We’re almost there! Over the last four modules, you’ve built a solid foundation in data analysis — from setting up a reproducible Python environment with <code>uv</code> and Jupyter to crafting stunning visualizations and mastering Polars for data wrangling, reshaping, and joins. You’ve also learned how to document your findings in a computational notebook.</p>
 <p>And now - it’s time to share your insights with the world.</p>
-<p>But before we do, let’s talk about reproducibility — and one quirk of Jupyter notebooks that sometimes gives them a bad reputation.</p>
+<p>But before we do, let’s talk about reproducibility; and one quirk of Jupyter notebooks that sometimes gives them a bad reputation.</p>
 <p>By now, you’ve probably noticed that Jupyter cells can be run in any order. You can scroll back up, re-run an earlier cell, tweak some code in the middle, or even insert new cells as you go. This flexibility is fantastic — it allows you to experiment, fix mistakes, and refine your analysis without starting over.</p>
-<p>But here’s a tiny problem</p>
+<p>But there’s a potential problem there.</p>
 <p>Because cells don’t have to be executed sequentially, your dataset might be in a different state than you expect. Maybe you re-imported your data at some point, unaware that an earlier cell had filtered out some rows or modified a column. And because Jupyter doesn’t always throw an error when this happens, you might not even realize there’s an issue — until it’s too late.</p>
 <p>Now, imagine someone else — or even your future self — trying to re-run your notebook from top to bottom. Suddenly, things break. Missing columns. Unexpected outputs. Errors that weren’t there before.</p>
-<p>To avoid this problem, get into the habit of periodically re-running your notebook in order. Here’s how:</p>
-<ul>
-<li><p>Click Run in the top menu.</p></li>
-<li><p>Select Run All Above Selected Cell—this will execute everything from the top down to your current position.</p></li>
-<li><p>If you’re at the last cell, this ensures that your entire notebook runs from start to finish without errors.</p></li>
-</ul>
-<p>This one simple step can save you a lot of trouble—especially if you plan to share your work or revisit your notebook later. Trust me—your future self will thank you.</p>
+<p>To avoid this problem, get into the habit of periodically re-running your notebook in order. Here’s how: In top menu of your Jupyter Lab, click Run. Then select “Run All” — this will execute all cells in your document on by one. This ensures that your entire notebook runs from start to finish without errors.</p>
+<p>This one simple step can save you a lot of trouble — especially if you plan to share your work or revisit your notebook later. Trust me — your future self will thank you.</p>
 <p>While these challenges exist, there’s a fantastic solution: Quarto.</p>
 <p>Quarto is a powerful, multi-language publishing system that transforms your Jupyter notebooks (or Markdown files) into polished reports, presentations, websites, and even Word or PDF documents.</p>
-<p>The best part? Quarto automatically runs your notebook from top to bottom. This means your entire analysis is executed sequentially, ensuring that everything flows correctly into a beautifully formatted output—tables, text, images, and all.</p>
-<p>Before we start using Quarto, we need to install it—and thanks to uv, it’s super easy.</p>
-<p>First, open a terminal in your project folder and run:</p>
-<p>uv tool install quarto-cli</p>
+<p>And the best part is that Quarto automatically runs your notebook from top to bottom. This means your entire analysis is executed sequentially, ensuring that everything flows correctly into a beautifully formatted output — tables, text, images, and code.</p>
+<p>Before we start using Quarto, we need to install it — and thanks to <code>uv</code>, it’s super easy.</p>
+<p>Open a terminal in your project folder and run:</p>
+<pre><code>uv tool install quarto-cli</code></pre>
 <p>This might take a little while, but once it’s done, Quarto will be installed and ready to go.</p>
-<p>To verify that everything is set up correctly, run:</p>
-<p>uv run quarto check</p>
+<p>To verify that everything is set up correctly, type:</p>
+<pre><code>uv run quarto check</code></pre>
+<p>and hit Enter.</p>
 <p>This will launch Quarto’s diagnostics tool, and you should see a checklist with lots of OK signs confirming that everything is working.</p>
-<p>One of these checks will show the Python version that Quarto has detected. Look for the section labeled “Python 3 installation”—it should display the path to your current Python environment. If it matches your project setup, you’re good to go!</p>
+<p>One of these checks will show the Python version that Quarto has detected. Look for the section labeled “Python 3 installation” — it should display the path to your current Python environment. If it matches your project setup, you’re good to go!</p>
 <p>We’ll be using Quarto inside Jupyter Lab, so hop back into your notebook — and I’ll meet you there!</p>
 </section>
 <section id="video-2-quarto-report-from-notebook-5-min" class="level1">
 <h1>VIDEO 2: Quarto report from notebook ~ 5 min</h1>
-<p>To make our report look even better, let’s add a Quarto header—also known as front matter—to the top of our notebook.</p>
-<p>Here’s how:</p>
-<pre><code>Insert a new Markdown cell at the top of your notebook: Click on the first cell in your notebook, Press A to add a new cell above. Press M to convert it to a Markdown cell.
-
-Copy and paste the text underneath this video into the new cell. It’s important to preserve the exact formatting, including indentation and line breaks.</code></pre>
-<p><pause></pause></p>
+<p>To make our report look even better, let’s add a Quarto header — also known as “front matter” — to the top of our notebook.</p>
+<p>Here’s how to do it:</p>
+<ul>
+<li><p>Insert a new Markdown cell at the top of your notebook: Click on the first cell in your notebook, Press A to add a new cell above. Then press M to convert it to a Markdown cell.</p></li>
+<li><p>Copy and paste the text underneath this video into the new cell. It’s important to preserve the exact formatting, including indentation and line breaks.</p></li>
+</ul>
+<p>&lt; PAUSE &gt;</p>
+<pre><code>---
+title: "Gapminder insights"
+subtitle: "Jupyter Notebook rendered to Quarto"
+author: "Norah Jones"
+date: last-modified
+---</code></pre>
 <p>All set? Great! Let’s break it down.</p>
 <ul>
 <li><p>The three dashes (—) at the start and end mark this as a front matter block.</p></li>
-<li><p>Inside, we specify details like the title, subtitle, and author—all pretty straightforward.</p></li>
+<li><p>Inside, we specify details like the title, subtitle, and author — all pretty straightforward.</p></li>
 <li><p>The date field is special: last-modified automatically updates whenever you save the file. Perfect for keeping your reports up to date!</p></li>
 </ul>
 <p>Now, run this Markdown cell by pressing Ctrl + Enter (Cmd + Enter on Mac). Since we have the Quarto extension installed in Jupyter Lab, this will render as a nicely formatted heading.</p>
 <p>Now, let’s generate our first Quarto report!</p>
-<p>First, Open a new terminal inside Jupyter Lab:</p>
-<pre><code>    Click the big blue "+" button on the left panel, OR
-
-    Click the small "+" button next to your notebook’s tab.
-
-    This opens the Launcher window.
-
-    Under "Other", click "Terminal".</code></pre>
+<p>First, Open a new terminal inside Jupyter Lab. Click the big blue “+” button on the left panel, OR the small “+” button next to your notebook’s tab. This opens the Launcher window. Under “Other”, click “Terminal”.</p>
 <p>This terminal is just like your system’s command line, and you can run all the same commands here. Since your original terminal is busy running Jupyter Lab, this new window will be more convenient.</p>
-<p>Assuming your notebook is named report.ipynb, type:</p>
+<p>Assuming your notebook, like mine is named <code>report.ipynb</code>, type:</p>
 <pre><code>uv run quarto preview report.ipynb</code></pre>
-<p>If your file has a different name, replace report.ipynb with the correct filename.</p>
-<p>Here’s what happens:</p>
-<pre><code>uv run ensures the command runs in your current project environment—with the correct Python version, libraries, and dependencies.
-
-Quarto processes your notebook, executes all cells in order, and renders the output.</code></pre>
+<p>If your file has a different name, replace <code>report.ipynb</code> with the correct filename.</p>
+<p>Here’s what happens: <code>uv run</code> ensures the command runs in your current project environment — with the correct Python version, libraries, and dependencies. Quarto processes your notebook, takes the output from each cell, and renders the output.</p>
 <p>Once it’s done, you’ll see a message like this:</p>
 <p>#&gt; Watching files for changes<br>
 #&gt; Browse at http://localhost:3636/</p>
 <p>Click the link, and your formatted report will open in a new browser window!</p>
-<p>For the best experience, I suggest you arrange your screen so you can see both:</p>
-<pre><code>Jupyter Lab on one side, where you’re editing your notebook.
-
-The rendered Quarto report on the other side, updating live as you make changes.</code></pre>
-<p>And just like that—you’ve turned your Jupyter notebook into a polished, shareable report!</p>
-<p>Now that your Quarto report is up and running, here’s something really cool—every time you save your notebook, your Quarto report updates automatically!</p>
-<p>This means you can see your changes in real time without having to restart the rendering process. It’s an incredibly useful feature for fine-tuning the layout and formatting of your report.</p>
-<p>Let’s try it out! Experimenting with Formatting</p>
-<p>I have a small challenge for you:</p>
+<p>For the best experience, I suggest you arrange your screen so you can see both Jupyter Lab on one side, where you’re editing your notebook AND the rendered Quarto report on the other side, updating live as you make changes.</p>
+<p>And just like that — you’ve turned your Jupyter notebook into a polished, shareable report!</p>
+<p>Every time you save your notebook, your Quarto report updates automatically! This means you can see your changes in real time without having to restart the rendering process. It’s an incredibly useful feature for fine-tuning the layout and formatting of your report.</p>
+<p>I suggest you try it out!</p>
 <div class="callout callout-style-default callout-challenge callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -265,74 +253,62 @@ Challenge
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><p>Add a few section titles using Markdown headers (#, ##, ###).</p></li>
-<li><p>Make some text bold (<strong>bold</strong>) or italic (<em>italic</em>).</p></li>
-<li><p>Format your lists properly by adding bullet points (- item 1, - item 2).</p></li>
-<li><p>Save your notebook and watch your Quarto report update in real time!</p></li>
+<li>Add a few section titles using Markdown headers (#, ##, ###).</li>
+<li>Make some text bold (<strong>bold</strong>) or italic (<em>italic</em>).</li>
+<li>Format your lists properly by adding bullet points (new lines starting with a <code>-</code> dash sign).</li>
+<li>Save your notebook and watch your Quarto report update in real time!</li>
 </ul>
 </div>
 </div>
 <p>You’ll immediately see how Quarto transforms your notebook into a professional-looking document with just a few simple tweaks.</p>
-<p>Keep your Quarto report open, because in the next section, we’ll explore even more ways to style and enhance your report.</p>
+<p>Keep your Quarto session running, because in the next section, we’ll explore even more ways to style and enhance your report.</p>
 <p>See you in a bit!</p>
 </section>
 <section id="video-3-quarto-styling-and-rendering-5-min" class="level1">
 <h1>VIDEO 3: Quarto styling and rendering ~ 5 min</h1>
-<p>A great analytics report isn’t just about having the right data—it’s about clarity and focus. Your audience should be able to quickly grasp key insights without being distracted by unnecessary details.</p>
+<p>A great analytics report isn’t just about having the right data — it’s about clarity and focus. Your audience should be able to quickly grasp key insights without being distracted by unnecessary details.</p>
 <p>One way to achieve this is by structuring your notebook properly. In Jupyter, we have two main types of cells:</p>
-<pre><code>Markdown cells for text and explanations
-
-Code cells that generate outputs like tables, plots, or print statements</code></pre>
-<p>To keep things clear and readable, each code cell should ideally produce just one output—a printout, a table, or a plot. If you have a long block of code that does multiple things, consider splitting it into separate cells. This not only makes your report easier to follow but also gives you better control over your outputs.</p>
-<p>Now, let’s talk about a powerful Quarto feature: labels and cross-references.</p>
-<p>Every code cell in a Quarto report has a label, even if you don’t explicitly assign one—Quarto generates it automatically. But if you want to refer to specific outputs in your text—like a figure or table—you’ll need to assign meaningful labels yourself.</p>
-<p>Here’s how it works:</p>
-<pre><code>Figures should have labels that start with fig-.
-
-Tables should have labels that start with tab-.</code></pre>
-<p>This allows you to reference figures and tables directly in your text, and Quarto will automatically create hyperlinks to them. This makes your report more interactive and easier to navigate.</p>
-<p>To assign a label to a code cell, we use Quarto chunk options—a special type of comment that Quarto recognizes.</p>
-<p>You might already know that Python uses # for comments. Quarto extends this by using #| for special commands. These must be placed at the top of the cell, before any code.</p>
+<ul>
+<li>Markdown cells for text and explanations</li>
+<li>Code cells that generate outputs like tables, plots, or print statements</li>
+</ul>
+<p>To keep things clear and readable, each code cell should ideally produce just one output — a printout, a table, or a plot. If you have a long block of code that does multiple things, consider splitting it into separate cells. This not only makes your report easier to follow but also gives you better control over your outputs.</p>
+<p>Now, let’s talk about a powerful Quarto feature: labels and cross-referencing.</p>
+<p>Every code cell in a Quarto report has a label, even if you don’t explicitly assign one — Quarto generates it automatically. But if you want to refer to specific outputs in your text — like a figure or table — you’ll need to assign meaningful labels yourself.</p>
+<p>Here’s how it works: Figures should have labels that start with <code>fig-</code>. Tables should have labels that start with <code>tab-</code>.</p>
+<p>Labels allow you to reference figures and tables directly in your text, and Quarto will automatically create hyperlinks to them. This makes your report more interactive and easier to navigate.</p>
+<p>To assign a label to a code cell, we use Quarto chunk options — a special type of comment that Quarto recognizes.</p>
+<p>You might already know that Python uses <code>#</code> for comments. Quarto extends this by using <code>#|</code> for special commands. These must be placed at the top of the cell, before any code.</p>
 <p>For example, to label a figure-generating cell, you’d write:</p>
-<p>#| label: fig-first-plot</p>
-<p>Later in your report, you can reference this figure using <strong>?@fig-first-plot</strong>. Quarto will automatically replace this with “Figure 1” and create a clickable link to the figure’s location.</p>
-<p>To add a caption to your figure, use another chunk option:</p>
-<p>#| fig-cap: “This is my first plot showing XYZ trends.”</p>
-<p>This ensures that a descriptive caption appears under your figure, helping your audience interpret the data correctly.</p>
-<p>If a cell produces a table, you should label it with tab-, like this:</p>
-<p>#| label: tab-summary-stats</p>
+<pre><code>#| label: fig-first-plot</code></pre>
+<p>Later in your report, you can reference this figure using <code>@fig-first-plot</code>. Quarto will automatically replace this with “Figure 1” and create a clickable link to the figure’s location. Since the label starts with <code>fig-</code> you can continue this pattern by creating the label in what is called a kebab case: lowercase letters separated by dash.</p>
+<p>To add a caption to your figure, use another chunk option. Place it right underneath the label.</p>
+<pre><code>#| fig-cap: "This plot shows how life expectancy is related to GDP per capita."
+</code></pre>
+<p>A descriptive caption appears under your figure, helping your audience interpret the data correctly.</p>
+<p>If a cell produces a table, you should label it with <code>tab-</code>, like this:</p>
+<pre><code>#| label: tab-summary-stats</code></pre>
 <p>You can also add a table caption for clarity:</p>
-<p>#| tab-cap: “Summary statistics for dataset XYZ.”</p>
-<p>Then, in your text, you can refer to the table using <span class="citation" data-cites="tab-summary-stats">@tab-summary-stats</span>, and Quarto will handle the rest—linking it properly and ensuring consistent formatting.</p>
+<pre><code>#| tab-cap: "Summary statistics for `gapminder` dataset."</code></pre>
+<p>Then, in your text, you can refer to the table using <span class="citation" data-cites="tab-summary-stats">@tab-summary-stats</span>, and Quarto will handle the rest — linking it properly and ensuring consistent formatting.</p>
 <p>This small but powerful feature makes your reports much more professional by keeping figures and tables clearly referenced.</p>
-<p>Now, try adding some labels and captions to your own notebook! In the next section, we’ll explore even more ways to fine-tune your Quarto report.</p>
+<p>Now, try adding some labels and captions to your own notebook! Keep the labels short and descriptive. The label code should make it easy for you to remember which output you are referring to.</p>
 <p><pause></pause></p>
-<p>The Markdown cells in your Quarto report don’t just display text—they can be formatted for clarity and impact. You can use:</p>
-<pre><code>Tabs to organize content
-
-Lists for structured information
-
-Callouts to highlight key points
-
-And much more!</code></pre>
-<p>To explore all the ways you can enhance your reports, check out the Quarto documentation—I’ll include the link right below this video.</p>
-<p>Sometimes, a code cell doesn’t produce a plot or a table, but instead prints intermediate results or debugging information. If that output isn’t essential to your audience, you can hide it from the final report using a chunk option.</p>
-<p>To do this, simply add:</p>
-<p>#| echo: false</p>
-<p>at the top of the code cell. This prevents the printed output from appearing in the final document while still executing the code behind the scenes.</p>
-<p>A few things to keep in mind:</p>
-<pre><code>There should be a space between #| and the command: #| echo: false.
-
-The word false is always lowercase in Quarto (unlike Python’s False or R’s FALSE).</code></pre>
-<p>If you want to hide code output across the entire document, you don’t have to modify each cell individually. Instead, you can set a default option in the front matter—the special Quarto header we added in the first cell.</p>
-<p>Let’s jump back to that cell, and I’ll show you how it’s done.</p>
+<p>As you might have noticed, both Jupyter notebook and Quarto report includes the output along with the code which generated it. However, sometimes your non-technical audience may be distracted by the abundance of code. Perhaps it would be a good idea to hide it from the report?</p>
+<p>In order to accomplish that you can use <code>echo: false</code> chunk option. The code will be executed the behind the scenes and only the output will be included in the report.</p>
+<p>A few things to keep in mind: there should be a space between the Quarto comment <code>#|</code> and the command: <code>#| echo: false</code>. The word <code>false</code> is always lowercase in Quarto (unlike Python’s capitalized False or R’s all-caps FALSE).</p>
+<p>If you want to hide code output across the entire document, you don’t have to modify each cell individually. Instead, you can set a default option in the front matter — that is in define it in the the special Quarto header we added in the first cell.</p>
+<p>Let’s jump back to top of the notebook, and I’ll show you how it’s done.</p>
 <p><pause></pause></p>
-<p>In the front matter of your document, you can set global code chunk options that apply to the entire report. This helps maintain a consistent style without manually adjusting each cell.</p>
+<p>You can use the front matter to set global code chunk options that apply to the entire report. This helps maintain a consistent style without manually adjusting each cell.</p>
 <p>To hide all code outputs by default, add the following line before the closing three dashes (—) in the front matter:</p>
-<p>echo: false</p>
-<p>Now, every code cell in your report will hide its output unless you explicitly override this setting. If you want to display the code in a specific cell, simply add:</p>
-<p>#| echo: true</p>
+<pre><code>echo: false</code></pre>
+<p>Now, every code cell in your report will be hidden unless you explicitly override this setting. If you want to display the code in a specific cell, simply add:</p>
+<pre><code>#| echo: true</code></pre>
 <p>to that cell. Local settings always override global defaults, so you have full control over what your audience sees.</p>
+<p>Sometimes, a code cell doesn’t produce a plot or a table, but instead prints intermediate results or debugging information. If that output isn’t essential to your audience, you can hide it as well, using a chunk option.</p>
+<pre><code>#| include: false</code></pre>
+<p>This prevents the both the code and the output from appearing in the final document.</p>
 <div class="callout callout-style-default callout-challenge callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -343,45 +319,37 @@ Challenge
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Try it out! Open a Jupyter notebook you created in this course and: - Add labels and captions to your figures (fig-) and tables (tab-). - Insert a Markdown cell under each figure or table, explaining key insights. - Refer to figures and tables using <strong>?@fig-label</strong> or <span class="citation" data-cites="tab-label">@tab-label</span> in your text. - Hide code printouts that don’t produce meaningful output, either: Globally (by setting echo: false in the front matter), or Individually (by adding #| echo: false to specific cells). - Ensure each cell outputs only one thing—a table, a plot, or text—for clarity.</p>
+<p>Try it out! Open a Jupyter notebook you created in this course and: - Add labels and captions to your figures (fig-) and tables (tab-). - Insert a Markdown cell under each figure or table, explaining key insights. - Refer to figures and tables using <strong>?@fig-label</strong> or <span class="citation" data-cites="tab-label">@tab-label</span> in your text. - Hide code printouts that don’t produce meaningful output, either: Globally (by setting <code>echo: false</code> in the front matter), or individually (by adding <code>#| echo: false</code> to specific cells). - Ensure each cell outputs only one thing — a table, a plot, or text — for clarity.</p>
 </div>
 </div>
-<p>You’ve come a long way! Your Jupyter notebook is now filled with exciting discoveries and insights—and thanks to Quarto, it’s polished, structured, and ready to be shared. You’ve seen your changes reflected in real-time using the Quarto preview window, and now it’s time to take the final step: sharing your work with the world!</p>
+<p>You’ve come a long way! Your Jupyter notebook is now filled with exciting discoveries and insights — and thanks to Quarto, it’s polished, structured, and ready to be shared. You’ve seen your changes reflected in real-time using the Quarto preview window, and now it’s time to take the final step: sharing your work with the world!</p>
 <p>Let’s do it!</p>
 </section>
 <section id="video-4-rendering-the-final-report-5-min" class="level1">
 <h1>VIDEO 4: Rendering the final report ~ 5 min</h1>
 <p>You’ve been working on your report interactively, running cells out of order to refine your insights and perfect the look and feel of the final product. But now, it’s time to run the report one last time before sending it out into the world.</p>
-<p>To ensure everything works as expected, you should execute all cells sequentially from top to bottom. The easiest way to do this in JupyterLab is:</p>
-<pre><code>Go to the "Run" menu.
-
-Select "Run All Cells"—or even better—
-
-Choose "Restart Kernel and Run All Cells."</code></pre>
+<p>To ensure everything works as expected, you should execute all cells sequentially from top to bottom. As we discussed ealier, the easiest way to do this in JupyterLab is: Go to the “Run” menu. Select “Run All Cells” — or even better — Choose “Restart Kernel and Run All Cells.”</p>
 <p>Restarting the kernel ensures that your Python session starts fresh and runs every cell in the correct order. If you still have a Quarto preview running, once you save the notebook, your report should now appear in its final form.</p>
 <p>An alternative way to generate the final report is to use the command line, letting Quarto handle the rendering. This approach ensures that your report runs exactly as it would for a colleague on a different machine.</p>
-<p>If you’re still previewing your report in Quarto, first stop the preview session by returning to the terminal and pressing:</p>
-<pre><code>Ctrl + C (Windows/Linux)
-
-Cmd + C (Mac)</code></pre>
-<p>Then, run the following command:</p>
-<p>uv run quarto render report.ipynb –execute</p>
-<p>What does this command do?</p>
-<p>✔ Runs Quarto to process your report. ✔ Executes all code from scratch in a clean Python session. ✔ Ignores pre-computed results, ensuring all outputs are fresh. ✔ Uses the same environment as when you created the report, ensuring all required packages are available.</p>
-<p>Once completed, a fresh copy of your report will be saved in your project directory—ready to be shared.</p>
+<p>If you’re still previewing your report in Quarto, first stop the preview session by returning to the terminal and pressing Ctrl + C or Cmd + C (on Mac). Then, run the following command:</p>
+<pre><code>uv run quarto render report.ipynb --execute</code></pre>
+<p>What does this do?</p>
+<p>It instructs Quarto to process your report by executing all code from scratch in a clean Python session.</p>
+<p>Quarto discards all pre-computed results, ensuring all outputs are fresh. And because you prepend it with <code>uv run</code>, Quarto uses the same environment as when you created the report, ensuring all required packages are available.</p>
+<p>Once completed, a fresh copy of your report will be saved in your project directory — ready to be shared.</p>
 <p>So far, we’ve seen how Quarto generates HTML reports that can be viewed in a browser. These are great for interactive use and web hosting, but sometimes you need a Word or PDF version for sharing with colleagues.</p>
-<p>Thankfully, Quarto supports multiple formats—it’s the Swiss Army knife of report generation! Try exporting your report to Word by adding the –to docx flag:</p>
-<p>uv run quarto render report.ipynb –to docx –execute</p>
-<p>You should now see a Word document in your working directory. Quarto offers many additional options, including the ability to render reports using templates and other customization features—I encourage you to explore these further! You’ll find a link to the Quarto documentation below this video.</p>
+<p>Thankfully, Quarto is the Swiss Army knife of report generation! Try exporting your report to Word by adding the <code>--to docx</code> flag:</p>
+<pre><code>uv run quarto render report.ipynb --to docx --execute</code></pre>
+<p>You should now see a Word document in your working directory. Quarto offers many additional options, including the ability to render reports using templates and other customization features — I encourage you to explore these further! You’ll find a link to the Quarto documentation below this video.</p>
 <p>While HTML and Word exports work right out of the box, generating PDF reports requires one extra step.</p>
 <p>PDFs are created using LaTeX, an established typesetting system used in scientific publishing. Quarto comes with its own built-in LaTeX engine called TinyTeX, which we need to install first.</p>
 <p>Run the following command in the terminal:</p>
-<p>uv run quarto install tinytex</p>
+<pre><code>uv run quarto install tinytex</code></pre>
 <p>This installs a lightweight LaTeX engine inside your Quarto setup, allowing you to produce beautiful, professional-looking PDFs from your reports.</p>
 <p>To confirm the installation, run:</p>
-<p>uv run quarto check</p>
+<pre><code>uv run quarto check</code></pre>
 <p>You should see that the LaTeX engine is now pointing to TinyTeX, meaning everything is set up correctly. Now, to render your report as a PDF, simply run:</p>
-<p>uv run quarto render report.ipynb –to pdf –execute</p>
+<pre><code>uv run quarto render report.ipynb --to pdf --execute</code></pre>
 <p>A PDF version of your report will appear in your project directory.</p>
 <p>Just like with Word documents, PDF reports can be customized using Quarto options. If you want to fine-tune the formatting or styling, check out the Quarto documentation for advanced features that will help you create polished, professional reports.</p>
 <p>We’re nearing the final stretch of this course! In the last video, we’ll discuss how to share your work and ensure that others can reproduce your results exactly as you compiled them.</p>
@@ -389,33 +357,31 @@ Cmd + C (Mac)</code></pre>
 </section>
 <section id="video-5-sharing-the-project-5-min" class="level1">
 <h1>VIDEO 5: Sharing the project ~ 5 min</h1>
-<p>Congratulations! You’ve successfully completed an exciting project—from installing software to visualizing and exploring datasets, and finally, producing an analytical report that documents your entire journey. Now, it’s time to prepare this work to share with others.</p>
-<p>What Should You Include in the Project Folder?</p>
+<p>Congratulations! You’ve successfully completed an exciting project — from installing software to visualizing and exploring datasets, and finally, producing an analytical report that documents your entire journey. Now, it’s time to prepare this work to be shared with others.</p>
 <p>To share your project effectively, there are a few key elements to include:</p>
-<pre><code>pyproject.toml – This file contains the specifications for your project environment.
-
-Data – While we used GitHub to store the data in this course, if you used additional datasets or saved data locally, make sure to include them so others can replicate your results.
-
-Notebook File – Share the .ipynb file (like report.ipynb in our case), which contains the code, figures, and tables that document your analysis.
-
-Rendered Report – Consider including a rendered HTML, Word, or PDF version of the report, so your audience can preview the results before opening the notebook itself.</code></pre>
-<p>When you send your work to a colleague, they may not have the same setup as you, so it’s essential to ensure they can reproduce your results. Here’s how you can do that:</p>
-<pre><code>Environment Management – Thanks to uv's powerful environment management capabilities, many reproducibility concerns are taken care of. This ensures that your colleague will have the same environment to run the report.
-
-Computational Notebooks – Your notebook documents all exploratory data analysis steps, allowing others to follow along and reproduce your work.
-
-Rendered Quarto Report – For those without access to Python, the Quarto-rendered report provides insights that can still be accessed and understood without the underlying code.</code></pre>
-<p>As you prepare to share your project with others, consider leaving a “love note” to help them understand your work. In the world of programming and data analysis, these notes are called README files.</p>
+<ul>
+<li><p>pyproject.toml – This file contains the specifications for your project environment.</p></li>
+<li><p>Data – While we used GitHub to store the data in this course, if you used additional datasets or saved data locally, make sure to include them so others can replicate your results.</p></li>
+</ul>
+<p>-Notebook File – Share the .ipynb file (like report.ipynb in our case), which contains the code, figures, and tables that document your analysis.</p>
+<ul>
+<li>Rendered Report – Consider including a rendered HTML, Word, or PDF version of the report, so your audience can preview the results before opening the notebook itself.</li>
+</ul>
+<p>When you send your work to a colleague, they may not have the same setup as you, so it’s essential to ensure they can reproduce your results. The essential elements of reproducibility are already in place.</p>
+<p>First is environment management: Thanks to uv’s powerful environment management capabilities, many reproducibility concerns are taken care of. <code>uv</code> ensures that your audience will use the same environment to run the report, as the one you used to produce it.</p>
+<p>Second, literate programming. Your notebook documents all exploratory data analysis steps, allowing others to follow along and reproduce your work.</p>
+<p>And finally, the rendered Quarto Report. For those without access to Python, the Quarto-rendered report provides insights that can still be accessed and understood without the underlying code.</p>
+<p>As you prepare to share your project with others, consider leaving a “love note” to help them understand your work. In the world of programming and data analysis, these notes are called <code>README</code> files.</p>
 <p>In your Jupyter Notebook launcher menu, there’s an option to create a Markdown file (look for the button with a large purple “M” on it). In this document, you can outline step-by-step guidelines for reproducing your results. Because it’s a Markdown file, you can use all the formatting tools you’ve learned, like headings, lists, and text formatting. Be sure to include the shell commands that users need to run, wrapped in three backtick symbols (```), at the beginning and end of each command block.</p>
 <p>Here’s a simple structure for your README:</p>
-<pre><code>Install uv – Point your reader to the installation instructions on Astral’s website. You’ll find that installation differs slightly between Linux/Mac and Windows, so make sure to include the correct instructions for your audience’s operating system.
-
-Synchronize Project Requirements – Instruct your reader to run uv sync, which will download and install all the necessary packages listed in the pyproject.toml file. This ensures all dependencies are in place for the report to run correctly.
-
-Open the Report in Jupyter Lab – Finally, tell them how to open the report using the command uv run jupyter lab report.ipynb.</code></pre>
-<p>Here’s an example README.md file that I’ve put together for my colleagues to reproduce my results.</p>
+<ul>
+<li><p>Install uv – Point your reader to the installation instructions on Astral’s website. You’ll find that installation differs slightly between Linux/Mac and Windows, so make sure to include the correct instructions for your audience’s operating system.</p></li>
+<li><p>Synchronize Project Requirements – Instruct your reader to run <code>uv sync</code>, which will download and install all the necessary packages listed in the <code>pyproject.toml</code> file. This ensures all dependencies are in place for the report to run correctly.</p></li>
+<li><p>Open the Report in Jupyter Lab – Finally, tell them how to open the report using the command <code>uv run jupyter lab report.ipynb</code>.</p></li>
+</ul>
+<p>Here’s an example of a <code>README.md</code> file that I’ve put together for my colleagues to reproduce my results.</p>
 <p><pause></pause></p>
-<p>We highly recommend learning how to use a version control system, like Git, to share your code and collaborate on projects, especially through platforms like GitHub. While this course doesn’t cover Git in detail, we’ve included some useful links below to help you get started.</p>
+<p>Finally, we highly recommend learning how to use a version control system, like Git, to share your code and collaborate on projects, especially through platforms like GitHub. While this course doesn’t cover Git in detail, we’ve included some useful links below to help you get started.</p>
 <p>Thank you for being with us in this course! We hope you have learned a lot and feel confident in your ability to use Jupyter notebooks, Quarto, and the powerful tools we’ve covered to create interactive and well-structured analytical reports. You’ve gained valuable skills that will help you share insights clearly and effectively, whether through code, figures, tables, or polished final documents. We encourage you to continue exploring, experimenting, and improving your reporting techniques as you apply these skills in real-world projects. We wish you the best in your future endeavors and look forward to seeing the incredible work you will create!</p>
 
 
