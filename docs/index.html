@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -67,17 +101,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-div.callout-challenge.callout {
-  border-left-color: firebrick;
-}
-div.callout-challenge.callout-style-default > .callout-header {
-  background-color: rgb(from firebrick r g b / 13%);
-}
-div.callout-challenge .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-challenge.callout-style-default .callout-icon::before, div.callout-challenge.callout-titled .callout-icon::before {
-  content: '🛠️';
-  background-image: none;
-}
 div.callout-question.callout {
   border-left-color: pink;
 }
@@ -87,6 +110,17 @@ div.callout-question.callout-style-default > .callout-header {
 div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
   content: '🧠';
+  background-image: none;
+}
+div.callout-challenge.callout {
+  border-left-color: firebrick;
+}
+div.callout-challenge.callout-style-default > .callout-header {
+  background-color: rgb(from firebrick r g b / 13%);
+}
+div.callout-challenge .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-challenge.callout-style-default .callout-icon::before, div.callout-challenge.callout-titled .callout-icon::before {
+  content: '🛠️';
   background-image: none;
 }
 </style>
@@ -150,12 +184,12 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#video-1-introduction-studio-12-min" id="toc-video-1-introduction-studio-12-min" class="nav-link active" data-scroll-target="#video-1-introduction-studio-12-min">VIDEO 1 Introduction {studio} ~ 12 min</a></li>
-  <li><a href="#video-2-shell-studio-linda-7-min" id="toc-video-2-shell-studio-linda-7-min" class="nav-link" data-scroll-target="#video-2-shell-studio-linda-7-min">VIDEO 2 Shell {studio} LINDA ~ 7 min</a></li>
-  <li><a href="#video-3-navigation-studio-dmytro-6-min" id="toc-video-3-navigation-studio-dmytro-6-min" class="nav-link" data-scroll-target="#video-3-navigation-studio-dmytro-6-min">VIDEO 3 Navigation {studio} DMYTRO ~ 6 min</a></li>
-  <li><a href="#video-4-uv-studio-dmytro-3-min" id="toc-video-4-uv-studio-dmytro-3-min" class="nav-link" data-scroll-target="#video-4-uv-studio-dmytro-3-min">VIDEO 4 uv {studio} DMYTRO ~ 3 min</a></li>
-  <li><a href="#video-5-python-studio-dmytro-10-min" id="toc-video-5-python-studio-dmytro-10-min" class="nav-link" data-scroll-target="#video-5-python-studio-dmytro-10-min">VIDEO 5 Python {studio} DMYTRO ~ 10 min</a></li>
-  <li><a href="#video-6-jupyter-studio-dmytro-12-min" id="toc-video-6-jupyter-studio-dmytro-12-min" class="nav-link" data-scroll-target="#video-6-jupyter-studio-dmytro-12-min">VIDEO 6 Jupyter {studio} DMYTRO ~ 12 min</a></li>
+  <li><a href="#video-1-introduction" id="toc-video-1-introduction" class="nav-link active" data-scroll-target="#video-1-introduction">VIDEO 1 Introduction</a></li>
+  <li><a href="#video-2-shell" id="toc-video-2-shell" class="nav-link" data-scroll-target="#video-2-shell">VIDEO 2 Shell</a></li>
+  <li><a href="#video-3-navigation" id="toc-video-3-navigation" class="nav-link" data-scroll-target="#video-3-navigation">VIDEO 3 Navigation</a></li>
+  <li><a href="#video-4-uv" id="toc-video-4-uv" class="nav-link" data-scroll-target="#video-4-uv">VIDEO 4 uv</a></li>
+  <li><a href="#video-5-python" id="toc-video-5-python" class="nav-link" data-scroll-target="#video-5-python">VIDEO 5 Python</a></li>
+  <li><a href="#video-6-jupyter" id="toc-video-6-jupyter" class="nav-link" data-scroll-target="#video-6-jupyter">VIDEO 6 Jupyter</a></li>
   </ul>
 </nav>
     </div>
@@ -181,8 +215,8 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </header>
 
 
-<section id="video-1-introduction-studio-12-min" class="level2">
-<h2 class="anchored" data-anchor-id="video-1-introduction-studio-12-min">VIDEO 1 Introduction {studio} ~ 12 min</h2>
+<section id="video-1-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="video-1-introduction">VIDEO 1 Introduction</h2>
 <p>LINDA:</p>
 <p>Welcome to Data Literacy with Python!</p>
 <p>Hi, I am Linda Hartman. I am an instructor of Data Analysis and Statistical Learning at Lund University</p>
@@ -234,19 +268,28 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <p>The datasets may be small, but the questions and challenges we tackle are universal. By the end of this course, you’ll be equipped to uncover meaningful insights from your own data, no matter its size or complexity.</p>
 <p>Let’s get started on this exciting journey into the world of data literacy!</p>
 </section>
-<section id="video-2-shell-studio-linda-7-min" class="level1">
-<h1>VIDEO 2 Shell {studio} LINDA ~ 7 min</h1>
-<!-- ## Shell -->
+<section id="video-2-shell" class="level1">
+<h1>VIDEO 2 Shell</h1>
 <p>Before we dive into the thrilling world of data analysis, let’s pause and talk about something fundamental: your computer. That’s right, the device you’re watching this on is more than just a tool—it’s the backbone of your data analysis journey. Set it up well, and it will help you create reliable, reproducible, and stunning analytic projects.</p>
 <p>But to unlock its full potential, we need to talk about something that might not look exciting at first glance but is incredibly powerful: the command line—also known as the shell or terminal.</p>
 <p>Every operating system has some version of a terminal. Whether you’re on Windows, macOS, or Linux, this is your gateway to greater control over your computer. In the terminal, you don’t rely on menus, buttons, or icons. Instead, you type commands, giving you direct access to your system’s capabilities.</p>
 <p>Now, if this is new to you, don’t worry! Below this video, you’ll find instructions on how to locate and open the terminal on your operating system. Take a moment to familiarize yourself with launching it, and then meet me back here.</p>
 <p>Once you’re ready, we’ll discuss folders—yes, the simple yet crucial task of organizing your files. If you already know how to navigate your operating system, create new folders, and understand the user directory, feel free to skip ahead to the next video. Otherwise, stick with me, and I’ll walk you through everything you need to know.</p>
 <p>Find and open the terminal on your computer. Take that first step toward becoming a power user!</p>
-<p>&lt; PAUSE &gt; <!-- :::{.challenge}
-Find and open the terminal on your computer.
-::: --></p>
-<!-- ## On files and folders -->
+<p>&lt; PAUSE &gt;</p>
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Find and open the terminal on your computer.</p>
+</div>
+</div>
 <p>Now that you’ve found your terminal, it’s time to talk about something fundamental to every data analysis project: files and folders.</p>
 <p>Think about how your computer organizes everything you create or download—whether it’s a Word document, an Excel spreadsheet, or a photo. These files are stored in folders, and if you’ve ever saved something important, you know how critical it is to remember where it’s located.</p>
 <p>When working with data analysis, you’ll generate a lot of files—scripts, datasets, reports, visualizations—the list goes on. Keeping all of these files organized and in one place is essential to staying productive. You don’t want to waste time hunting through your computer every time you need something.</p>
@@ -255,24 +298,23 @@ Find and open the terminal on your computer.
 <ul>
 <li>On Windows, you can open File Explorer by clicking the icon on your taskbar or pressing the Windows key + E. Once it’s open, you’ll see something like this:</li>
 </ul>
-<p>&lt; PAUSE &gt; <!-- ![](img/win_explorer.png) --></p>
+<p><img src="img/win_explorer.png" class="img-fluid"></p>
 <ul>
 <li>On Mac, you’ll use an app called Finder. Just click its icon in the Dock, and you’ll see a view like this:</li>
 </ul>
-<p>&lt; PAUSE &gt; <!-- ![](img/mac_finder.png) --></p>
+<p><img src="img/mac_finder.png" class="img-fluid"></p>
 <ul>
 <li>On Linux, it’s often just called Files, and the interface may vary depending on your distribution. On Ubuntu, it looks like this:</li>
 </ul>
-<p>&lt; PAUSE &gt; <!-- ![](img/linux-files.png) --></p>
+<p><img src="img/linux-files.png" class="img-fluid"></p>
 <p>Inside these interfaces, folders are easy to spot with their distinct icons. Click on one, and you’ll dive inside to see its contents—maybe more files, maybe more folders.</p>
 <p>Now, every operating system has a home base for your personal files. This is typically called your Home folder and contains directories like Music, Pictures, Videos, and Downloads. A special folder called Desktop displays its contents right on your screen.</p>
 <p>While it’s tempting to store everything on your Desktop for easy access, this isn’t the best long-term solution. A cluttered Desktop can make it harder to stay organized, and let’s be honest—it doesn’t look great either.</p>
 <p>Instead, consider creating a dedicated folder for your data analysis projects. For example, you could use your Documents folder or create a new folder called Projects. If your Documents folder is synced to the cloud — like with OneDrive or iCloud — think carefully about whether that’s the right place for large datasets. Cloud storage is precious, and you might want to save that space for smaller files like presentations or text documents. For the project files, we recommend that you pick a location that’s tidy, accessible, and works for you.</p>
 <p>Once you’ve chosen your perfect home base, we’ll move on to the next step: learning how to navigate your files and folders using the command line. Trust me, it’s easier than it sounds, and it will make your workflow so much more efficient!</p>
 </section>
-<section id="video-3-navigation-studio-dmytro-6-min" class="level1">
-<h1>VIDEO 3 Navigation {studio} DMYTRO ~ 6 min</h1>
-<!-- ## Navigating in the command line -->
+<section id="video-3-navigation" class="level1">
+<h1>VIDEO 3 Navigation</h1>
 <p>Alright, let’s open up your terminal! Don’t worry — this is not as intimidating as it might look. I’m going to guide you through some simple steps that will help you make sense of this dark text window, and these skills will serve you every time you use the command line.</p>
 <p>First, take a look at your screen. See that little blinking line? That’s called the cursor, and it’s where you will type commands. To the left of the cursor, you’ll notice something else—this is called the system prompt. It’s a little symbol or combination of symbols, like $, &gt;, or %. Think of it as your computer saying, “I’m ready for your command, Master!”</p>
 <p>But before you start typing anything, let’s ask an important question: “Where am I?”. Not in terms of geography, but in terms of files and folders on your computer.</p>
@@ -281,25 +323,17 @@ Find and open the terminal on your computer.
 <p>If you’re using Windows, the equivalent command is <code>cd</code>—which we’ll use a bit differently later on, but for now, you can think of it as “current directory.”</p>
 <p>Go ahead and type pwd (or cd on Windows) and hit Enter. Your terminal will respond with something called a path. This is a series of folder names separated by forward slashes /, and on Windows, you might also see a drive letter like C: or D:.</p>
 <p>For example, my terminal tells me this:</p>
-<!-- 
-```
-Dmytro@dell-xps-9570: $ pwd  
-/home/Dmytro  
-``` 
--->
+<pre><code>Dmytro@dell-xps-9570: $ pwd  
+/home/Dmytro  </code></pre>
 <p>This means my terminal has opened in my user directory. That’s the folder where my personal files are stored.</p>
 <p>Now that we know where we are, the next logical question is: “What’s here?”</p>
 <p>To find out, use the command <code>ls</code>. This stands for “list,” and it will show you everything inside the current directory—both files and folders.</p>
 <p>Here’s what my terminal shows when I type <code>ls</code>:</p>
-<!-- 
-```
-Dmytro@dell-xps-9570:~$ ls  
+<pre><code>Dmytro@dell-xps-9570:~$ ls  
  'Calibre Library'  Pictures           Projects  
  Desktop            Public             Videos  
  Documents          Downloads          Templates  
- Zotero             Music              Scanned_Document_House.pdf  
-``` 
--->
+ Zotero             Music              Scanned_Document_House.pdf  </code></pre>
 <p>As you can see, I have a mix of directories and one lonely PDF document I prepared for the tax authorities. I recognize all of these files—they’re the same ones I’d see if I opened my Files app and navigated to my user directory.</p>
 <p>So, in just two simple commands—<code>pwd</code> to figure out where you are and <code>ls</code> to see what’s inside—you’ve already gained some control over the terminal. Pretty cool, right?</p>
 <p>Now that you know how to figure out where you are on your computer, we’ll take it a step further and learn how to move around the file system using the terminal.</p>
@@ -312,158 +346,147 @@ Dmytro@dell-xps-9570:~$ ls
 <pre><code>cd ..</code></pre>
 <p>The two dots (..) mean “go up one level.” Hit Enter, and you’ll be back in the directory you started from.</p>
 <p>Let me show you an example of a full roundtrip: cd Pictures - pwd - cd .. - pwd</p>
-<!-- 
-```
-Dmytro@dell-xps-9570:~$ cd Pictures  
+<pre><code>Dmytro@dell-xps-9570:~$ cd Pictures  
 Dmytro@dell-xps-9570:~/Pictures$ pwd  
 /home/Dmytro/Pictures  
 Dmytro@dell-xps-9570:~/Pictures$ cd ..  
 Dmytro@dell-xps-9570:~$ pwd  
-/home/Dmytro  
-``` 
--->
+/home/Dmytro  </code></pre>
 <p>See how simple that was? Using just <code>cd</code> and <code>cd ..</code>, you can navigate up and down the directory tree.</p>
 <p>Now it’s your turn! Play around with these commands. Practice navigating into folders and back out again. There are faster ways to move around your file system, but for now, these basic steps are more than enough to get you started. Once you’re comfortable with these movements, please, take an effort to navigate to the directory, where you decided to store your project files.</p>
-<!-- :::{.challenge}
-Using `cd`, `cd ..` and `ls`, navigate to the directory, where you decided to store your project files.
-::: -->
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using <code>cd</code>, <code>cd ..</code> and <code>ls</code>, navigate to the directory, where you decided to store your project files.</p>
+</div>
+</div>
 <p>When you have done that, join me in the next section, where we’ll begin installing some software to set up your data analysis environment. I’ll see you there!</p>
 </section>
-<section id="video-4-uv-studio-dmytro-3-min" class="level1">
-<h1>VIDEO 4 uv {studio} DMYTRO ~ 3 min</h1>
-<!-- ## Installing uv -->
+<section id="video-4-uv" class="level1">
+<h1>VIDEO 4 uv</h1>
 <p>Alright, now it’s time to roll up our sleeves and install one of the most exciting tools in modern Python development—uv!</p>
 <p>uv is an incredibly fast Python installation and environment manager, written in the high-performance language Rust. This tool burst onto the Python scene earlier this year, and it’s already winning the hearts of Python developers worldwide.</p>
 <p>When I say “fast,” I mean lightning fast—orders of magnitude faster than its popular counterparts! Just look at this chart:</p>
-<!-- ![](img/uv-perf-chart.png) -->
+<p><img src="img/uv-perf-chart.png" class="img-fluid"></p>
 <p>Not only is uv fast, but it’s also environmentally friendly. Yes, it’s saving the planet! By reducing the time and energy it takes for data centers to rebuild their test and development environments daily, uv contributes to a smaller carbon footprint.</p>
 <p>In this course, we’ll only scratch the surface of what uv can do. But I promise, as you start using it in your real-life projects, your appreciation for this tool—and the Astral team behind it—will grow exponentially</p>
-<p>Now let’s get started with the installation. Open your terminal and type the following command. <!-- 
-:::{.challenge}
-
-On Mac or Linux, use the following command after the system prompt:
-```
-curl -LsSf https://astral.sh/uv/install.sh | sh
-``` 
-
-On Windown, type the following:
-
-```
-powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
-``` 
-::: 
---> Hit Enter, and the installation should begin.</p>
+<p>Now let’s get started with the installation. Open your terminal and type the following command.</p>
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>On Mac or Linux, use the following command after the system prompt:</p>
+<pre><code>curl -LsSf https://astral.sh/uv/install.sh | sh</code></pre>
+<p>On Windown, type the following:</p>
+<pre><code>powershell -c "irm https://astral.sh/uv/install.ps1 | iex"</code></pre>
+</div>
+</div>
+<p>Hit Enter, and the installation should begin.</p>
 <p>If you already have Python installed, you can also install uv using one of Python’s existing package managers. On Mac, it’s even possible to install it through Homebrew. I’ll include a link to the official documentation with detailed instructions below this video.</p>
-<!-- :::{.challenge}
-Check out `uv` installation instructions at https://docs.astral.sh/uv/getting-started/installation/
-::: -->
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Check out <code>uv</code> installation instructions at https://docs.astral.sh/uv/getting-started/installation/</p>
+</div>
+</div>
 <p>Once the installation is complete, let’s check if everything worked. In your terminal, type <code>uv</code>. You should see output that looks something like this:</p>
-<!-- 
-```
-uv
+<pre><code>uv
 
-#> An extremely fast Python package manager.
-#>
-#> Usage: uv [OPTIONS] <COMMAND>
-#> 
-#> Commands:
-#>  run      Run a command or script
-#>  init     Create a new project
-#>  ...
-``` 
--->
+#&gt; An extremely fast Python package manager.
+#&gt;
+#&gt; Usage: uv [OPTIONS] &lt;COMMAND&gt;
+#&gt; 
+#&gt; Commands:
+#&gt;  run      Run a command or script
+#&gt;  init     Create a new project
+#&gt;  ...</code></pre>
 <p>If you see that, congratulations! You’ve successfully installed uv.</p>
 <p>From now on, we’ll use uv to manage everything, including installing Python itself. Stay with me as we continue setting up your computing environment. I’ll see you in the next section!</p>
 </section>
-<section id="video-5-python-studio-dmytro-10-min" class="level1">
-<h1>VIDEO 5 Python {studio} DMYTRO ~ 10 min</h1>
-<!-- ## Managing python installation -->
+<section id="video-5-python" class="level1">
+<h1>VIDEO 5 Python</h1>
 <p>uv isn’t just a package and environment manager—it also handles Python installations effortlessly. Let’s start by checking if uv can detect an existing Python installation on your system.</p>
 <p>In your terminal, run:</p>
 <pre><code>uv python find</code></pre>
-<p>If uv detects a Python installation, it will return the path to it. This path will also likely give you a clue about the Python version. But if you’re unsure about the version, you can use this command: <!-- 
-```
-uv python list --only-installed
-``` 
---></p>
+<p>If uv detects a Python installation, it will return the path to it. This path will also likely give you a clue about the Python version. But if you’re unsure about the version, you can use this command:</p>
+<pre><code>uv python list --only-installed</code></pre>
 <p>Now comes the decision point: Do you want to use your existing Python installation, or would you prefer a fresh installation managed entirely by uv?</p>
 <p>Here’s my advice: While you can use the Python installation that uv detects, it’s often a good idea to have a separate Python installation that’s fully under uv’s control. Why? Because Python is often deeply integrated into modern operating systems, and having an isolated installation ensures you don’t accidentally disrupt system-level functionality.</p>
 <p>Python environment management has historically been a mess! XKCD even made a <a href="https://xkcd.com/1987/">famous comic</a> about it.</p>
-<!-- ![](https://imgs.xkcd.com/comics/python_environment_2x.png) -->
+<p><img src="https://imgs.xkcd.com/comics/python_environment_2x.png" class="img-fluid"></p>
 <p>Yeah, it can get pretty bad. But don’t worry—with uv, that nightmare is a thing of the past. If you’re ready to let uv manage your Python installation, run this command:</p>
-<!-- 
-```
-uv python install
-``` 
--->
+<pre><code>uv python install</code></pre>
 <p>This will install the latest and greatest version of Python, which will now be entirely supervised by uv. If the installation completes without errors, you’re officially set up with Python! To verify, you can run the uv python find command again, and it should show the new Python installation.</p>
 <p>With Python sorted, you’re ready for the next step: setting up your project environment.</p>
 <p>As we discussed earlier, every data analysis project should live in its own folder. This keeps things tidy and avoids any cross-contamination between projects. Now, naming your project folder can feel like a challenge—it’s almost an art! Developers joke that naming things is one of the hardest parts of computer science. Why? Because you want a name that’s memorable, descriptive, and easy to type.</p>
 <p>So, pick a short, meaningful name without spaces. I’ve decided to call my project data-literacy-project. Once you’ve chosen a name, make sure you’re in the directory where you want to create your project. You can double-check by running <code>pwd</code> (<code>cd</code> on Windows). Now, let’s initialize your project. Type the following, replacing <code>data-literacy-project</code> with your project’s name:</p>
-<!-- 
-```
-uv init data-literacy-project
-cd data-literacy-project
-``` 
--->
+<pre><code>uv init data-literacy-project
+cd data-literacy-project</code></pre>
 <p>Note that the second command navigates you into the folder (remember, we learned <code>cd foldername</code>). That is because <code>uv init</code> has created a new directory for you with the name you picked. There’s one command I did not tell you about, which allows you to create directories manually. It is called <code>mkdir</code> which stands for “make directory”, followed by the directory name.</p>
 <p>If you prefer, you could create the folder yourself and then initialize it with uv. Here’s how that would look:</p>
-<!-- 
-```
-$ mkdir data-literacy-project
+<pre><code>$ mkdir data-literacy-project
 $ cd data-literacy-project
-$ uv init
-``` 
--->
+$ uv init</code></pre>
 <p>Either way, once you’re inside the folder, it’s ready to go! You can explore what uv has created for you by running <code>ls</code>. One of the files you’ll see is pyproject.toml. This is your project’s manifest—a file where uv tracks metadata about your project, including its dependencies (the libraries it needs).</p>
 <p>Speaking of dependencies, let’s add some libraries. Run the following commands:</p>
-<!-- 
-```
-$ uv add gapminder plotnine polars pyarrow great_tables
-$ uv add --dev setuptools jupyter ipykernel pyyaml nbformat nbclient jupyterlab-quarto
-``` 
--->
+<pre><code>$ uv add gapminder plotnine polars pyarrow great_tables
+$ uv add --dev setuptools jupyter ipykernel pyyaml nbformat nbclient jupyterlab-quarto</code></pre>
 <p>These commands install several Python libraries we’ll use throughout the course. Here we separated the main packages we need for analysis and visualization (listed here in the first line), from the auxilliary packages used to set up a computing environment, the tools we are going to use. The idea is that your Python code relying on main dependencies may stay the same, while the computing setup may look completely different. In this course we will be using Jupyter notebooks, but the same analysis can be performed in Python script files in an IDE, such as VS Studio Code or Positron.</p>
 <p>As you run these commands, you will notice that uv installs more packages than we requested. It pulls in the packages that these specified libraries rely on — it handles all the messy details of software dependecies for you! And thanks to uv, the installation will be lightning-fast.</p>
 <p>Curious about what just happened? I want to leave you with a fun little command: it’s called cat. Yes, like the furry little animal! The cat command is a handy way to view the contents of small files directly in your terminal. For larger files, it might take a while to load, but for our purposes, cat is perfect.</p>
 <p>Let’s use it to check out the contents of our project manifest file. In your terminal, type:</p>
 <pre><code>cat pyproject.toml</code></pre>
 <p>When you hit enter, you’ll see something like this:</p>
-<!-- 
-```yaml
-[project]
-name = "data-literacy-project"
-version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
-requires-python = ">=3.10"
-dependencies = [
-    "gapminder>=0.1",
-    "great-tables>=0.17.0",
-    "plotnine>=0.14.5",
-    "polars>=1.25.2",
-    "pyarrow>=19.0.1",
-]
-
-[tool.uv]
-dev-dependencies = [
-    "ipykernel>=6.29.5",
-    "jupyter>=1.1.1",
-    "jupyterlab-quarto>=0.3.5",
-    "nbclient>=0.10.2",
-    "nbformat>=5.10.4",
-    "pyyaml>=6.0.2",
-    "setuptools>=77.0.3",
-]
-``` 
--->
+<div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="at">project</span><span class="kw">]</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="at">name = "data-literacy-project"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="at">version = "0.1.0"</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="at">description = "Add your description here"</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="at">readme = "README.md"</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="at">requires-python = "&gt;=3.10"</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="at">dependencies = [</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"gapminder&gt;=0.1"</span><span class="at">,</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"great-tables&gt;=0.17.0"</span><span class="at">,</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"plotnine&gt;=0.14.5"</span><span class="at">,</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"polars&gt;=1.25.2"</span><span class="at">,</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"pyarrow&gt;=19.0.1"</span><span class="at">,</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="at">]</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="at">tool.uv</span><span class="kw">]</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="at">dev-dependencies = [</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"ipykernel&gt;=6.29.5"</span><span class="at">,</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"jupyter&gt;=1.1.1"</span><span class="at">,</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"jupyterlab-quarto&gt;=0.3.5"</span><span class="at">,</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"nbclient&gt;=0.10.2"</span><span class="at">,</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"nbformat&gt;=5.10.4"</span><span class="at">,</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"pyyaml&gt;=6.0.2"</span><span class="at">,</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"setuptools&gt;=77.0.3"</span><span class="at">,</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="at">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This file, pyproject.toml, serves as a “manifest” for your project. It keeps track of metadata like your project name, version, and—most importantly—dependencies. Each time you add a new library with <code>uv</code> add, it’s recorded here.</p>
 <p>Now, here’s something happening behind the scenes: <code>uv</code> created a hidden folder called <code>.venv</code>. This stands for “virtual environment,” and it’s where all your project’s libraries and dependencies live. Hidden files and folders don’t show up when you run <code>ls</code>— not unless you add the -a flag to the command, so <code>ls -a</code> will, in fact, show that you have this <code>.venv</code> folder in your project directory. But don’t worry that this folder stays hidden, you’ll rarely, if ever, need to open it. <code>uv</code> manages this folder for you, so you can focus on your work without getting bogged down in the details.</p>
 <p>Here’s the most important thing to know: the <code>.venv</code> folder is what makes your project self-contained. All your dependencies are stored there, safe and separate from anything else on your system. This is especially useful if you want to share your work later — a topic we’ll cover in the final module of this course.</p>
 </section>
-<section id="video-6-jupyter-studio-dmytro-12-min" class="level1">
-<h1>VIDEO 6 Jupyter {studio} DMYTRO ~ 12 min</h1>
-<!-- ## Launch Jupyter -->
+<section id="video-6-jupyter" class="level1">
+<h1>VIDEO 6 Jupyter</h1>
 <p>Finally, let’s talk about Jupyter, one of the most transformative tools for interactive data analysis.</p>
 <p>Jupyter is more than just a tool — it’s a revolutionary concept. It provides a cross-platform environment for literate programming, where code, text, and results coexist seamlessly. Oh, and here’s a fun fact: the name “Jupyter” stands for Julia-Python-R, highlighting its roots as a language-agnostic platform for fast prototyping, experimentation, and sharing results. Today, the Jupyter ecosystem has grown immensely, with thousands of educators, practitioners, and enthusiasts gathering annually at JupyterCon, a conference dedicated to this amazing technology.</p>
 <p>At the heart of Jupyter is the Jupyter Notebook, a special format that allows you to write, execute, and save code, alongside text and rich results like visualizations. Behind the scenes, Jupyter maintains a live connection to the execution language—called a kernel. In our case, that’s Python.</p>
@@ -471,42 +494,53 @@ dev-dependencies = [
 <pre><code>uv run --with jupyter jupyter lab</code></pre>
 <p>When you run this command, your terminal will remain busy while Jupyter Lab is running. It’s a good idea to minimize the terminal and let it work in the background. Shortly after, your default web browser will open, displaying the Jupyter Lab interface.</p>
 <p>You’ll see a screen like this:</p>
-<!-- ![](img/jlab-1.png) -->
+<p><img src="img/jlab-1.png" class="img-fluid"></p>
 <p>Click the large blue button in the top left corner—or press Ctrl-Shift-L (or Cmd-Shift-L on a Mac)—to open a Launcher.</p>
-<!-- ![](img/jlab-2.png) -->
+<p><img src="img/jlab-2.png" class="img-fluid"></p>
 <p>In the Launcher, click the “Python 3 (ipykernel)” button under the “Notebook” section. This will open a new tab in Jupyter Lab, where you’ll see an empty document that looks like this:</p>
-<!-- ![](img/jupyterlab-2.png) -->
+<p><img src="img/jupyterlab-2.png" class="img-fluid"></p>
 <p>Now, let’s take a closer look at the Jupyter Notebook interface. A notebook is made up of cells, which can be either code cells or text cells. By default, the first cell is created for you, and it’s set to “code.” The cursor will already be placed in the cell, ready for you to start typing Python code.</p>
 <p>Let’s try a quick example!</p>
 <p>Type the following code into the first cell:</p>
-<!-- 
-```
-from datetime import date
-print('Today is', date.today())
-``` 
--->
+<pre><code>from datetime import date
+print('Today is', date.today())</code></pre>
 <p>Press Ctrl-Enter (or Cmd-Enter on a Mac) to execute the code. You’ll see the output — today’s date — appear below the cell.</p>
-<!-- 
-:::{.challenge}
-Type and execute the following code in the first cell:
-```
-from datetime import date
-print('Today is', date.today())
-```
-::: 
--->
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Type and execute the following code in the first cell:</p>
+<pre><code>from datetime import date
+print('Today is', date.today())</code></pre>
+</div>
+</div>
 <p>Now, let’s get comfortable navigating a Jupyter Notebook. One of the first things you’ll need to master is switching between edit mode and command mode—and trust me, this will become second nature in no time!</p>
 <p>Think of edit mode as the space where you actually type and modify code or text inside a cell. To enter edit mode, simply click anywhere inside the cell or press <strong>Enter</strong>. You’ll know you’re in edit mode when you see a blinking cursor inside the cell, ready for input.</p>
 <p>To exit edit mode and return to command mode, either click outside the cell (on the left where the cell number appears) or hit <strong>Escape</strong> on your keyboard. You’ll notice a solid blue bar on the left—this means the cell is selected, but you’re no longer editing its contents.</p>
 <p>Go ahead and try switching between these modes a few times. Get a feel for how it works.</p>
-<!-- 
-:::{.challenge}
-Type entering and exiting the edit mode in the cell you created. 
-
-- To enter: **click** or hit **Enter**
-- To exit: **click** outside or hit **Esc**
-::: 
--->
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Type entering and exiting the edit mode in the cell you created.</p>
+<ul>
+<li>To enter: <strong>click</strong> inside the cell or hit <strong>Enter</strong></li>
+<li>To exit: <strong>click</strong> outside the cell or hit <strong>Esc</strong></li>
+</ul>
+</div>
+</div>
 <p>Once you’re in <strong>command</strong> mode, you can do all sorts of things without clicking around:</p>
 <ul>
 <li>Press B (for below) to insert a new cell below the current one.</li>
@@ -538,11 +572,19 @@ Note
 </ul>
 <p>Try it out! Write a short description of what the code above does, and experiment with different formatting styles.</p>
 <p>Once you’re done, press Ctrl + Enter (or Cmd + Enter on a Mac) to render the text. You’ll see your formatting instantly applied — headings will be bold and large, italicized text will appear slanted, and everything will look clean and structured.</p>
-<!-- 
-:::{.challenge}
-Add a description of what the code does, use text formatting. Conclude with Ctrl-Enter (or Cmd-Enter on a Mac) to render it. 
-::: 
--->
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Add a description of what the code does, use text formatting. Conclude with Ctrl-Enter (or Cmd-Enter on a Mac) to render it.</p>
+</div>
+</div>
 <p>Need to turn a Markdown cell into a code cell? Hit <strong>Y</strong> and the cell will now behave like a code cell again. But be careful! If you still have the regular text in the cell, Jupyter will attempt to interpret it as Python code — and you’ll likely see an error. To avoid this, always double-check your cell type before running it.</p>
 <p>Once you’ve mastered switching between edit and command modes, navigating through your notebook becomes much easier. Here are a few handy shortcuts:</p>
 <ul>
@@ -571,13 +613,23 @@ Add a description of what the code does, use text formatting. Conclude with Ctrl
 <li>Practice switching between cell types and organizing your notebook logically.</li>
 </ul>
 <p>The more you explore, the more natural this workflow will feel. So go ahead—start experimenting!</p>
-<!-- 
-:::{.challenge}
-- Add a code cell, write Python code to perform simple arithmetic operations.
-- Add comments in a Markdown cell. Adding formatting
-- Add structure to your notebook using headers of different levels.
-::: 
--->
+<div class="callout callout-style-default callout-challenge callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Add a code cell, write Python code to perform simple arithmetic operations.</li>
+<li>Add comments in a Markdown cell. Adding formatting</li>
+<li>Add structure to your notebook using headers of different levels.</li>
+</ul>
+</div>
+</div>
 <p>When you’re ready to save your work, simply press Ctrl-S (or Cmd-S on a Mac). Make sure to give your notebook a meaningful name, something that clearly reflects its purpose. And don’t forget to keep the .ipynb file extension — this tells your system that it’s a Jupyter notebook file.</p>
 <p>I hope you’re having fun exploring this amazing tool! Jupyter Notebooks are powerful, versatile, and an essential part of the modern data analysis toolkit. Whether you’re exploring datasets, building models, or documenting your findings, this environment gives you the flexibility to do it all in one place.</p>
 <p>When you return to Jupyter Lab, finding your work is easy. Just look in the file explorer on the left, click on your notebook, and it will open exactly as you left it—ready for you to pick up where you left off.</p>

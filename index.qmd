@@ -3,7 +3,7 @@ title: "Data Literacy with Python"
 ---
 
 
-## VIDEO 1 Introduction {studio} ~ 12  min
+## VIDEO 1 Introduction
 
 LINDA: 
 
@@ -100,9 +100,7 @@ The datasets may be small, but the questions and challenges we tackle are univer
 Let’s get started on this exciting journey into the world of data literacy!
 
 
-# VIDEO 2 Shell {studio} LINDA ~ 7 min
-
-<!-- ## Shell -->
+# VIDEO 2 Shell
 
 Before we dive into the thrilling world of data analysis, let’s pause and talk about something fundamental: your computer. That’s right, the device you’re watching this on is more than just a tool—it’s the backbone of your data analysis journey. Set it up well, and it will help you create reliable, reproducible, and stunning analytic projects.
 
@@ -117,11 +115,10 @@ Once you’re ready, we’ll discuss folders—yes, the simple yet crucial task 
 Find and open the terminal on your computer. Take that first step toward becoming a power user!
 
 < PAUSE >
-<!-- :::{.challenge}
-Find and open the terminal on your computer.
-::: -->
 
-<!-- ## On files and folders -->
+:::{.challenge}
+Find and open the terminal on your computer.
+:::
 
 Now that you’ve found your terminal, it’s time to talk about something fundamental to every data analysis project: files and folders.
 
@@ -135,18 +132,15 @@ Let’s take a moment to explore this on your computer.
 
 - On Windows, you can open File Explorer by clicking the icon on your taskbar or pressing the Windows key + E. Once it’s open, you’ll see something like this:
 
-< PAUSE >
-<!-- ![](img/win_explorer.png) -->
+![](img/win_explorer.png)
 
 - On Mac, you’ll use an app called Finder. Just click its icon in the Dock, and you’ll see a view like this:
 
-< PAUSE >
-<!-- ![](img/mac_finder.png) -->
+![](img/mac_finder.png)
 
 - On Linux, it’s often just called Files, and the interface may vary depending on your distribution. On Ubuntu, it looks like this:
 
-< PAUSE >
-<!-- ![](img/linux-files.png) -->
+![](img/linux-files.png)
 
 Inside these interfaces, folders are easy to spot with their distinct icons. Click on one, and you’ll dive inside to see its contents—maybe more files, maybe more folders.
 
@@ -158,8 +152,7 @@ Instead, consider creating a dedicated folder for your data analysis projects. F
 
 Once you’ve chosen your perfect home base, we’ll move on to the next step: learning how to navigate your files and folders using the command line. Trust me, it’s easier than it sounds, and it will make your workflow so much more efficient!
 
-# VIDEO 3 Navigation {studio} DMYTRO ~ 6 min
-<!-- ## Navigating in the command line -->
+# VIDEO 3 Navigation
 
 Alright, let’s open up your terminal! Don’t worry — this is not as intimidating as it might look. I’m going to guide you through some simple steps that will help you make sense of this dark text window, and these skills will serve you every time you use the command line.
 
@@ -177,12 +170,10 @@ Go ahead and type pwd (or cd on Windows) and hit Enter. Your terminal will respo
 
 For example, my terminal tells me this:
 
-<!-- 
 ```
 Dmytro@dell-xps-9570: $ pwd  
 /home/Dmytro  
 ``` 
--->
 
 This means my terminal has opened in my user directory. That’s the folder where my personal files are stored.
 
@@ -192,7 +183,6 @@ To find out, use the command `ls`. This stands for “list,” and it will show 
 
 Here’s what my terminal shows when I type `ls`:
 
-<!-- 
 ```
 Dmytro@dell-xps-9570:~$ ls  
  'Calibre Library'  Pictures           Projects  
@@ -200,7 +190,6 @@ Dmytro@dell-xps-9570:~$ ls
  Documents          Downloads          Templates  
  Zotero             Music              Scanned_Document_House.pdf  
 ``` 
--->
 
 As you can see, I have a mix of directories and one lonely PDF document I prepared for the tax authorities. I recognize all of these files—they’re the same ones I’d see if I opened my Files app and navigated to my user directory.
 
@@ -230,8 +219,6 @@ The two dots (..) mean “go up one level.” Hit Enter, and you’ll be back in
 
 Let me show you an example of a full roundtrip: cd Pictures - pwd - cd .. - pwd
 
-
-<!-- 
 ```
 Dmytro@dell-xps-9570:~$ cd Pictures  
 Dmytro@dell-xps-9570:~/Pictures$ pwd  
@@ -240,21 +227,18 @@ Dmytro@dell-xps-9570:~/Pictures$ cd ..
 Dmytro@dell-xps-9570:~$ pwd  
 /home/Dmytro  
 ``` 
--->
 
 See how simple that was? Using just `cd` and `cd ..`, you can navigate up and down the directory tree.
 
 Now it’s your turn! Play around with these commands. Practice navigating into folders and back out again. There are faster ways to move around your file system, but for now, these basic steps are more than enough to get you started. Once you’re comfortable with these movements, please, take an effort to navigate to the directory, where you decided to store your project files.
 
-<!-- :::{.challenge}
+:::{.challenge}
 Using `cd`, `cd ..` and `ls`, navigate to the directory, where you decided to store your project files.
-::: -->
+:::
 
 When you have done that, join me in the next section, where we’ll begin installing some software to set up your data analysis environment. I’ll see you there!
 
-# VIDEO 4 uv {studio} DMYTRO ~ 3 min
-
-<!-- ## Installing uv -->
+# VIDEO 4 uv
 
 Alright, now it’s time to roll up our sleeves and install one of the most exciting tools in modern Python development—uv!
 
@@ -262,14 +246,14 @@ uv is an incredibly fast Python installation and environment manager, written in
 
 When I say “fast,” I mean lightning fast—orders of magnitude faster than its popular counterparts! Just look at this chart:
 
-<!-- ![](img/uv-perf-chart.png) -->
+![](img/uv-perf-chart.png)
 
 Not only is uv fast, but it’s also environmentally friendly. Yes, it’s saving the planet! By reducing the time and energy it takes for data centers to rebuild their test and development environments daily, uv contributes to a smaller carbon footprint.
 
 In this course, we’ll only scratch the surface of what uv can do. But I promise, as you start using it in your real-life projects, your appreciation for this tool—and the Astral team behind it—will grow exponentially
 
 Now let’s get started with the installation. Open your terminal and type the following command. 
-<!-- 
+
 :::{.challenge}
 
 On Mac or Linux, use the following command after the system prompt:
@@ -283,18 +267,17 @@ On Windown, type the following:
 powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 ``` 
 ::: 
--->
+
 Hit Enter, and the installation should begin.
 
 If you already have Python installed, you can also install uv using one of Python’s existing package managers. On Mac, it’s even possible to install it through Homebrew. I’ll include a link to the official documentation with detailed instructions below this video.
 
-<!-- :::{.challenge}
+:::{.challenge}
 Check out `uv` installation instructions at https://docs.astral.sh/uv/getting-started/installation/
-::: -->
+:::
 
 Once the installation is complete, let’s check if everything worked. In your terminal, type `uv`. You should see output that looks something like this:
 
-<!-- 
 ```
 uv
 
@@ -307,15 +290,12 @@ uv
 #>  init     Create a new project
 #>  ...
 ``` 
--->
 
 If you see that, congratulations! You’ve successfully installed uv. 
 
 From now on, we’ll use uv to manage everything, including installing Python itself. Stay with me as we continue setting up your computing environment. I’ll see you in the next section!
 
-# VIDEO 5 Python {studio} DMYTRO ~ 10 min
-
-<!-- ## Managing python installation -->
+# VIDEO 5 Python
 
 uv isn’t just a package and environment manager—it also handles Python installations effortlessly. Let’s start by checking if uv can detect an existing Python installation on your system.
 
@@ -326,11 +306,10 @@ uv python find
 ```
 
 If uv detects a Python installation, it will return the path to it. This path will also likely give you a clue about the Python version. But if you’re unsure about the version, you can use this command:
-<!-- 
+
 ```
 uv python list --only-installed
 ``` 
--->
 
 Now comes the decision point: Do you want to use your existing Python installation, or would you prefer a fresh installation managed entirely by uv?
 
@@ -338,15 +317,13 @@ Here’s my advice: While you can use the Python installation that uv detects, i
 
 Python environment management has historically been a mess! XKCD even made a [famous comic](https://xkcd.com/1987/) about it. 
 
-<!-- ![](https://imgs.xkcd.com/comics/python_environment_2x.png) -->
+![](https://imgs.xkcd.com/comics/python_environment_2x.png)
 
 Yeah, it can get pretty bad. But don’t worry—with uv, that nightmare is a thing of the past. If you’re ready to let uv manage your Python installation, run this command: 
 
-<!-- 
 ```
 uv python install
 ``` 
--->
 
 This will install the latest and greatest version of Python, which will now be entirely supervised by uv. If the installation completes without errors, you’re officially set up with Python! To verify, you can run the uv python find command again, and it should show the new Python installation.
 
@@ -356,35 +333,29 @@ As we discussed earlier, every data analysis project should live in its own fold
 
 So, pick a short, meaningful name without spaces. I’ve decided to call my project data-literacy-project. Once you’ve chosen a name, make sure you’re in the directory where you want to create your project. You can double-check by running `pwd` (`cd` on Windows).  Now, let’s initialize your project. Type the following, replacing `data-literacy-project` with your project’s name:
 
-<!-- 
 ```
 uv init data-literacy-project
 cd data-literacy-project
 ``` 
--->
 
 Note that the second command navigates you into the folder (remember, we learned `cd foldername`). That is because `uv init` has created a new directory for you with the name you picked. There's one command I did not tell you about, which allows you to create directories manually. It is called `mkdir` which stands for "make directory", followed by the directory name. 
 
 If you prefer, you could create the folder yourself and then initialize it with uv. Here’s how that would look:
 
-<!-- 
 ```
 $ mkdir data-literacy-project
 $ cd data-literacy-project
 $ uv init
 ``` 
--->
 
 Either way, once you’re inside the folder, it’s ready to go! You can explore what uv has created for you by running `ls`. One of the files you’ll see is pyproject.toml. This is your project’s manifest—a file where uv tracks metadata about your project, including its dependencies (the libraries it needs).
 
 Speaking of dependencies, let’s add some libraries. Run the following commands:
 
-<!-- 
 ```
 $ uv add gapminder plotnine polars pyarrow great_tables
 $ uv add --dev setuptools jupyter ipykernel pyyaml nbformat nbclient jupyterlab-quarto
 ``` 
--->
 
 These commands install several Python libraries we’ll use throughout the course. Here we separated the main packages we need for analysis and visualization (listed here in the first line), from the auxilliary packages used to set up a computing environment, the tools we are going to use. The idea is that your Python code relying on main dependencies may stay the same, while the computing setup may look completely different. In this course we will be using Jupyter notebooks, but the same analysis can be performed in Python script files in an IDE, such as VS Studio Code or Positron.
 
@@ -400,7 +371,6 @@ cat pyproject.toml
 
 When you hit enter, you’ll see something like this:
 
-<!-- 
 ```yaml
 [project]
 name = "data-literacy-project"
@@ -427,7 +397,6 @@ dev-dependencies = [
     "setuptools>=77.0.3",
 ]
 ``` 
--->
 
 This file, pyproject.toml, serves as a “manifest” for your project. It keeps track of metadata like your project name, version, and—most importantly—dependencies. Each time you add a new library with `uv` add, it’s recorded here.
 
@@ -435,8 +404,7 @@ Now, here’s something happening behind the scenes: `uv` created a hidden folde
 
 Here’s the most important thing to know: the `.venv` folder is what makes your project self-contained. All your dependencies are stored there, safe and separate from anything else on your system. This is especially useful if you want to share your work later — a topic we’ll cover in the final module of this course.
 
-# VIDEO 6 Jupyter {studio} DMYTRO ~ 12 min
-<!-- ## Launch Jupyter -->
+# VIDEO 6 Jupyter
 
 Finally, let’s talk about Jupyter, one of the most transformative tools for interactive data analysis.
 
@@ -454,15 +422,15 @@ When you run this command, your terminal will remain busy while Jupyter Lab is r
 
 You’ll see a screen like this:
 
-<!-- ![](img/jlab-1.png) -->
+![](img/jlab-1.png)
 
 Click the large blue button in the top left corner—or press Ctrl-Shift-L (or Cmd-Shift-L on a Mac)—to open a Launcher.
 
-<!-- ![](img/jlab-2.png) -->
+![](img/jlab-2.png)
 
 In the Launcher, click the "Python 3 (ipykernel)" button under the "Notebook" section. This will open a new tab in Jupyter Lab, where you’ll see an empty document that looks like this:
 
-<!-- ![](img/jupyterlab-2.png) -->
+![](img/jupyterlab-2.png)
 
 Now, let’s take a closer look at the Jupyter Notebook interface. A notebook is made up of cells, which can be either code cells or text cells. By default, the first cell is created for you, and it’s set to "code." The cursor will already be placed in the cell, ready for you to start typing Python code.
 
@@ -470,16 +438,13 @@ Let’s try a quick example!
 
 Type the following code into the first cell:
 
-<!-- 
 ```
 from datetime import date
 print('Today is', date.today())
 ``` 
--->
 
 Press Ctrl-Enter (or Cmd-Enter on a Mac) to execute the code. You’ll see the output — today’s date — appear below the cell. 
 
-<!-- 
 :::{.challenge}
 Type and execute the following code in the first cell:
 ```
@@ -487,7 +452,6 @@ from datetime import date
 print('Today is', date.today())
 ```
 ::: 
--->
 
 Now, let's get comfortable navigating a Jupyter Notebook. One of the first things you'll need to master is switching between edit mode and command mode—and trust me, this will become second nature in no time!
 
@@ -497,14 +461,12 @@ To exit edit mode and return to command mode, either click outside the cell (on 
 
 Go ahead and try switching between these modes a few times. Get a feel for how it works.
 
-<!-- 
 :::{.challenge}
 Type entering and exiting the edit mode in the cell you created. 
 
-- To enter: **click** or hit **Enter**
-- To exit: **click** outside or hit **Esc**
-::: 
--->
+- To enter: **click** inside the cell or hit **Enter**
+- To exit: **click** outside the cell or hit **Esc**
+:::
 
 Once you're in **command** mode, you can do all sorts of things without clicking around:
 
@@ -535,11 +497,9 @@ Try it out! Write a short description of what the code above does, and experimen
 
 Once you're done, press Ctrl + Enter (or Cmd + Enter on a Mac) to render the text. You’ll see your formatting instantly applied — headings will be bold and large, italicized text will appear slanted, and everything will look clean and structured.
 
-<!-- 
 :::{.challenge}
 Add a description of what the code does, use text formatting. Conclude with Ctrl-Enter (or Cmd-Enter on a Mac) to render it. 
 ::: 
--->
 
 Need to turn a Markdown cell into a code cell? Hit **Y** and the cell will now behave like a code cell again. But be careful! If you still have the regular text in the cell, Jupyter will attempt to interpret it as Python code — and you'll likely see an error. To avoid this, always double-check your cell type before running it.
 
@@ -577,13 +537,11 @@ Jupyter is meant to be interactive, so play around with it!
 
 The more you explore, the more natural this workflow will feel. So go ahead—start experimenting! 
 
-<!-- 
 :::{.challenge}
 - Add a code cell, write Python code to perform simple arithmetic operations.
 - Add comments in a Markdown cell. Adding formatting
 - Add structure to your notebook using headers of different levels.
 ::: 
--->
 
 When you're ready to save your work, simply press Ctrl-S (or Cmd-S on a Mac). Make sure to give your notebook a meaningful name, something that clearly reflects its purpose. And don’t forget to keep the .ipynb file extension — this tells your system that it’s a Jupyter notebook file. 
 

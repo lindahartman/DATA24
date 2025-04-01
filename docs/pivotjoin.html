@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -153,13 +187,13 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#video-1-bffp-data-greenscreen-9-min" id="toc-video-1-bffp-data-greenscreen-9-min" class="nav-link active" data-scroll-target="#video-1-bffp-data-greenscreen-9-min">VIDEO 1 BFFP data {greenscreen} ~ 9 min</a></li>
-  <li><a href="#video-2-aggregation-greenscreen-3-min" id="toc-video-2-aggregation-greenscreen-3-min" class="nav-link" data-scroll-target="#video-2-aggregation-greenscreen-3-min">VIDEO 2 Aggregation {greenscreen} ~ 3 min</a></li>
-  <li><a href="#video-4-wide-and-long-data-greenscreen-9-min" id="toc-video-4-wide-and-long-data-greenscreen-9-min" class="nav-link" data-scroll-target="#video-4-wide-and-long-data-greenscreen-9-min">VIDEO 4 Wide and long data {greenscreen} ~ 9 min</a></li>
-  <li><a href="#video-5-great-tables-greenscreen-6-min" id="toc-video-5-great-tables-greenscreen-6-min" class="nav-link" data-scroll-target="#video-5-great-tables-greenscreen-6-min">VIDEO 5 great tables {greenscreen} ~ 6 min</a></li>
+  <li><a href="#video-1-bffp-data" id="toc-video-1-bffp-data" class="nav-link active" data-scroll-target="#video-1-bffp-data">VIDEO 1 BFFP data</a></li>
+  <li><a href="#video-2-aggregation" id="toc-video-2-aggregation" class="nav-link" data-scroll-target="#video-2-aggregation">VIDEO 2 Aggregation</a></li>
+  <li><a href="#video-4-wide-and-long-data" id="toc-video-4-wide-and-long-data" class="nav-link" data-scroll-target="#video-4-wide-and-long-data">VIDEO 4 Wide and long data</a></li>
+  <li><a href="#video-5-great-tables" id="toc-video-5-great-tables" class="nav-link" data-scroll-target="#video-5-great-tables">VIDEO 5 great tables</a></li>
   <li><a href="#video-6-intro-to-joins-greenscreen-10-min" id="toc-video-6-intro-to-joins-greenscreen-10-min" class="nav-link" data-scroll-target="#video-6-intro-to-joins-greenscreen-10-min">VIDEO 6 intro to joins {greenscreen} ~ 10 min</a></li>
   <li><a href="#video-7-joining-household-pollution-data-greenscreen-3-min" id="toc-video-7-joining-household-pollution-data-greenscreen-3-min" class="nav-link" data-scroll-target="#video-7-joining-household-pollution-data-greenscreen-3-min">VIDEO 7 joining household pollution data {greenscreen} ~ 3 min</a></li>
-  <li><a href="#video-8-stacking-greenscreen-7-min" id="toc-video-8-stacking-greenscreen-7-min" class="nav-link" data-scroll-target="#video-8-stacking-greenscreen-7-min">VIDEO 8 stacking {greenscreen} ~ 7 min</a></li>
+  <li><a href="#video-8-stacking" id="toc-video-8-stacking" class="nav-link" data-scroll-target="#video-8-stacking">VIDEO 8 stacking</a></li>
   </ul>
 </nav>
     </div>
@@ -185,8 +219,8 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 </header>
 
 
-<section id="video-1-bffp-data-greenscreen-9-min" class="level1">
-<h1>VIDEO 1 BFFP data {greenscreen} ~ 9 min</h1>
+<section id="video-1-bffp-data" class="level1">
+<h1>VIDEO 1 BFFP data</h1>
 <p>Hello and welcome back to Data Literacy with Python!</p>
 <p>We’re continuing our exciting journey into data wrangling — a cornerstone of analysis and storytelling. If you’ve been following along, congratulations! You’ve covered a lot of ground and gained some serious data skills.</p>
 <p>Let’s quickly recap:</p>
@@ -198,31 +232,380 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <p>These are all essential skills, and you’re doing great!</p>
 <p>But now, it’s time to level up. Today, we’re tackling data reshaping and joins, two powerful techniques for reorganizing and enriching datasets. I also promised you some nice-looking tables, and I intend to deliver! We’ll be using the amazing <code>great_tables</code> library for our table designs. Let’s load up the libraries and dive right in.</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="8de44870" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars.selectors <span class="im">as</span> cs</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> great_tables <span class="im">import</span> GT</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Today’s dataset comes from the <em>Break from Plastics</em> environmental campaign — a sample with a powerful story. Here’s a quck overview:</p>
 <p>&lt; PAUSE &gt;</p>
-<!-- ::: {.callout-note collapse=true}
-In 2020, thanks to our members and allies, Break Free From Plastic engaged 14,734 volunteers in 55 countries to conduct 575 brand audits. These volunteers collected 346,494 pieces of plastic waste, 63% of which was marked with a clear consumer brand. Despite the challenges of organizing during a global pandemic, our volunteers safely coordinated more brand audit events in more countries this year than in the previous two years. As a special activity during the pandemic, we also worked with over 300 waste pickers to highlight their roles as essential workers. Participants catalogued over 5,000 brands in this year’s global audit. Our analysis reveals the following as the 2020 Top 10 Global Polluters: The Coca-Cola Company; PepsiCo; Nestlé; Unilever; Mondelez International; Mars, Inc.; Procter & Gamble; Philip Morris International; Colgate-Palmolive; and Perfetti Van Melle. 
-::: -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In 2020, thanks to our members and allies, Break Free From Plastic engaged 14,734 volunteers in 55 countries to conduct 575 brand audits. These volunteers collected 346,494 pieces of plastic waste, 63% of which was marked with a clear consumer brand. Despite the challenges of organizing during a global pandemic, our volunteers safely coordinated more brand audit events in more countries this year than in the previous two years. As a special activity during the pandemic, we also worked with over 300 waste pickers to highlight their roles as essential workers. Participants catalogued over 5,000 brands in this year’s global audit. Our analysis reveals the following as the 2020 Top 10 Global Polluters: The Coca-Cola Company; PepsiCo; Nestlé; Unilever; Mondelez International; Mars, Inc.; Procter &amp; Gamble; Philip Morris International; Colgate-Palmolive; and Perfetti Van Melle.</p>
+</div>
+</div>
 <p>Have a look at the code that brings this data into our workspace:</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="51e891bd" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plastics_df <span class="op">=</span> pl.read_csv(<span class="st">'https://bit.ly/data24-bffplastics'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plastics_docs <span class="op">=</span> pl.DataFrame({</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Variable'</span>: [<span class="st">'region'</span>, <span class="st">'country_code'</span> , <span class="st">'country'</span>, <span class="st">'year'</span>, <span class="st">'parent_company'</span>, <span class="st">'empty'</span>, <span class="st">'hdpe'</span>, <span class="st">'ldpe'</span>, <span class="st">'o'</span>, <span class="st">'pet'</span>, <span class="st">'pp'</span>, <span class="st">'ps'</span>, <span class="st">'pvc'</span>, <span class="st">'grand_total'</span>, <span class="st">'num_events'</span>, <span class="st">'volunteers'</span>],</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Class'</span>: [<span class="st">'character'</span>,<span class="st">'character'</span>,<span class="st">'character'</span>, <span class="st">'double'</span>, <span class="st">'character'</span>, <span class="st">'double'</span>, <span class="st">'double'</span>, <span class="st">'double'</span>, <span class="st">'double'</span>, <span class="st">'double'</span>, <span class="st">'double'</span>, <span class="st">'double'</span>, <span class="st">'double'</span>, <span class="st">'double'</span>, <span class="st">'double'</span>, <span class="st">'double'</span>],</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Description'</span>: [<span class="st">'Region'</span>, <span class="st">'Alpha 3 ISO 3166 code'</span>,<span class="st">'Country of cleanup'</span>, <span class="st">'Year (2019 or 2020)'</span>, <span class="st">'Source of plastic (company name)'</span>, <span class="st">'Category left empty count'</span>, <span class="st">'High density polyethylene count (Plastic milk containers, plastic bags, bottle caps, trash cans, oil cans, plastic lumber, toolboxes, supplement containers)'</span>, <span class="st">'Low density polyethylene count (Plastic bags, Ziploc bags, buckets, squeeze bottles, plastic tubes, chopping boards)'</span>, <span class="st">'Category marked other count'</span>, <span class="st">'Polyester plastic count (Polyester fibers, soft drink bottles, food containers (also see plastic bottles)'</span>, <span class="st">'Polypropylene count (Flower pots, bumpers, car interior trim, industrial fibers, carry-out beverage cups, microwavable food containers, DVD keep cases)'</span>, <span class="st">'Polystyrene count (Toys, video cassettes, ashtrays, trunks, beverage/food coolers, beer cups, wine and champagne cups, carry-out food containers, Styrofoam)'</span>, <span class="st">'PVC plastic count (Window frames, bottles for chemicals, flooring, plumbing pipes)'</span>, <span class="st">'Grand total count (all types of plastic)'</span>, <span class="st">'Number of counting events'</span>, <span class="st">'Number of volunteers'</span>]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>In your notebook you can see the code for importing the data, as well as a DataFrame containing a data dictionary — a detailed description of the variables in this dataset.</p>
 <p>So far, we’ve always imported data from CSV files or pre-built datasets. But now, it’s time to talk about creating data frames by hand. This is super handy when working with small examples, prototypes, or mock data. To do that, we need to talk about two foundational Python data structures: dictionaries and lists.</p>
 <p>Think of a dictionary as a way to describe an object. It’s a collection of “key-value” pairs—like writing down standard characteristics of something along with their values. Dictionaries are specified with curly brackets <code>{}</code>. Let’s say I want to describe my bike:</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="e3b3f648" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Bicycle <span class="op">=</span> {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Type'</span>: <span class="st">'Hybrid'</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Size'</span>: <span class="dv">28</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Make'</span>: <span class="st">'Merida'</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Color'</span>: <span class="st">'Grey'</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Price'</span>: <span class="dv">250</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Here, each characteristic—like Type or Size—has one value. Easy, right? But what if I also wanted to describe the bikes of my twins? I’d need three records, not one.</p>
 <p>This is where lists come in. A list is a collection of items—typically of the same type—and it’s denoted with square brackets <code>[]</code>. Let’s use lists to describe all the bikes in my garage:</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="c2b77b46" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Bikes <span class="op">=</span> {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Type'</span>: [<span class="st">'Hybrid'</span>, <span class="st">'MTX'</span>, <span class="st">'BMX'</span>],</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Size'</span>: [<span class="dv">28</span>, <span class="dv">24</span>, <span class="dv">26</span>], </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Make'</span>: [<span class="st">'Merida'</span>, <span class="st">'Giant'</span>, <span class="st">'Specialized'</span>],</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Color'</span>: [<span class="st">'Grey'</span>, <span class="st">'White'</span>, <span class="st">'Orange'</span>],</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Price'</span>: [<span class="dv">250</span>, <span class="dv">180</span>, <span class="dv">220</span>]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Now, we have a dictionary of lists, representing three bikes. To turn this into a Polars DataFrame, all we need to do is pass it to the <code>pl.DataFrame()</code> function:</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="da56604e" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bikes_df <span class="op">=</span> pl.DataFrame(Bikes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>And just like that, we’ve created a data frame by hand! This is a simple yet powerful way to structure and manipulate small datasets.</p>
 <p>Our <code>plastics_docs</code> specifies three characteristics: the variable names (<code>Variable</code>), their data types (<code>Class</code>), and their descriptions (<code>Description</code>).</p>
 <p>This table essentially acts as documentation for the <code>plastics_df</code>. But let’s face it — raw data frames, while functional, don’t always look polished or presentation-ready. That’s where the Great Tables package comes in.</p>
 <p>Great Tables is like a graphic design toolkit for your tables! It introduces a “grammar of tables,” similar to how <code>plotnine</code> provides a “grammar of graphics.” This makes it super easy to transform plain data frames into beautifully styled tables with minimal effort.</p>
 <p>The core function in Great Tables is <code>GT()</code>, and it works similarly to how we use <code>ggplot</code> for creating plots. Let’s take a sneak peek at its capabilities by styling our <code>plastics_docs</code> data frame. Here’s how we do it:</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="6fe8a466" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>GT(plastics_docs)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    .opt_stylize(style<span class="op">=</span><span class="dv">3</span>, color<span class="op">=</span><span class="st">'cyan'</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div id="lmpwdqdqir" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>
+#lmpwdqdqir table {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+#lmpwdqdqir thead, tbody, tfoot, tr, td, th { border-style: none; }
+ tr { background-color: transparent; }
+#lmpwdqdqir p { margin: 0; padding: 0; }
+ #lmpwdqdqir .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #lmpwdqdqir .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #lmpwdqdqir .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
+ #lmpwdqdqir .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
+ #lmpwdqdqir .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #lmpwdqdqir .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; }
+ #lmpwdqdqir .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #lmpwdqdqir .gt_col_heading { color: #FFFFFF; background-color: #016763; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #lmpwdqdqir .gt_column_spanner_outer { color: #FFFFFF; background-color: #016763; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #lmpwdqdqir .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #lmpwdqdqir .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #lmpwdqdqir .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #lmpwdqdqir .gt_spanner_row { border-bottom-style: hidden; }
+ #lmpwdqdqir .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #lmpwdqdqir .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; vertical-align: middle; }
+ #lmpwdqdqir .gt_from_md> :first-child { margin-top: 0; }
+ #lmpwdqdqir .gt_from_md> :last-child { margin-bottom: 0; }
+ #lmpwdqdqir .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: dashed; border-top-width: 1px; border-top-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #929292; border-right-style: none; border-right-width: 1px; border-right-color: #929292; vertical-align: middle; overflow-x: hidden; }
+ #lmpwdqdqir .gt_stub { color: #333333; background-color: #D5D5D5; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: none; border-right-width: 2px; border-right-color: #FFFFFF; padding-left: 5px; padding-right: 5px; }
+ #lmpwdqdqir .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #lmpwdqdqir .gt_row_group_first td { border-top-width: 2px; }
+ #lmpwdqdqir .gt_row_group_first th { border-top-width: 2px; }
+ #lmpwdqdqir .gt_striped { background-color: #F4F4F4; }
+ #lmpwdqdqir .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; }
+ #lmpwdqdqir .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #lmpwdqdqir .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #lmpwdqdqir .gt_left { text-align: left; }
+ #lmpwdqdqir .gt_center { text-align: center; }
+ #lmpwdqdqir .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #lmpwdqdqir .gt_font_normal { font-weight: normal; }
+ #lmpwdqdqir .gt_font_bold { font-weight: bold; }
+ #lmpwdqdqir .gt_font_italic { font-style: italic; }
+ #lmpwdqdqir .gt_super { font-size: 65%; }
+ #lmpwdqdqir .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #lmpwdqdqir .gt_asterisk { font-size: 100%; vertical-align: 0; }
+ 
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Variable" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Variable</th>
+<th id="Class" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Class</th>
+<th id="Description" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Description</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left">region</td>
+<td class="gt_row gt_left">character</td>
+<td class="gt_row gt_left">Region</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped">country_code</td>
+<td class="gt_row gt_left gt_striped">character</td>
+<td class="gt_row gt_left gt_striped">Alpha 3 ISO 3166 code</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left">country</td>
+<td class="gt_row gt_left">character</td>
+<td class="gt_row gt_left">Country of cleanup</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped">year</td>
+<td class="gt_row gt_left gt_striped">double</td>
+<td class="gt_row gt_left gt_striped">Year (2019 or 2020)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left">parent_company</td>
+<td class="gt_row gt_left">character</td>
+<td class="gt_row gt_left">Source of plastic (company name)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped">empty</td>
+<td class="gt_row gt_left gt_striped">double</td>
+<td class="gt_row gt_left gt_striped">Category left empty count</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left">hdpe</td>
+<td class="gt_row gt_left">double</td>
+<td class="gt_row gt_left">High density polyethylene count (Plastic milk containers, plastic bags, bottle caps, trash cans, oil cans, plastic lumber, toolboxes, supplement containers)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped">ldpe</td>
+<td class="gt_row gt_left gt_striped">double</td>
+<td class="gt_row gt_left gt_striped">Low density polyethylene count (Plastic bags, Ziploc bags, buckets, squeeze bottles, plastic tubes, chopping boards)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left">o</td>
+<td class="gt_row gt_left">double</td>
+<td class="gt_row gt_left">Category marked other count</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped">pet</td>
+<td class="gt_row gt_left gt_striped">double</td>
+<td class="gt_row gt_left gt_striped">Polyester plastic count (Polyester fibers, soft drink bottles, food containers (also see plastic bottles)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left">pp</td>
+<td class="gt_row gt_left">double</td>
+<td class="gt_row gt_left">Polypropylene count (Flower pots, bumpers, car interior trim, industrial fibers, carry-out beverage cups, microwavable food containers, DVD keep cases)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped">ps</td>
+<td class="gt_row gt_left gt_striped">double</td>
+<td class="gt_row gt_left gt_striped">Polystyrene count (Toys, video cassettes, ashtrays, trunks, beverage/food coolers, beer cups, wine and champagne cups, carry-out food containers, Styrofoam)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left">pvc</td>
+<td class="gt_row gt_left">double</td>
+<td class="gt_row gt_left">PVC plastic count (Window frames, bottles for chemicals, flooring, plumbing pipes)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped">grand_total</td>
+<td class="gt_row gt_left gt_striped">double</td>
+<td class="gt_row gt_left gt_striped">Grand total count (all types of plastic)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left">num_events</td>
+<td class="gt_row gt_left">double</td>
+<td class="gt_row gt_left">Number of counting events</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped">volunteers</td>
+<td class="gt_row gt_left gt_striped">double</td>
+<td class="gt_row gt_left gt_striped">Number of volunteers</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+        
+</div>
+</div>
 <p>Voilà! <code>.opt_stylize()</code> method has some pre-built styles, which we used to convert a boring data frame into a polished and professional-looking table, ready to be shared or included in reports. Don’t worry about memorizing the details just yet — we’ll explore <code>GT()</code> more thoroughly in the upcoming sections.</p>
 <p>Before we move on, let’s take a quick look at the data itself. Here’s a snippet of the first five rows of the <code>plastics_df</code>:</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="c1cf9a3f" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plastics_df</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">5</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 16)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">parent_company</th>
+<th data-quarto-table-cell-role="th">empty</th>
+<th data-quarto-table-cell-role="th">hdpe</th>
+<th data-quarto-table-cell-role="th">ldpe</th>
+<th data-quarto-table-cell-role="th">o</th>
+<th data-quarto-table-cell-role="th">pet</th>
+<th data-quarto-table-cell-role="th">pp</th>
+<th data-quarto-table-cell-role="th">ps</th>
+<th data-quarto-table-cell-role="th">pvc</th>
+<th data-quarto-table-cell-role="th">grand_total</th>
+<th data-quarto-table-cell-role="th">num_events</th>
+<th data-quarto-table-cell-role="th">volunteers</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2019</td>
+<td>"Grand Total"</td>
+<td>0</td>
+<td>215</td>
+<td>55</td>
+<td>607</td>
+<td>1376</td>
+<td>281</td>
+<td>116</td>
+<td>18</td>
+<td>2668</td>
+<td>4</td>
+<td>243</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2019</td>
+<td>"Unbranded"</td>
+<td>0</td>
+<td>155</td>
+<td>50</td>
+<td>532</td>
+<td>848</td>
+<td>122</td>
+<td>114</td>
+<td>17</td>
+<td>1838</td>
+<td>4</td>
+<td>243</td>
+</tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2019</td>
+<td>"The Coca-Cola Company"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>222</td>
+<td>35</td>
+<td>0</td>
+<td>0</td>
+<td>257</td>
+<td>4</td>
+<td>243</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2019</td>
+<td>"Secco"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>39</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>43</td>
+<td>4</td>
+<td>243</td>
+</tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2019</td>
+<td>"Doble Cola"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>38</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>38</td>
+<td>4</td>
+<td>243</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <p>As you can see, the first few variables look familiar. They describe general metadata, like the region, country, and year. But let’s focus on the variables starting from <code>empty</code> and going down to <code>pvc</code>. These columns count the number of plastic pieces of different types collected during the cleanup.</p>
 <p>The <code>grand_total</code> column sums up all these individual plastic counts. Finally, the last two columns—<code>num_events</code> and <code>volunteers</code>—capture operational details:</p>
 <ul>
@@ -233,13 +616,771 @@ In 2020, thanks to our members and allies, Break Free From Plastic engaged 14,73
 <p>Let’s take a closer look at the data. Check out this very first row for Argentina. Notice the <code>parent_company</code> column contains the value: “Grand Total.” This suggests that this first row contains the totals for all Argentinian records in 2019.</p>
 <p>Let’s look at the next year:</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="77e96710" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(plastics_df</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"year"</span>)<span class="op">==</span><span class="dv">2020</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"country"</span>)<span class="op">==</span><span class="st">"Argentina"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (226, 16)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">parent_company</th>
+<th data-quarto-table-cell-role="th">empty</th>
+<th data-quarto-table-cell-role="th">hdpe</th>
+<th data-quarto-table-cell-role="th">ldpe</th>
+<th data-quarto-table-cell-role="th">o</th>
+<th data-quarto-table-cell-role="th">pet</th>
+<th data-quarto-table-cell-role="th">pp</th>
+<th data-quarto-table-cell-role="th">ps</th>
+<th data-quarto-table-cell-role="th">pvc</th>
+<th data-quarto-table-cell-role="th">grand_total</th>
+<th data-quarto-table-cell-role="th">num_events</th>
+<th data-quarto-table-cell-role="th">volunteers</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2020</td>
+<td>null</td>
+<td>0</td>
+<td>12</td>
+<td>9</td>
+<td>70</td>
+<td>9</td>
+<td>7</td>
+<td>2</td>
+<td>0</td>
+<td>109</td>
+<td>24</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2020</td>
+<td>"Aceitera Martinez S.A"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>24</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2020</td>
+<td>"AGD"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>24</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2020</td>
+<td>"Alfredo Willliner S.A"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>24</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2020</td>
+<td>"Alicorp Argentina"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>24</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2020</td>
+<td>"Vidagro S.A."</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>24</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2020</td>
+<td>"Williner"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>24</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2020</td>
+<td>"Wrigley Company"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>24</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2020</td>
+<td>"Yin Yang"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>24</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2020</td>
+<td>"Zaplast"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>24</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <p>Here’s something curious: for the year 2020, the rows with country totals aren’t marked with “Grand Total.” Instead, the <code>parent_company</code> field is left blank, or in technical terms, it’s marked as missing - <code>Null</code>. Hmm! What do we do with those?</p>
 <p><code>Null</code> values aren’t just limited to <code>parent_company</code>. Let’s take a look at records collected in 2019 from unidentified locations.</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="953c2c5e" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(plastics_df</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>).is_null())</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (1_346, 16)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">parent_company</th>
+<th data-quarto-table-cell-role="th">empty</th>
+<th data-quarto-table-cell-role="th">hdpe</th>
+<th data-quarto-table-cell-role="th">ldpe</th>
+<th data-quarto-table-cell-role="th">o</th>
+<th data-quarto-table-cell-role="th">pet</th>
+<th data-quarto-table-cell-role="th">pp</th>
+<th data-quarto-table-cell-role="th">ps</th>
+<th data-quarto-table-cell-role="th">pvc</th>
+<th data-quarto-table-cell-role="th">grand_total</th>
+<th data-quarto-table-cell-role="th">num_events</th>
+<th data-quarto-table-cell-role="th">volunteers</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"Grand Total"</td>
+<td>null</td>
+<td>1535</td>
+<td>6443</td>
+<td>30181</td>
+<td>11087</td>
+<td>5420</td>
+<td>2101</td>
+<td>188</td>
+<td>56955</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+<tr class="even">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"Unbranded"</td>
+<td>null</td>
+<td>631</td>
+<td>3176</td>
+<td>17432</td>
+<td>4265</td>
+<td>2417</td>
+<td>1545</td>
+<td>20</td>
+<td>29486</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+<tr class="odd">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"The Coca-Cola Company"</td>
+<td>null</td>
+<td>130</td>
+<td>4</td>
+<td>157</td>
+<td>1154</td>
+<td>210</td>
+<td>1</td>
+<td>51</td>
+<td>1707</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+<tr class="even">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"Philip Morris"</td>
+<td>null</td>
+<td>13</td>
+<td>37</td>
+<td>1579</td>
+<td>1</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>1634</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+<tr class="odd">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"Sahakari Jal"</td>
+<td>null</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>563</td>
+<td>975</td>
+<td>0</td>
+<td>0</td>
+<td>1538</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"Schulte"</td>
+<td>null</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+<tr class="even">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"Schwartau"</td>
+<td>null</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+<tr class="odd">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"SchÃ¶fferhofer"</td>
+<td>null</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+<tr class="even">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"Scotts Black Mulch"</td>
+<td>null</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+<tr class="odd">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>"Cherry Valley marketplace"</td>
+<td>null</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>145</td>
+<td>1416</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <p>Before we dive deeper into analyzing top contributors to plastic waste, let’s calculate the totals per country and year ourselves. Why?</p>
 <p>Well, the dataset has pre-computed totals marked with “Grand Total” or <code>Null</code> in the <code>parent_company</code>, but the logic seems inconsistent. Recomputing the totals ensures transparency and accuracy in our analysis.</p>
 <p>Here’s how we start:</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="6f945d92" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(plastics_df</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"grand_total"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"parent_company"</span>)<span class="op">!=</span><span class="st">"Grand Total"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"parent_company"</span>).is_not_null())</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (13_278, 15)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">parent_company</th>
+<th data-quarto-table-cell-role="th">empty</th>
+<th data-quarto-table-cell-role="th">hdpe</th>
+<th data-quarto-table-cell-role="th">ldpe</th>
+<th data-quarto-table-cell-role="th">o</th>
+<th data-quarto-table-cell-role="th">pet</th>
+<th data-quarto-table-cell-role="th">pp</th>
+<th data-quarto-table-cell-role="th">ps</th>
+<th data-quarto-table-cell-role="th">pvc</th>
+<th data-quarto-table-cell-role="th">num_events</th>
+<th data-quarto-table-cell-role="th">volunteers</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2019</td>
+<td>"Unbranded"</td>
+<td>0</td>
+<td>155</td>
+<td>50</td>
+<td>532</td>
+<td>848</td>
+<td>122</td>
+<td>114</td>
+<td>17</td>
+<td>4</td>
+<td>243</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2019</td>
+<td>"The Coca-Cola Company"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>222</td>
+<td>35</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>243</td>
+</tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2019</td>
+<td>"Secco"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>39</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>243</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2019</td>
+<td>"Doble Cola"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>38</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>243</td>
+</tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2019</td>
+<td>"Pritty"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>22</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>243</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>"VNM"</td>
+<td>"Viet Nam"</td>
+<td>2020</td>
+<td>"Vinamilk"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>91</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>6</td>
+<td>27</td>
+</tr>
+<tr class="even">
+<td>"Western Pacific"</td>
+<td>"VNM"</td>
+<td>"Viet Nam"</td>
+<td>2020</td>
+<td>"VINH HAO CO."</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>6</td>
+<td>27</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>"VNM"</td>
+<td>"Viet Nam"</td>
+<td>2020</td>
+<td>"Vital"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>6</td>
+<td>27</td>
+</tr>
+<tr class="even">
+<td>"Western Pacific"</td>
+<td>"VNM"</td>
+<td>"Viet Nam"</td>
+<td>2020</td>
+<td>"VM Group"</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>6</td>
+<td>27</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>"VNM"</td>
+<td>"Viet Nam"</td>
+<td>2020</td>
+<td>"Yakult"</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>6</td>
+<td>27</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <p>Let’s break this down:</p>
 <ul>
 <li><code>drop("grand_total")</code>: The <code>grand_total</code> column is a pre-computed sum of all plastic types, which we can recalculate if needed.</li>
@@ -248,8 +1389,8 @@ In 2020, thanks to our members and allies, Break Free From Plastic engaged 14,73
 </ul>
 <p>By cleaning the data in this way, we ensure that our analysis is based on individual contributions, not pre-summarized totals.</p>
 </section>
-<section id="video-2-aggregation-greenscreen-3-min" class="level1">
-<h1>VIDEO 2 Aggregation {greenscreen} ~ 3 min</h1>
+<section id="video-2-aggregation" class="level1">
+<h1>VIDEO 2 Aggregation</h1>
 <p>Now, let’s talk about the two special columns in our dataset: <code>num_events</code> and <code>volunteers</code>. These capture the number of counting events and the number of volunteers who participated in the cleanup campaigns.</p>
 <p>But here’s the catch. These columns don’t vary within groups of rows for the same year and country. Instead, they represent aggregate metrics that make sense at the country-year level, but are less meaningful at the company level.</p>
 <p>For now, let’s set aside the rankings of companies responsible for the most plastic waste. Instead, we’ll focus on the campaign itself — the Break from Plastics community engagement on a country level.</p>
@@ -271,14 +1412,25 @@ Challenge
 </div>
 <p>Take a moment to pause the video and give it a try.</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="013ad5de" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plastics_countries_df <span class="op">=</span> (plastics_df</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"grand_total"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>((pl.col(<span class="st">"parent_company"</span>)<span class="op">!=</span><span class="st">"Grand Total"</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>            (pl.col(<span class="st">"parent_company"</span>).is_not_null()))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        cs.numeric().exclude(<span class="st">"num_events"</span>, <span class="st">"volunteers"</span>).<span class="bu">sum</span>(),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        cs.by_index(<span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>).drop_nulls().first())</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Fantastic! Now that we have our cleaned and aggregated dataset, let’s talk about total plastic counts.</p>
 <p>To calculate the total number of plastic items inspected, you’d typically list all relevant columns and sum them up: <code>total_count=pl.col("empty")+pl.col("hdpe")+pl.col("ldpe")+</code> and so on. But imagine if you had hundreds of columns instead of eight! This approach would quickly become overwhelming.</p>
 <p>Luckily, there’s a clever trick to make this task more manageable: pivoting. By reorganizing the data into a different format, we can simplify calculations and enable more flexible analysis.</p>
 <p>In the next section, we’ll dive into pivoting and explore how to reshape <code>plastics_countries_df</code> for deeper insights.</p>
 <p>Let’s keep going!</p>
 </section>
-<section id="video-4-wide-and-long-data-greenscreen-9-min" class="level1 page-columns page-full">
-<h1>VIDEO 4 Wide and long data {greenscreen} ~ 9 min</h1>
+<section id="video-4-wide-and-long-data" class="level1 page-columns page-full">
+<h1>VIDEO 4 Wide and long data</h1>
 <p>Let’s take a moment to reflect on two common ways of organizing the same data: wide and long formats.</p>
 <p>On the left, we see a wide format dataframe. Here, each row represents a single observation, and the variables are spread across multiple columns.</p>
 <p>On the right, we have the same data in a long format. In this version:</p>
@@ -290,12 +1442,160 @@ Challenge
 <p>&lt; PAUSE &gt;</p>
 <div class="columns column-screen-inset">
 <div class="column" style="width:60%;">
-<!-- #### "Wide" data -->
+<section id="wide-data" class="level4">
+<h4 class="anchored" data-anchor-id="wide-data">“Wide” data</h4>
+<div id="c9a6f449" class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (1, 10)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">empty</th>
+<th data-quarto-table-cell-role="th">hdpe</th>
+<th data-quarto-table-cell-role="th">ldpe</th>
+<th data-quarto-table-cell-role="th">o</th>
+<th data-quarto-table-cell-role="th">pet</th>
+<th data-quarto-table-cell-role="th">pp</th>
+<th data-quarto-table-cell-role="th">ps</th>
+<th data-quarto-table-cell-role="th">pvc</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"India"</td>
+<td>2019</td>
+<td>0</td>
+<td>2</td>
+<td>661</td>
+<td>985</td>
+<td>239</td>
+<td>78</td>
+<td>97</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
 </div><div class="column" style="width:40%;">
-<!-- #### "Long" data -->
+<section id="long-data" class="level4">
+<h4 class="anchored" data-anchor-id="long-data">“Long” data</h4>
+<div id="353ef3d5" class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (8, 4)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">plastic_type</th>
+<th data-quarto-table-cell-role="th">quantity</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>i64</th>
+<th>str</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"India"</td>
+<td>2019</td>
+<td>"empty"</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>"India"</td>
+<td>2019</td>
+<td>"hdpe"</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>"India"</td>
+<td>2019</td>
+<td>"ldpe"</td>
+<td>661</td>
+</tr>
+<tr class="even">
+<td>"India"</td>
+<td>2019</td>
+<td>"o"</td>
+<td>985</td>
+</tr>
+<tr class="odd">
+<td>"India"</td>
+<td>2019</td>
+<td>"pet"</td>
+<td>239</td>
+</tr>
+<tr class="even">
+<td>"India"</td>
+<td>2019</td>
+<td>"pp"</td>
+<td>78</td>
+</tr>
+<tr class="odd">
+<td>"India"</td>
+<td>2019</td>
+<td>"ps"</td>
+<td>97</td>
+</tr>
+<tr class="even">
+<td>"India"</td>
+<td>2019</td>
+<td>"pvc"</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
 </div>
 </div>
 <p>These two formats represent the exact same data, but the way they’re structured can have a big impact on how we work with them.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
 <li>Wide Format:
 <ul>
@@ -308,6 +1608,8 @@ Challenge
 <li>Simplifies aggregations and calculations.</li>
 </ul></li>
 </ul>
+</div>
+</div>
 <p>When working with data, being able to switch between these formats is essential. Many analysis tasks, like creating summaries or visualizations, become much easier when the data is in long format.</p>
 <p>The process of transforming data from wide to long is called unpivoting or melting. This makes sense because the data seems to “melt” down into fewer columns while increasing the number of rows.</p>
 <p>When we unpivot data, we typically end up with three columns:</p>
@@ -326,7 +1628,7 @@ Challenge
 </ul>
 <p>Let’s begin by checking out the documentation for the <code>.unpivot()</code> method. This function gives us precise control over how to reshape the data.</p>
 <p>&lt; SMALL PAUSE &gt;</p>
-<!-- ![](img/unpivot_docs.png) -->
+<p><img src="img/unpivot_docs.png" class="img-fluid"></p>
 <p><code>.unpivot()</code> takes four arguments:</p>
 <ul>
 <li><code>on</code>: Specifies the columns to be unpivoted.</li>
@@ -337,6 +1639,166 @@ Challenge
 <p>Note that the <code>on</code> argument is optional. If you don’t specify it, any column not listed as an <code>index</code> will be unpivoted automatically.</p>
 <p>Here’s how we can transform the dataset into a long format. We can select the index columns either by name or by position. We can also, optionally, specify the <code>on</code> argument to make it extra clear which columns should be melted.</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="a1be041f" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(plastics_countries_df</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    .unpivot(index<span class="op">=</span>cs.by_name(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"num_events"</span>, <span class="st">"volunteers"</span>), </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>            variable_name<span class="op">=</span><span class="st">"plastic_type"</span>, value_name<span class="op">=</span><span class="st">"quantity"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># which is the same as</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>(plastics_countries_df</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    .unpivot(index<span class="op">=</span>cs.by_index(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>), </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>            on<span class="op">=</span>cs.by_index(<span class="bu">range</span>(<span class="dv">4</span>,<span class="dv">12</span>)),</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>            variable_name<span class="op">=</span><span class="st">"plastic_type"</span>, value_name<span class="op">=</span><span class="st">"quantity"</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (848, 8)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">num_events</th>
+<th data-quarto-table-cell-role="th">volunteers</th>
+<th data-quarto-table-cell-role="th">plastic_type</th>
+<th data-quarto-table-cell-role="th">quantity</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Eastern Mediterranean"</td>
+<td>"ARE"</td>
+<td>"United Arab Emirates"</td>
+<td>2019</td>
+<td>1</td>
+<td>3</td>
+<td>"empty"</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>"Africa"</td>
+<td>"TGO"</td>
+<td>"Togo"</td>
+<td>2020</td>
+<td>1</td>
+<td>92</td>
+<td>"empty"</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>"South-East Asia"</td>
+<td>"IND"</td>
+<td>"India"</td>
+<td>2019</td>
+<td>4</td>
+<td>88</td>
+<td>"empty"</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"CHL"</td>
+<td>"Chile"</td>
+<td>2020</td>
+<td>3</td>
+<td>13</td>
+<td>"empty"</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"FRA"</td>
+<td>"France"</td>
+<td>2020</td>
+<td>3</td>
+<td>15</td>
+<td>"empty"</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2019</td>
+<td>145</td>
+<td>1416</td>
+<td>"pvc"</td>
+<td>188</td>
+</tr>
+<tr class="even">
+<td>"Western Pacific"</td>
+<td>"MYS"</td>
+<td>"Malaysia"</td>
+<td>2019</td>
+<td>1</td>
+<td>300</td>
+<td>"pvc"</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"IRL"</td>
+<td>"Ireland"</td>
+<td>2020</td>
+<td>4</td>
+<td>7</td>
+<td>"pvc"</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>"Africa"</td>
+<td>"TZA"</td>
+<td>"United Republic of Tanzania"</td>
+<td>2020</td>
+<td>15</td>
+<td>2719</td>
+<td>"pvc"</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>"South-East Asia"</td>
+<td>"THA"</td>
+<td>"Thailand"</td>
+<td>2020</td>
+<td>9</td>
+<td>337</td>
+<td>"pvc"</td>
+<td>106</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <p>Both approaches produce the same result:</p>
 <ul>
 <li>The columns <code>region</code>, <code>country_code</code>, <code>country</code>, <code>year</code>, <code>num_events</code>, and <code>volunteers</code> are preserved as ID columns.</li>
@@ -345,12 +1807,154 @@ Challenge
 </ul>
 <p>Once the data is in long format, it becomes much easier to perform calculations. For instance, let’s group the data by <code>region</code>, <code>country_code</code>, <code>country</code>, <code>year</code>, <code>num_events</code>, and <code>volunteers</code>, and calculate the total quantity of plastic collected:</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="0cc89aec" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(plastics_countries_df</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    .unpivot(index<span class="op">=</span>cs.by_name(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"num_events"</span>, <span class="st">"volunteers"</span>), </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>            variable_name<span class="op">=</span><span class="st">"plastic_type"</span>, value_name<span class="op">=</span><span class="st">"quantity"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"num_events"</span>, <span class="st">"volunteers"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"quantity"</span>).<span class="bu">sum</span>())</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (106, 7)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">num_events</th>
+<th data-quarto-table-cell-role="th">volunteers</th>
+<th data-quarto-table-cell-role="th">quantity</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"South-East Asia"</td>
+<td>"THA"</td>
+<td>"Thailand"</td>
+<td>2019</td>
+<td>5</td>
+<td>374</td>
+<td>369</td>
+</tr>
+<tr class="even">
+<td>"Africa"</td>
+<td>"CIV"</td>
+<td>"Cote d'Ivoire"</td>
+<td>2019</td>
+<td>1</td>
+<td>1500</td>
+<td>53</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"LUX"</td>
+<td>"Luxembourg"</td>
+<td>2019</td>
+<td>1</td>
+<td>21</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>"South-East Asia"</td>
+<td>"IDN"</td>
+<td>"Indonesia"</td>
+<td>2019</td>
+<td>32</td>
+<td>6850</td>
+<td>13309</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>"MYS"</td>
+<td>"Malaysia"</td>
+<td>2020</td>
+<td>35</td>
+<td>370</td>
+<td>3688</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"ITA"</td>
+<td>"Italy"</td>
+<td>2019</td>
+<td>9</td>
+<td>175</td>
+<td>690</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"SLV"</td>
+<td>"El Salvador"</td>
+<td>2020</td>
+<td>1</td>
+<td>10</td>
+<td>666</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"BGR"</td>
+<td>"Bulgaria"</td>
+<td>2020</td>
+<td>7</td>
+<td>50</td>
+<td>93</td>
+</tr>
+<tr class="even">
+<td>"South-East Asia"</td>
+<td>"IND"</td>
+<td>"India"</td>
+<td>2019</td>
+<td>4</td>
+<td>88</td>
+<td>2066</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"PRT"</td>
+<td>"Portugal"</td>
+<td>2020</td>
+<td>2</td>
+<td>65</td>
+<td>7729</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <p>And there we have it — a simple aggregation of total plastic quantities by country and year! This process highlights the power of unpivoting: it organizes our data in a way that makes calcultions across multiple columns more straightforward.</p>
 <p>We now have 106 records of Break From Plastics campaign activity in every country in 2019 and 2020. We have total number of events every year, number of volunteers who participated every year and the quantity of plastics collected and sorted through.</p>
 <p>How would you answer this question: What are the top 5 countries in terms of the growth in productivity, defined is the number of plastic processed per event? So we are not just interested in productivity every year, but also how it has grown from 2019 to 2020. I am looking at Taiwan, for example that engaged the mind-blowing 31 thousand volunteers and sorted through 120 thousand pieces of plastic in just 2 huge events held in 2019. Now that’s an achievement! Especially if they managed to keep the level of engagement up the following year.</p>
 <p>We can certainly calculate productivity per event as <code>quantity</code> divided by <code>num_events</code>, but how would you calculate the growth in productivity for every country? We need to pivot the productivity column across years and calculate the growth from the pivoted data.</p>
 <p>&lt; PAUSE &gt;</p>
-<!-- ![](img/pivot_docs.png) -->
+<p><img src="img/pivot_docs.png" class="img-fluid"></p>
 <p>Pivot method has these main arguments:</p>
 <ul>
 <li><code>on</code> specifies which column(s) should be pivoted</li>
@@ -361,9 +1965,246 @@ Challenge
 <p>You can pivot multiple columns at once. Just indicate several columns in the <code>values</code> argument and the pivoted table will have one column for combination of the factor in <code>on</code> and each or the <code>values</code> columns. So here in our example I have a categorical variable <code>year</code> with 2 levels (2019/2020). I am interested in seeing <code>productivity</code> split by year into <code>productivity_2019</code> and <code>productivity_2020</code> columns. But I can at the same time pivot <code>quantity</code>, so I also have <code>quantity_2019</code> and <code>quantity_2020</code>.</p>
 <p>Before I do the pivot, I want to drop the <code>num_events</code> and <code>volunteers</code> since I am not doing anything with them (even though you could argue it makes sense to pivot them by year as well). But at this time, we are not interested in these columns so we can just drop them. The reason I do it, is so that I dont have to specify the <code>index</code> argument in the <code>pivot</code> function, relying on <code>polars</code> to figure it out for me.</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="4b9aeeec" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(plastics_countries_df</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    .unpivot(index<span class="op">=</span>cs.by_name(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"num_events"</span>, <span class="st">"volunteers"</span>), </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>            variable_name<span class="op">=</span><span class="st">"plastic_type"</span>, value_name<span class="op">=</span><span class="st">"quantity"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"num_events"</span>, <span class="st">"volunteers"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"quantity"</span>).<span class="bu">sum</span>())</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    .with_columns(productivity<span class="op">=</span>pl.col(<span class="st">"quantity"</span>)<span class="op">/</span>pl.col(<span class="st">"num_events"</span>))</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"num_events"</span>, <span class="st">"volunteers"</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    .pivot(on<span class="op">=</span>cs.by_name(<span class="st">"year"</span>), values<span class="op">=</span>cs.by_name(<span class="st">"productivity"</span>, <span class="st">"quantity"</span>))</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    .with_columns(prod_growth<span class="op">=</span>pl.col(<span class="st">"productivity_2020"</span>)<span class="op">/</span>pl.col(<span class="st">"productivity_2019"</span>)<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"prod_growth"</span>).is_not_null())</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    .sort(<span class="st">"prod_growth"</span>, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (10, 8)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">productivity_2020</th>
+<th data-quarto-table-cell-role="th">productivity_2019</th>
+<th data-quarto-table-cell-role="th">quantity_2020</th>
+<th data-quarto-table-cell-role="th">quantity_2019</th>
+<th data-quarto-table-cell-role="th">prod_growth</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>i64</th>
+<th>i64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"CAN"</td>
+<td>"Canada"</td>
+<td>204.333333</td>
+<td>1.0</td>
+<td>613</td>
+<td>1</td>
+<td>203.333333</td>
+</tr>
+<tr class="even">
+<td>"South-East Asia"</td>
+<td>"BGD"</td>
+<td>"Bangladesh"</td>
+<td>2383.0</td>
+<td>16.0</td>
+<td>2383</td>
+<td>16</td>
+<td>147.9375</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"GBR"</td>
+<td>"United Kingdom of Great Britai…</td>
+<td>433.5</td>
+<td>3.0</td>
+<td>3468</td>
+<td>3</td>
+<td>143.5</td>
+</tr>
+<tr class="even">
+<td>"Western Pacific"</td>
+<td>"JPN"</td>
+<td>"Japan"</td>
+<td>240.0</td>
+<td>2.4</td>
+<td>240</td>
+<td>84</td>
+<td>99.0</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"FRA"</td>
+<td>"France"</td>
+<td>910.333333</td>
+<td>15.0</td>
+<td>2731</td>
+<td>15</td>
+<td>59.688889</td>
+</tr>
+<tr class="even">
+<td>"Europe"</td>
+<td>"DEU"</td>
+<td>"Germany"</td>
+<td>5008.0</td>
+<td>140.5</td>
+<td>5008</td>
+<td>281</td>
+<td>34.644128</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"IRL"</td>
+<td>"Ireland"</td>
+<td>34.75</td>
+<td>1.0</td>
+<td>139</td>
+<td>1</td>
+<td>33.75</td>
+</tr>
+<tr class="even">
+<td>"Western Pacific"</td>
+<td>"CHN"</td>
+<td>"China"</td>
+<td>2332.0</td>
+<td>72.0625</td>
+<td>2332</td>
+<td>3459</td>
+<td>31.360798</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>"AUS"</td>
+<td>"Australia"</td>
+<td>75.777778</td>
+<td>3.0</td>
+<td>682</td>
+<td>3</td>
+<td>24.259259</td>
+</tr>
+<tr class="even">
+<td>"Eastern Mediterranean"</td>
+<td>"TUN"</td>
+<td>"Tunisia"</td>
+<td>905.0</td>
+<td>40.0</td>
+<td>1810</td>
+<td>40</td>
+<td>21.625</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="41ee6048" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(plastics_countries_df</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>)<span class="op">==</span><span class="st">"Germany"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (2, 14)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">empty</th>
+<th data-quarto-table-cell-role="th">hdpe</th>
+<th data-quarto-table-cell-role="th">ldpe</th>
+<th data-quarto-table-cell-role="th">o</th>
+<th data-quarto-table-cell-role="th">pet</th>
+<th data-quarto-table-cell-role="th">pp</th>
+<th data-quarto-table-cell-role="th">ps</th>
+<th data-quarto-table-cell-role="th">pvc</th>
+<th data-quarto-table-cell-role="th">num_events</th>
+<th data-quarto-table-cell-role="th">volunteers</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"DEU"</td>
+<td>"Germany"</td>
+<td>2019</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>280</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td>"Europe"</td>
+<td>"DEU"</td>
+<td>"Germany"</td>
+<td>2020</td>
+<td>10</td>
+<td>0</td>
+<td>196</td>
+<td>4604</td>
+<td>97</td>
+<td>94</td>
+<td>7</td>
+<td>0</td>
+<td>1</td>
+<td>24</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </section>
-<section id="video-5-great-tables-greenscreen-6-min" class="level1">
-<h1>VIDEO 5 great tables {greenscreen} ~ 6 min</h1>
+<section id="video-5-great-tables" class="level1">
+<h1>VIDEO 5 great tables</h1>
 <p>Before we go any further, I want to quickly introduce you to the power of <code>great_tables</code> for producing engaing and informative tables. We will create a nice-looking table showing top-10 countries with the most impressive productivity growth. As we discussed earlier, the core function is <code>GT()</code> you also know that the default styling can be done with <code>.opt_stylize()</code> method. This is enough to produce decent looking table, but I want to show you a few more tricks.</p>
 <p>First of all, we have two groups of columns which are somehow related. A group of columns about <em>quantity</em> of plastic processed and a group of columns about <em>productivity</em>. We can introduce spanners - a grouping of columns in the table, where we can place a meaningful label. In <code>GT</code> this can accomplished with <code>.tab_spanner()</code>. As almost all methods in <code>great_tables()</code>, <code>.tab_spanner()</code> relies on <code>polars</code> selectors. So we can scoop all columns starting with <code>prod</code> under the Productivity spanner, and all columns starting with <code>quantity</code> under the other spanner.</p>
 <p>The second group of functions in <code>great_tables</code> is related to columns. These methods will start with <code>.cols_</code> You can move and hide columns using <code>.cols_move()</code> and <code>.cols_hide()</code> without modifying the underlying data. Sometimes, it might be useful because the data is also used for something else, other than the table visualization and you don’t want to shuffle the columns around just because you need to show them in the table in a particular order. In our case, we want to move the quantity group closer to the beginning of the table. There’s also a convenient column labeler <code>.cols_label()</code>, which allows you to create arbitrary visual lables for columns without modifying the data. Again, in our table, because we introduced table spanners, we want some column names to be duplicates of each other, for example year numbers. But in <code>polars</code> all column names should be unique.</p>
@@ -371,6 +2212,298 @@ Challenge
 <p>We will use the default styling in <code>.opt_stylize()</code> but later in this module we will have a look at custom styling function for creating more effective communication.</p>
 <p>As with plots, it is good to annotate the table. You can add table header with title and subtitle, as well as the caption, called source note where you cite the souce of your data.</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="89286799" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>top10_productivity_tbl <span class="op">=</span> (plastics_countries_df</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    .unpivot(index<span class="op">=</span>cs.by_name(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"num_events"</span>, <span class="st">"volunteers"</span>), </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>            variable_name<span class="op">=</span><span class="st">"plastic_type"</span>, value_name<span class="op">=</span><span class="st">"quantity"</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"num_events"</span>, <span class="st">"volunteers"</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"quantity"</span>).<span class="bu">sum</span>())</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    .with_columns(productivity<span class="op">=</span>pl.col(<span class="st">"quantity"</span>)<span class="op">/</span>pl.col(<span class="st">"num_events"</span>))</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"num_events"</span>, <span class="st">"volunteers"</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    .pivot(on<span class="op">=</span>cs.by_name(<span class="st">"year"</span>), values<span class="op">=</span>cs.by_name(<span class="st">"productivity"</span>, <span class="st">"quantity"</span>))</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    .with_columns(prod_growth<span class="op">=</span>pl.col(<span class="st">"productivity_2020"</span>)<span class="op">/</span>pl.col(<span class="st">"productivity_2019"</span>)<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"prod_growth"</span>).is_not_null())</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    .sort(<span class="st">"prod_growth"</span>, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>(top10_productivity_tbl</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    .pipe(GT)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    .tab_spanner(label<span class="op">=</span><span class="st">"Productivity"</span>, columns<span class="op">=</span>cs.starts_with(<span class="st">"prod"</span>))</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    .tab_spanner(label<span class="op">=</span><span class="st">"Quantity"</span>, columns<span class="op">=</span>cs.starts_with(<span class="st">"quantity"</span>))</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    .cols_move(columns<span class="op">=</span>cs.starts_with(<span class="st">"quantity"</span>), after<span class="op">=</span><span class="st">"country"</span>)</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    .cols_hide(<span class="st">"region"</span>)</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    .cols_label(productivity_2019<span class="op">=</span><span class="st">"2019"</span>,</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>                productivity_2020<span class="op">=</span><span class="st">"2020"</span>,</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>                quantity_2019<span class="op">=</span><span class="st">"2019"</span>,</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>                quantity_2020<span class="op">=</span><span class="st">"2020"</span>)</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    .cols_label(country<span class="op">=</span><span class="st">""</span>,</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>                prod_growth<span class="op">=</span><span class="st">"Growth"</span>,</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>                country_code<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    .fmt_number(columns<span class="op">=</span>cs.starts_with(<span class="st">"productivity"</span>), decimals<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>    .fmt_number(columns<span class="op">=</span>cs.starts_with(<span class="st">"quantity"</span>), decimals<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    .fmt_percent(columns<span class="op">=</span>cs.matches(<span class="st">"prod_growth"</span>), decimals<span class="op">=</span><span class="dv">0</span>, force_sign<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    .fmt_flag(columns<span class="op">=</span>cs.matches(<span class="st">"country_code"</span>))</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>    .tab_header(title<span class="op">=</span><span class="st">"Top 10 countries by the increase in plastic sorting productivity in 2019-2020"</span>,</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>            subtitle<span class="op">=</span><span class="st">"Productivity is number of plastic samples processed per event"</span>)</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    .tab_source_note(<span class="st">"Source: Break Free From Plastic campaigns 2019, 2020"</span>)</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>    .opt_stylize(style<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div id="ditscsvhhy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>
+#ditscsvhhy table {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+#ditscsvhhy thead, tbody, tfoot, tr, td, th { border-style: none; }
+ tr { background-color: transparent; }
+#ditscsvhhy p { margin: 0; padding: 0; }
+ #ditscsvhhy .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #ditscsvhhy .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #ditscsvhhy .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
+ #ditscsvhhy .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
+ #ditscsvhhy .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #ditscsvhhy .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; }
+ #ditscsvhhy .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #ditscsvhhy .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #ditscsvhhy .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #ditscsvhhy .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #ditscsvhhy .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #ditscsvhhy .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #ditscsvhhy .gt_spanner_row { border-bottom-style: hidden; }
+ #ditscsvhhy .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #ditscsvhhy .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; vertical-align: middle; }
+ #ditscsvhhy .gt_from_md> :first-child { margin-top: 0; }
+ #ditscsvhhy .gt_from_md> :last-child { margin-bottom: 0; }
+ #ditscsvhhy .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; }
+ #ditscsvhhy .gt_stub { color: #FFFFFF; background-color: #0076BA; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #0076BA; padding-left: 5px; padding-right: 5px; }
+ #ditscsvhhy .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #ditscsvhhy .gt_row_group_first td { border-top-width: 2px; }
+ #ditscsvhhy .gt_row_group_first th { border-top-width: 2px; }
+ #ditscsvhhy .gt_striped { background-color: #F4F4F4; }
+ #ditscsvhhy .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; }
+ #ditscsvhhy .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #ditscsvhhy .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #ditscsvhhy .gt_left { text-align: left; }
+ #ditscsvhhy .gt_center { text-align: center; }
+ #ditscsvhhy .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #ditscsvhhy .gt_font_normal { font-weight: normal; }
+ #ditscsvhhy .gt_font_bold { font-weight: bold; }
+ #ditscsvhhy .gt_font_italic { font-style: italic; }
+ #ditscsvhhy .gt_super { font-size: 65%; }
+ #ditscsvhhy .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #ditscsvhhy .gt_asterisk { font-size: 100%; vertical-align: 0; }
+ 
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="gt_heading header">
+<th colspan="7" class="gt_heading gt_title gt_font_normal">Top 10 countries by the increase in plastic sorting productivity in 2019-2020</th>
+</tr>
+<tr class="gt_heading even">
+<th colspan="7" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Productivity is number of plastic samples processed per event</th>
+</tr>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th rowspan="2" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th colspan="2" id="Quantity" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">Quantity</span></th>
+<th colspan="3" id="Productivity" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">Productivity</span></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="2019" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2019</th>
+<th id="2020" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2020</th>
+<th id="2019" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2019</th>
+<th id="2020" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2020</th>
+<th id="Growth" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Growth</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+Canada
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#d80027" d="M0 0v512h144l112-64 112 64h144V0H368L256 64 144 0Z"></path><path fill="#eee" d="M144 0h224v512H144Z"></path><path fill="#d80027" d="m301 289 44-22-22-11v-22l-45 22 23-44h-23l-22-34-22 33h-23l23 45-45-22v22l-22 11 45 22-12 23h45v33h22v-33h45z"></path></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left">Canada</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">613</td>
+<td class="gt_row gt_right">1.0</td>
+<td class="gt_row gt_right">204.3</td>
+<td class="gt_row gt_right">+20,333%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+Bangladesh
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#496e2d" d="M0 0h512v512H0z"></path><circle cx="200.3" cy="256" r="111.3" fill="#d80027"></circle></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left gt_striped">Bangladesh</td>
+<td class="gt_row gt_right gt_striped">16</td>
+<td class="gt_row gt_right gt_striped">2,383</td>
+<td class="gt_row gt_right gt_striped">16.0</td>
+<td class="gt_row gt_right gt_striped">2,383.0</td>
+<td class="gt_row gt_right gt_striped">+14,794%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+United Kingdom
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#eee" d="m0 0 8 22-8 23v23l32 54-32 54v32l32 48-32 48v32l32 54-32 54v68l22-8 23 8h23l54-32 54 32h32l48-32 48 32h32l54-32 54 32h68l-8-22 8-23v-23l-32-54 32-54v-32l-32-48 32-48v-32l-32-54 32-54V0l-22 8-23-8h-23l-54 32-54-32h-32l-48 32-48-32h-32l-54 32L68 0H0z"></path><path fill="#0052b4" d="M336 0v108L444 0Zm176 68L404 176h108zM0 176h108L0 68ZM68 0l108 108V0Zm108 512V404L68 512ZM0 444l108-108H0Zm512-108H404l108 108Zm-68 176L336 404v108z"></path><path fill="#d80027" d="M0 0v45l131 131h45L0 0zm208 0v208H0v96h208v208h96V304h208v-96H304V0h-96zm259 0L336 131v45L512 0h-45zM176 336 0 512h45l131-131v-45zm160 0 176 176v-45L381 336h-45z"></path></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left">United Kingdom of Great Britain and Northern Ireland</td>
+<td class="gt_row gt_right">3</td>
+<td class="gt_row gt_right">3,468</td>
+<td class="gt_row gt_right">3.0</td>
+<td class="gt_row gt_right">433.5</td>
+<td class="gt_row gt_right">+14,350%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+Japan
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#eee" d="M0 0h512v512H0z"></path><circle cx="256" cy="256" r="111.3" fill="#d80027"></circle></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left gt_striped">Japan</td>
+<td class="gt_row gt_right gt_striped">84</td>
+<td class="gt_row gt_right gt_striped">240</td>
+<td class="gt_row gt_right gt_striped">2.4</td>
+<td class="gt_row gt_right gt_striped">240.0</td>
+<td class="gt_row gt_right gt_striped">+9,900%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+France
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#eee" d="M167 0h178l25.9 252.3L345 512H167l-29.8-253.4z"></path><path fill="#0052b4" d="M0 0h167v512H0z"></path><path fill="#d80027" d="M345 0h167v512H345z"></path></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left">France</td>
+<td class="gt_row gt_right">15</td>
+<td class="gt_row gt_right">2,731</td>
+<td class="gt_row gt_right">15.0</td>
+<td class="gt_row gt_right">910.3</td>
+<td class="gt_row gt_right">+5,969%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+Germany
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#ffda44" d="m0 345 256.7-25.5L512 345v167H0z"></path><path fill="#d80027" d="m0 167 255-23 257 23v178H0z"></path><path fill="#333" d="M0 0h512v167H0z"></path></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left gt_striped">Germany</td>
+<td class="gt_row gt_right gt_striped">281</td>
+<td class="gt_row gt_right gt_striped">5,008</td>
+<td class="gt_row gt_right gt_striped">140.5</td>
+<td class="gt_row gt_right gt_striped">5,008.0</td>
+<td class="gt_row gt_right gt_striped">+3,464%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+Ireland
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#eee" d="M167 0h178l25.9 252.3L345 512H167l-29.8-253.4z"></path><path fill="#6da544" d="M0 0h167v512H0z"></path><path fill="#ff9811" d="M345 0h167v512H345z"></path></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left">Ireland</td>
+<td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">139</td>
+<td class="gt_row gt_right">1.0</td>
+<td class="gt_row gt_right">34.8</td>
+<td class="gt_row gt_right">+3,375%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+China
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#d80027" d="M0 0h512v512H0z"></path><path fill="#ffda44" d="m140.1 155.8 22.1 68h71.5l-57.8 42.1 22.1 68-57.9-42-57.9 42 22.2-68-57.9-42.1H118zm163.4 240.7-16.9-20.8-25 9.7 14.5-22.5-16.9-20.9 25.9 6.9 14.6-22.5 1.4 26.8 26 6.9-25.1 9.6zm33.6-61 8-25.6-21.9-15.5 26.8-.4 7.9-25.6 8.7 25.4 26.8-.3-21.5 16 8.6 25.4-21.9-15.5zm45.3-147.6L370.6 212l19.2 18.7-26.5-3.8-11.8 24-4.6-26.4-26.6-3.8 23.8-12.5-4.6-26.5 19.2 18.7zm-78.2-73-2 26.7 24.9 10.1-26.1 6.4-1.9 26.8-14.1-22.8-26.1 6.4 17.3-20.5-14.2-22.7 24.9 10.1z"></path></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left gt_striped">China</td>
+<td class="gt_row gt_right gt_striped">3,459</td>
+<td class="gt_row gt_right gt_striped">2,332</td>
+<td class="gt_row gt_right gt_striped">72.1</td>
+<td class="gt_row gt_right gt_striped">2,332.0</td>
+<td class="gt_row gt_right gt_striped">+3,136%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+Australia
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#0052b4" d="M0 0h512v512H0z"></path><path fill="#eee" d="m154 300 14 30 32-8-14 30 25 20-32 7 1 33-26-21-26 21 1-33-33-7 26-20-14-30 32 8zm222-27h47l-38 27 15-44 14 44zm7-162 7 15 16-4-7 15 12 10-15 3v17l-13-11-13 11v-17l-15-3 12-10-7-15 16 4zm57 67 7 15 16-4-7 15 12 10-15 3v16l-13-10-13 11v-17l-15-3 12-10-7-15 16 4zm-122 22 7 15 16-4-7 15 12 10-15 3v16l-13-10-13 11v-17l-15-3 12-10-7-15 16 4zm65 156 7 15 16-4-7 15 12 10-15 3v17l-13-11-13 11v-17l-15-3 12-10-7-15 16 4zM0 0v32l32 32L0 96v160h32l32-32 32 32h32v-83l83 83h45l-8-16 8-15v-14l-83-83h83V96l-32-32 32-32V0H96L64 32 32 0Z"></path><path fill="#d80027" d="M32 0v32H0v64h32v160h64V96h160V32H96V0Zm96 128 128 128v-31l-97-97z"></path></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left">Australia</td>
+<td class="gt_row gt_right">3</td>
+<td class="gt_row gt_right">682</td>
+<td class="gt_row gt_right">3.0</td>
+<td class="gt_row gt_right">75.8</td>
+<td class="gt_row gt_right">+2,426%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+Tunisia
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#d80027" d="M0 0h512v512H0z"></path><circle cx="256" cy="256" r="122.4" fill="#eee"></circle><g fill="#d80027"><path d="m271 209.2 21 29 34.1-11.1-21 29 21 28.9-34-11.1-21 29V267L237 256l34-11z"></path><path d="M283.8 328.3a72.3 72.3 0 1 1 34.4-136 89 89 0 1 0 0 127.3 72 72 0 0 1-34.4 8.7z"></path></g></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left gt_striped">Tunisia</td>
+<td class="gt_row gt_right gt_striped">40</td>
+<td class="gt_row gt_right gt_striped">1,810</td>
+<td class="gt_row gt_right gt_striped">40.0</td>
+<td class="gt_row gt_right gt_striped">905.0</td>
+<td class="gt_row gt_right gt_striped">+2,162%</td>
+</tr>
+</tbody><tfoot class="gt_sourcenotes">
+<tr class="odd">
+<td colspan="7" class="gt_sourcenote">Source: Break Free From Plastic campaigns 2019, 2020</td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+        
+</div>
+</div>
 <p>You may argue whether this table is informative, but it sure looks nice. And in the process of preparing it we have learned quite a lot about pivoting and great tables.</p>
 <p>I think it is your time to practice. Identifying the different types of plastic requires good knowledge of the different types of materials. Some materials were identified as belonging to predefined classes, while other samples were left unclassified (and ended up in the <code>o</code> (“other”) or <code>empty</code> categories). Identification rate (measured in %) is the proportion of total pieces of plastic that were assigned to the predefined categories (and not to “other” or “empty”). We wonder if the increase in the engagement (number of volunteers signed up for BFFP events) leads to improvement of identification rate?</p>
 <p>&lt; PAUSE &gt;</p>
@@ -389,6 +2522,178 @@ Challenge
 </div>
 <p>There could be several ways to solve this task. In my table the top country is South Africa and the bottom country in Bangladesh. Pause a video and give this task a try! When you come back we will walk through a solution together and discuss the learning from the pivoting lesson.</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="ec36f1a2" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>top_10_id_rate_increase <span class="op">=</span> (plastics_countries_df</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"num_events"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    .unpivot(index<span class="op">=</span>cs.by_name(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"volunteers"</span>), </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>            variable_name<span class="op">=</span><span class="st">"plastic_type"</span>, value_name<span class="op">=</span><span class="st">"quantity"</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    .with_columns(pl.col(<span class="st">"plastic_type"</span>).is_in([<span class="st">"empty"</span>, <span class="st">"o"</span>]).alias(<span class="st">"plastic_unidentified"</span>))</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"volunteers"</span>, <span class="st">"plastic_unidentified"</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"quantity"</span>).<span class="bu">sum</span>())</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    .with_columns( (pl.col(<span class="st">"quantity"</span>)<span class="op">/</span>pl.col(<span class="st">"quantity"</span>).<span class="bu">sum</span>())</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>                    .over(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"volunteers"</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>                    .alias(<span class="st">"id_rate"</span>))</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(<span class="op">~</span>pl.col(<span class="st">"plastic_unidentified"</span>))</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"quantity"</span>, <span class="st">"plastic_unidentified"</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    .pivot(on<span class="op">=</span>cs.by_name(<span class="st">"year"</span>), values<span class="op">=</span>cs.by_name(<span class="st">"volunteers"</span>, <span class="st">"id_rate"</span>))</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    .with_columns(volunteer_growth<span class="op">=</span>pl.col(<span class="st">"volunteers_2020"</span>)<span class="op">/</span>pl.col(<span class="st">"volunteers_2019"</span>)<span class="op">-</span><span class="dv">1</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>                id_rate_increase<span class="op">=</span>pl.col(<span class="st">"id_rate_2020"</span>)<span class="op">-</span>pl.col(<span class="st">"id_rate_2019"</span>))</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"volunteer_growth"</span>).is_not_null(),</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"id_rate_increase"</span>).is_not_null())</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    .sort(<span class="st">"id_rate_increase"</span>, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>top_10_id_rate_increase</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (10, 9)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">volunteers_2020</th>
+<th data-quarto-table-cell-role="th">volunteers_2019</th>
+<th data-quarto-table-cell-role="th">id_rate_2020</th>
+<th data-quarto-table-cell-role="th">id_rate_2019</th>
+<th data-quarto-table-cell-role="th">volunteer_growth</th>
+<th data-quarto-table-cell-role="th">id_rate_increase</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Africa"</td>
+<td>"ZAF"</td>
+<td>"South Africa"</td>
+<td>20</td>
+<td>511</td>
+<td>0.989937</td>
+<td>0.005525</td>
+<td>-0.960861</td>
+<td>0.984412</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"ECU"</td>
+<td>"Ecuador"</td>
+<td>22</td>
+<td>455</td>
+<td>0.990291</td>
+<td>0.120252</td>
+<td>-0.951648</td>
+<td>0.87004</td>
+</tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"CAN"</td>
+<td>"Canada"</td>
+<td>13</td>
+<td>9</td>
+<td>0.794454</td>
+<td>0.0</td>
+<td>0.444444</td>
+<td>0.794454</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"COL"</td>
+<td>"Colombia"</td>
+<td>274</td>
+<td>5253</td>
+<td>0.659292</td>
+<td>0.0</td>
+<td>-0.947839</td>
+<td>0.659292</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"ESP"</td>
+<td>"Spain"</td>
+<td>284</td>
+<td>330</td>
+<td>0.686088</td>
+<td>0.051733</td>
+<td>-0.139394</td>
+<td>0.634355</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"BRA"</td>
+<td>"Brazil"</td>
+<td>78</td>
+<td>419</td>
+<td>0.866209</td>
+<td>0.243346</td>
+<td>-0.813842</td>
+<td>0.622863</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"PRT"</td>
+<td>"Portugal"</td>
+<td>65</td>
+<td>43</td>
+<td>0.47173</td>
+<td>0.003984</td>
+<td>0.511628</td>
+<td>0.467746</td>
+</tr>
+<tr class="even">
+<td>"Western Pacific"</td>
+<td>"PHL"</td>
+<td>"Philippines"</td>
+<td>915</td>
+<td>3751</td>
+<td>0.931515</td>
+<td>0.463989</td>
+<td>-0.756065</td>
+<td>0.467527</td>
+</tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"MEX"</td>
+<td>"Mexico"</td>
+<td>83</td>
+<td>48</td>
+<td>0.90846</td>
+<td>0.50627</td>
+<td>0.729167</td>
+<td>0.402191</td>
+</tr>
+<tr class="even">
+<td>"South-East Asia"</td>
+<td>"BGD"</td>
+<td>"Bangladesh"</td>
+<td>127</td>
+<td>100</td>
+<td>0.345783</td>
+<td>0.0</td>
+<td>0.27</td>
+<td>0.345783</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <p>You are done already? If not, then here are some tips:</p>
 <ul>
 <li><p>You can create a boolean variable of whether a piece of plastic is identified or not. Include it into the list of grouping variables and calculate totals by it. Then pivot on this variable. This will allow you to calculate the identification rate.</p></li>
@@ -398,6 +2703,300 @@ Challenge
 </ul>
 <p>If you find these tips helpful pause again and try solving the task. Otherwise, hang on, we will discuss the solution to this challenge together momentarily.</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="1e4e7216" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(top_10_id_rate_increase</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    .pipe(GT)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    .tab_spanner(label<span class="op">=</span><span class="st">"Indentification"</span>, columns<span class="op">=</span>cs.starts_with(<span class="st">"id_rate"</span>))</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    .tab_spanner(label<span class="op">=</span><span class="st">"Volunteers"</span>, columns<span class="op">=</span>cs.starts_with(<span class="st">"volunteer"</span>))</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">#.cols_move(columns=cs.starts_with("quantity"), after="country")</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    .cols_hide(<span class="st">"region"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    .cols_label(cases<span class="op">=</span>{</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">"volunteers_2019"</span>: <span class="st">"2019"</span>,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">"volunteers_2020"</span>: <span class="st">"2020"</span>,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">"id_rate_2019"</span>: <span class="st">"2019"</span>,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>                <span class="st">"id_rate_2020"</span>: <span class="st">"2020"</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>                })</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    .cols_label(country<span class="op">=</span><span class="st">""</span>,</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>                volunteer_growth<span class="op">=</span><span class="st">"Growth"</span>,</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>                id_rate_increase<span class="op">=</span><span class="st">"Increase %"</span>,</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>                country_code<span class="op">=</span><span class="st">""</span>)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    .fmt_percent(columns<span class="op">=</span>cs.starts_with(<span class="st">"id_rate"</span>), decimals<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    .fmt_number(columns<span class="op">=</span>cs.starts_with(<span class="st">"volunteers"</span>), decimals<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    .fmt_percent(columns<span class="op">=</span>cs.matches(<span class="st">"volunteer_growth"</span>), decimals<span class="op">=</span><span class="dv">0</span>, force_sign<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    .fmt_percent(columns<span class="op">=</span>cs.matches(<span class="st">"id_rate_increase"</span>), decimals<span class="op">=</span><span class="dv">1</span>, force_sign<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    .fmt_flag(columns<span class="op">=</span>cs.matches(<span class="st">"country_code"</span>))</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>    .tab_header(title<span class="op">=</span><span class="st">"Top 10 countried by the increase in plastic indentification in 2019-2020"</span>,</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>            subtitle<span class="op">=</span><span class="st">"Indentification rate is proportion of plastic samples assigned to one of BFFP categories"</span>)</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    .tab_source_note(<span class="st">"Source: Break Free From Plastic campaigns 2019, 2020"</span>)</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    .opt_stylize(style<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<div id="jfelagwnws" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>
+#jfelagwnws table {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+#jfelagwnws thead, tbody, tfoot, tr, td, th { border-style: none; }
+ tr { background-color: transparent; }
+#jfelagwnws p { margin: 0; padding: 0; }
+ #jfelagwnws .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #jfelagwnws .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #jfelagwnws .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
+ #jfelagwnws .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
+ #jfelagwnws .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #jfelagwnws .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; }
+ #jfelagwnws .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #jfelagwnws .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #jfelagwnws .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #jfelagwnws .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #jfelagwnws .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #jfelagwnws .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #jfelagwnws .gt_spanner_row { border-bottom-style: hidden; }
+ #jfelagwnws .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #jfelagwnws .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; vertical-align: middle; }
+ #jfelagwnws .gt_from_md> :first-child { margin-top: 0; }
+ #jfelagwnws .gt_from_md> :last-child { margin-bottom: 0; }
+ #jfelagwnws .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; }
+ #jfelagwnws .gt_stub { color: #FFFFFF; background-color: #0076BA; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #0076BA; padding-left: 5px; padding-right: 5px; }
+ #jfelagwnws .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #jfelagwnws .gt_row_group_first td { border-top-width: 2px; }
+ #jfelagwnws .gt_row_group_first th { border-top-width: 2px; }
+ #jfelagwnws .gt_striped { background-color: #F4F4F4; }
+ #jfelagwnws .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; }
+ #jfelagwnws .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #jfelagwnws .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #jfelagwnws .gt_left { text-align: left; }
+ #jfelagwnws .gt_center { text-align: center; }
+ #jfelagwnws .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #jfelagwnws .gt_font_normal { font-weight: normal; }
+ #jfelagwnws .gt_font_bold { font-weight: bold; }
+ #jfelagwnws .gt_font_italic { font-style: italic; }
+ #jfelagwnws .gt_super { font-size: 65%; }
+ #jfelagwnws .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #jfelagwnws .gt_asterisk { font-size: 100%; vertical-align: 0; }
+ 
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="gt_heading header">
+<th colspan="8" class="gt_heading gt_title gt_font_normal">Top 10 countried by the increase in plastic indentification in 2019-2020</th>
+</tr>
+<tr class="gt_heading even">
+<th colspan="8" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Indentification rate is proportion of plastic samples assigned to one of BFFP categories</th>
+</tr>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th rowspan="2" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th colspan="3" id="Volunteers" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">Volunteers</span></th>
+<th colspan="3" id="Indentification" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">Indentification</span></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="2020" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2020</th>
+<th id="2019" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2019</th>
+<th id="Growth" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Growth</th>
+<th id="2020" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2020</th>
+<th id="2019" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2019</th>
+<th id="Increase %" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Increase %</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+South Africa
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#eee" d="m0 0 192 256L0 512h47l465-189v-34l-32-33 32-33v-34L47 0Z"></path><path fill="#333" d="M0 142v228l140-114z"></path><path fill="#ffda44" d="M192 256 0 95v47l114 114L0 370v47z"></path><path fill="#6da544" d="M512 223H223L0 0v94l161 162L0 418v94l223-223h289z"></path><path fill="#d80027" d="M512 0H47l189 189h276z"></path><path fill="#0052b4" d="M512 512H47l189-189h276z"></path></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left">South Africa</td>
+<td class="gt_row gt_right">20</td>
+<td class="gt_row gt_right">511</td>
+<td class="gt_row gt_right">−96%</td>
+<td class="gt_row gt_right">99.0%</td>
+<td class="gt_row gt_right">0.6%</td>
+<td class="gt_row gt_right">+98.4%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+Ecuador
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#d80027" d="m0 384 254.7-32.7L512 383.9V512H0z"></path><path fill="#0052b4" d="m0 256 255-27 257 27v128H0z"></path><path fill="#ffda44" d="M0 0h512v256H0z"></path><circle cx="256" cy="256" r="89" fill="#ffda44"></circle><path fill="#338af3" d="M256 311.6c-30.7 0-55.7-25-55.7-55.6v-33.4a55.7 55.7 0 0 1 111.4 0V256c0 30.6-25 55.6-55.7 55.6z"></path><path fill="#333" d="M345 122.4h-66.7a22.3 22.3 0 0 0-44.6 0H167a23 23 0 0 0 23 22.3h-.8c0 12.3 10 22.3 22.3 22.3 0 12.3 10 22.2 22.2 22.2h44.6c12.3 0 22.2-10 22.2-22.2 12.3 0 22.3-10 22.3-22.3h-.8a23 23 0 0 0 23-22.3z"></path></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left gt_striped">Ecuador</td>
+<td class="gt_row gt_right gt_striped">22</td>
+<td class="gt_row gt_right gt_striped">455</td>
+<td class="gt_row gt_right gt_striped">−95%</td>
+<td class="gt_row gt_right gt_striped">99.0%</td>
+<td class="gt_row gt_right gt_striped">12.0%</td>
+<td class="gt_row gt_right gt_striped">+87.0%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+Canada
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#d80027" d="M0 0v512h144l112-64 112 64h144V0H368L256 64 144 0Z"></path><path fill="#eee" d="M144 0h224v512H144Z"></path><path fill="#d80027" d="m301 289 44-22-22-11v-22l-45 22 23-44h-23l-22-34-22 33h-23l23 45-45-22v22l-22 11 45 22-12 23h45v33h22v-33h45z"></path></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left">Canada</td>
+<td class="gt_row gt_right">13</td>
+<td class="gt_row gt_right">9</td>
+<td class="gt_row gt_right">+44%</td>
+<td class="gt_row gt_right">79.4%</td>
+<td class="gt_row gt_right">0.0%</td>
+<td class="gt_row gt_right">+79.4%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+Colombia
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#d80027" d="m0 384 255.8-29.7L512 384v128H0z"></path><path fill="#0052b4" d="m0 256 259.5-31L512 256v128H0z"></path><path fill="#ffda44" d="M0 0h512v256H0z"></path></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left gt_striped">Colombia</td>
+<td class="gt_row gt_right gt_striped">274</td>
+<td class="gt_row gt_right gt_striped">5,253</td>
+<td class="gt_row gt_right gt_striped">−95%</td>
+<td class="gt_row gt_right gt_striped">65.9%</td>
+<td class="gt_row gt_right gt_striped">0.0%</td>
+<td class="gt_row gt_right gt_striped">+65.9%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+Spain
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#ffda44" d="m0 128 256-32 256 32v256l-256 32L0 384Z"></path><path fill="#d80027" d="M0 0h512v128H0zm0 384h512v128H0z"></path><g fill="#eee"><path d="M144 304h-16v-80h16zm128 0h16v-80h-16z"></path><ellipse cx="208" cy="296" rx="48" ry="32"></ellipse></g><g fill="#d80027"><rect width="16" height="24" x="128" y="192" rx="8"></rect><rect width="16" height="24" x="272" y="192" rx="8"></rect><path d="M208 272v24a24 24 0 0 0 24 24 24 24 0 0 0 24-24v-24h-24z"></path></g><rect width="32" height="16" x="120" y="208" fill="#ff9811" ry="8"></rect><rect width="32" height="16" x="264" y="208" fill="#ff9811" ry="8"></rect><rect width="32" height="16" x="120" y="304" fill="#ff9811" rx="8"></rect><rect width="32" height="16" x="264" y="304" fill="#ff9811" rx="8"></rect><path fill="#ff9811" d="M160 272v24c0 8 4 14 9 19l5-6 5 10a21 21 0 0 0 10 0l5-10 5 6c6-5 9-11 9-19v-24h-9l-5 8-5-8h-10l-5 8-5-8z"></path><path d="M122 252h172m-172 24h28m116 0h28"></path><path fill="#d80027" d="M122 248a4 4 0 0 0-4 4 4 4 0 0 0 4 4h172a4 4 0 0 0 4-4 4 4 0 0 0-4-4zm0 24a4 4 0 0 0-4 4 4 4 0 0 0 4 4h28a4 4 0 0 0 4-4 4 4 0 0 0-4-4zm144 0a4 4 0 0 0-4 4 4 4 0 0 0 4 4h28a4 4 0 0 0 4-4 4 4 0 0 0-4-4z"></path><path fill="#eee" d="M196 168c-7 0-13 5-15 11l-5-1c-9 0-16 7-16 16s7 16 16 16c7 0 13-4 15-11a16 16 0 0 0 17-4 16 16 0 0 0 17 4 16 16 0 1 0 10-20 16 16 0 0 0-27-5c-3-4-7-6-12-6zm0 8c5 0 8 4 8 8 0 5-3 8-8 8-4 0-8-3-8-8 0-4 4-8 8-8zm24 0c5 0 8 4 8 8 0 5-3 8-8 8-4 0-8-3-8-8 0-4 4-8 8-8zm-44 10 4 1 4 8c0 4-4 7-8 7s-8-3-8-8c0-4 4-8 8-8zm64 0c5 0 8 4 8 8 0 5-3 8-8 8-4 0-8-3-8-7l4-8z"></path><path fill="none" d="M220 284v12c0 7 5 12 12 12s12-5 12-12v-12z"></path><path fill="#ff9811" d="M200 160h16v32h-16z"></path><path fill="#eee" d="M208 224h48v48h-48z"></path><path fill="#d80027" d="m248 208-8 8h-64l-8-8c0-13 18-24 40-24s40 11 40 24zm-88 16h48v48h-48z"></path><rect width="20" height="32" x="222" y="232" fill="#d80027" rx="10" ry="10"></rect><path fill="#ff9811" d="M168 232v8h8v16h-8v8h32v-8h-8v-16h8v-8zm8-16h64v8h-64z"></path><g fill="#ffda44"><circle cx="186" cy="202" r="6"></circle><circle cx="208" cy="202" r="6"></circle><circle cx="230" cy="202" r="6"></circle></g><path fill="#d80027" d="M169 272v43a24 24 0 0 0 10 4v-47h-10zm20 0v47a24 24 0 0 0 10-4v-43h-10z"></path><g fill="#338af3"><circle cx="208" cy="272" r="16"></circle><rect width="32" height="16" x="264" y="320" ry="8"></rect><rect width="32" height="16" x="120" y="320" ry="8"></rect></g></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left">Spain</td>
+<td class="gt_row gt_right">284</td>
+<td class="gt_row gt_right">330</td>
+<td class="gt_row gt_right">−14%</td>
+<td class="gt_row gt_right">68.6%</td>
+<td class="gt_row gt_right">5.2%</td>
+<td class="gt_row gt_right">+63.4%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+Brazil
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#6da544" d="M0 0h512v512H0z"></path><path fill="#ffda44" d="M256 100.2 467.5 256 256 411.8 44.5 256z"></path><path fill="#eee" d="M174.2 221a87 87 0 0 0-7.2 36.3l162 49.8a88.5 88.5 0 0 0 14.4-34c-40.6-65.3-119.7-80.3-169.1-52z"></path><path fill="#0052b4" d="M255.7 167a89 89 0 0 0-41.9 10.6 89 89 0 0 0-39.6 43.4 181.7 181.7 0 0 1 169.1 52.2 89 89 0 0 0-9-59.4 89 89 0 0 0-78.6-46.8zM212 250.5a149 149 0 0 0-45 6.8 89 89 0 0 0 10.5 40.9 89 89 0 0 0 120.6 36.2 89 89 0 0 0 30.7-27.3A151 151 0 0 0 212 250.5z"></path></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left gt_striped">Brazil</td>
+<td class="gt_row gt_right gt_striped">78</td>
+<td class="gt_row gt_right gt_striped">419</td>
+<td class="gt_row gt_right gt_striped">−81%</td>
+<td class="gt_row gt_right gt_striped">86.6%</td>
+<td class="gt_row gt_right gt_striped">24.3%</td>
+<td class="gt_row gt_right gt_striped">+62.3%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+Portugal
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#6da544" d="M0 512h167l37.9-260.3L167 0H0z"></path><path fill="#d80027" d="M512 0H167v512h345z"></path><circle cx="167" cy="256" r="89" fill="#ffda44"></circle><path fill="#d80027" d="M116.9 211.5V267a50 50 0 1 0 100.1 0v-55.6H117z"></path><path fill="#eee" d="M167 283.8c-9.2 0-16.7-7.5-16.7-16.7V245h33.4v22c0 9.2-7.5 16.7-16.7 16.7z"></path></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left">Portugal</td>
+<td class="gt_row gt_right">65</td>
+<td class="gt_row gt_right">43</td>
+<td class="gt_row gt_right">+51%</td>
+<td class="gt_row gt_right">47.2%</td>
+<td class="gt_row gt_right">0.4%</td>
+<td class="gt_row gt_right">+46.8%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+Philippines
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#0052b4" d="M0 0h512v256l-265 45.2z"></path><path fill="#d80027" d="M210 256h302v256H0z"></path><path fill="#eee" d="M0 0v512l256-256z"></path><path fill="#ffda44" d="M175.3 256 144 241.3l16.7-30.3-34 6.5-4.3-34.3-23.6 25.2L75 183.2l-4.3 34.3-34-6.5 16.7 30.3L22.3 256l31.2 14.7L37 301l34-6.5 4.2 34.3 23.7-25.2 23.6 25.2 4.3-34.3 34 6.5-16.7-30.3zm-107-155.8 10.4 14.5 17-5.4-10.6 14.4 10.4 14.5-17-5.6L68 147l.2-17.9-17-5.6 17-5.4zm0 264.8 10.4 14.6 17-5.4-10.6 14.3 10.4 14.6-17-5.7L68 411.8l.2-17.9-17-5.6 17-5.4zm148.4-132.4L206.3 247l-17-5.4 10.5 14.4-10.4 14.6 17-5.7 10.6 14.4-.1-17.9 17-5.6-17.1-5.4z"></path></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left gt_striped">Philippines</td>
+<td class="gt_row gt_right gt_striped">915</td>
+<td class="gt_row gt_right gt_striped">3,751</td>
+<td class="gt_row gt_right gt_striped">−76%</td>
+<td class="gt_row gt_right gt_striped">93.2%</td>
+<td class="gt_row gt_right gt_striped">46.4%</td>
+<td class="gt_row gt_right gt_striped">+46.8%</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+Mexico
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#eee" d="M144 0h223l33 256-33 256H144l-32-256z"></path><path fill="#496e2d" d="M0 0h144v512H0z"></path><path fill="#d80027" d="M368 0h144v512H368z"></path><path fill="#ffda44" d="M256 277v10h12l10-22z"></path><path fill="#496e2d" d="M160 242a96 96 0 0 0 192 0h-11a85 85 0 0 1-170 0zm39 17-4 2c-2 2-2 6 1 8 15 14 34 22 54 24v17h12v-17c20-2 39-10 54-24 3-2 3-6 1-8s-6-2-8 0a78 78 0 0 1-53 21c-19 0-38-8-53-21z"></path><path fill="#338af3" d="M256 316c-14 0-28-5-40-13l6-9c20 13 48 13 68 0l7 9c-12 8-26 13-41 13z"></path><path fill="#751a46" d="M256 174c22 11 12 33 11 34l-2-4c-5-11-18-18-31-18v11c6 0 11 5 11 11-7 7-9 17-4 26l4 8-13 23 29-7 18 18v-11l11 11 23-11-35-21-5-21 28 16c4 11 12 21 23 26 9-83-42-91-61-91z"></path><path fill="#6da544" d="M222 271c-15 0-33-12-38-40l11-2c4 23 18 31 27 31 3 0 5-1 6-3 0-2 0-3-6-5-3-1-7-2-10-5-10-12 4-24 11-30 1-1 2-2 1-3 0 0-2-2-5-2-7 0-12-4-14-11-2-6 2-13 8-17l5 11c-2 0-2 2-2 4 0 0 1 2 3 2 7 0 14 4 16 9 1 3 2 9-5 15-7 7-11 12-9 15l5 1c5 2 14 5 13 17-1 8-8 13-17 13h-1z"></path><path fill="#ffda44" d="m234 186-12 11v11l18-9c3-1 3-5 1-7z"></path><circle cx="172" cy="275" r="8" fill="#ffda44"></circle><circle cx="189" cy="302" r="8" fill="#ffda44"></circle><circle cx="216" cy="323" r="8" fill="#ffda44"></circle><circle cx="297" cy="323" r="8" fill="#ffda44"></circle><circle cx="324" cy="302" r="8" fill="#ffda44"></circle><circle cx="341" cy="275" r="8" fill="#ffda44"></circle><rect width="34" height="22" x="239" y="299" fill="#ff9811" rx="11" ry="11"></rect></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left">Mexico</td>
+<td class="gt_row gt_right">83</td>
+<td class="gt_row gt_right">48</td>
+<td class="gt_row gt_right">+73%</td>
+<td class="gt_row gt_right">90.8%</td>
+<td class="gt_row gt_right">50.6%</td>
+<td class="gt_row gt_right">+40.2%</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped"><span style="white-space:nowrap;">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="512" height="512" viewbox="0 0 512 512" style="vertical-align:-0.125em;image-rendering:optimizeQuality;height:1em;width:1em;">
+<title>
+Bangladesh
+</title>
+<mask id="a"><circle cx="256" cy="256" r="256" fill="#fff"></circle></mask><g mask="url(#a)"><path fill="#496e2d" d="M0 0h512v512H0z"></path><circle cx="200.3" cy="256" r="111.3" fill="#d80027"></circle></g>
+</svg>
+</span></td>
+<td class="gt_row gt_left gt_striped">Bangladesh</td>
+<td class="gt_row gt_right gt_striped">127</td>
+<td class="gt_row gt_right gt_striped">100</td>
+<td class="gt_row gt_right gt_striped">+27%</td>
+<td class="gt_row gt_right gt_striped">34.6%</td>
+<td class="gt_row gt_right gt_striped">0.0%</td>
+<td class="gt_row gt_right gt_striped">+34.6%</td>
+</tr>
+</tbody><tfoot class="gt_sourcenotes">
+<tr class="odd">
+<td colspan="8" class="gt_sourcenote">Source: Break Free From Plastic campaigns 2019, 2020</td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+        
+</div>
+</div>
 <p>Whew! You did it! Was it hard? Well, I am sure you have learned a lot and should be proud of yourself! One thing you can be sure of is that although this task is a little contrived and the data is a little dirty, the process of solving it not untypical for the daily job of a data analyst. The data analysis tasks in real life do not come nicely packaged and most of the data requires substantial amount of care before it can be usable.</p>
 <p>So, let us talk through this solution together.</p>
 <ul>
@@ -411,8 +3010,19 @@ Challenge
 </ul></li>
 </ul>
 <p>&lt; PAUSE &gt;</p>
+<div id="704faada" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>    .with_columns( (pl.col(<span class="st">"quantity"</span>)<span class="op">/</span>pl.col(<span class="st">"quantity"</span>).<span class="bu">sum</span>())</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                    .over(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"volunteers"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                    .alias(<span class="st">"id_rate"</span>))</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(<span class="op">~</span>pl.col(<span class="st">"plastic_unidentified"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <pre><code>- Alternatively, we can pivot the `plastic_unidentified` and compute the proportion across the two new columns (named True and False). This option would look something like this:</code></pre>
 <p>&lt; PAUSE &gt;</p>
+<div id="40a49e39" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>    .pivot(on<span class="op">=</span>cs.by_name(<span class="st">"plastic_unidentified"</span>), values<span class="op">=</span>cs.by_name(<span class="st">"quantity"</span>))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    .with_columns(id_rate<span class="op">=</span>pl.col(<span class="st">"false"</span>)<span class="op">/</span>(pl.col(<span class="st">"true"</span>)<span class="op">+</span>pl.col(<span class="st">"false"</span>)))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"true"</span>, <span class="st">"false"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
 <li>Finally we need to pivot on year. Here we pivot both <code>volunteers</code> and newly created <code>id_rate</code> because our task was to show change in both. As we discussed earlier, this will create total of 4 columns because there are 2 levels in <code>year</code> column and we are pivoting 2 variables.</li>
 <li>Our last step is to calculate the volunteer growth and the identification rate increase. One is percent growth and the other is a simple difference in percent values. Drop the records where either one of them is Null and sort by <code>id_rate_increase</code>. Then take top 10 records only.</li>
@@ -424,29 +3034,605 @@ Challenge
 <p>One of the most common ways to merge datasets is through a join. A join allows you to bring data from one table into another based on matching values in one or more columns. In Polars, this is done using the .join() method.</p>
 <p>Let’s look at an example. We have two small datasets: one lists the countries in the Nordic Council, including their area and population; the other contains information on members of the European Free Trade Association (EFTA), with data on exports, imports, and GDP (in billion USD). Our goal is to combine these datasets in a meaningful way.</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="94bf66fc" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>nordic_council <span class="op">=</span> pl.DataFrame({</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"country_name"</span>: [<span class="st">"Denmark"</span>, <span class="st">"Finland"</span>, <span class="st">"Iceland"</span>, <span class="st">"Sweden"</span>, <span class="st">"Norway"</span>],</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"population_mln"</span>: [<span class="fl">5.973136</span>, <span class="fl">5.626414</span>, <span class="fl">0.364036</span>, <span class="fl">10.589835</span>, <span class="fl">5.509733</span>],</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"area_sqkm"</span>: [<span class="dv">43094</span>, <span class="dv">338145</span>, <span class="dv">103000</span>, <span class="dv">450295</span>, <span class="dv">323802</span>]</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>efta_countries <span class="op">=</span> pl.DataFrame({</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"country_name"</span>: [<span class="st">"Norway"</span>, <span class="st">"Switzerland"</span>, <span class="st">"Iceland"</span>, <span class="st">"Liechtenstein"</span>],</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"exports_bln"</span>: [<span class="fl">228.625</span>, <span class="fl">661.628</span>, <span class="fl">13.49</span>, <span class="fl">3.217</span>],</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"imports_bln"</span>: [<span class="fl">157.032</span>, <span class="fl">554.358</span>, <span class="fl">13.484</span>, <span class="fl">2.23</span>],</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"gdp_bln"</span>: [<span class="fl">499.528</span>, <span class="fl">733.779</span>, <span class="fl">26.155</span>, <span class="fl">4.978</span>]</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="c09e7734" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>nordic_council</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 3)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country_name</th>
+<th data-quarto-table-cell-role="th">population_mln</th>
+<th data-quarto-table-cell-role="th">area_sqkm</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>f64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Denmark"</td>
+<td>5.973136</td>
+<td>43094</td>
+</tr>
+<tr class="even">
+<td>"Finland"</td>
+<td>5.626414</td>
+<td>338145</td>
+</tr>
+<tr class="odd">
+<td>"Iceland"</td>
+<td>0.364036</td>
+<td>103000</td>
+</tr>
+<tr class="even">
+<td>"Sweden"</td>
+<td>10.589835</td>
+<td>450295</td>
+</tr>
+<tr class="odd">
+<td>"Norway"</td>
+<td>5.509733</td>
+<td>323802</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="9075a90f" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>efta_countries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (4, 4)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country_name</th>
+<th data-quarto-table-cell-role="th">exports_bln</th>
+<th data-quarto-table-cell-role="th">imports_bln</th>
+<th data-quarto-table-cell-role="th">gdp_bln</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Norway"</td>
+<td>228.625</td>
+<td>157.032</td>
+<td>499.528</td>
+</tr>
+<tr class="even">
+<td>"Switzerland"</td>
+<td>661.628</td>
+<td>554.358</td>
+<td>733.779</td>
+</tr>
+<tr class="odd">
+<td>"Iceland"</td>
+<td>13.49</td>
+<td>13.484</td>
+<td>26.155</td>
+</tr>
+<tr class="even">
+<td>"Liechtenstein"</td>
+<td>3.217</td>
+<td>2.23</td>
+<td>4.978</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <p>Iceland and Norway are members of both the Nordic Council and EFTA. Let’s say we want to calculate GDP per capita for these countries. The challenge? GDP is stored in one table, while population is in another.</p>
 <p>How do we solve this? That’s right—we need to join the tables! By merging them based on the shared “country_name” column, we can bring all the necessary information together. Once combined, we can simply use the .with_columns() method to compute GDP per capita.</p>
 <p>This approach lets us seamlessly integrate data from different sources and perform new calculations with ease.</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="b0c31bcc" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(nordic_council</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    .join(efta_countries, on<span class="op">=</span><span class="st">"country_name"</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(gdp_per_cap<span class="op">=</span>pl.col(<span class="st">"gdp_bln"</span>)<span class="op">/</span>pl.col(<span class="st">"population_mln"</span>))</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (2, 7)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country_name</th>
+<th data-quarto-table-cell-role="th">population_mln</th>
+<th data-quarto-table-cell-role="th">area_sqkm</th>
+<th data-quarto-table-cell-role="th">exports_bln</th>
+<th data-quarto-table-cell-role="th">imports_bln</th>
+<th data-quarto-table-cell-role="th">gdp_bln</th>
+<th data-quarto-table-cell-role="th">gdp_per_cap</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Iceland"</td>
+<td>0.364036</td>
+<td>103000</td>
+<td>13.49</td>
+<td>13.484</td>
+<td>26.155</td>
+<td>71.84729</td>
+</tr>
+<tr class="even">
+<td>"Norway"</td>
+<td>5.509733</td>
+<td>323802</td>
+<td>228.625</td>
+<td>157.032</td>
+<td>499.528</td>
+<td>90.662832</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <p>Notice that after our join, only Iceland and Norway remain in the result. The other Nordic countries were dropped because they had no match in the efta_countries table. This type of join is called an inner join, and it’s the default behavior in Polars.</p>
 <p>But what if we don’t want to lose the unmatched records? That’s where a left join comes in.</p>
 <p>A left join keeps all records from the table on the “left” and adds matching information from the table on the “right.” If no match is found, the missing values are filled with null. Since we’re starting with nordic_council, it serves as our “left” table.</p>
 <p>Let’s see it in action:</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="9b4f3dec" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(nordic_council</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    .join(efta_countries, on<span class="op">=</span><span class="st">"country_name"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 6)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country_name</th>
+<th data-quarto-table-cell-role="th">population_mln</th>
+<th data-quarto-table-cell-role="th">area_sqkm</th>
+<th data-quarto-table-cell-role="th">exports_bln</th>
+<th data-quarto-table-cell-role="th">imports_bln</th>
+<th data-quarto-table-cell-role="th">gdp_bln</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Denmark"</td>
+<td>5.973136</td>
+<td>43094</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"Finland"</td>
+<td>5.626414</td>
+<td>338145</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"Iceland"</td>
+<td>0.364036</td>
+<td>103000</td>
+<td>13.49</td>
+<td>13.484</td>
+<td>26.155</td>
+</tr>
+<tr class="even">
+<td>"Sweden"</td>
+<td>10.589835</td>
+<td>450295</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"Norway"</td>
+<td>5.509733</td>
+<td>323802</td>
+<td>228.625</td>
+<td>157.032</td>
+<td>499.528</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <p>Now, the result includes all five Nordic countries. The export, import, and gdp_bln columns contain values for Iceland and Norway but show null for the others, since they’re not part of EFTA.</p>
 <p>This approach ensures that we retain all countries from our original dataset while still incorporating relevant details from the second table.</p>
 <p>Just as a left join keeps all records from the left table, a right join does the opposite—it preserves all records from the right table and only includes matching data from the left.</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="1b30a672" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(nordic_council</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    .join(efta_countries, on<span class="op">=</span><span class="st">"country_name"</span>, how<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (4, 6)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">population_mln</th>
+<th data-quarto-table-cell-role="th">area_sqkm</th>
+<th data-quarto-table-cell-role="th">country_name</th>
+<th data-quarto-table-cell-role="th">exports_bln</th>
+<th data-quarto-table-cell-role="th">imports_bln</th>
+<th data-quarto-table-cell-role="th">gdp_bln</th>
+</tr>
+<tr class="even">
+<th>f64</th>
+<th>i64</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5.509733</td>
+<td>323802</td>
+<td>"Norway"</td>
+<td>228.625</td>
+<td>157.032</td>
+<td>499.528</td>
+</tr>
+<tr class="even">
+<td>null</td>
+<td>null</td>
+<td>"Switzerland"</td>
+<td>661.628</td>
+<td>554.358</td>
+<td>733.779</td>
+</tr>
+<tr class="odd">
+<td>0.364036</td>
+<td>103000</td>
+<td>"Iceland"</td>
+<td>13.49</td>
+<td>13.484</td>
+<td>26.155</td>
+</tr>
+<tr class="even">
+<td>null</td>
+<td>null</td>
+<td>"Liechtenstein"</td>
+<td>3.217</td>
+<td>2.23</td>
+<td>4.978</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <p>In this case, the result contains four records - one for each country in the <code>efta_countries</code> table. Notice that the <code>country_name</code> column has shifted in the output, appearing after population and area. Also, since Switzerland and Liechtenstein weren’t in the <code>nordic_council</code> table, their population and area values are <code>null</code>.</p>
 <p>A full join combines all records from both tables, keeping everything from the left and right datasets. If there’s no match, the missing values are filled with <code>null</code></p>
 <p>&lt; PAUSE &gt;</p>
+<div id="a3532a1e" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(nordic_council</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    .join(efta_countries, on<span class="op">=</span><span class="st">"country_name"</span>, how<span class="op">=</span><span class="st">"full"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (7, 7)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country_name</th>
+<th data-quarto-table-cell-role="th">population_mln</th>
+<th data-quarto-table-cell-role="th">area_sqkm</th>
+<th data-quarto-table-cell-role="th">country_name_right</th>
+<th data-quarto-table-cell-role="th">exports_bln</th>
+<th data-quarto-table-cell-role="th">imports_bln</th>
+<th data-quarto-table-cell-role="th">gdp_bln</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>f64</th>
+<th>i64</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Denmark"</td>
+<td>5.973136</td>
+<td>43094</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"Finland"</td>
+<td>5.626414</td>
+<td>338145</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"Iceland"</td>
+<td>0.364036</td>
+<td>103000</td>
+<td>"Iceland"</td>
+<td>13.49</td>
+<td>13.484</td>
+<td>26.155</td>
+</tr>
+<tr class="even">
+<td>"Sweden"</td>
+<td>10.589835</td>
+<td>450295</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"Norway"</td>
+<td>5.509733</td>
+<td>323802</td>
+<td>"Norway"</td>
+<td>228.625</td>
+<td>157.032</td>
+<td>499.528</td>
+</tr>
+<tr class="even">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>"Liechtenstein"</td>
+<td>3.217</td>
+<td>2.23</td>
+<td>4.978</td>
+</tr>
+<tr class="odd">
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>"Switzerland"</td>
+<td>661.628</td>
+<td>554.358</td>
+<td>733.779</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <p>This results in seven records—one for each unique country appearing in either dataset. However, you’ll notice that the country_name column is now duplicated, explicitly showing which table contributed each row.</p>
 <p>To merge these into a single country_name column, we can use the <code>coalesce=True</code> argument.</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="28419e99" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(nordic_council</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    .join(efta_countries, on<span class="op">=</span><span class="st">"country_name"</span>, how<span class="op">=</span><span class="st">"full"</span>, coalesce<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (7, 6)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country_name</th>
+<th data-quarto-table-cell-role="th">population_mln</th>
+<th data-quarto-table-cell-role="th">area_sqkm</th>
+<th data-quarto-table-cell-role="th">exports_bln</th>
+<th data-quarto-table-cell-role="th">imports_bln</th>
+<th data-quarto-table-cell-role="th">gdp_bln</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>f64</th>
+<th>i64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Denmark"</td>
+<td>5.973136</td>
+<td>43094</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"Finland"</td>
+<td>5.626414</td>
+<td>338145</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"Iceland"</td>
+<td>0.364036</td>
+<td>103000</td>
+<td>13.49</td>
+<td>13.484</td>
+<td>26.155</td>
+</tr>
+<tr class="even">
+<td>"Sweden"</td>
+<td>10.589835</td>
+<td>450295</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"Norway"</td>
+<td>5.509733</td>
+<td>323802</td>
+<td>228.625</td>
+<td>157.032</td>
+<td>499.528</td>
+</tr>
+<tr class="even">
+<td>"Switzerland"</td>
+<td>null</td>
+<td>null</td>
+<td>661.628</td>
+<td>554.358</td>
+<td>733.779</td>
+</tr>
+<tr class="odd">
+<td>"Liechtenstein"</td>
+<td>null</td>
+<td>null</td>
+<td>3.217</td>
+<td>2.23</td>
+<td>4.978</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <p>Now, we have a clean table that combines all available data while keeping a single country_name column.</p>
 <p>However, notice that five out of seven records contain missing values in at least some columns. For two of them, population and area are missing, while for the other three, economic data (gdp, export, and import) is absent.</p>
 <p>One particularly useful - but less commonly discussed - join type is the anti-join. Unlike a left join, which retains all records from the left table, an anti-join returns only the rows that would have gone missing in a left join.</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="fa86b18c" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>(nordic_council</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    .join(efta_countries, on<span class="op">=</span><span class="st">"country_name"</span>, how<span class="op">=</span><span class="st">"anti"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (3, 3)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country_name</th>
+<th data-quarto-table-cell-role="th">population_mln</th>
+<th data-quarto-table-cell-role="th">area_sqkm</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>f64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Denmark"</td>
+<td>5.973136</td>
+<td>43094</td>
+</tr>
+<tr class="even">
+<td>"Finland"</td>
+<td>5.626414</td>
+<td>338145</td>
+</tr>
+<tr class="odd">
+<td>"Sweden"</td>
+<td>10.589835</td>
+<td>450295</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <p>Here, the result includes only the unmatched records from the nordic_council table - countries that do not appear in the efta_countries dataset. Also, note that only columns from the left table (nordic_council) are shown, as no matching data exists in the right table.</p>
 <p>The anti-join is particularly useful for diagnosing and troubleshooting joins. Before performing a left join, it helps identify which records will be left without a match, allowing analysts to spot inconsistencies or missing data early.</p>
 <p>To wrap up, here’s a visual summary of the five join types we’ve covered:</p>
@@ -476,6 +3662,11 @@ Challenge
 <li>fuel_types – Types of fuel used for cooking in various countries.</li>
 <li>clean_fuels – Proportion of the population with access to clean cooking fuels.</li>
 </ul>
+<div id="ca8ceb87" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>hhap_deaths <span class="op">=</span> pl.read_csv(<span class="st">"https://bit.ly/data24-hhap-deaths"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>fuel_types <span class="op">=</span> pl.read_csv(<span class="st">"https://bit.ly/data24-cooking-by-fuel-type"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>clean_fuels <span class="op">=</span> pl.read_csv(<span class="st">"https://bit.ly/data24-clean-fuels-cooking"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>We wanted to put the deaths attributable to household pollution into context by comparing them to the total population of each country in the respective years. However, the hhap_deaths dataset lacked population estimates. To work around this, we inferred population estimates by aggregating the fuel_types dataset and saved it as pop_years_df. Now, our goal is to merge these population estimates into hhap_deaths so that we can analyze deaths per million people.</p>
 <div class="callout callout-style-default callout-challenge callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -498,11 +3689,35 @@ Challenge
 </div>
 <p>&lt; PAUSE &gt;</p>
 <p>Here’s the code which allows us to observe trends in household pollution-related deaths over time, broken down by cause of death and country.</p>
+<div id="c0e14fea" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>pop_years_df <span class="op">=</span> pl.read_csv(<span class="st">"hhap/pop_years_df.csv"</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>(hhap_deaths</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    .join(pop_years_df, on<span class="op">=</span>[<span class="st">"region"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    .with_columns(deaths_per_mln<span class="op">=</span>pl.col(<span class="st">"deaths"</span>)<span class="op">/</span>pl.col(<span class="st">"mean_pop"</span>))</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"region"</span>)<span class="op">==</span><span class="st">"Europe"</span>,</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"deaths"</span>)<span class="op">&gt;</span><span class="dv">0</span>,</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"cause_of_death"</span>)<span class="op">!=</span><span class="st">"All causes"</span>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"deaths_per_mln"</span>, </span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>                    color<span class="op">=</span><span class="st">"cause_of_death"</span>, group<span class="op">=</span><span class="st">"cause_of_death"</span>))</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_smooth(method<span class="op">=</span><span class="st">"lm"</span>)</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>facet_wrap(<span class="st">"country"</span>, nrow<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme_seaborn()</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme(figure_size<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">8</span>), legend_position<span class="op">=</span><span class="st">"bottom"</span>)</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pivotjoin_files/figure-html/cell-34-output-1.png" width="1440" height="768" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>Joins allow us to break free from the constraints of a single dataset and uncover deeper insights by integrating data from multiple sources. Mastering the skill of merging datasets is a powerful addition to your data analysis toolkit, enabling you to answer more complex questions and build richer analyses.</p>
 <p>In the next section, we’ll explore even more techniques for combining data from different sources. Stay tuned!</p>
 </section>
-<section id="video-8-stacking-greenscreen-7-min" class="level1">
-<h1>VIDEO 8 stacking {greenscreen} ~ 7 min</h1>
+<section id="video-8-stacking" class="level1">
+<h1>VIDEO 8 stacking</h1>
 <p>Another common operation in data analysis is stacking datasets vertically—essentially appending one dataset to another. This works when the datasets have the same column structure and represent different parts of the same kind of data. By stacking them together, we can create a larger dataset that consolidates information from multiple sources.</p>
 <p>Going back to our household air pollution case study, we worked with three datasets:</p>
 <ul>
@@ -513,12 +3728,250 @@ Challenge
 <p>Each dataset includes three key columns that describe the country of observation: region, country_code, and country. While these datasets share many of the same countries, they don’t completely overlap. Our goal is to create a master list of all countries, along with their codes and regions.</p>
 <p>Since each dataset spans multiple years, they contain duplicate entries for the same country. This issue will grow when we stack the datasets together, so we need to ensure our final dataset contains only unique records.</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="ced8d221" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>idcols<span class="op">=</span>cs.by_name(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>country_regions <span class="op">=</span> (hhap_deaths.select(idcols)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    .vstack(fuel_types.select(idcols))</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    .vstack(clean_fuels.select(idcols))</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    .unique()</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Here, we create a temporary object, idcols, to store the column selector for the three country-related columns. This makes our code more readable and reusable, as Polars selectors can be stored separately and used in different querying contexts.</p>
 <p>Next, we want to verify that our country codes match the official ISO country codes. We have a reference file containing all Alpha-2 and Alpha-3 country codes. Before performing a left join, we first check for any records that don’t have a corresponding ISO code.</p>
 <p>Since the column names in our dataset and the ISO file don’t match, we explicitly specify the columns to join on using left_on and right_on. The anti-join returns an empty table. It means all our country codes successfully matched an entry in the ISO dataset - an important step in ensuring data integrity before further analysis.</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="edd2eb5f" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>iso_df <span class="op">=</span> pl.read_csv(<span class="st">"https://bit.ly/data24-countrycodes"</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>(country_regions</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    .join(iso_df, left_on<span class="op">=</span><span class="st">"country_code"</span>, right_on<span class="op">=</span><span class="st">"alpha3"</span>, how<span class="op">=</span><span class="st">"anti"</span>))</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>(country_regions</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    .join(iso_df, left_on<span class="op">=</span><span class="st">"country_code"</span>, right_on<span class="op">=</span><span class="st">"alpha3"</span>, how<span class="op">=</span><span class="st">"left"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (195, 6)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">region</th>
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">country_right</th>
+<th data-quarto-table-cell-role="th">alpha2</th>
+<th data-quarto-table-cell-role="th">numeric</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"AND"</td>
+<td>"Andorra"</td>
+<td>"Andorra"</td>
+<td>"AD"</td>
+<td>20</td>
+</tr>
+<tr class="even">
+<td>"Africa"</td>
+<td>"CAF"</td>
+<td>"Central African Republic"</td>
+<td>"Central African Republic (the)"</td>
+<td>"CF"</td>
+<td>140</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>"PHL"</td>
+<td>"Philippines"</td>
+<td>"Philippines (the)"</td>
+<td>"PH"</td>
+<td>608</td>
+</tr>
+<tr class="even">
+<td>"Eastern Mediterranean"</td>
+<td>"SDN"</td>
+<td>"Sudan"</td>
+<td>"Sudan (the)"</td>
+<td>"SD"</td>
+<td>729</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"FIN"</td>
+<td>"Finland"</td>
+<td>"Finland"</td>
+<td>"FI"</td>
+<td>246</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Americas"</td>
+<td>"KNA"</td>
+<td>"Saint Kitts and Nevis"</td>
+<td>"Saint Kitts and Nevis"</td>
+<td>"KN"</td>
+<td>659</td>
+</tr>
+<tr class="even">
+<td>"Europe"</td>
+<td>"CHE"</td>
+<td>"Switzerland"</td>
+<td>"Switzerland"</td>
+<td>"CH"</td>
+<td>756</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>"AUS"</td>
+<td>"Australia"</td>
+<td>"Australia"</td>
+<td>"AU"</td>
+<td>36</td>
+</tr>
+<tr class="even">
+<td>"Europe"</td>
+<td>"KGZ"</td>
+<td>"Kyrgyzstan"</td>
+<td>"Kyrgyzstan"</td>
+<td>"KG"</td>
+<td>417</td>
+</tr>
+<tr class="odd">
+<td>"Africa"</td>
+<td>"LSO"</td>
+<td>"Lesotho"</td>
+<td>"Lesotho"</td>
+<td>"LS"</td>
+<td>426</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <p>Now that we’ve combined our data from multiple sources, let’s dig a little deeper into the completeness of our dataset. Specifically, we want to find out how many countries are missing from our combined household air pollution dataset.</p>
 <p>&lt; PAUSE &gt;</p>
+<div id="fa81ba3e" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(iso_df</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    .join(country_regions, left_on<span class="op">=</span><span class="st">"alpha3"</span>, right_on<span class="op">=</span><span class="st">"country_code"</span>, how<span class="op">=</span><span class="st">"anti"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (54, 4)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">alpha2</th>
+<th data-quarto-table-cell-role="th">alpha3</th>
+<th data-quarto-table-cell-role="th">numeric</th>
+</tr>
+<tr class="even">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"American Samoa"</td>
+<td>"AS"</td>
+<td>"ASM"</td>
+<td>16</td>
+</tr>
+<tr class="even">
+<td>"Anguilla"</td>
+<td>"AI"</td>
+<td>"AIA"</td>
+<td>660</td>
+</tr>
+<tr class="odd">
+<td>"Antarctica"</td>
+<td>"AQ"</td>
+<td>"ATA"</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>"Aruba"</td>
+<td>"AW"</td>
+<td>"ABW"</td>
+<td>533</td>
+</tr>
+<tr class="odd">
+<td>"Bermuda"</td>
+<td>"BM"</td>
+<td>"BMU"</td>
+<td>60</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Virgin Islands (British)"</td>
+<td>"VG"</td>
+<td>"VGB"</td>
+<td>92</td>
+</tr>
+<tr class="even">
+<td>"Virgin Islands (U.S.)"</td>
+<td>"VI"</td>
+<td>"VIR"</td>
+<td>850</td>
+</tr>
+<tr class="odd">
+<td>"Wallis and Futuna"</td>
+<td>"WF"</td>
+<td>"WLF"</td>
+<td>876</td>
+</tr>
+<tr class="even">
+<td>"Western Sahara"</td>
+<td>"EH"</td>
+<td>"ESH"</td>
+<td>732</td>
+</tr>
+<tr class="odd">
+<td>"Åland Islands"</td>
+<td>"AX"</td>
+<td>"ALA"</td>
+<td>248</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <p>This looks like another classic case for an anti-join. In this query, we start with the full list of ISO codes and perform an anti-join with our combined country_regions dataset. This will return only those countries that are in the ISO list but not in our merged dataset.</p>
 <p>The result? We discover that 54 countries are missing from our combined dataset. Many of these are smaller island nations, where data collection might be too limited due to their size or population. Interestingly, the list also includes Antarctica, which, while not a country, has temporary settlements of scientists from around the world. We can only hope that these researchers use clean cooking fuels during their stay!</p>
 <p>In this section, we focused on vertical stacking, a powerful technique for combining datasets with the same structure. By stacking datasets, we’re able to consolidate data from multiple sources into a single, larger dataset.</p>

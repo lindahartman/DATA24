@@ -4,7 +4,7 @@ engine: python3
 ---
 
 
-# VIDEO 1 BFFP data {greenscreen} ~ 9 min
+# VIDEO 1 BFFP data
 
 Hello and welcome back to Data Literacy with Python!
 
@@ -23,9 +23,6 @@ But now, it’s time to level up. Today, we’re tackling data reshaping and joi
 < PAUSE >
 
 ```{python}
-#| label: setup
-#| echo: false
-#| code-fold: true
 import polars as pl
 import polars.selectors as cs
 from plotnine import *
@@ -36,19 +33,16 @@ Today’s dataset comes from the *Break from Plastics* environmental campaign �
 
 < PAUSE >
 
-<!-- ::: {.callout-note collapse=true}
+::: {.callout-tip}
 In 2020, thanks to our members and allies, Break Free From Plastic engaged 14,734 volunteers in 55 countries to conduct 575 brand audits. These volunteers collected 346,494 pieces of plastic waste, 63% of which was marked with a clear consumer brand. Despite the challenges of organizing during a global pandemic, our volunteers safely coordinated more brand audit events in more countries this year than in the previous two years. As a special activity during the pandemic, we also worked with over 300 waste pickers to highlight their roles as essential workers. Participants catalogued over 5,000 brands in this year’s global audit. Our analysis reveals the following as the 2020 Top 10 Global Polluters: The Coca-Cola Company; PepsiCo; Nestlé; Unilever; Mondelez International; Mars, Inc.; Procter & Gamble; Philip Morris International; Colgate-Palmolive; and Perfetti Van Melle. 
-::: -->
+:::
 
 Have a look at the code that brings this data into our workspace:
 
 < PAUSE >
 
 ```{python}
-#| code-fold: true
-#| echo: false
-#| include: false
-plastics_df = pl.read_csv('bffp/BFFplastics.csv')
+plastics_df = pl.read_csv('https://bit.ly/data24-bffplastics')
 
 plastics_docs = pl.DataFrame({
     'Variable': ['region', 'country_code' , 'country', 'year', 'parent_company', 'empty', 'hdpe', 'ldpe', 'o', 'pet', 'pp', 'ps', 'pvc', 'grand_total', 'num_events', 'volunteers'],
@@ -69,9 +63,6 @@ Think of a dictionary as a way to describe an object. It’s a collection of "ke
 < PAUSE >
 
 ```{python}
-#| code-fold: true
-#| echo: false
-#| include: false
 Bicycle = {
     'Type': 'Hybrid',
     'Size': 28,
@@ -88,9 +79,6 @@ This is where lists come in. A list is a collection of items—typically of the 
 < PAUSE >
 
 ```{python}
-#| code-fold: true
-#| echo: false
-#| include: false
 Bikes = {
     'Type': ['Hybrid', 'MTX', 'BMX'],
     'Size': [28, 24, 26], 
@@ -105,9 +93,6 @@ Now, we have a dictionary of lists, representing three bikes. To turn this into 
 < PAUSE >
 
 ```{python}
-#| code-fold: true
-#| echo: false
-#| include: false
 bikes_df = pl.DataFrame(Bikes)
 ```
 
@@ -124,9 +109,6 @@ The core function in Great Tables is `GT()`, and it works similarly to how we us
 < PAUSE >
 
 ```{python}
-#| code-fold: true
-#| echo: false
-#| include: false
 (
 GT(plastics_docs)
     .opt_stylize(style=3, color='cyan')
@@ -140,8 +122,6 @@ Before we move on, let’s take a quick look at the data itself. Here’s a snip
 < PAUSE >
 
 ```{python}
-#| code-fold: true
-#| include: false
 (
 plastics_df
     .head(5)
@@ -164,8 +144,6 @@ Let's look at the next year:
 < PAUSE >
 
 ```{python}
-#| code-fold: true
-#| include: false
 (plastics_df
     .filter(pl.col("year")==2020,
         pl.col("country")=="Argentina")
@@ -179,8 +157,6 @@ Here’s something curious: for the year 2020, the rows with country totals aren
 < PAUSE >
 
 ```{python}
-#| code-fold: true
-#| include: false
 (plastics_df
     .filter(pl.col("country").is_null())
     )
@@ -195,8 +171,6 @@ Here’s how we start:
 < PAUSE >
 
 ```{python}
-#| code-fold: true
-#| include: false
 (plastics_df
     .drop("grand_total")
     .filter(pl.col("parent_company")!="Grand Total",
@@ -212,7 +186,7 @@ Let’s break this down:
 
 By cleaning the data in this way, we ensure that our analysis is based on individual contributions, not pre-summarized totals.
 
-# VIDEO 2 Aggregation {greenscreen} ~ 3 min
+# VIDEO 2 Aggregation
 
 Now, let’s talk about the two special columns in our dataset: `num_events` and `volunteers`. These capture the number of counting events and the number of volunteers who participated in the cleanup campaigns.
 
@@ -235,8 +209,6 @@ Take a moment to pause the video and give it a try.
 < PAUSE >
 
 ```{python}
-#| echo: false
-#| code-fold: true
 plastics_countries_df = (plastics_df
     .drop("grand_total")
     .filter((pl.col("parent_company")!="Grand Total"),
@@ -258,7 +230,7 @@ In the next section, we’ll dive into pivoting and explore how to reshape `plas
 
 Let’s keep going!
 
-# VIDEO 4 Wide and long data {greenscreen} ~ 9 min
+# VIDEO 4 Wide and long data
 
 Let’s take a moment to reflect on two common ways of organizing the same data: wide and long formats.
 
@@ -276,12 +248,10 @@ On the right, we have the same data in a long format. In this version:
 :::::{.columns .column-screen-inset}
 :::{.column width="60%"}
 
-<!-- #### "Wide" data -->
+#### "Wide" data
 
 ```{python}
 #| echo: false
-#| code-fold: true
-#| include: false
 (plastics_countries_df
     .slice(2,1)
     .select(~cs.by_index(0, 1, -1, -2))
@@ -291,12 +261,10 @@ On the right, we have the same data in a long format. In this version:
 :::
 :::{.column width="40%"}
 
-<!-- #### "Long" data -->
+#### "Long" data
 
 ```{python}
 #| echo: false
-#| code-fold: true
-#| include: false
 (plastics_countries_df
     .slice(2,1)
     .select(~cs.by_index(0, 1, -1, -2))
@@ -309,6 +277,7 @@ On the right, we have the same data in a long format. In this version:
 
 These two formats represent the exact same data, but the way they’re structured can have a big impact on how we work with them.
 
+:::{.callout-tip}
 - Wide Format:
     - Easier for humans to read, especially in spreadsheets.
     - Good for summarizing data at a glance.
@@ -316,6 +285,7 @@ These two formats represent the exact same data, but the way they’re structure
 - Long Format:
     - Preferred for computations, visualizations, and many data analysis tools.
     - Simplifies aggregations and calculations.
+:::
 
 When working with data, being able to switch between these formats is essential. Many analysis tasks, like creating summaries or visualizations, become much easier when the data is in long format.
 
@@ -341,7 +311,7 @@ Let’s begin by checking out the documentation for the `.unpivot()` method. Thi
 
 < SMALL PAUSE >
 
-<!-- ![](img/unpivot_docs.png) -->
+![](img/unpivot_docs.png)
 
 `.unpivot()` takes four arguments:
 
@@ -357,9 +327,6 @@ Here’s how we can transform the dataset into a long format. We can select the 
 < PAUSE >
 
 ```{python}
-#| code-fold: true
-#| echo: false
-#| include: false
 (plastics_countries_df
     .unpivot(index=cs.by_name("region", "country_code", "country", "year", "num_events", "volunteers"), 
             variable_name="plastic_type", value_name="quantity")
@@ -384,9 +351,6 @@ Once the data is in long format, it becomes much easier to perform calculations.
 < PAUSE >
 
 ```{python}
-#| echo: false
-#| include: false
-#| code-fold: true
 (plastics_countries_df
     .unpivot(index=cs.by_name("region", "country_code", "country", "year", "num_events", "volunteers"), 
             variable_name="plastic_type", value_name="quantity")
@@ -406,7 +370,7 @@ We can certainly calculate productivity per event as `quantity` divided by `num_
 
 < PAUSE >
 
-<!-- ![](img/pivot_docs.png) -->
+![](img/pivot_docs.png)
 
 Pivot method has these main arguments:
 
@@ -424,9 +388,6 @@ Before I do the pivot, I want to drop the `num_events` and `volunteers` since I 
 < PAUSE >
 
 ```{python}
-#| echo: false
-#| include: false
-#| code-fold: true
 (plastics_countries_df
     .unpivot(index=cs.by_name("region", "country_code", "country", "year", "num_events", "volunteers"), 
             variable_name="plastic_type", value_name="quantity")
@@ -444,14 +405,11 @@ Before I do the pivot, I want to drop the `num_events` and `volunteers` since I 
 ```
 
 ```{python}
-#| echo: false
-#| include: false
-#| code-fold: true
 (plastics_countries_df
     .filter(pl.col("country")=="Germany"))
 ```
 
-# VIDEO 5 great tables {greenscreen} ~ 6 min
+# VIDEO 5 great tables
 
 Before we go any further, I want to quickly introduce you to the power of `great_tables` for producing engaing and informative tables. We will create a nice-looking table showing top-10 countries with the most impressive productivity growth. As we discussed earlier, the core function is `GT()` you also know that the default styling can be done with `.opt_stylize()` method. This is enough to produce decent looking table, but I want to show you a few more tricks.
 
@@ -468,9 +426,6 @@ As with plots, it is good to annotate the table. You can add table header with t
 < PAUSE >
 
 ```{python}
-#| echo: false
-#| include: false
-#| code-fold: true
 top10_productivity_tbl = (plastics_countries_df
     .unpivot(index=cs.by_name("region", "country_code", "country", "year", "num_events", "volunteers"), 
             variable_name="plastic_type", value_name="quantity")
@@ -524,9 +479,6 @@ There could be several ways to solve this task. In my table the top country is S
 < PAUSE >
 
 ```{python}
-#| echo: false
-#| include: false
-#| code-fold: true
 top_10_id_rate_increase = (plastics_countries_df
     .drop("num_events")
     .unpivot(index=cs.by_name("region", "country_code", "country", "year", "volunteers"), 
@@ -565,9 +517,6 @@ If you find these tips helpful pause again and try solving the task. Otherwise, 
 < PAUSE >
 
 ```{python}
-#| echo: false
-#| include: false
-#| code-fold: true
 (top_10_id_rate_increase
     .pipe(GT)
     .tab_spanner(label="Indentification", columns=cs.starts_with("id_rate"))
@@ -611,7 +560,6 @@ So, let us talk through this solution together.
 < PAUSE >
 
 ```{python}
-#| echo: false
 #| eval: false
     .with_columns( (pl.col("quantity")/pl.col("quantity").sum())
                     .over("region", "country_code", "country", "year", "volunteers")
@@ -624,7 +572,6 @@ So, let us talk through this solution together.
 < PAUSE >
 
 ```{python}
-#| echo: false
 #| eval: false
     .pivot(on=cs.by_name("plastic_unidentified"), values=cs.by_name("quantity"))
     .with_columns(id_rate=pl.col("false")/(pl.col("true")+pl.col("false")))
@@ -643,66 +590,28 @@ One of the most common ways to merge datasets is through a join. A join allows y
 
 Let’s look at an example. We have two small datasets: one lists the countries in the Nordic Council, including their area and population; the other contains information on members of the European Free Trade Association (EFTA), with data on exports, imports, and GDP (in billion USD). Our goal is to combine these datasets in a meaningful way.
 
-
 < PAUSE >
 
 ```{python}
-#| echo: false
-#| eval: false
+nordic_council = pl.DataFrame({
+    "country_name": ["Denmark", "Finland", "Iceland", "Sweden", "Norway"],
+    "population_mln": [5.973136, 5.626414, 0.364036, 10.589835, 5.509733],
+    "area_sqkm": [43094, 338145, 103000, 450295, 323802]
+})
 
-EU = ["Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czechia", "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg", "Malta", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "Sweden"]
-EEA = ["Iceland", "Norway", "Liechtenstein"]
-EFTA = ["Switzerland", "Iceland", "Norway", "Liechtenstein"]
-NC = ["Norway", "Iceland", "Sweden", "Denmark", "Finland"]
-
-country_codes = pl.read_csv("cia/0_Country_Data_Codes.csv", null_values="NA")
-
-#country_codes.filter(pl.col("Name").is_in(EU))
-#country_codes.filter(pl.col("Name").is_in(EEA))
-#country_codes.filter(pl.col("Name").is_in(EFTA))
-#country_codes.filter(pl.col("Name").is_in(NC))
-#country_codes.filter(pl.col("Name").str.contains("Li"))
-
-    
-fact_area_df = pl.read_csv("cia/factbook_area_2024.csv", null_values="NA")
-fact_comm_df = pl.read_csv("cia/factbook_comm_transport_2024.csv", null_values="NA")
-fact_econ_df = pl.read_csv("cia/factbook_economy_security_2024.csv", null_values="NA")
-fact_energy_df = pl.read_csv("cia/factbook_energy_environment_2024.csv", null_values="NA")
-fact_ppl_df = pl.read_csv("cia/factbook_people_society_2024.csv", null_values="NA")
-
-
-nordic_council = (fact_ppl_df
-    .filter(pl.col("name").is_in(NC))
-    .select("name", "slug", "region", "population_total")
-    .join(fact_area_df, on=["name", "slug", "region"], how="left")
-    .with_columns(population_total=pl.col("population_total")/1e6)
-    .rename({"population_total": "population_mln",
-            "name":"country_name"})
-    .drop("slug", "region")
-    )
-nordic_council
-
-efta_countries = (fact_econ_df
-    .filter(pl.col("name").is_in(EFTA))
-    .select("name", "slug", "region", "exports", "imports", "real_gdp_purchasing_power_parity")
-    .rename({"real_gdp_purchasing_power_parity": "gdp",
-            "name":"country_name"})
-    .with_columns((cs.numeric()/1e9).name.suffix("_bln"))
-    .select("country_name", "exports_bln", "imports_bln", "gdp_bln")
-    )
-
-efta_countries
+efta_countries = pl.DataFrame({
+    "country_name": ["Norway", "Switzerland", "Iceland", "Liechtenstein"],
+    "exports_bln": [228.625, 661.628, 13.49, 3.217],
+    "imports_bln": [157.032, 554.358, 13.484, 2.23],
+    "gdp_bln": [499.528, 733.779, 26.155, 4.978]
+})
 ```
 
 ```{python}
-#| echo: false
-#| eval: false
 nordic_council
 ```
 
 ```{python}
-#| echo: false
-#| eval: false
 efta_countries
 ```
 
@@ -714,10 +623,7 @@ This approach lets us seamlessly integrate data from different sources and perfo
 
 < PAUSE >
 
-
 ```{python}
-#| echo: false
-#| eval: false
 (nordic_council
     .join(efta_countries, on="country_name")
     .with_columns(gdp_per_cap=pl.col("gdp_bln")/pl.col("population_mln"))
@@ -734,10 +640,7 @@ Let’s see it in action:
 
 < PAUSE >
 
-
 ```{python}
-#| echo: false
-#| eval: false
 (nordic_council
     .join(efta_countries, on="country_name", how="left")
     )
@@ -751,10 +654,7 @@ Just as a left join keeps all records from the left table, a right join does the
 
 < PAUSE >
 
-
 ```{python}
-#| echo: false
-#| eval: false
 (nordic_council
     .join(efta_countries, on="country_name", how="right")
     )
@@ -766,10 +666,7 @@ A full join combines all records from both tables, keeping everything from the l
 
 < PAUSE >
 
-
 ```{python}
-#| echo: false
-#| eval: false
 (nordic_council
     .join(efta_countries, on="country_name", how="full")
     )
@@ -781,10 +678,7 @@ To merge these into a single country_name column, we can use the `coalesce=True`
 
 < PAUSE >
 
-
 ```{python}
-#| echo: false
-#| eval: false
 (nordic_council
     .join(efta_countries, on="country_name", how="full", coalesce=True)
     )
@@ -798,10 +692,7 @@ One particularly useful - but less commonly discussed - join type is the anti-jo
 
 < PAUSE >
 
-
 ```{python}
-#| echo: false
-#| eval: false
 (nordic_council
     .join(efta_countries, on="country_name", how="anti")
     )
@@ -842,6 +733,12 @@ In the previous module, we explored WHO data on household pollution, which was s
 - fuel_types – Types of fuel used for cooking in various countries.
 - clean_fuels – Proportion of the population with access to clean cooking fuels.
 
+```{python}
+hhap_deaths = pl.read_csv("https://bit.ly/data24-hhap-deaths")
+fuel_types = pl.read_csv("https://bit.ly/data24-cooking-by-fuel-type")
+clean_fuels = pl.read_csv("https://bit.ly/data24-clean-fuels-cooking")
+```
+
 We wanted to put the deaths attributable to household pollution into context by comparing them to the total population of each country in the respective years. However, the hhap_deaths dataset lacked population estimates. To work around this, we inferred population estimates by aggregating the fuel_types dataset and saved it as pop_years_df. Now, our goal is to merge these population estimates into hhap_deaths so that we can analyze deaths per million people.
 
 :::{.challenge}
@@ -858,12 +755,9 @@ Visualize European household pollution-related deaths per million population, br
 
 Here's the code which allows us to observe trends in household pollution-related deaths over time, broken down by cause of death and country.
 
-
-
-
 ```{python}
-#| echo: false
-#| eval: false
+pop_years_df = pl.read_csv("hhap/pop_years_df.csv")
+
 (hhap_deaths
     .join(pop_years_df, on=["region", "country", "year"], how="left")
     .with_columns(deaths_per_mln=pl.col("deaths")/pl.col("mean_pop"))
@@ -883,7 +777,7 @@ Joins allow us to break free from the constraints of a single dataset and uncove
 
 In the next section, we’ll explore even more techniques for combining data from different sources. Stay tuned!
 
-# VIDEO 8 stacking {greenscreen} ~ 7 min
+# VIDEO 8 stacking
 
 Another common operation in data analysis is stacking datasets vertically—essentially appending one dataset to another. This works when the datasets have the same column structure and represent different parts of the same kind of data. By stacking them together, we can create a larger dataset that consolidates information from multiple sources.
 
@@ -899,10 +793,7 @@ Since each dataset spans multiple years, they contain duplicate entries for the 
 
 < PAUSE >
 
-
 ```{python}
-#| echo: false
-#| eval: false
 idcols=cs.by_name("region", "country_code", "country")
 
 country_regions = (hhap_deaths.select(idcols)
@@ -920,11 +811,8 @@ Since the column names in our dataset and the ISO file don’t match, we explici
 
 < PAUSE >
 
-
 ```{python}
-#| echo: false
-#| eval: false
-iso_df = pl.read_csv("hhap/CountryCodes_Alpha2_Alpha3.csv")
+iso_df = pl.read_csv("https://bit.ly/data24-countrycodes")
 
 (country_regions
     .join(iso_df, left_on="country_code", right_on="alpha3", how="anti"))
@@ -937,10 +825,7 @@ Now that we’ve combined our data from multiple sources, let’s dig a little d
 
 < PAUSE >
 
-
 ```{python}
-#| echo: false
-#| eval: false
 (iso_df
     .join(country_regions, left_on="alpha3", right_on="country_code", how="anti"))
 ```
