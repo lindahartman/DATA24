@@ -256,7 +256,7 @@ On the right, we have the same data in a long format. In this version:
     .slice(2,1)
     .select(~cs.by_index(0, 1, -1, -2))
     .pipe(GT)
-    .opt_stylize(2)
+    .opt_stylize(3)
     )
 ```
 
@@ -273,7 +273,7 @@ On the right, we have the same data in a long format. In this version:
     .unpivot(index=cs.by_index(0,1), variable_name="plastic_type", value_name="quantity")
     .sort("country", "plastic_type")
     .pipe(GT)
-    .opt_stylize(2)
+    .opt_stylize(3)
     )
 ```
 :::
