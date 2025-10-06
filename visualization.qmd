@@ -8,7 +8,7 @@ bibliography: data24web.bib
 
 Welcome to the lesson on data visualization!
 
-Data visualization is one of the most important skills in data analysis. Why? Because a well-made chart can reveal patterns, trends, and insights that might otherwise stay hidden in a spreadsheet. It’s like turning a jumble of numbers into a picture that tells a story.
+Data visualization is one of the most important skills in data analysis. Why? Because a well-made chart can reveal patterns, trends, and insights that might otherwise stay hidden in a spreadsheet. It’s like turning a jumble of numbers into a picture that tells a story. 
 
 But let’s be honest—visualizing data can sometimes feel overwhelming. There are so many types of charts to choose from and endless options for customizing them. Scatter plots, bar graphs, heatmaps—what should you use? And even after you pick a plot, there are all these parameters: axis, labels, color scales, gridlines… It’s easy to feel like you’re drowning in options!
 
