@@ -1,0 +1,1329 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Wrangling\"\n",
+        "format: html\n",
+        "engine: python3\n",
+        "---\n",
+        "\n",
+        "\n",
+        "# VIDEO 1: Data\n",
+        "\n",
+        "Welcome to the module on data wrangling! In the last lesson, we explored a small, but exciting `gapminder` dataset, and created quite a few visualizations with it. But in real-world scenarios, datasets are often much larger, which brings new challenges. We may need to focus on specific subsets - maybe observations from a single time period or a set of variables related to a particular phenomenon.\n",
+        "\n",
+        "In this module, we’ll learn how to subset data and create meaningful summaries that provide a high-level overview of trends or differences between groups. Summarized data is typically presented in a tabular form, so we’ll also introduce a package for creating clear, professional-looking tables.\n",
+        "\n",
+        "Most importantly, we’ll dive into the blazingly fast Polars package for data manipulation. As I mentioned earlier, Polars is powered by Rust, a high-performance programming language. Its core functionality is exposed to Python but can also be accessed from other languages. This means that the data wrangling skills you gain here will be transferable beyond Python.\n",
+        "\n",
+        "But first, let’s load the necessary packages for this module. In Python, it’s common to use the alias `pl` for Polars. We’ll also use a submodule called `polars.selectors`, aliasing it as `cs` - don’t worry, we’ll cover selectors in more detail soon. We’ll also import everything from Plotnine for data visualization and bring in the main function from the `great_tables` package for generating beautifully looking tables.\n",
+        "\n",
+        "Here’s the setup code. Place it in its own cell in your notebook and run it:\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "ad7a2ed0"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: setup\n",
+        "import polars as pl\n",
+        "import polars.selectors as cs\n",
+        "from plotnine import *\n",
+        "from great_tables import GT"
+      ],
+      "id": "setup",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Now, let’s explore our data. We’ll be looking at the WHO dataset about household pollution around the world.\n",
+        "\n",
+        "Household air pollution is primarily caused by burning polluting fuels like wood, animal dung, charcoal, agricultural waste, and kerosene using open fires or inefficient stoves. Over 2 billion people around the world rely on these fuels for cooking, heating, and lighting. The poor combustion of these fuels leads to numerous health issues, such as pneumonia in children, and chronic illnessess like obstructive pulmonary disease, lung cancer, stroke, and cardiovascular problems in adults.\n",
+        "\n",
+        "This is a complex issue, and like many complex issues, it can be examined from different angles. We have three datasets to work with:\n",
+        "\n",
+        "- Causes of death linked to household pollution\n",
+        "- Types of fuel used for cooking in various countries, and\n",
+        "- Proportion of the population with access to clean cooking fuels\n",
+        "\n",
+        "Each dataset offers a unique perspective on this issue. Let’s dive in and start exploring!\n",
+        "\n",
+        "# VIDEO 2: Data import\n",
+        "\n",
+        "In this section, we’ll start working with the datasets about household air pollution. These datasets are stored as comma-separated value, or CSV files. CSV is a simple text format often used for storing tabular data. Think of it as a stripped-down version of Excel - just the data, no formatting or formulas. In fact, you can even open CSV files directly in Excel, if you want to take a look at them.\n",
+        "\n",
+        "We’ve prepared these datasets for you and stored them in the course repository on GitHub. While Polars allows us to read files directly from remote locations, you can also download the files and the load them into Python from your local project directory.\n",
+        "\n",
+        "Here’s the code to read the three datasets we’ll use. Add these lines to a new cell in your notebook and run it.\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "c1a531a8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "hhap_deaths = pl.read_csv(\"https://bit.ly/data24-hhap-deaths\")\n",
+        "fuel_types = pl.read_csv(\"https://bit.ly/data24-cooking-by-fuel-type\")\n",
+        "clean_fuels = pl.read_csv(\"https://bit.ly/data24-clean-fuels-cooking\")"
+      ],
+      "id": "1dfcd70c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Let’s break this down. We’re using the `read_csv()` function from Polars to load the data. This function takes a single mandatory argument: the file path, written as a string in quotes. The equal sign indicates that we assign the content of the file to the variable, listed on the left. The function is located in the `polars` package. This is why it is prepended with  `pl.` prefix. \n",
+        "\n",
+        "The `read_csv()` function returns a data frame. So, from now on, we can simply refer to `h-hap` underscore `deaths` (`hhap_deaths`) whenever we need to access the first dataframe without needing to re-import it.\n",
+        "\n",
+        "To understand the data, it’s helpful to preview it. You do it in a few different ways. For instance, you can simply type the name of a dataset - like `clean_fuels`. It will display a preview of the first five and last five rows of the corresponding data frame.\n",
+        "\n",
+        "Rows in a data frame are often referred to as observations or records, while columns are known as variables or features. If you want to see more rows than the default preview, you can use the `.head()` method and specify the number of rows to display:\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "bc0f787c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels  \n",
+        "    .head(10))"
+      ],
+      "id": "b66e252d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "You may have noticed the parentheses around the code block. This little trick allows us to break the code into multiple lines without worrying about indentation. To keep things readable I will place each methods on a new line. Normally, Python enforces strict indentation rules. But because we wrap our code into outer patherentheses, we override that requirement. In this case, we prioritize readability over traditional coding style.\n",
+        "\n",
+        "Previewing the first few rows gives us an initial sense of the dataset’s structure and content. If you’re curious about the last few rows, there’s also a `.tail()` method you can use in a similar way.\n",
+        "\n",
+        "For a broader overview of your data, you can use the `.describe()` method:\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "b0c5b7a4"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels  \n",
+        "    .describe())"
+      ],
+      "id": "b8ebbdbd",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "The `.describe()` method provides a statistical summary of numerical columns, including key metrics like the mean, standard deviation, minimum, maximum, and various quantiles. It’s especially useful for quickly gaining insights into large datasets.\n",
+        "\n",
+        "One important note: if a column contains missing values, Polars displays them as `null`. Since Polars treats missing values as “contagious,” any operation involving them will also produce missing values in the output. This behavior applies to all statistical operations, and we’ll explore more examples later.\n",
+        "\n",
+        "Both `.head()` and `.describe()` return a DataFrame, allowing you to chain these operations together. Method chaining is a powerful technique that makes your code cleaner, more readable, and easier to maintain.\n",
+        "\n",
+        "Now, here are a couple of challenges for you to practice method chaining: \n",
+        "\n",
+        "1. Take the first 25 records from `clean_fuels` DataFrame and generate a statistical summary. \n",
+        "2. Compute the statistical summary of the entire dataset, and then extract only the quantile summaries for each column, including the minimum, maximum, and the 25th, 50th and 75th percentiiles.\n",
+        "\n",
+        ":::{.challenge}\n",
+        "- Take first 25 records of `clean_fuels` data frame and then calculate statistical summary\n",
+        "- Compute statistical summary of the whole data and then present only quantile summaries of each column. The quantiles include minimum, maximum, as well as the 25th, 50th and 75th quantile.\n",
+        "::: \n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "fd0f6bd8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels\n",
+        "    .head(25)\n",
+        "    .describe())\n",
+        "\n",
+        "(clean_fuels\n",
+        "    .describe()\n",
+        "    .tail(5))"
+      ],
+      "id": "484b56e1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Sometimes a dataset may have so many columns that methods like `.head()` or `.describe()` don’t quite give a full overview. In such cases, Polars offers a particularly useful method: `.glimpse()`.\n",
+        "\n",
+        "The `.glimpse()` method displays the dataset’s structure horizontally, listing each variable as a row. This format makes it easier to scan through all columns, even on a limited screen. Here’s how it looks in action::\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "64a5e3df"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels  \n",
+        "    .glimpse())"
+      ],
+      "id": "b92c78b0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Now, here's a question for you: What happens if you try to use `glimpse()` in a method chain? Can you chain the operation `head()` after calling `glimpse()`? What do you think the output will be?\n",
+        "\n",
+        ":::{.question}\n",
+        "Can you chain the operation `head()` after calling `glimpse()`? What do you think the output will be?\n",
+        ":::\n",
+        "\n",
+        "< PAUSE >\n",
+        "\n",
+        "The answer is: no, you cannot. `glimpse()`, does not return you a data frame. Instead, the output of `glimpse()` is the text printout meant solely for viewing. No further operations can be applied to it. If you attempt to chain additional methods, you’ll get an error. Give it a try! Polars will throw an error saying that the `head()` method cannot be applied to a `NoneType`, which is the type of output `glimpse()` returns.\n",
+        "\n",
+        "If you understand how to use `head()`, `tail()`, `describe()`, and `glimpse()`, you have powerful tools at your disposal to explore and familiarize yourself with any dataset before diving deeper into your analysis.\n",
+        "\n",
+        "# VIDEO 3 Select/ Drop\n",
+        "\n",
+        "One of the most common tasks in data analysis is selecting specific variables or columns from a dataset. Let’s start by pulling out the country information from the `clean_fuels` data. Pause the video for a moment and try running this code:\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "8b8d5f9a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels  \n",
+        "    .select(pl.col(\"country\")))"
+      ],
+      "id": "3bbd5863",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Here, we’re using the `select()` method to isolate a column. Notice how the column name is wrapped in the `pl.col()` function. This wrapper explicitly tells Polars that we’re referring to a column in the dataframe.\n",
+        "\n",
+        "But here’s something cool - you can skip the `pl.col()` wrapper in certain cases! For example, this code:\n",
+        "\n",
+        "< SMALL PAUSE >\n"
+      ],
+      "id": "85f1d801"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels  \n",
+        "    .select(\"country_code\", \"country\"))  "
+      ],
+      "id": "ddd9534a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "...does the exact same thing as this:\n"
+      ],
+      "id": "56c11df8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels  \n",
+        "    .select(pl.col(\"country_code\"), pl.col(\"country\")))  "
+      ],
+      "id": "875ae48e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "< PAUSE >\n",
+        "\n",
+        "Pretty neat, right? The `select()` method can directly interpret strings as column names, making your code a little cleaner and quicker to write.\n",
+        "\n",
+        "When you wrap a column name in `pl.col()`, you’re creating an expression. An expression is like a recepie - it doesn’t do anything on its own. For example, if you run this code:\n",
+        "\n",
+        "< SMALL PAUSE >\n"
+      ],
+      "id": "58f21918"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "pl.col(\"country_code\")"
+      ],
+      "id": "d9c16434",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "...nothing happens. It just returns something called an \"unevaluated expression\". But when you evaluate that expression in the context of a dataset, it returns something useful. For instance:\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "ca84f39f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels  \n",
+        "    .select(pl.col(\"country_code\")))  "
+      ],
+      "id": "25ba2663",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Here, the `select()` method acts as an evaluation environment, turning the `pl.col()` expression into actual data. `select()` is one of the several methods in Polars that can evaluate expressions. While `select()` is highly versatile and can do other things as well, for now, we’ll focus on its simplest use case: extracting columns from a data frame. \n",
+        "\n",
+        ":::{.callout-tip}\n",
+        "`select()` is one of the several methods in Polars that can evaluate expressions. \n",
+        ":::\n",
+        "\n",
+        "The `pl.col()` wrapper is super flexible, and it’s going to be central as we build more advanced expressions in Polars. For instance, you can use `pl.col()` to refer to multiple columns simultaneously:\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "d2942b8d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels  \n",
+        "    .select(pl.col(\"country_code\", \"country\")))  "
+      ],
+      "id": "2e3b87e4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Sometimes, typing out long column names can feel like a chore, especially when you’re working with many columns. But don’t worry - Polars makes it easy to select columns by their position in the dataset. For example, this code selects the second and third columns by their numerical index:\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "2a04237e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels  \n",
+        "    .select(pl.nth(1,2)))  "
+      ],
+      "id": "9b190441",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Note that the column indices in Polars are 0-based. That means the first column is index 0, the second column is index 1, and so on. \n",
+        "\n",
+        "What about negative numbers? They’re a handy shortcut for selecting columns from the back of the dataset. For instance, `-1` refers to the last column, and this code will select the first and last columns:\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "a4ec7ea2"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels  \n",
+        "    .select(pl.nth(0, -1)))  "
+      ],
+      "id": "b42522b6",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "A note of caution: Selecting columns by the order of their appearance can be risky. If your dataset’s structure changes, you might accidentally select the wrong columns. So, use the `nth()` method sparingly.\n",
+        "\n",
+        "Now, let’s talk about the opposite of `select()` - the `drop()` method. The `drop()` method removes specific columns from your dataset, leaving everything else intact. For example:\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "9aaa1dbf"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels  \n",
+        "    .drop(pl.col(\"country\"), pl.col(\"region\")))  "
+      ],
+      "id": "683d823f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Dropping is equivalent to selecting all columns **except** the ones you want to exclude. Here’s how could would write the dropping expression using in terms of selection:\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "09b948f0"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels  \n",
+        "    .select(pl.all().exclude(\"country\", \"region\")))  "
+      ],
+      "id": "2ead9871",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "The `pl.all()` function refers to all columns, and the `.exclude()` method lets you refine the selection by removing specific ones. \n",
+        "\n",
+        "A quick reminder: dropping columns doesn’t modify your original dataset. It only affects the result of that query. Unless you explicitly overwrite the original dataframe, everything stays the same. So feel free to experiment!\n",
+        "\n",
+        "Now it’s your turn. Select the columns related to the number and the proportion of the people with access to clean fuels. Try both *selecting* by name or index, and *dropping* the columns you dont need.\n",
+        "\n",
+        ":::{.challenge}\n",
+        "Select the columns related to the number and the proportion of people with access to clean fuel for cooking from the `clean_fuels` dataset.\n",
+        ":::\n",
+        "\n",
+        "Please, pause the video and try couple of different ways of selecting these columns. \n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "74040fa8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels  \n",
+        "    .select(pl.col(\"pop_clean_fuels_cooking_mln\"), \n",
+        "            pl.col(\"prop_clean_fuels_cooking_pct\"))) \n",
+        "\n",
+        "(clean_fuels  \n",
+        "    .select(pl.nth(-2,-1))) \n",
+        "\n",
+        "(clean_fuels  \n",
+        "    .drop(\"region\", \"country_code\", \"country\", \"year\"))"
+      ],
+      "id": "43cbb76f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Got it? Great! Both approaches, selection and dropping, give you the same result. Expressions like these make your analysis more dynamic and efficient, so you can quickly adapt to different datasets or scenarios.\n",
+        "\n",
+        "# VIDEO 4 Selectors\n",
+        "\n",
+        "Selecting columns is such a common task that Polars has a dedicated module for it. It is called `polars.selectors`. This module provides a collection of methods specifically designed to simplify picking columns from a data frame. `polars.selectors` is often aliased as `cs` for convenience. \n",
+        "\n",
+        ":::{.callout-note}\n",
+        "Have a look at the [documentation for selectors](https://docs.pola.rs/api/python/stable/reference/selectors.html). \n",
+        ":::\n",
+        "\n",
+        "Let's make sure we import the selectors module:\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "81e8ffa1"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import polars.selectors as cs"
+      ],
+      "id": "6adcff49",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Among the most useful selectors are, of course, selectors by name and by column index. Although, for this we might not really need selectors, because those can be picked out with `pl.col()` and `pl.nth()`. \n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "6eef7e97"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels\n",
+        "    .select(cs.by_name(\"region\", \"country\"))\n",
+        ")\n",
+        "\n",
+        "# note python is 0-based\n",
+        "(clean_fuels\n",
+        "    .select(cs.by_index(0,2,5))\n",
+        ")"
+      ],
+      "id": "2187ddb6",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Selecting first and last columns are so common, there are useful shorthands `cs.first()` and `cs.last()`. To select all columns *other* than the one you specified, you can use the tilde ~ operator. Tilde operator works with all methods in the `cs.` module and negates the selection. For example `~cs.last()` refers to all columns other than the last one.\n",
+        "\n",
+        "Selectors can target columns based on their data types! For example, `cs.numeric()` picks all numeric columns. And if you want non-numeric columns, you can just negate it with ~.\n",
+        "\n",
+        "And now it is your turn! Practice selecting first, everyhing other than the first, as well as all non-numeric columns. Use selector class for this. Pause the video and give it a try!\n",
+        "\n",
+        "< PAUSE >\n",
+        "\n",
+        ":::{.challenge}\n",
+        "Use `polars.selectors` aliased as `cs.` to select\n",
+        "- first column\n",
+        "- everyhing other than the first column\n",
+        "- all non-numeric columns\n",
+        ":::\n"
+      ],
+      "id": "0652dc1e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels\n",
+        "    .select(cs.first())\n",
+        ")\n",
+        "\n",
+        "# not first\n",
+        "(clean_fuels\n",
+        "    .select(~cs.first())\n",
+        ")\n",
+        "\n",
+        "\n",
+        "# not numeric\n",
+        "(clean_fuels\n",
+        "    .select(~cs.numeric())\n",
+        ")"
+      ],
+      "id": "f737bb2d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Fantastic work! With a wide menu of `polars.selectors`, plus the column and index-based expressions like `pl.col()` and `pl.nth()`, Polars gives you incredible flexibility in working with your data. These tools will become invaluable as we move into crafting more complex expressions.\n",
+        "\n",
+        "Stay tuned - there’s a lot more to explore!\n",
+        "\n",
+        "# VIDEO 5 Filter\n",
+        "\n",
+        "Now let’s talk about filtering - an essential part of data analysis. In Polars, you can use filtering to subset your data based on logical conditions, using the magic of expressions. Logical operations are one of the simplest and most common use cases for expressions. For example, you can compare every value in the `region` column to the string \"Europe\". If there’s a match, Polars returns True; otherwise, it returns False.\n",
+        "\n",
+        "Let’s see how this works in code:\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "9020edaf"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels\n",
+        "    .filter(pl.col(\"region\")==\"Europe\")\n",
+        ")"
+      ],
+      "id": "8429b09a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Here, the `filter()` method applies the logical condition, and only rows where the region is \"Europe\" are included in the result. Notice that for exact comparisons, we use the double equals sign `==`. Similarly, for inequalities, we can use operators like `<=`, `>=`, `<`, or `>`. Not equal is spelled out as `!=`.\n",
+        "\n",
+        "But filtering doesn’t stop there - you can combine multiple conditions to create more complex filters. Just write multiple expressions into the `.filter()` method, separating them with a comma!\n",
+        "\n",
+        "Here's a challenge for you. Can you find all the European countries where the majority of the population lacked access to clean fuels the end of 2022? Take a moment to write this expression. Pause the video if you need to.\n",
+        "\n",
+        "< PAUSE >\n",
+        "\n",
+        ":::{.challenge}\n",
+        "Were there any countries in Europe in 2022 where the majority of people lacked access to clean fuel for cooking?\n",
+        ":::\n"
+      ],
+      "id": "f1b3882a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels\n",
+        "    .filter(\n",
+        "        pl.col(\"region\")==\"Europe\",\n",
+        "        pl.col(\"year\")==2022,\n",
+        "        pl.col(\"prop_clean_fuels_cooking_pct\")<50\n",
+        "        )\n",
+        ")"
+      ],
+      "id": "cb2271c5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "What did you get? Oh, wow! Over half the population of Bosnia still lacks access to clean fuels for cooking. That’s a striking insight!\n",
+        "\n",
+        "Let’s zoom in on Bosnia to better understand the data. Bosnia’s country code is \"BIH\", but you can also use country name to filter, if you prefer.\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "10596687"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(\n",
+        "clean_fuels\n",
+        "    .filter(pl.col(\"country_code\")==\"BIH\")\n",
+        ")"
+      ],
+      "id": "449613f7",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "We are interested in tracking how the proportion of the population with access to clean fuels for cooking has changed over the years. Let's create a plot, with the year on the x-axis and the proportion of population on the y-axis.  If you remember from the Plotnine module, the dataset goes into the first argument of the ggplot function.\n",
+        "\n",
+        "Here’s one way to do this:\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "8636bb56"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(\n",
+        "ggplot(clean_fuels.filter(pl.col(\"country_code\")==\"BIH\"))\n",
+        "    +geom_line(mapping=aes(x=\"year\", y=\"prop_clean_fuels_cooking_pct\"))\n",
+        ")"
+      ],
+      "id": "0e542aae",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "This works, but the code feels a little cluttered. It’s not immediately clear where the dataset comes from.\n",
+        "\n",
+        "Let’s clean this up using the `.pipe()` method. The `.pipe()` method hands the data to the `ggplot()` function, placing it as the first argument. \n",
+        "\n",
+        "```\n",
+        "(data\n",
+        "    .some_operation()\n",
+        "    .other_operation()\n",
+        "    .pipe(ggplot)\n",
+        "    + ...)\n",
+        "\n",
+        "# the same as\n",
+        "df = data.some_operation().other_operation()\n",
+        "ggplot(df)\n",
+        "+ ...\n",
+        "\n",
+        "``` \n",
+        "\n",
+        "Pipe keeps the code clean and modular. Everything after `.pipe(ggplot)` is Plotnine-specific code.\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "775fb526"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels\n",
+        "    .filter(pl.col(\"country_code\")==\"BIH\")\n",
+        "    .pipe(ggplot)\n",
+        "    +geom_line(aes(x=\"year\", y=\"pop_clean_fuels_cooking_mln\"))\n",
+        ")"
+      ],
+      "id": "25df791a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Nice!\n",
+        "\n",
+        "What if you’re not sure how a country’s name is spelled in the dataset? For example, is it “Czech Republic” or just “Czechia”?\n",
+        "\n",
+        "In this case, you can use partial string matching to find it.\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "42b65bcb"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels\n",
+        "    .filter(pl.col(\"country\").str.starts_with(\"Cz\")))"
+      ],
+      "id": "230b664c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Here, we use the `str.starts_with()` method, checking if the strings in the `country` column start with the letters “Cz.” Ah, there it is - “Czechia”! \n",
+        "\n",
+        "Polars offers several handy string operations. For example:\n",
+        "\n",
+        "- `str.starts_with()`\n",
+        "- `str.ends_with()` and \n",
+        "- `str.contains()`\n",
+        "\n",
+        "You’ll see more of these as we progress, but these three are powerful enough to help you tackle the following challenge.\n",
+        "\n",
+        "Filter the data for your own country and visualize the proportion of people with access to clean fuels. Once you’re happy with the subset of your data, use ggplot and everything you’ve learned about Plotnine to create a polished visualization.\n",
+        "\n",
+        "< PAUSE >\n",
+        "\n",
+        ":::{.challenge}\n",
+        "Visualize the proportion of people with access to clean fuels in your own country\n",
+        ":::\n"
+      ],
+      "id": "a454426a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels\n",
+        "    .filter(pl.col(\"country\").str.starts_with(\"Ukr\"))\n",
+        "    .pipe(ggplot)\n",
+        "    +geom_line(aes(x=\"year\", y=\"prop_clean_fuels_cooking_pct\"))\n",
+        "    +theme_seaborn()\n",
+        "    +labs(title=\"Share of population with access to clean fuels in Ukraine\",\n",
+        "            x=\"Year\", y=\"Proportion, %\")\n",
+        ")"
+      ],
+      "id": "f0457272",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "This looks fantastic! Great work visualizing your country’s data.\n",
+        "\n",
+        "In the next section, we’ll explore adding more columns to our dataset and practice advanced subsetting and visualization techniques. Stay tuned!\n",
+        "\n",
+        "# VIDEO 6 Deaths data\n",
+        "\n",
+        "Let’s apply what we’ve learned about filtering to visualize the causes of death in some European countries.\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "d6ec08c7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "hhap_deaths"
+      ],
+      "id": "45576b00",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "This dataset contains both summarized and detailed breakdowns of deaths for every country and year. Take a look at the column labeled `cause_of_death`. When this column says \"All causes,\" it represents the total deaths for that country and year - a sum of all the other rows.\n",
+        "\n",
+        "Let’s zoom in on Bosnia for a single year, say 2010, to understand this better.\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "65454f17"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(hhap_deaths\n",
+        "    .filter(pl.col(\"country_code\")==\"BIH\", \n",
+        "            pl.col(\"year\")==2010)\n",
+        "    )"
+      ],
+      "id": "4c63913f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "One of the rows is labeled \"All causes\" with 4,816 deaths. This total matches the sum of the individual causes of death. While it’s useful to have the total, it can lead to double counting if we include it in our analysis. \n",
+        "\n",
+        "Now let’s expand our view to include all European countries for which we have death data. We’ll exclude the totals and focus on trends for each specific cause of death. Faceting will help us visualize these trends country by country.\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "f05cd981"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(hhap_deaths\n",
+        "    .filter(pl.col(\"region\")==\"Europe\",\n",
+        "            pl.col(\"deaths\")>0,\n",
+        "            pl.col(\"cause_of_death\")!=\"All causes\")\n",
+        "    .pipe(ggplot, aes(x=\"year\", y=\"deaths\", color=\"cause_of_death\", group=\"cause_of_death\"))\n",
+        "    +geom_smooth(method=\"lm\")\n",
+        "    +facet_wrap(\"country\", scales=\"free_y\", nrow=3)\n",
+        "    +theme_seaborn()\n",
+        "    +theme(figure_size=(20,10), legend_position=\"bottom\")\n",
+        "    )"
+      ],
+      "id": "6d489b71",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Most of the trends appear to be decreasing, which is good news. However, even with free y-axis for each country, the differences in scale make it hard to compare trends across countries. Look at Moldova! There’s a dramatic improvement in death cases here. Meanwhile, heart- and stroke-related deaths in the close-by Russia are on the rise.\n",
+        "\n",
+        "It would be good to put these numbers in perspective using population of these countries. Is this something we could calculate from our `clean_fuels` dataset?\n",
+        "\n",
+        "# VIDEO 7 Mutating with columns\n",
+        "\n",
+        "Remember, the `clean_fuels` data told us both the number of people with access to non-polluting fuels and the proportion of the population they represent, expressed as a percentage. With this, we can reverse-engineer the population for each country.\n",
+        "\n",
+        "To create new variables, we use the `with_columns()` method. This method lets us add or modify columns using expressions.\n",
+        "\n",
+        "Let’s start by converting the percentage of people with access to clean fuels into a true proportion by dividing it by 100.\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "055eaf57"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels\n",
+        "    .with_columns(prop=pl.col(\"prop_clean_fuels_cooking_pct\")/100)\n",
+        ")"
+      ],
+      "id": "a7814b5f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Here, we create a new column called `prop`. The expression starts with a column name, and then we specify the operation: dividing by 100. The `prop` on the left of the equal sign will become a new column name. Easy enough, right?\n",
+        "\n",
+        "Now that we have the true proportion, we can calculate the total population. Let's divide the population by proportion. \n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "45c73338"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "clean_fuels_pop_df = (clean_fuels\n",
+        "    .with_columns(prop=pl.col(\"prop_clean_fuels_cooking_pct\")/100)\n",
+        "    .with_columns( (pl.col(\"pop_clean_fuels_cooking_mln\")/pl.col(\"prop\"))\n",
+        "                    .alias(\"population\"))\n",
+        ")"
+      ],
+      "id": "db501102",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Notice that I wrapped the division operation in parentheses to ensure it’s evaluated correctly. I also used the `alias()` method to specify a name for the new column: `population`. This code calculates and adds two new columns:\n",
+        "\n",
+        "- `prop`: the true proportion of the population with access to clean fuels, and\n",
+        "- `population`: the estimated total population for each row.\n",
+        "\n",
+        "This looks good. Lets assign it to a variable and inspect the updated dataset.\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "cf0a4e28"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "clean_fuels_pop_df.describe()"
+      ],
+      "id": "c0c0feb7",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Oh, look! We’ve got some `NaN`, or \"Not a Number\", in the `population` column. These appear because we divided by zero, wherever the proportion was zero. Division by zero is, understandably, illegal in most places - and in Python, it results in `NaN`.\n",
+        "\n",
+        "`NaN` is a special marker for missing or undefined values. Missing values in Polars propagate through calculations, which means any further operations on these rows will also result in missing values. This is why the mean and standard deviation of the population column are also `NaN` in the summary.\n",
+        "\n",
+        "Let's see how many rows in our dataset contain illegal population estimates. We can use the `.is_nan()` method, which evaluates whether a column contains a `NaN` value.\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "7a1c6475"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(clean_fuels_pop_df\n",
+        "    .filter(pl.col(\"population\").is_nan()))"
+      ],
+      "id": "7ff60e75",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Uh-oh! 35 rows! Perhaps `fuel_types`, the third dataset, could be a better source of population data?\n",
+        "\n",
+        "The `fuel_types` dataset contains both the proportion of people using a specific cooking fuel and the absolute number of users. Since it includes multiple estimates for each country and year - one for each fuel type - it might give us more opportunities to calculate valid population estimates.\n",
+        "\n",
+        "Go ahead and add a population column to the `fuel_types` dataset. Save the extended data frame under a new name - we will need it later.\n",
+        "\n",
+        "< PAUSE >\n",
+        "\n",
+        ":::{.challenge}\n",
+        "Add a population estimate to the `fuel_types` dataset and save it under a new variable name\n",
+        ":::\n"
+      ],
+      "id": "0892bc66"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fuel_types_pop_df = (fuel_types\n",
+        "    .with_columns(population=pl.col(\"pop_cooking_mln\")/pl.col(\"prop_cooking_pct\")*100)\n",
+        ")"
+      ],
+      "id": "afa9c152",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "This looks promising! Let's have a look at our favorite Bosnia\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "11e28b87"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(fuel_types_pop_df\n",
+        "    .filter(pl.col(\"country\").str.starts_with(\"Bosni\"))\n",
+        ")"
+      ],
+      "id": "dc1eb996",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Interesting! We still get some `NaN` values, for example, look here: in 2022 no one was using Kerosene to cook food. Thanks goodness! But now we get several estimates of Bosnia’s population - 3.0, 3.5, 3.53, 3.48 million. These slight differences arise from rounding imprecisions in the proportions or the number of people using the specific fuel type. While these variations are minor, they make it tricky to work with the data directly.\n",
+        "\n",
+        "Wouldn’t it be nice to level out these differences, by say, averaging? In the next section, we’ll learn how to do just that: grouping and aggregating. Stay tuned!\n",
+        "\n",
+        "# VIDEO 8 Summaries\n",
+        "\n",
+        "One of the most important tasks for data analysts is creating summaries of the data, particularly by groups. In our newly prepared dataset, we’re interested in summarizing the total population for each country by year. In Polars, this is a two-step process. First, we define the groups using `.group_by()`. Then, we aggregate the data using `.agg()`.\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "47de80ee"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(fuel_types_pop_df\n",
+        "    .group_by(\"region\", \"country\", \"year\")\n",
+        "    .agg(pl.col(\"population\").mean())\n",
+        ")"
+      ],
+      "id": "e4fedb41",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "This gives us a mean population estimate for each country and year. But you might notice something suspicious - some countries and years still show `NaN` values for the population. These missing values are a result of the division by zero we encountered earlier. To address this, we have a couple of options:\n",
+        "\n",
+        "We could drop the missing values directly before averaging, using `.drop_nans()`; OR\n",
+        "We could filter out zero-valued records in the \"proportion of population\" column, which was used in the denominator of the population estimate.\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "f80ce70c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "pop_years_df = (fuel_types_pop_df\n",
+        "    .group_by(\"region\", \"country\", \"year\")\n",
+        "    .agg(pl.col(\"population\").drop_nans().mean().alias(\"mean_pop\"))\n",
+        ")\n",
+        "\n",
+        "pop_years_df.write_csv(\"hhap/pop_years_df.csv\")\n",
+        "\n",
+        "# method 2\n",
+        "(fuel_types\n",
+        "    .filter(pl.col(\"prop_cooking_pct\")>0)\n",
+        "    .with_columns(population=pl.col(\"pop_cooking_mln\")/pl.col(\"prop_cooking_pct\")*100)\n",
+        "    .group_by(\"region\", \"country\", \"year\")\n",
+        "    .agg(pl.col(\"population\").mean())\n",
+        ")"
+      ],
+      "id": "f5cc2612",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Now, let’s build on this idea. What if we wanted to summarize populations at a higher level - say, by region - and visualize how total population changes over time? \n",
+        "\n",
+        "Give it a try! I suggest you start by by calculating the average population for each country and year. Then, you can group this data by region and year, summing the populations for all countries in each region. Finally, plot the results. \n",
+        "\n",
+        "Take your time and think through what type of aggregation you would need to do.\n",
+        "\n",
+        "< PAUSE >\n",
+        "\n",
+        ":::{.challenge}\n",
+        "Plot the total population per region over time.\n",
+        ":::\n"
+      ],
+      "id": "bd1ede5f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(fuel_types_pop_df\n",
+        "    .group_by(\"region\", \"country\", \"year\")\n",
+        "    .agg(pl.col(\"population\").drop_nans().mean())\n",
+        "    .group_by(\"region\", \"year\")\n",
+        "    .agg(pl.col(\"population\").sum())\n",
+        "    .pipe(ggplot)\n",
+        "    +geom_line(aes(x=\"year\", y=\"population\", color=\"region\"))\n",
+        "    +scale_color_cmap_d()\n",
+        "    +theme_seaborn()\n",
+        ")"
+      ],
+      "id": "019583c4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "When we visualize the results, the trends are striking. Populations in Africa and Southeast Asia are growing at a much faster pace compared to other regions. For Africa, this growth rate might even be accelerating. On the other hand, regions like Asia and the Western Pacific show signs of population growth slowing down. These insights help us understand global population dynamics and can inform policies in areas like health, infrastructure, and environmental planning.\n",
+        "\n",
+        "Now that we’ve explored population estimates and regional dynamics, let’s take on another challenge: examining the changes in the popularity of different cooking fuels worldwide.\n",
+        "\n",
+        "Here’s your new task: Visualize the total number of people using each type of fuel for cooking, for every year, worldwide.\n",
+        "\n",
+        "< PAUSE >\n",
+        "\n",
+        ":::{.challenge}\n",
+        "Visualize the total number of people using each type of fuel for cooking, for every year, worldwide.\n",
+        ":::\n"
+      ],
+      "id": "b9e19ab4"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(fuel_types_pop_df\n",
+        "    .group_by(\"fuel_type\", \"year\")\n",
+        "    .agg(pl.col(\"pop_cooking_mln\").drop_nans().sum())\n",
+        "    .pipe(ggplot)\n",
+        "    + geom_line(aes(x=\"year\", y=\"pop_cooking_mln\", color=\"fuel_type\", group=\"fuel_type\"))\n",
+        "    +scale_color_cmap_d()\n",
+        "    + theme_seaborn()\n",
+        ")"
+      ],
+      "id": "1a6a9b87",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "This plot looks fantastic! By aggregating by fuel type and year, we can clearly see trends in fuel usage globally. But we can take this further. What if we wanted to break this data down by region? Faceting would allow us to examine the trends within each region more closely.\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "dfaa1b8a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(\n",
+        "    fuel_types\n",
+        "    .group_by(\"fuel_type\", \"year\", \"region\")\n",
+        "    .agg(pl.col(\"pop_cooking_mln\").drop_nans().sum())\n",
+        "    .pipe(ggplot)\n",
+        "    +geom_line(aes(x=\"year\", y=\"pop_cooking_mln\", color=\"fuel_type\", group=\"fuel_type\"))\n",
+        "    +facet_wrap(\"region\", ncol=3)\n",
+        "    +theme_seaborn()\n",
+        ")"
+      ],
+      "id": "a2c4e78c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "With this plot, we can see unique trends for every region. Across the globe, electricity and gas are becoming more prevalent. Yet, biomass remains crucial in regions like Africa and Southeast Asia. However, there’s still a challenge here. Because the number of people using each fuel type varies so widely across regions, it’s difficult to compare the energy mix within each region.\n",
+        "\n",
+        "To make the energy mix clearer, we can represent the share of the population relying on each fuel type within a region. This requires dividing the number of people using each fuel by the annual total population for the region. We’ll use Polars’ `.over()` method to calculate these totals for subgroups without collapsing the data.\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "52bb8519"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(\n",
+        "    fuel_types\n",
+        "    .group_by(\"fuel_type\", \"year\", \"region\")\n",
+        "    .agg(pl.col(\"pop_cooking_mln\").sum())\n",
+        "    .with_columns(prop_pop=(pl.col(\"pop_cooking_mln\")/pl.col(\"pop_cooking_mln\").sum())\n",
+        "                            .over(\"year\", \"region\"))\n",
+        ")"
+      ],
+      "id": "7be07971",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "I wrap the expression into parenthesis and pass it to the `.over()` method which defines the scope for the `.sum()` operation. Note that this is different from aggregation, because the number of rows actually does not change. Lets visualize it!\n",
+        "\n",
+        "< PAUSE >\n"
+      ],
+      "id": "c290d9dd"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(\n",
+        "    fuel_types\n",
+        "    .group_by(\"fuel_type\", \"year\", \"region\")\n",
+        "    .agg(pl.col(\"pop_cooking_mln\").sum())\n",
+        "    .with_columns(prop_pop=(pl.col(\"pop_cooking_mln\")/pl.col(\"pop_cooking_mln\").sum())\n",
+        "                            .over(\"year\", \"region\"))\n",
+        "    .pipe(ggplot)\n",
+        "    +geom_area(aes(x=\"year\", y=\"prop_pop\", fill=\"fuel_type\"))\n",
+        "    +facet_wrap(\"region\", ncol=3)\n",
+        "    +scale_fill_cmap_d()\n",
+        "    +theme_linedraw()\n",
+        "    +labs(title=\"Energy mix per world region\",\n",
+        "        subtitle=\"From biomass to natural gas\",\n",
+        "        y=\"Share of population\", x=\"Year\", fill=\"Fuel Type\")\n",
+        ")"
+      ],
+      "id": "5dbbd24a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "What a graph! What a story! In Africa, biomass remains dominant, though natural gas is beginning to make inroads. The Americas, Europe, and Eastern Mediterranean rely heavily on gas, with electricity emerging as a significant player in Europe and the Western Pacific. Southeast Asia, meanwhile, is undergoing a rapid transition from biomass to gas - a remarkable shift in just a few decades. This visualization gives us a profound understanding of how the popularity of cooking fuels has evolved globally and regionally over time.\n",
+        "\n",
+        "# VIDEO 9 Final plot {greenscreen} ~ 3 min\n",
+        "\n",
+        "It’s time for you to take on another challenge - one that highlights the global reliance on coal and charcoal for cooking. Those are environmentally sensitive fuels and understanding thier use across the world is crucial. Create a column chart showing the top 10 countries by the number of people using coal and charcoal for cooking in 2022. Color the columns by continent. How many of these top-10 countries are in Africa?\n",
+        "\n",
+        "< PAUSE >\n",
+        "\n",
+        ":::{.challenge}\n",
+        "Create a column chart showing the top 10 countries by the number of people using coal and charcoal for cooking in 2022. Color the columns by continent. How many of these top-10 countries are in Africa?\n",
+        ":::\n"
+      ],
+      "id": "bd335494"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "(fuel_types\n",
+        "    .filter(pl.col(\"fuel_type\").str.ends_with(\"oal\"),\n",
+        "            pl.col(\"year\")==2022,\n",
+        "            pl.col(\"pop_cooking_mln\")>0)\n",
+        "    .group_by(\"region\", \"country\")\n",
+        "    .agg(pl.col(\"pop_cooking_mln\").sum())\n",
+        "    .sort(\"pop_cooking_mln\", descending=True)\n",
+        "    .head(10)\n",
+        "    .pipe(ggplot, aes(x=\"reorder(country, pop_cooking_mln)\", y=\"pop_cooking_mln\", fill=\"region\"))\n",
+        "    +geom_col()\n",
+        "    +coord_flip()\n",
+        "    +theme_seaborn()\n",
+        "    +theme(legend_position=\"bottom\",\n",
+        "        axis_title_y=element_blank(),\n",
+        "        figure_size=(10,5))\n",
+        "    )"
+      ],
+      "id": "a4e1a726",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Seven - possibly eight, if you include Somalia - of the top-10 countries using coal for cooking are in Africa! Many African nations rely heavily on these highly polluting and dangerous carbon-based fuels. Ensuring access to cleaner, safer energy sources is essential to improving health outcomes and accelerating the transition to sustainable energy.\n",
+        "\n",
+        "In the next section, we’ll learn how to combine datasets through joins and reshape them using pivots - powerful tools for transforming and enriching our analyses. See you soon, as we dive deeper into the art and science of data manipulation!"
+      ],
+      "id": "018282a8"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
