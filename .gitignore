@@ -1,2 +1,7 @@
 /.quarto/
 .Rproj.user
+
+
+html.json
+
+.quarto/_freeze/
