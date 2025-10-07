@@ -137,7 +137,7 @@ Inside the `geom_point` parentheses, we specify the argument: `mapping` followed
 Once you’ve written the code, go ahead and hit the Run button. If everything is correct, you should see your plot appear on the screen.
 
 ```{python}
-#| eval: false
+#| eval: true
 (
 ggplot(gapminder)+
 geom_point(mapping=aes(x='gdpPercap', y='lifeExp'))
