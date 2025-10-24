@@ -8,7 +8,7 @@ bibliography: data24web.bib
 
 Welcome to the lesson on data visualization!
 
-Data visualization is one of the most important skills in data analysis. Why? Because a well-made chart can reveal patterns, trends, and insights that might otherwise stay hidden in a spreadsheet. It’s like turning a jumble of numbers into a picture that tells a story.
+Data visualization is one of the most important skills in data analysis. Why? Because a well-made chart can reveal patterns, trends, and insights that might otherwise stay hidden in a spreadsheet. It’s like turning a jumble of numbers into a picture that tells a story. 
 
 But let’s be honest—visualizing data can sometimes feel overwhelming. There are so many types of charts to choose from and endless options for customizing them. Scatter plots, bar graphs, heatmaps—what should you use? And even after you pick a plot, there are all these parameters: axis, labels, color scales, gridlines… It’s easy to feel like you’re drowning in options!
 
@@ -50,7 +50,7 @@ So, join us on this journey into the wonderful world of data visualization. By t
 Before we dive in, let’s talk about the tools and libraries we’ll be using in this lesson.
 
 ```{python}
-#| echo: false
+#| echo: true
 #| code-fold: true
 import polars as pl
 from plotnine import *
@@ -137,7 +137,7 @@ Inside the `geom_point` parentheses, we specify the argument: `mapping` followed
 Once you’ve written the code, go ahead and hit the Run button. If everything is correct, you should see your plot appear on the screen.
 
 ```{python}
-#| eval: false
+#| eval: true
 (
 ggplot(gapminder)+
 geom_point(mapping=aes(x='gdpPercap', y='lifeExp'))
