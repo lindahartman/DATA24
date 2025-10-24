@@ -51,7 +51,7 @@ Before we dive in, let’s talk about the tools and libraries we’ll be using i
 
 ```{python}
 #| echo: true
-#| code-fold: true
+#| code-fold: false
 import polars as pl
 from plotnine import *
 from gapminder import gapminder
