@@ -50,7 +50,7 @@ So, join us on this journey into the wonderful world of data visualization. By t
 Before we dive in, let’s talk about the tools and libraries we’ll be using in this lesson.
 
 ```{python}
-#| echo: false
+#| echo: true
 #| code-fold: true
 import polars as pl
 from plotnine import *
