@@ -1,9 +1,4 @@
 ---
 title: "About"
 ---
-
-About this site
-
-```{r}
-1 + 1
-```
+This is the manuscript files for the MOOC/code along videos for Data Literacy with Python.
