@@ -4,7 +4,7 @@ format: html
 engine: python3
 ---
 
-# VIDEO 1: Reproducible reports with Quarto ~ 6 min
+# VIDEO 1: Reproducible reports with Quarto 
 
 We’re almost there! Over the last four modules, you’ve built a solid foundation in data analysis — from setting up a reproducible Python environment with `uv` and Jupyter to crafting stunning visualizations and mastering Polars for data wrangling, reshaping, and joins. You’ve also learned how to document your findings in a computational notebook. 
 
@@ -53,7 +53,7 @@ One of these checks will show the Python version that Quarto has detected. Look 
 
 We’ll be using Quarto inside Jupyter Lab, so hop back into your notebook — and I’ll meet you there!
 
-# VIDEO 2: Quarto report from notebook ~ 5 min
+# VIDEO 2: Quarto report from notebook 
 
 To make our report look even better, let’s add a Quarto header — also known as "front matter" — to the top of our notebook.
 
@@ -132,7 +132,7 @@ Keep your Quarto session running, because in the next section, we’ll explore e
 
 See you in a bit!
 
-# VIDEO 3: Quarto styling and rendering ~ 5 min
+# VIDEO 3: Quarto styling and rendering
 
 A great analytics report isn’t just about having the right data — it’s about clarity and focus. Your audience should be able to quickly grasp key insights without being distracted by unnecessary details.
 
@@ -243,7 +243,7 @@ You’ve come a long way! Your Jupyter notebook is now filled with exciting disc
 
 Let’s do it!
 
-# VIDEO 4: Rendering the final report ~ 5 min
+# VIDEO 4: Rendering the final report 
 
 You’ve been working on your report interactively, running cells out of order to refine your insights and perfect the look and feel of the final product. But now, it’s time to run the report one last time before sending it out into the world.
 
@@ -309,7 +309,7 @@ We’re nearing the final stretch of this course! In the last video, we’ll dis
 
 See you in a bit!
 
-# VIDEO 5: Sharing the project ~ 5 min
+# VIDEO 5: Sharing the project 
 
 Congratulations! You’ve successfully completed an exciting project — from installing software to visualizing and exploring datasets, and finally, producing an analytical report that documents your entire journey. Now, it’s time to prepare this work to be shared with others.
 

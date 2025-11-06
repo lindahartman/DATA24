@@ -25,6 +25,7 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - about.qmd
       - visualization.qmd
       - wrangling.qmd
       - pivotjoin.qmd

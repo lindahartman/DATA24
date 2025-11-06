@@ -156,6 +156,10 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link active" href="./visualization.html" aria-current="page"> 
 <span class="menu-text">Visualization</span></a>
   </li>  
@@ -270,7 +274,7 @@ Footnote
 <p>In this lesson, we’ll dive into <code>plotnine</code> and explore how it allows you to create clear, beautiful, and insightful visualizations. We’ll guide you step by step so you can quickly become comfortable with its intuitive and expressive syntax.</p>
 <p>So, join us on this journey into the wonderful world of data visualization. By the end, you’ll be creating plots that don’t just look good but also communicate your data’s story effectively. Let’s get started!</p>
 <p>Before we dive in, let’s talk about the tools and libraries we’ll be using in this lesson.</p>
-<div id="fafa4359" class="cell" data-execution_count="1">
+<div id="9ff944a5" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gapminder <span class="im">import</span> gapminder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -285,7 +289,7 @@ Footnote
 <section id="video-2-data" class="level1">
 <h1>VIDEO 2 Data</h1>
 <p>The dataset has been conveniently imported for us by the <code>gapminder</code> package. To get started, we can simply type <code>gapminder</code> into our notebook cell and hit Enter. When we do that, we’ll see a preview of the data in the form of a table — what we call a DataFrame. In this table, each row represents an observation, and each column represents a variable.</p>
-<div id="89cea290" class="cell" data-execution_count="2">
+<div id="122e8762" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gapminder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
@@ -457,7 +461,7 @@ Question
 </div>
 <p>In order to answer these questions, we will create a plot from <code>gapminder</code> data. Here’s the code we’ll use. Take a moment to copy this code verbatim from your screen.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="318f1f29" class="cell" data-execution_count="3">
+<div id="1ada7dd3" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>geom_point(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>))</span>
@@ -470,7 +474,7 @@ Question
 <p>On the next line, we write <code>geom_point</code>. This is the function that specifies the type of layer we’re adding to our plot. In this case, it’s a point plot, which means we’ll be drawing points on a graph. Without this layer, our plot would just be an empty canvas.</p>
 <p>Inside the <code>geom_point</code> parentheses, we specify the argument: <code>mapping</code> followed by an <code>=</code> sign. This tells <code>plotnine</code> how we want to relate our data to the graph. AES stands for “aesthetics”. The inside of the <code>aes</code> function defines mapping of the variables in our data to certain aesthetical properies of our graph. We’re saying, “Take the GDP per capita (<code>gdpPercap</code>) and map it to the x-axis, and take life expectancy (<code>lifeExp</code>) and map it to the y-axis.” Notice that the column names are enclosed in quotes — that’s important!</p>
 <p>Once you’ve written the code, go ahead and hit the Run button. If everything is correct, you should see your plot appear on the screen.</p>
-<div id="c0b95fb5" class="cell" data-execution_count="4">
+<div id="693976cf" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>geom_point(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>))</span>
@@ -526,7 +530,7 @@ Challenge
 <p>Take a moment to think about it. Better yet, try answering it by modifying the code we wrote in the last lesson.</p>
 <p>Here’s a quick hint before you pause the video: The <code>gapminder</code> dataset includes a column called <code>year</code>, which can go on the x-axis. Use that to tweak the code and see what you find. I’ll wait right here while you try it out! Pause the video now and give it a shot. See you in a moment!</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="09148f16" class="cell" data-execution_count="5">
+<div id="bf817961" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>geom_point(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>))</span>
@@ -544,7 +548,7 @@ Challenge
 <p>Instead of geom_point, try using geom_jitter. This will add a tiny bit of random noise to spread out the points so they’re easier to see.</p>
 <p>Here’s how you do it:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="d388fbe1" class="cell" data-execution_count="6">
+<div id="0b8dfc54" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>geom_jitter(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>))</span>
@@ -552,7 +556,7 @@ Challenge
 </div>
 <p>Pause the video, run this code and check out the difference.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="3d57870a" class="cell" data-execution_count="7">
+<div id="c616a15d" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>geom_jitter(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>))</span>
@@ -582,7 +586,7 @@ Challenge
 </div>
 <p>Think about which variable should go on the x-axis this time. Which continent do you think tends to have the highest life expectancy? Modify your code and give it a shot. Pause the video, try it out, and come back when you’re ready.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="9d2341db" class="cell" data-execution_count="8">
+<div id="d768f98d" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>geom_jitter(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'continent'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>))</span>
@@ -605,7 +609,7 @@ Challenge
 <p>Now, don’t worry — we’re not diving into “three-dimensional” plots. Instead, we can represent a third variable using color. Let me show you what I mean.</p>
 <p>Here’s modified code that maps the continent variable to the color aesthetic:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="d42eda06" class="cell" data-execution_count="9">
+<div id="4de9f622" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>geom_jitter(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>))</span>
@@ -613,7 +617,7 @@ Challenge
 </div>
 <p>Run this code and take a look.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="7c1eea4c" class="cell" data-execution_count="10">
+<div id="3a40c0bc" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>geom_jitter(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>))</span>
@@ -646,7 +650,7 @@ geom_jitter(mapping = aes(x='year', y='lifeExp', color='continent'))
 </div>
 </div>
 <p>&lt; PAUSE &gt;</p>
-<div id="3597864e" class="cell" data-execution_count="11">
+<div id="87dcf2e2" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>geom_jitter(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'continent'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'year'</span>))</span>
@@ -679,7 +683,7 @@ geom_jitter(mapping = aes(x='continent', y='lifeExp', color='year'))
 </div>
 </div>
 <p>&lt; PAUSE &gt;</p>
-<div id="3d725c37" class="cell" data-execution_count="12">
+<div id="fefad8b1" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>geom_jitter(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'continent'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'country'</span>))</span>
@@ -713,7 +717,7 @@ geom_point(mapping = aes(x='gdpPercap', y='lifeExp'))
 </div>
 <p>Take a moment to run your code and see what you get.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="ea6caa2d" class="cell" data-execution_count="13">
+<div id="1d44efa4" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>geom_point(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>))</span>
@@ -729,7 +733,7 @@ geom_point(mapping = aes(x='gdpPercap', y='lifeExp'))
 <p>Very illustrative! By adding color, we can now spot trends and patterns more easily. But did you notice something else? There are a few outliers in this plot. Can you tell which continent those points belong to?</p>
 <p>The points look a little crowded. But you know, you can always transform GDP per capita to a logarithmic scale for better visualization. Just add <code>scale_x_log10()</code> as an additional layer to your graph, like that:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="8d53704f" class="cell" data-execution_count="14">
+<div id="7bed9508" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>geom_point(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>))<span class="op">+</span></span>
@@ -754,7 +758,7 @@ geom_point(mapping = aes(x='gdpPercap', y='lifeExp'))
 <p>Alright, as promised, let me introduce you to another fantastic aesthetic: size.</p>
 <p>Imagine we could vary the size of the points in our graph to represent something meaningful—like the population of a country. That would let us visualize not three, but four variables at the same time. Let’s give it a shot. Here’s the code:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="96f8ce44" class="cell" data-execution_count="15">
+<div id="5a6d73ae" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>geom_point(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>, size<span class="op">=</span><span class="st">'pop'</span>))<span class="op">+</span></span>
@@ -762,7 +766,7 @@ geom_point(mapping = aes(x='gdpPercap', y='lifeExp'))
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Run this and take a moment to appreciate the result. Isn’t it fascinating?</p>
-<div id="3cb98aa1" class="cell" data-execution_count="16">
+<div id="c23d23ae" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>geom_point(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>, size<span class="op">=</span><span class="st">'pop'</span>))<span class="op">+</span></span>
@@ -800,7 +804,7 @@ scale_x_log10()
 </div>
 </div>
 <p>&lt; PAUSE &gt;</p>
-<div id="0764e2de" class="cell" data-execution_count="17">
+<div id="c5d6e1b7" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>geom_point(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'year'</span>, size<span class="op">=</span><span class="st">'pop'</span>, shape<span class="op">=</span><span class="st">'continent'</span>))<span class="op">+</span></span>
@@ -826,7 +830,7 @@ scale_x_log10()
 <p>Now, the default style in plotnine is already quite nice, but there may come a time when you want to tweak things to better suit your storytelling. So, let’s look at how to customize graphs using non-data-linked properties—those that aren’t mapped to a variable but instead apply globally to all points in the graph.</p>
 <p>Here’s an example. What if we want all the points in our plot to be the same color, say blue? And what if we also want to adjust their size and transparency? Here’s the code to do that:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="7b37c338" class="cell" data-execution_count="18">
+<div id="4caad8a3" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>geom_point(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>),</span>
@@ -835,7 +839,7 @@ scale_x_log10()
 </div>
 <p>Go ahead, pause and give this a try.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="13c66fa0" class="cell" data-execution_count="19">
+<div id="f3e89153" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>geom_point(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>),</span>
@@ -888,7 +892,7 @@ Challenge
 <p>For example, what if we wanted to show the development of life expectancy over time for each country? We could use geom_line() to connect individual data points belonging to the same country.</p>
 <p>Here’s the code to do just that:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="eeb72475" class="cell" data-execution_count="20">
+<div id="ba7730e3" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>geom_line(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>,</span>
@@ -897,7 +901,7 @@ Challenge
 </div>
 <p>Note that we have a new aesthetics called <code>group</code>. It indicates which points need to be connected together to a line. Here we are drawing one line per country. Take a moment to run this and see what you get.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="826c8533" class="cell" data-execution_count="21">
+<div id="85a94039" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>geom_line(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>,</span>
@@ -916,7 +920,7 @@ Challenge
 <p>Another powerful geometrical object is geom_boxplot(). This creates a “box-and-whisker” plot that illustrates the distribution of values within categories.</p>
 <p>For example, let’s visualize how life expectancy varies by continent:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="8fe07c4d" class="cell" data-execution_count="22">
+<div id="faad4998" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>geom_boxplot(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'continent'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>))</span>
@@ -924,7 +928,7 @@ Challenge
 </div>
 <p>Pause, run the code and take a look.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="ceb97c11" class="cell" data-execution_count="23">
+<div id="0251b52b" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>geom_boxplot(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'continent'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>))</span>
@@ -940,7 +944,7 @@ Challenge
 <p>The box represents the interquartile range—the middle 50% of data—while the line inside the box marks the median. The “whiskers” give you an idea of the spread of the bulk of data, and any points outside this range are plotted as individual outliers.</p>
 <p>Now, wouldn’t it be great to combine this boxplot with our jittered points from earlier? This would help us see both the overall distribution and the outliers more clearly. Let’s layer them together:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="ca99d99d" class="cell" data-execution_count="24">
+<div id="3fa993e3" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>geom_jitter(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'continent'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>))<span class="op">+</span></span>
@@ -957,7 +961,7 @@ Challenge
 <p>Looks great, doesn’t it? But notice something—there’s some duplication in our code. We had to repeat the same mappings for both geom_jitter and geom_boxplot. That’s fine for now, but it can become cumbersome as your visualizations grow more complex.</p>
 <p>Here’s a trick to make your code cleaner: you can move shared mappings to the parent ggplot() function. This way, every layer will “inherit” these mappings automatically:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="d83ed66a" class="cell" data-execution_count="25">
+<div id="b3395f8a" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder, mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'continent'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>))<span class="op">+</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>geom_jitter()<span class="op">+</span></span>
@@ -993,7 +997,7 @@ Tip
 <p>At first glance, life expectancy seems to improve as countries get richer. But is this relationship consistent across continents? Let’s find out by adding trend lines to our plot.</p>
 <p>Trends are essentially linear regression lines. You might remember them from school—they represent the best-fit line through your data. Here’s how we can add them to highlight differences in this relationship by continent:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="f3764f81" class="cell" data-execution_count="26">
+<div id="add0a649" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder, mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>)) <span class="op">+</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>geom_point(alpha<span class="op">=</span><span class="fl">0.5</span>) <span class="op">+</span></span>
@@ -1003,7 +1007,7 @@ Tip
 </div>
 <p>Take a moment to run the code and see the result.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="4d80f2e0" class="cell" data-execution_count="27">
+<div id="c31307f6" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder, mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>)) <span class="op">+</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>geom_point(alpha<span class="op">=</span><span class="fl">0.5</span>) <span class="op">+</span></span>
@@ -1050,7 +1054,7 @@ scale_x_log10()
 <p>To build a single trend line for all data points, we must ensure that the color aesthetic applies only to the points and not to the trend line. How do we do that? By moving the color mapping from the global level into the geom_point() function.</p>
 <p>Here’s what the updated code looks like:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="bdff8e7d" class="cell" data-execution_count="28">
+<div id="5760144b" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder, mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>))<span class="op">+</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>geom_point(aes(color<span class="op">=</span><span class="st">'continent'</span>), alpha<span class="op">=</span><span class="fl">0.5</span>)<span class="op">+</span></span>
@@ -1069,7 +1073,7 @@ scale_x_log10()
 <p>Take a moment to observe how this subtle adjustment changes the visualization and makes the trend line easier to interpret.</p>
 <p>Some of you might have come up with an alternative solution. Instead of changing the color aesthetic’s scope, we can override it directly within the geom_smooth() layer. In this case, the color aesthetic remains global, but we specify a non-data-linked property for the trend line, such as making it black:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="04243369" class="cell" data-execution_count="29">
+<div id="6a33dd62" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder, mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>))<span class="op">+</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>geom_point(alpha<span class="op">=</span><span class="fl">0.5</span>)<span class="op">+</span></span>
@@ -1124,7 +1128,7 @@ Challenge
 <span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>geom_boxplot(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'factor(year)'</span>, y<span class="op">=</span><span class="st">'gdpPercap'</span>, group<span class="op">=</span><span class="st">'year'</span>)) <span class="op">+</span></span>
 <span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>scale_y_log10()</span>
 <span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="4348e3dd" class="cell quarto-layout-panel" data-execution_count="30" data-layout-ncol="2">
+<div id="669349ec" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="30">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img src="visualization_files/figure-html/cell-31-output-1.png" class="img-fluid" width="672"></p>
@@ -1156,7 +1160,7 @@ Challenge
 </div>
 </div>
 <p>&lt; PAUSE &gt;</p>
-<div id="c1a45547" class="cell" data-execution_count="31">
+<div id="6efb1f5d" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>geom_histogram(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'lifeExp'</span>), bins<span class="op">=</span><span class="dv">100</span>)</span>
@@ -1195,7 +1199,7 @@ Challenge
 <span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>geom_density(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>))</span>
 <span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="a7f0474a" class="cell quarto-layout-panel" data-execution_count="32" data-layout-ncol="2">
+<div id="d227df3c" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="32">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img src="visualization_files/figure-html/cell-33-output-1.png" class="img-fluid" width="672"></p>
@@ -1204,7 +1208,7 @@ Challenge
 </div>
 <p>Right! You can split the data by continent by adding a color aesthetic and linking it to the variable <code>continent</code>. Or take it one step further! Use the <code>fill</code> aesthetic (in addition to color) to fill the areas under the curves. Add some transparency with <code>alpha</code> for a cleaner visualization like this:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="b3b40171" class="cell" data-execution_count="33">
+<div id="91905241" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>geom_density(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>, fill<span class="op">=</span><span class="st">'continent'</span>), alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
@@ -1233,7 +1237,7 @@ Challenge
 </div>
 </div>
 <p>&lt; PAUSE &gt;</p>
-<div id="1617127a" class="cell" data-execution_count="34">
+<div id="8ef5fe7a" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>geom_density_2d(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>))<span class="op">+</span></span>
@@ -1263,7 +1267,7 @@ Challenge
 </div>
 </div>
 <p>&lt; PAUSE &gt;</p>
-<div id="d13c0f82" class="cell" data-execution_count="35">
+<div id="ebe4d34e" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder)<span class="op">+</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>geom_density_2d(mapping <span class="op">=</span> aes(x<span class="op">=</span><span class="st">'gdpPercap'</span>, y<span class="op">=</span><span class="st">'lifeExp'</span>, color<span class="op">=</span><span class="st">'continent'</span>))<span class="op">+</span></span>
@@ -1284,7 +1288,7 @@ Challenge
 <p>When your graph starts to feel a bit too crowded—perhaps with too many layers or overlapping aesthetics—there’s a simple solution: faceting. Faceting allows you to split your data into separate panels, creating multiple similar graphs for subsets of your data. This can make complex trends easier to spot and comparisons much clearer.</p>
 <p>In plotnine, faceting is incredibly easy to use. Let’s revisit one of our earlier graphs and apply faceting to organize it by continent.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="0a12d9f2" class="cell" data-execution_count="36">
+<div id="a614d434" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>ggplot(gapminder, mapping <span class="op">=</span> aes(x <span class="op">=</span> <span class="st">'gdpPercap'</span>, y <span class="op">=</span> <span class="st">'lifeExp'</span>)) <span class="op">+</span></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  geom_point() <span class="op">+</span></span>
@@ -1346,7 +1350,7 @@ ggplot(gapminder, mapping = aes(x = 'gdpPercap', y = 'lifeExp')) +
 </div>
 </div>
 <p>&lt; PAUSE &gt;</p>
-<div id="9ede3441" class="cell" data-execution_count="37">
+<div id="9389ab7a" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>ggplot(data <span class="op">=</span> gapminder, mapping <span class="op">=</span> aes(x <span class="op">=</span> <span class="st">'gdpPercap'</span>, y <span class="op">=</span> <span class="st">'lifeExp'</span>)) <span class="op">+</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  geom_point() <span class="op">+</span></span>
@@ -1386,7 +1390,7 @@ ggplot(&lt;DATA&gt;) +
 </ul>
 <p>Here’s an example of a polished, annotated chart:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="67e60141" class="cell" data-execution_count="38">
+<div id="2734e514" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>ggplot(data <span class="op">=</span> gapminder) <span class="op">+</span> </span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  geom_point(mapping <span class="op">=</span> aes(x <span class="op">=</span> <span class="st">'gdpPercap/1e3'</span>, y <span class="op">=</span> <span class="st">'lifeExp'</span>, size<span class="op">=</span><span class="st">'pop/1e6'</span>, color<span class="op">=</span><span class="st">'continent'</span>)) <span class="op">+</span></span>
@@ -1412,7 +1416,7 @@ ggplot(&lt;DATA&gt;) +
 <p>Now, let’s make your chart stand out! plotnine offers pre-selected themes that adjust the colors, fonts, and overall style of your plots.</p>
 <p>One of my favorites is <code>theme_minimal()</code>. It simplifies the design, creating a clean and modern look:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="01dc083c" class="cell" data-execution_count="39">
+<div id="5d457ebc" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>ggplot(data <span class="op">=</span> gapminder) <span class="op">+</span> </span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  geom_point(mapping <span class="op">=</span> aes(x <span class="op">=</span> <span class="st">'gdpPercap/1e3'</span>, y <span class="op">=</span> <span class="st">'lifeExp'</span>, size<span class="op">=</span><span class="st">'pop/1e6'</span>, color<span class="op">=</span><span class="st">'continent'</span>)) <span class="op">+</span></span>

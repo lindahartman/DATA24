@@ -2,7 +2,7 @@
 title: "Pivots and joins"
 engine: python3
 ---
-
+(The numbering of videos got changed, but do not worry. All videos are here = there should be no VIDEO 3.)
 
 # VIDEO 1 BFFP data
 
@@ -586,7 +586,7 @@ So, let us talk through this solution together.
 - Our last step is to calculate the volunteer growth and the identification rate increase. One is percent growth and the other is a simple difference in percent values. Drop the records where either one of them is Null and sort by `id_rate_increase`. Then take top 10 records only.
 
 
-# VIDEO 6 intro to joins {greenscreen} ~ 10 min
+# VIDEO 6 intro to joins
 
 In a typical data analysis project, data often comes in multiple files or tables, each describing a different aspect of a problem or phenomenon. These separate tables might exist because the data comes from different sources, or simply because it’s easier to manage that way. As an analyst, you’ll often need to combine related datasets based on shared characteristics—such as countries, time periods, or other common identifiers. This is the case with the original gapminder data, collected by Hans Rosling, which consists of multiple tables linked by country and year.
 
@@ -729,7 +729,7 @@ Before performing a join, always check for duplicates and missing values in your
 
 For more details, I recommend checking out the official Polars documentation on the .join() method — it covers syntax, additional arguments, and advanced use cases.
 
-# VIDEO 7 joining household pollution data {greenscreen} ~ 3 min
+# VIDEO 7 joining household pollution data
 
 In the previous module, we explored WHO data on household pollution, which was spread across three CSV files:
 
