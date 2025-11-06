@@ -748,7 +748,7 @@ I wrap the expression into parenthesis and pass it to the `.over()` method which
 
 What a graph! What a story! In Africa, biomass remains dominant, though natural gas is beginning to make inroads. The Americas, Europe, and Eastern Mediterranean rely heavily on gas, with electricity emerging as a significant player in Europe and the Western Pacific. Southeast Asia, meanwhile, is undergoing a rapid transition from biomass to gas - a remarkable shift in just a few decades. This visualization gives us a profound understanding of how the popularity of cooking fuels has evolved globally and regionally over time.
 
-# VIDEO 9 Final plot {greenscreen} ~ 3 min
+# VIDEO 9 Final plot
 
 It’s time for you to take on another challenge - one that highlights the global reliance on coal and charcoal for cooking. Those are environmentally sensitive fuels and understanding thier use across the world is crucial. Create a column chart showing the top 10 countries by the number of people using coal and charcoal for cooking in 2022. Color the columns by continent. How many of these top-10 countries are in Africa?
 
