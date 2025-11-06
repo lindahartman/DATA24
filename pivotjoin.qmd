@@ -2,7 +2,7 @@
 title: "Pivots and joins"
 engine: python3
 ---
-
+(The numbering of videos got changed, but do not worry. All videos are here = there should be no VIDEO 3.)
 
 # VIDEO 1 BFFP data
 
