@@ -714,7 +714,7 @@ To wrap up, here’s a visual summary of the five join types we’ve covered:
 - Full join: Combines all records from both tables, filling in missing values.
 - Anti-join: Returns only unmatched records from the left table.
 
-![](https://i.sstatic.net/vb1V6.png)
+![](img/joins-venn.png)
 
 Venn diagrams can sometimes be misleading, but in this case, they’re incredibly useful. I find myself referring back to this image whenever I need to decide which type of join to use in a given situation.
 
