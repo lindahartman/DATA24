@@ -38,7 +38,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-75f85ff3afe47a507ba5bdac098e00a3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4a65af601ebb7923055384dba408bd6e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fc481145a034a9bc6707220edadee8cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,17 +67,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-div.callout-question.callout {
-  border-left-color: pink;
-}
-div.callout-question.callout-style-default > .callout-header {
-  background-color: rgb(from pink r g b / 13%);
-}
-div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
-  content: '🧠';
-  background-image: none;
-}
 div.callout-challenge.callout {
   border-left-color: firebrick;
 }
@@ -87,6 +76,17 @@ div.callout-challenge.callout-style-default > .callout-header {
 div.callout-challenge .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-challenge.callout-style-default .callout-icon::before, div.callout-challenge.callout-titled .callout-icon::before {
   content: '🛠️';
+  background-image: none;
+}
+div.callout-question.callout {
+  border-left-color: pink;
+}
+div.callout-question.callout-style-default > .callout-header {
+  background-color: rgb(from pink r g b / 13%);
+}
+div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
+  content: '🧠';
   background-image: none;
 }
 </style>
@@ -158,7 +158,6 @@ div.callout-challenge.callout-style-default .callout-icon::before, div.callout-c
   <li><a href="#video-2-quarto-report-from-notebook" id="toc-video-2-quarto-report-from-notebook" class="nav-link" data-scroll-target="#video-2-quarto-report-from-notebook">VIDEO 2: Quarto report from notebook</a></li>
   <li><a href="#video-3-quarto-styling-and-rendering" id="toc-video-3-quarto-styling-and-rendering" class="nav-link" data-scroll-target="#video-3-quarto-styling-and-rendering">VIDEO 3: Quarto styling and rendering</a></li>
   <li><a href="#video-4-rendering-the-final-report" id="toc-video-4-rendering-the-final-report" class="nav-link" data-scroll-target="#video-4-rendering-the-final-report">VIDEO 4: Rendering the final report</a></li>
-  <li><a href="#video-5-sharing-the-project" id="toc-video-5-sharing-the-project" class="nav-link" data-scroll-target="#video-5-sharing-the-project">VIDEO 5: Sharing the project</a></li>
   </ul>
 </nav>
     </div>
@@ -280,7 +279,7 @@ Challenge
 <p>To keep things clear and readable, each code cell should ideally produce just one output — a printout, a table, or a plot. If you have a long block of code that does multiple things, consider splitting it into separate cells. This not only makes your report easier to follow but also gives you better control over your outputs.</p>
 <p>Now, let’s talk about a powerful Quarto feature: labels and cross-referencing.</p>
 <p>Every code cell in a Quarto report has a label, even if you don’t explicitly assign one — Quarto generates it automatically. But if you want to refer to specific outputs in your text — like a figure or table — you’ll need to assign meaningful labels yourself.</p>
-<p>Here’s how it works: Figures should have labels that start with <code>fig-</code>. Tables should have labels that start with <code>tab-</code>.</p>
+<p>Here’s how it works: Figures should have labels that start with <code>fig-</code>. Tables should have labels that start with <code>tbl-</code>.</p>
 <p>Labels allow you to reference figures and tables directly in your text, and Quarto will automatically create hyperlinks to them. This makes your report more interactive and easier to navigate.</p>
 <p>To assign a label to a code cell, we use Quarto chunk options — a special type of comment that Quarto recognizes.</p>
 <p>You might already know that Python uses <code>#</code> for comments. Quarto extends this by using <code>#|</code> for special commands. These must be placed at the top of the cell, before any code.</p>
@@ -291,11 +290,11 @@ Challenge
 <pre><code>#| fig-cap: "This plot shows how life expectancy is related to GDP per capita."
 </code></pre>
 <p>A descriptive caption appears under your figure, helping your audience interpret the data correctly.</p>
-<p>If a cell produces a table, you should label it with <code>tab-</code>, like this:</p>
-<pre><code>#| label: tab-summary-stats</code></pre>
+<p>If a cell produces a table, you should label it with <code>tbl-</code>, like this:</p>
+<pre><code>#| label: tbl-summary-stats</code></pre>
 <p>You can also add a table caption for clarity:</p>
-<pre><code>#| tab-cap: "Summary statistics for `gapminder` dataset."</code></pre>
-<p>Then, in your text, you can refer to the table using <span class="citation" data-cites="tab-summary-stats">@tab-summary-stats</span>, and Quarto will handle the rest — linking it properly and ensuring consistent formatting.</p>
+<pre><code>#| tbl-cap: "Summary statistics for `gapminder` dataset."</code></pre>
+<p>Then, in your text, you can refer to the table using <strong>?@tbl-summary-stats</strong>, and Quarto will handle the rest — linking it properly and ensuring consistent formatting.</p>
 <p>This small but powerful feature makes your reports much more professional by keeping figures and tables clearly referenced.</p>
 <p>Now, try adding some labels and captions to your own notebook! Keep the labels short and descriptive. The label code should make it easy for you to remember which output you are referring to.</p>
 <p>&lt; PAUSE &gt;</p>
@@ -324,7 +323,7 @@ Challenge
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Try it out! Open a Jupyter notebook you created in this course and: - Add labels and captions to your figures (fig-) and tables (tab-). - Insert a Markdown cell under each figure or table, explaining key insights. - Refer to figures and tables using <strong>?@fig-label</strong> or <span class="citation" data-cites="tab-label">@tab-label</span> in your text. - Hide code printouts that don’t produce meaningful output, either: Globally (by setting <code>echo: false</code> in the front matter), or individually (by adding <code>#| echo: false</code> to specific cells). - Ensure each cell outputs only one thing — a table, a plot, or text — for clarity.</p>
+<p>Try it out! Open a Jupyter notebook you created in this course and: - Add labels and captions to your figures (fig-) and tables (tbl-). - Insert a Markdown cell under each figure or table, explaining key insights. - Refer to figures and tables using <strong>?@fig-label</strong> or <strong>?@tbl-label</strong> in your text. - Hide code printouts that don’t produce meaningful output, either: Globally (by setting <code>echo: false</code> in the front matter), or individually (by adding <code>#| echo: false</code> to specific cells). - Ensure each cell outputs only one thing — a table, a plot, or text — for clarity.</p>
 </div>
 </div>
 <p>&lt; PAUSE &gt;</p>
@@ -360,9 +359,7 @@ Challenge
 <p>Just like with Word documents, PDF reports can be customized using Quarto options. If you want to fine-tune the formatting or styling, check out the Quarto documentation for advanced features that will help you create polished, professional reports.</p>
 <p>We’re nearing the final stretch of this course! In the last video, we’ll discuss how to share your work and ensure that others can reproduce your results exactly as you compiled them.</p>
 <p>See you in a bit!</p>
-</section>
-<section id="video-5-sharing-the-project" class="level1">
-<h1>VIDEO 5: Sharing the project</h1>
+<!-- # VIDEO 5: Sharing the project  -->
 <p>Congratulations! You’ve successfully completed an exciting project — from installing software to visualizing and exploring datasets, and finally, producing an analytical report that documents your entire journey. Now, it’s time to prepare this work to be shared with others.</p>
 <p>To share your project effectively, there are a few key elements to include:</p>
 <ul>

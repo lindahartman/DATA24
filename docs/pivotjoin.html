@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-75f85ff3afe47a507ba5bdac098e00a3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4a65af601ebb7923055384dba408bd6e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fc481145a034a9bc6707220edadee8cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -237,7 +237,7 @@ div.callout-question.callout-style-default .callout-icon::before, div.callout-qu
 <p>These are all essential skills, and you’re doing great!</p>
 <p>But now, it’s time to level up. Today, we’re tackling data reshaping and joins, two powerful techniques for reorganizing and enriching datasets. I also promised you some nice-looking tables, and I intend to deliver! We’ll be using the amazing <code>great_tables</code> library for our table designs. Let’s load up the libraries and dive right in.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="eac1b1cb" class="cell" data-execution_count="1">
+<div id="bc461cb8" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars.selectors <span class="im">as</span> cs</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
@@ -260,7 +260,7 @@ Tip
 </div>
 <p>Have a look at the code that brings this data into our workspace:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="724c9499" class="cell" data-execution_count="2">
+<div id="2d7aa425" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plastics_df <span class="op">=</span> pl.read_csv(<span class="st">'https://bit.ly/data24-bffplastics'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plastics_docs <span class="op">=</span> pl.DataFrame({</span>
@@ -275,7 +275,7 @@ Tip
 <p>So far, we’ve always imported data from CSV files or pre-built datasets. But now, it’s time to talk about creating data frames by hand. This is super handy when working with small examples, prototypes, or mock data. To do that, we need to talk about two foundational Python data structures: dictionaries and lists.</p>
 <p>Think of a dictionary as a way to describe an object. It’s a collection of “key-value” pairs—like writing down standard characteristics of something along with their values. Dictionaries are specified with curly brackets <code>{}</code>. Let’s say I want to describe my bike:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="b22f3b89" class="cell" data-execution_count="3">
+<div id="06a2481d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Bicycle <span class="op">=</span> {</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Type'</span>: <span class="st">'Hybrid'</span>,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Size'</span>: <span class="dv">28</span>,</span>
@@ -287,7 +287,7 @@ Tip
 <p>Here, each characteristic—like Type or Size—has one value. Easy, right? But what if I also wanted to describe the bikes of my twins? I’d need three records, not one.</p>
 <p>This is where lists come in. A list is a collection of items—typically of the same type—and it’s denoted with square brackets <code>[]</code>. Let’s use lists to describe all the bikes in my garage:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="fd37a6f7" class="cell" data-execution_count="4">
+<div id="71111917" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Bikes <span class="op">=</span> {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Type'</span>: [<span class="st">'Hybrid'</span>, <span class="st">'MTX'</span>, <span class="st">'BMX'</span>],</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Size'</span>: [<span class="dv">28</span>, <span class="dv">24</span>, <span class="dv">26</span>], </span>
@@ -298,7 +298,7 @@ Tip
 </div>
 <p>Now, we have a dictionary of lists, representing three bikes. To turn this into a Polars DataFrame, all we need to do is pass it to the <code>pl.DataFrame()</code> function:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="7a742947" class="cell" data-execution_count="5">
+<div id="1c4167f4" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bikes_df <span class="op">=</span> pl.DataFrame(Bikes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And just like that, we’ve created a data frame by hand! This is a simple yet powerful way to structure and manipulate small datasets.</p>
@@ -307,58 +307,58 @@ Tip
 <p>Great Tables is like a graphic design toolkit for your tables! It introduces a “grammar of tables,” similar to how <code>plotnine</code> provides a “grammar of graphics.” This makes it super easy to transform plain data frames into beautifully styled tables with minimal effort.</p>
 <p>The core function in Great Tables is <code>GT()</code>, and it works similarly to how we use <code>ggplot</code> for creating plots. Let’s take a sneak peek at its capabilities by styling our <code>plastics_docs</code> data frame. Here’s how we do it:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="8e5852d3" class="cell" data-execution_count="6">
+<div id="d6de5849" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>GT(plastics_docs)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    .opt_stylize(style<span class="op">=</span><span class="dv">3</span>, color<span class="op">=</span><span class="st">'cyan'</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<div id="itmouhnrot" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="txcgcdrwfe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>
-#itmouhnrot table {
+#txcgcdrwfe table {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
 
-#itmouhnrot thead, tbody, tfoot, tr, td, th { border-style: none; }
+#txcgcdrwfe thead, tbody, tfoot, tr, td, th { border-style: none; }
  tr { background-color: transparent; }
-#itmouhnrot p { margin: 0; padding: 0; }
- #itmouhnrot .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
- #itmouhnrot .gt_caption { padding-top: 4px; padding-bottom: 4px; }
- #itmouhnrot .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
- #itmouhnrot .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
- #itmouhnrot .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #itmouhnrot .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; }
- #itmouhnrot .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #itmouhnrot .gt_col_heading { color: #FFFFFF; background-color: #016763; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
- #itmouhnrot .gt_column_spanner_outer { color: #FFFFFF; background-color: #016763; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
- #itmouhnrot .gt_column_spanner_outer:first-child { padding-left: 0; }
- #itmouhnrot .gt_column_spanner_outer:last-child { padding-right: 0; }
- #itmouhnrot .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
- #itmouhnrot .gt_spanner_row { border-bottom-style: hidden; }
- #itmouhnrot .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
- #itmouhnrot .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; vertical-align: middle; }
- #itmouhnrot .gt_from_md> :first-child { margin-top: 0; }
- #itmouhnrot .gt_from_md> :last-child { margin-bottom: 0; }
- #itmouhnrot .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: dashed; border-top-width: 1px; border-top-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #929292; border-right-style: none; border-right-width: 1px; border-right-color: #929292; vertical-align: middle; overflow-x: hidden; }
- #itmouhnrot .gt_stub { color: #333333; background-color: #D5D5D5; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: none; border-right-width: 2px; border-right-color: #FFFFFF; padding-left: 5px; padding-right: 5px; }
- #itmouhnrot .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
- #itmouhnrot .gt_row_group_first td { border-top-width: 2px; }
- #itmouhnrot .gt_row_group_first th { border-top-width: 2px; }
- #itmouhnrot .gt_striped { background-color: #F4F4F4; }
- #itmouhnrot .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; }
- #itmouhnrot .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
- #itmouhnrot .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
- #itmouhnrot .gt_left { text-align: left; }
- #itmouhnrot .gt_center { text-align: center; }
- #itmouhnrot .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
- #itmouhnrot .gt_font_normal { font-weight: normal; }
- #itmouhnrot .gt_font_bold { font-weight: bold; }
- #itmouhnrot .gt_font_italic { font-style: italic; }
- #itmouhnrot .gt_super { font-size: 65%; }
- #itmouhnrot .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
- #itmouhnrot .gt_asterisk { font-size: 100%; vertical-align: 0; }
+#txcgcdrwfe p { margin: 0; padding: 0; }
+ #txcgcdrwfe .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #txcgcdrwfe .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #txcgcdrwfe .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
+ #txcgcdrwfe .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
+ #txcgcdrwfe .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #txcgcdrwfe .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; }
+ #txcgcdrwfe .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #txcgcdrwfe .gt_col_heading { color: #FFFFFF; background-color: #016763; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #txcgcdrwfe .gt_column_spanner_outer { color: #FFFFFF; background-color: #016763; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #txcgcdrwfe .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #txcgcdrwfe .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #txcgcdrwfe .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #txcgcdrwfe .gt_spanner_row { border-bottom-style: hidden; }
+ #txcgcdrwfe .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #txcgcdrwfe .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; vertical-align: middle; }
+ #txcgcdrwfe .gt_from_md> :first-child { margin-top: 0; }
+ #txcgcdrwfe .gt_from_md> :last-child { margin-bottom: 0; }
+ #txcgcdrwfe .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: dashed; border-top-width: 1px; border-top-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #929292; border-right-style: none; border-right-width: 1px; border-right-color: #929292; vertical-align: middle; overflow-x: hidden; }
+ #txcgcdrwfe .gt_stub { color: #333333; background-color: #D5D5D5; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: none; border-right-width: 2px; border-right-color: #FFFFFF; padding-left: 5px; padding-right: 5px; }
+ #txcgcdrwfe .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #txcgcdrwfe .gt_row_group_first td { border-top-width: 2px; }
+ #txcgcdrwfe .gt_row_group_first th { border-top-width: 2px; }
+ #txcgcdrwfe .gt_striped { background-color: #F4F4F4; }
+ #txcgcdrwfe .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; }
+ #txcgcdrwfe .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #txcgcdrwfe .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #txcgcdrwfe .gt_left { text-align: left; }
+ #txcgcdrwfe .gt_center { text-align: center; }
+ #txcgcdrwfe .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #txcgcdrwfe .gt_font_normal { font-weight: normal; }
+ #txcgcdrwfe .gt_font_bold { font-weight: bold; }
+ #txcgcdrwfe .gt_font_italic { font-style: italic; }
+ #txcgcdrwfe .gt_super { font-size: 65%; }
+ #txcgcdrwfe .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #txcgcdrwfe .gt_asterisk { font-size: 100%; vertical-align: 0; }
  
 </style>
 
@@ -462,7 +462,7 @@ Tip
 <p>Voilà! <code>.opt_stylize()</code> method has some pre-built styles, which we used to convert a boring data frame into a polished and professional-looking table, ready to be shared or included in reports. Don’t worry about memorizing the details just yet — we’ll explore <code>GT()</code> more thoroughly in the upcoming sections.</p>
 <p>Before we move on, let’s take a quick look at the data itself. Here’s a snippet of the first five rows of the <code>plastics_df</code>:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="a3d3b76a" class="cell" data-execution_count="7">
+<div id="4f4a9213" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plastics_df</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">5</span>)</span>
@@ -621,7 +621,7 @@ Tip
 <p>Let’s take a closer look at the data. Check out this very first row for Argentina. Notice the <code>parent_company</code> column contains the value: “Grand Total.” This suggests that this first row contains the totals for all Argentinian records in 2019.</p>
 <p>Let’s look at the next year:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="ca332be5" class="cell" data-execution_count="8">
+<div id="76bcbb9f" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(plastics_df</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"year"</span>)<span class="op">==</span><span class="dv">2020</span>,</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"country"</span>)<span class="op">==</span><span class="st">"Argentina"</span>)</span>
@@ -881,7 +881,7 @@ Tip
 <p>Here’s something curious: for the year 2020, the rows with country totals aren’t marked with “Grand Total.” Instead, the <code>parent_company</code> field is left blank, or in technical terms, it’s marked as missing - <code>Null</code>. Hmm! What do we do with those?</p>
 <p><code>Null</code> values aren’t just limited to <code>parent_company</code>. Let’s take a look at records collected in 2019 from unidentified locations.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="1ea41de7" class="cell" data-execution_count="9">
+<div id="8bfa7998" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(plastics_df</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>).is_null())</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1141,7 +1141,7 @@ Tip
 <p>Well, the dataset has pre-computed totals marked with “Grand Total” or <code>Null</code> in the <code>parent_company</code>, but the logic seems inconsistent. Recomputing the totals ensures transparency and accuracy in our analysis.</p>
 <p>Here’s how we start:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="38d2166d" class="cell" data-execution_count="10">
+<div id="30f4b47b" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(plastics_df</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"grand_total"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"parent_company"</span>)<span class="op">!=</span><span class="st">"Grand Total"</span>,</span>
@@ -1417,7 +1417,7 @@ Challenge
 </div>
 <p>Take a moment to pause the video and give it a try.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="921ce7a4" class="cell" data-execution_count="11">
+<div id="843a2fa5" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plastics_countries_df <span class="op">=</span> (plastics_df</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"grand_total"</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>((pl.col(<span class="st">"parent_company"</span>)<span class="op">!=</span><span class="st">"Grand Total"</span>),</span>
@@ -1449,54 +1449,54 @@ Challenge
 <div class="column" style="width:60%;">
 <section id="wide-data" class="level4">
 <h4 class="anchored" data-anchor-id="wide-data">“Wide” data</h4>
-<div id="0f20af5d" class="cell" data-execution_count="12">
+<div id="73a22666" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display" data-execution_count="12">
-<div id="kcxhwhczpw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ktxjbskozn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>
-#kcxhwhczpw table {
+#ktxjbskozn table {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
 
-#kcxhwhczpw thead, tbody, tfoot, tr, td, th { border-style: none; }
+#ktxjbskozn thead, tbody, tfoot, tr, td, th { border-style: none; }
  tr { background-color: transparent; }
-#kcxhwhczpw p { margin: 0; padding: 0; }
- #kcxhwhczpw .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
- #kcxhwhczpw .gt_caption { padding-top: 4px; padding-bottom: 4px; }
- #kcxhwhczpw .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
- #kcxhwhczpw .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
- #kcxhwhczpw .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #kcxhwhczpw .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; }
- #kcxhwhczpw .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #kcxhwhczpw .gt_col_heading { color: #FFFFFF; background-color: #004D80; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
- #kcxhwhczpw .gt_column_spanner_outer { color: #FFFFFF; background-color: #004D80; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
- #kcxhwhczpw .gt_column_spanner_outer:first-child { padding-left: 0; }
- #kcxhwhczpw .gt_column_spanner_outer:last-child { padding-right: 0; }
- #kcxhwhczpw .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
- #kcxhwhczpw .gt_spanner_row { border-bottom-style: hidden; }
- #kcxhwhczpw .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
- #kcxhwhczpw .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; vertical-align: middle; }
- #kcxhwhczpw .gt_from_md> :first-child { margin-top: 0; }
- #kcxhwhczpw .gt_from_md> :last-child { margin-bottom: 0; }
- #kcxhwhczpw .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: dashed; border-top-width: 1px; border-top-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #929292; border-right-style: none; border-right-width: 1px; border-right-color: #929292; vertical-align: middle; overflow-x: hidden; }
- #kcxhwhczpw .gt_stub { color: #333333; background-color: #D5D5D5; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: none; border-right-width: 2px; border-right-color: #FFFFFF; padding-left: 5px; padding-right: 5px; }
- #kcxhwhczpw .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
- #kcxhwhczpw .gt_row_group_first td { border-top-width: 2px; }
- #kcxhwhczpw .gt_row_group_first th { border-top-width: 2px; }
- #kcxhwhczpw .gt_striped { background-color: #F4F4F4; }
- #kcxhwhczpw .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; }
- #kcxhwhczpw .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
- #kcxhwhczpw .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
- #kcxhwhczpw .gt_left { text-align: left; }
- #kcxhwhczpw .gt_center { text-align: center; }
- #kcxhwhczpw .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
- #kcxhwhczpw .gt_font_normal { font-weight: normal; }
- #kcxhwhczpw .gt_font_bold { font-weight: bold; }
- #kcxhwhczpw .gt_font_italic { font-style: italic; }
- #kcxhwhczpw .gt_super { font-size: 65%; }
- #kcxhwhczpw .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
- #kcxhwhczpw .gt_asterisk { font-size: 100%; vertical-align: 0; }
+#ktxjbskozn p { margin: 0; padding: 0; }
+ #ktxjbskozn .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #ktxjbskozn .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #ktxjbskozn .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
+ #ktxjbskozn .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
+ #ktxjbskozn .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #ktxjbskozn .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; }
+ #ktxjbskozn .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #ktxjbskozn .gt_col_heading { color: #FFFFFF; background-color: #004D80; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #ktxjbskozn .gt_column_spanner_outer { color: #FFFFFF; background-color: #004D80; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #ktxjbskozn .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #ktxjbskozn .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #ktxjbskozn .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #ktxjbskozn .gt_spanner_row { border-bottom-style: hidden; }
+ #ktxjbskozn .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #ktxjbskozn .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; vertical-align: middle; }
+ #ktxjbskozn .gt_from_md> :first-child { margin-top: 0; }
+ #ktxjbskozn .gt_from_md> :last-child { margin-bottom: 0; }
+ #ktxjbskozn .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: dashed; border-top-width: 1px; border-top-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #929292; border-right-style: none; border-right-width: 1px; border-right-color: #929292; vertical-align: middle; overflow-x: hidden; }
+ #ktxjbskozn .gt_stub { color: #333333; background-color: #D5D5D5; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: none; border-right-width: 2px; border-right-color: #FFFFFF; padding-left: 5px; padding-right: 5px; }
+ #ktxjbskozn .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #ktxjbskozn .gt_row_group_first td { border-top-width: 2px; }
+ #ktxjbskozn .gt_row_group_first th { border-top-width: 2px; }
+ #ktxjbskozn .gt_striped { background-color: #F4F4F4; }
+ #ktxjbskozn .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; }
+ #ktxjbskozn .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #ktxjbskozn .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #ktxjbskozn .gt_left { text-align: left; }
+ #ktxjbskozn .gt_center { text-align: center; }
+ #ktxjbskozn .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #ktxjbskozn .gt_font_normal { font-weight: normal; }
+ #ktxjbskozn .gt_font_bold { font-weight: bold; }
+ #ktxjbskozn .gt_font_italic { font-style: italic; }
+ #ktxjbskozn .gt_super { font-size: 65%; }
+ #ktxjbskozn .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #ktxjbskozn .gt_asterisk { font-size: 100%; vertical-align: 0; }
  
 </style>
 
@@ -1517,15 +1517,15 @@ Challenge
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left">Germany</td>
-<td class="gt_row gt_right">2020</td>
-<td class="gt_row gt_right">10</td>
+<td class="gt_row gt_left">Rwanda</td>
+<td class="gt_row gt_right">2019</td>
 <td class="gt_row gt_right">0</td>
-<td class="gt_row gt_right">196</td>
-<td class="gt_row gt_right">4604</td>
-<td class="gt_row gt_right">97</td>
-<td class="gt_row gt_right">94</td>
-<td class="gt_row gt_right">7</td>
+<td class="gt_row gt_right">9</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">292</td>
+<td class="gt_row gt_right">112</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0</td>
 <td class="gt_row gt_right">0</td>
 </tr>
 </tbody>
@@ -1540,54 +1540,54 @@ Challenge
 </div><div class="column" style="width:40%;">
 <section id="long-data" class="level4">
 <h4 class="anchored" data-anchor-id="long-data">“Long” data</h4>
-<div id="c0e59bea" class="cell" data-execution_count="13">
+<div id="fbedba1c" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display" data-execution_count="13">
-<div id="weolbjymbo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="trjlwzqbum" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>
-#weolbjymbo table {
+#trjlwzqbum table {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
 
-#weolbjymbo thead, tbody, tfoot, tr, td, th { border-style: none; }
+#trjlwzqbum thead, tbody, tfoot, tr, td, th { border-style: none; }
  tr { background-color: transparent; }
-#weolbjymbo p { margin: 0; padding: 0; }
- #weolbjymbo .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
- #weolbjymbo .gt_caption { padding-top: 4px; padding-bottom: 4px; }
- #weolbjymbo .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
- #weolbjymbo .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
- #weolbjymbo .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #weolbjymbo .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; }
- #weolbjymbo .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #weolbjymbo .gt_col_heading { color: #FFFFFF; background-color: #004D80; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
- #weolbjymbo .gt_column_spanner_outer { color: #FFFFFF; background-color: #004D80; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
- #weolbjymbo .gt_column_spanner_outer:first-child { padding-left: 0; }
- #weolbjymbo .gt_column_spanner_outer:last-child { padding-right: 0; }
- #weolbjymbo .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
- #weolbjymbo .gt_spanner_row { border-bottom-style: hidden; }
- #weolbjymbo .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
- #weolbjymbo .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; vertical-align: middle; }
- #weolbjymbo .gt_from_md> :first-child { margin-top: 0; }
- #weolbjymbo .gt_from_md> :last-child { margin-bottom: 0; }
- #weolbjymbo .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: dashed; border-top-width: 1px; border-top-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #929292; border-right-style: none; border-right-width: 1px; border-right-color: #929292; vertical-align: middle; overflow-x: hidden; }
- #weolbjymbo .gt_stub { color: #333333; background-color: #D5D5D5; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: none; border-right-width: 2px; border-right-color: #FFFFFF; padding-left: 5px; padding-right: 5px; }
- #weolbjymbo .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
- #weolbjymbo .gt_row_group_first td { border-top-width: 2px; }
- #weolbjymbo .gt_row_group_first th { border-top-width: 2px; }
- #weolbjymbo .gt_striped { background-color: #F4F4F4; }
- #weolbjymbo .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; }
- #weolbjymbo .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
- #weolbjymbo .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
- #weolbjymbo .gt_left { text-align: left; }
- #weolbjymbo .gt_center { text-align: center; }
- #weolbjymbo .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
- #weolbjymbo .gt_font_normal { font-weight: normal; }
- #weolbjymbo .gt_font_bold { font-weight: bold; }
- #weolbjymbo .gt_font_italic { font-style: italic; }
- #weolbjymbo .gt_super { font-size: 65%; }
- #weolbjymbo .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
- #weolbjymbo .gt_asterisk { font-size: 100%; vertical-align: 0; }
+#trjlwzqbum p { margin: 0; padding: 0; }
+ #trjlwzqbum .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #trjlwzqbum .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #trjlwzqbum .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
+ #trjlwzqbum .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
+ #trjlwzqbum .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #trjlwzqbum .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; }
+ #trjlwzqbum .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #trjlwzqbum .gt_col_heading { color: #FFFFFF; background-color: #004D80; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #trjlwzqbum .gt_column_spanner_outer { color: #FFFFFF; background-color: #004D80; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #trjlwzqbum .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #trjlwzqbum .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #trjlwzqbum .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #trjlwzqbum .gt_spanner_row { border-bottom-style: hidden; }
+ #trjlwzqbum .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #trjlwzqbum .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; vertical-align: middle; }
+ #trjlwzqbum .gt_from_md> :first-child { margin-top: 0; }
+ #trjlwzqbum .gt_from_md> :last-child { margin-bottom: 0; }
+ #trjlwzqbum .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: dashed; border-top-width: 1px; border-top-color: #929292; border-left-style: none; border-left-width: 1px; border-left-color: #929292; border-right-style: none; border-right-width: 1px; border-right-color: #929292; vertical-align: middle; overflow-x: hidden; }
+ #trjlwzqbum .gt_stub { color: #333333; background-color: #D5D5D5; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: none; border-right-width: 2px; border-right-color: #FFFFFF; padding-left: 5px; padding-right: 5px; }
+ #trjlwzqbum .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #trjlwzqbum .gt_row_group_first td { border-top-width: 2px; }
+ #trjlwzqbum .gt_row_group_first th { border-top-width: 2px; }
+ #trjlwzqbum .gt_striped { background-color: #F4F4F4; }
+ #trjlwzqbum .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #929292; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #929292; }
+ #trjlwzqbum .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #trjlwzqbum .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #trjlwzqbum .gt_left { text-align: left; }
+ #trjlwzqbum .gt_center { text-align: center; }
+ #trjlwzqbum .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #trjlwzqbum .gt_font_normal { font-weight: normal; }
+ #trjlwzqbum .gt_font_bold { font-weight: bold; }
+ #trjlwzqbum .gt_font_italic { font-style: italic; }
+ #trjlwzqbum .gt_super { font-size: 65%; }
+ #trjlwzqbum .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #trjlwzqbum .gt_asterisk { font-size: 100%; vertical-align: 0; }
  
 </style>
 
@@ -1602,50 +1602,50 @@ Challenge
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left">Germany</td>
-<td class="gt_row gt_right">2020</td>
+<td class="gt_row gt_left">Rwanda</td>
+<td class="gt_row gt_right">2019</td>
 <td class="gt_row gt_left">empty</td>
-<td class="gt_row gt_right">10</td>
+<td class="gt_row gt_right">0</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left gt_striped">Germany</td>
-<td class="gt_row gt_right gt_striped">2020</td>
+<td class="gt_row gt_left gt_striped">Rwanda</td>
+<td class="gt_row gt_right gt_striped">2019</td>
 <td class="gt_row gt_left gt_striped">hdpe</td>
+<td class="gt_row gt_right gt_striped">9</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left">Rwanda</td>
+<td class="gt_row gt_right">2019</td>
+<td class="gt_row gt_left">ldpe</td>
+<td class="gt_row gt_right">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped">Rwanda</td>
+<td class="gt_row gt_right gt_striped">2019</td>
+<td class="gt_row gt_left gt_striped">o</td>
+<td class="gt_row gt_right gt_striped">292</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left">Rwanda</td>
+<td class="gt_row gt_right">2019</td>
+<td class="gt_row gt_left">pet</td>
+<td class="gt_row gt_right">112</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped">Rwanda</td>
+<td class="gt_row gt_right gt_striped">2019</td>
+<td class="gt_row gt_left gt_striped">pp</td>
 <td class="gt_row gt_right gt_striped">0</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left">Germany</td>
-<td class="gt_row gt_right">2020</td>
-<td class="gt_row gt_left">ldpe</td>
-<td class="gt_row gt_right">196</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left gt_striped">Germany</td>
-<td class="gt_row gt_right gt_striped">2020</td>
-<td class="gt_row gt_left gt_striped">o</td>
-<td class="gt_row gt_right gt_striped">4604</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left">Germany</td>
-<td class="gt_row gt_right">2020</td>
-<td class="gt_row gt_left">pet</td>
-<td class="gt_row gt_right">97</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left gt_striped">Germany</td>
-<td class="gt_row gt_right gt_striped">2020</td>
-<td class="gt_row gt_left gt_striped">pp</td>
-<td class="gt_row gt_right gt_striped">94</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left">Germany</td>
-<td class="gt_row gt_right">2020</td>
+<td class="gt_row gt_left">Rwanda</td>
+<td class="gt_row gt_right">2019</td>
 <td class="gt_row gt_left">ps</td>
-<td class="gt_row gt_right">7</td>
+<td class="gt_row gt_right">0</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left gt_striped">Germany</td>
-<td class="gt_row gt_right gt_striped">2020</td>
+<td class="gt_row gt_left gt_striped">Rwanda</td>
+<td class="gt_row gt_right gt_striped">2019</td>
 <td class="gt_row gt_left gt_striped">pvc</td>
 <td class="gt_row gt_right gt_striped">0</td>
 </tr>
@@ -1714,7 +1714,7 @@ Tip
 <p>Note that the <code>on</code> argument is optional. If you don’t specify it, any column not listed as an <code>index</code> will be unpivoted automatically.</p>
 <p>Here’s how we can transform the dataset into a long format. We can select the index columns either by name or by position. We can also, optionally, specify the <code>on</code> argument to make it extra clear which columns should be melted.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="0cc2b370" class="cell" data-execution_count="14">
+<div id="f3e5c4de" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(plastics_countries_df</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    .unpivot(index<span class="op">=</span>cs.by_name(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"num_events"</span>, <span class="st">"volunteers"</span>), </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>            variable_name<span class="op">=</span><span class="st">"plastic_type"</span>, value_name<span class="op">=</span><span class="st">"quantity"</span>)</span>
@@ -1760,22 +1760,42 @@ Tip
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Africa"</td>
-<td>"BEN"</td>
-<td>"Benin"</td>
+<td>"Western Pacific"</td>
+<td>"AUS"</td>
+<td>"Australia"</td>
 <td>2020</td>
+<td>9</td>
+<td>190</td>
+<td>"empty"</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"ARG"</td>
+<td>"Argentina"</td>
+<td>2019</td>
+<td>4</td>
+<td>243</td>
+<td>"empty"</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>"Africa"</td>
+<td>"RWA"</td>
+<td>"Rwanda"</td>
+<td>2019</td>
 <td>2</td>
-<td>458</td>
+<td>82</td>
 <td>"empty"</td>
 <td>0</td>
 </tr>
 <tr class="even">
-<td>"Europe"</td>
-<td>"LVA"</td>
-<td>"Latvia"</td>
+<td>"Western Pacific"</td>
+<td>"HKG"</td>
+<td>"Hong Kong"</td>
 <td>2019</td>
-<td>1</td>
-<td>13</td>
+<td>7</td>
+<td>67</td>
 <td>"empty"</td>
 <td>0</td>
 </tr>
@@ -1790,84 +1810,64 @@ Tip
 <td>10</td>
 </tr>
 <tr class="even">
-<td>"Europe"</td>
-<td>"ROU"</td>
-<td>"Romania"</td>
-<td>2020</td>
-<td>1</td>
-<td>7</td>
-<td>"empty"</td>
-<td>0</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
 </tr>
 <tr class="odd">
 <td>"Europe"</td>
-<td>"ITA"</td>
-<td>"Italy"</td>
+<td>"CHE"</td>
+<td>"Switzerland"</td>
 <td>2020</td>
-<td>3</td>
-<td>154</td>
-<td>"empty"</td>
-<td>0</td>
+<td>18</td>
+<td>540</td>
+<td>"pvc"</td>
+<td>51</td>
 </tr>
 <tr class="even">
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
 <td>"Americas"</td>
-<td>"ECU"</td>
-<td>"Ecuador"</td>
+<td>"PER"</td>
+<td>"Peru"</td>
 <td>2020</td>
-<td>4</td>
-<td>22</td>
+<td>2</td>
+<td>45</td>
 <td>"pvc"</td>
-<td>44</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"LUX"</td>
+<td>"Luxembourg"</td>
+<td>2019</td>
+<td>1</td>
+<td>21</td>
+<td>"pvc"</td>
+<td>0</td>
 </tr>
 <tr class="even">
 <td>"Europe"</td>
-<td>"ITA"</td>
-<td>"Italy"</td>
+<td>"ESP"</td>
+<td>"Spain"</td>
 <td>2019</td>
-<td>9</td>
-<td>175</td>
+<td>12</td>
+<td>330</td>
 <td>"pvc"</td>
 <td>0</td>
 </tr>
 <tr class="odd">
-<td>"Western Pacific"</td>
-<td>"AUS"</td>
-<td>"Australia"</td>
-<td>2019</td>
-<td>1</td>
-<td>5</td>
-<td>"pvc"</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>"Western Pacific"</td>
-<td>"MYS"</td>
-<td>"Malaysia"</td>
-<td>2020</td>
-<td>35</td>
-<td>370</td>
-<td>"pvc"</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td>"South-East Asia"</td>
-<td>"BGD"</td>
-<td>"Bangladesh"</td>
+<td>"Europe"</td>
+<td>"LTU"</td>
+<td>"Lithuania"</td>
 <td>2020</td>
 <td>1</td>
-<td>127</td>
+<td>15</td>
 <td>"pvc"</td>
-<td>0</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -1882,7 +1882,7 @@ Tip
 </ul>
 <p>Once the data is in long format, it becomes much easier to perform calculations. For instance, let’s group the data by <code>region</code>, <code>country_code</code>, <code>country</code>, <code>year</code>, <code>num_events</code>, and <code>volunteers</code>, and calculate the total quantity of plastic collected:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="15c38e57" class="cell" data-execution_count="15">
+<div id="b099987a" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(plastics_countries_df</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    .unpivot(index<span class="op">=</span>cs.by_name(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"num_events"</span>, <span class="st">"volunteers"</span>), </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>            variable_name<span class="op">=</span><span class="st">"plastic_type"</span>, value_name<span class="op">=</span><span class="st">"quantity"</span>)</span>
@@ -1921,49 +1921,49 @@ Tip
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Africa"</td>
-<td>"GHA"</td>
-<td>"Ghana"</td>
-<td>2019</td>
-<td>3</td>
-<td>1100</td>
-<td>578</td>
+<td>"South-East Asia"</td>
+<td>"IND"</td>
+<td>"India"</td>
+<td>2020</td>
+<td>56</td>
+<td>353</td>
+<td>14268</td>
 </tr>
 <tr class="even">
-<td>"Americas"</td>
-<td>"ECU"</td>
-<td>"Ecuador"</td>
-<td>2020</td>
-<td>4</td>
-<td>22</td>
-<td>103</td>
+<td>"South-East Asia"</td>
+<td>"BGD"</td>
+<td>"Bangladesh"</td>
+<td>2019</td>
+<td>1</td>
+<td>100</td>
+<td>16</td>
 </tr>
 <tr class="odd">
 <td>"Europe"</td>
-<td>"BGR"</td>
-<td>"Bulgaria"</td>
-<td>2020</td>
-<td>7</td>
-<td>50</td>
-<td>93</td>
+<td>"LVA"</td>
+<td>"Latvia"</td>
+<td>2019</td>
+<td>1</td>
+<td>13</td>
+<td>2623</td>
 </tr>
 <tr class="even">
-<td>"Americas"</td>
-<td>"BRA"</td>
-<td>"Brazil"</td>
-<td>2020</td>
-<td>4</td>
-<td>78</td>
-<td>583</td>
+<td>"Africa"</td>
+<td>"KEN"</td>
+<td>"Kenya"</td>
+<td>2019</td>
+<td>5</td>
+<td>1560</td>
+<td>9494</td>
 </tr>
 <tr class="odd">
-<td>"Americas"</td>
-<td>"BRA"</td>
-<td>"Brazil"</td>
-<td>2019</td>
-<td>3</td>
-<td>419</td>
-<td>4734</td>
+<td>"Europe"</td>
+<td>"GBR"</td>
+<td>"United Kingdom of Great Britai…</td>
+<td>2020</td>
+<td>8</td>
+<td>90</td>
+<td>3468</td>
 </tr>
 <tr class="even">
 <td>…</td>
@@ -1976,6 +1976,24 @@ Tip
 </tr>
 <tr class="odd">
 <td>"South-East Asia"</td>
+<td>"MDV"</td>
+<td>"Maldives"</td>
+<td>2019</td>
+<td>1</td>
+<td>2</td>
+<td>26</td>
+</tr>
+<tr class="even">
+<td>"Americas"</td>
+<td>"HND"</td>
+<td>"Honduras"</td>
+<td>2020</td>
+<td>1</td>
+<td>12</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>"South-East Asia"</td>
 <td>"THA"</td>
 <td>"Thailand"</td>
 <td>2019</td>
@@ -1984,40 +2002,22 @@ Tip
 <td>369</td>
 </tr>
 <tr class="even">
-<td>"Europe"</td>
-<td>"DNK"</td>
-<td>"Denmark"</td>
-<td>2020</td>
-<td>12</td>
-<td>121</td>
-<td>4793</td>
-</tr>
-<tr class="odd">
-<td>"Europe"</td>
-<td>"CHE"</td>
-<td>"Switzerland"</td>
-<td>2020</td>
-<td>18</td>
-<td>540</td>
-<td>52277</td>
-</tr>
-<tr class="even">
-<td>"Eastern Mediterranean"</td>
-<td>"TUN"</td>
-<td>"Tunisia"</td>
-<td>2020</td>
-<td>2</td>
-<td>49</td>
-<td>1810</td>
-</tr>
-<tr class="odd">
-<td>"Europe"</td>
-<td>"ROU"</td>
-<td>"Romania"</td>
-<td>2020</td>
+<td>"South-East Asia"</td>
+<td>"BTN"</td>
+<td>"Bhutan"</td>
+<td>2019</td>
 <td>1</td>
-<td>7</td>
-<td>39</td>
+<td>5300</td>
+<td>3500</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>"MYS"</td>
+<td>"Malaysia"</td>
+<td>2019</td>
+<td>1</td>
+<td>300</td>
+<td>4880</td>
 </tr>
 </tbody>
 </table>
@@ -2040,7 +2040,7 @@ Tip
 <p>You can pivot multiple columns at once. Just indicate several columns in the <code>values</code> argument and the pivoted table will have one column for combination of the factor in <code>on</code> and each or the <code>values</code> columns. So here in our example I have a categorical variable <code>year</code> with 2 levels (2019/2020). I am interested in seeing <code>productivity</code> split by year into <code>productivity_2019</code> and <code>productivity_2020</code> columns. But I can at the same time pivot <code>quantity</code>, so I also have <code>quantity_2019</code> and <code>quantity_2020</code>.</p>
 <p>Before I do the pivot, I want to drop the <code>num_events</code> and <code>volunteers</code> since I am not doing anything with them (even though you could argue it makes sense to pivot them by year as well). But at this time, we are not interested in these columns so we can just drop them. The reason I do it, is so that I dont have to specify the <code>index</code> argument in the <code>pivot</code> function, relying on <code>polars</code> to figure it out for me.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="4a362511" class="cell" data-execution_count="16">
+<div id="b054c385" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(plastics_countries_df</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    .unpivot(index<span class="op">=</span>cs.by_name(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"num_events"</span>, <span class="st">"volunteers"</span>), </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>            variable_name<span class="op">=</span><span class="st">"plastic_type"</span>, value_name<span class="op">=</span><span class="st">"quantity"</span>)</span>
@@ -2192,7 +2192,7 @@ Tip
 </div>
 </div>
 </div>
-<div id="a1f14033" class="cell" data-execution_count="17">
+<div id="7bbe770b" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(plastics_countries_df</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>)<span class="op">==</span><span class="st">"Germany"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
@@ -2287,7 +2287,7 @@ Tip
 <p>We will use the default styling in <code>.opt_stylize()</code> but later in this module we will have a look at custom styling function for creating more effective communication.</p>
 <p>As with plots, it is good to annotate the table. You can add table header with title and subtitle, as well as the caption, called source note where you cite the souce of your data.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="768039ad" class="cell" data-execution_count="18">
+<div id="40575272" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>top10_productivity_tbl <span class="op">=</span> (plastics_countries_df</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    .unpivot(index<span class="op">=</span>cs.by_name(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"num_events"</span>, <span class="st">"volunteers"</span>), </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>            variable_name<span class="op">=</span><span class="st">"plastic_type"</span>, value_name<span class="op">=</span><span class="st">"quantity"</span>)</span>
@@ -2325,52 +2325,52 @@ Tip
 <span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>    .opt_stylize(style<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
-<div id="yzuidlsjeq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="vkqvjgwxnf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>
-#yzuidlsjeq table {
+#vkqvjgwxnf table {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
 
-#yzuidlsjeq thead, tbody, tfoot, tr, td, th { border-style: none; }
+#vkqvjgwxnf thead, tbody, tfoot, tr, td, th { border-style: none; }
  tr { background-color: transparent; }
-#yzuidlsjeq p { margin: 0; padding: 0; }
- #yzuidlsjeq .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
- #yzuidlsjeq .gt_caption { padding-top: 4px; padding-bottom: 4px; }
- #yzuidlsjeq .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
- #yzuidlsjeq .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
- #yzuidlsjeq .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #yzuidlsjeq .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; }
- #yzuidlsjeq .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #yzuidlsjeq .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
- #yzuidlsjeq .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
- #yzuidlsjeq .gt_column_spanner_outer:first-child { padding-left: 0; }
- #yzuidlsjeq .gt_column_spanner_outer:last-child { padding-right: 0; }
- #yzuidlsjeq .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
- #yzuidlsjeq .gt_spanner_row { border-bottom-style: hidden; }
- #yzuidlsjeq .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
- #yzuidlsjeq .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; vertical-align: middle; }
- #yzuidlsjeq .gt_from_md> :first-child { margin-top: 0; }
- #yzuidlsjeq .gt_from_md> :last-child { margin-bottom: 0; }
- #yzuidlsjeq .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; }
- #yzuidlsjeq .gt_stub { color: #FFFFFF; background-color: #0076BA; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #0076BA; padding-left: 5px; padding-right: 5px; }
- #yzuidlsjeq .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
- #yzuidlsjeq .gt_row_group_first td { border-top-width: 2px; }
- #yzuidlsjeq .gt_row_group_first th { border-top-width: 2px; }
- #yzuidlsjeq .gt_striped { background-color: #F4F4F4; }
- #yzuidlsjeq .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; }
- #yzuidlsjeq .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
- #yzuidlsjeq .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
- #yzuidlsjeq .gt_left { text-align: left; }
- #yzuidlsjeq .gt_center { text-align: center; }
- #yzuidlsjeq .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
- #yzuidlsjeq .gt_font_normal { font-weight: normal; }
- #yzuidlsjeq .gt_font_bold { font-weight: bold; }
- #yzuidlsjeq .gt_font_italic { font-style: italic; }
- #yzuidlsjeq .gt_super { font-size: 65%; }
- #yzuidlsjeq .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
- #yzuidlsjeq .gt_asterisk { font-size: 100%; vertical-align: 0; }
+#vkqvjgwxnf p { margin: 0; padding: 0; }
+ #vkqvjgwxnf .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #vkqvjgwxnf .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #vkqvjgwxnf .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
+ #vkqvjgwxnf .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
+ #vkqvjgwxnf .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #vkqvjgwxnf .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; }
+ #vkqvjgwxnf .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #vkqvjgwxnf .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #vkqvjgwxnf .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #vkqvjgwxnf .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #vkqvjgwxnf .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #vkqvjgwxnf .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #vkqvjgwxnf .gt_spanner_row { border-bottom-style: hidden; }
+ #vkqvjgwxnf .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #vkqvjgwxnf .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; vertical-align: middle; }
+ #vkqvjgwxnf .gt_from_md> :first-child { margin-top: 0; }
+ #vkqvjgwxnf .gt_from_md> :last-child { margin-bottom: 0; }
+ #vkqvjgwxnf .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; }
+ #vkqvjgwxnf .gt_stub { color: #FFFFFF; background-color: #0076BA; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #0076BA; padding-left: 5px; padding-right: 5px; }
+ #vkqvjgwxnf .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #vkqvjgwxnf .gt_row_group_first td { border-top-width: 2px; }
+ #vkqvjgwxnf .gt_row_group_first th { border-top-width: 2px; }
+ #vkqvjgwxnf .gt_striped { background-color: #F4F4F4; }
+ #vkqvjgwxnf .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; }
+ #vkqvjgwxnf .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #vkqvjgwxnf .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #vkqvjgwxnf .gt_left { text-align: left; }
+ #vkqvjgwxnf .gt_center { text-align: center; }
+ #vkqvjgwxnf .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #vkqvjgwxnf .gt_font_normal { font-weight: normal; }
+ #vkqvjgwxnf .gt_font_bold { font-weight: bold; }
+ #vkqvjgwxnf .gt_font_italic { font-style: italic; }
+ #vkqvjgwxnf .gt_super { font-size: 65%; }
+ #vkqvjgwxnf .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #vkqvjgwxnf .gt_asterisk { font-size: 100%; vertical-align: 0; }
  
 </style>
 
@@ -2398,10 +2398,10 @@ Tip
 <th colspan="3" id="Productivity" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">Productivity</span></th>
 </tr>
 <tr class="gt_col_headings even">
-<th id="2020" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2020</th>
 <th id="2019" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2019</th>
 <th id="2020" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2020</th>
 <th id="2019" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2019</th>
+<th id="2020" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2020</th>
 <th id="Growth" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Growth</th>
 </tr>
 </thead>
@@ -2416,10 +2416,10 @@ Canada
 </svg>
 </span></td>
 <td class="gt_row gt_left">Canada</td>
-<td class="gt_row gt_right">613</td>
 <td class="gt_row gt_right">1</td>
-<td class="gt_row gt_right">204.3</td>
+<td class="gt_row gt_right">613</td>
 <td class="gt_row gt_right">1.0</td>
+<td class="gt_row gt_right">204.3</td>
 <td class="gt_row gt_right">+20,333%</td>
 </tr>
 <tr class="even">
@@ -2432,10 +2432,10 @@ Bangladesh
 </svg>
 </span></td>
 <td class="gt_row gt_left gt_striped">Bangladesh</td>
-<td class="gt_row gt_right gt_striped">2,383</td>
 <td class="gt_row gt_right gt_striped">16</td>
-<td class="gt_row gt_right gt_striped">2,383.0</td>
+<td class="gt_row gt_right gt_striped">2,383</td>
 <td class="gt_row gt_right gt_striped">16.0</td>
+<td class="gt_row gt_right gt_striped">2,383.0</td>
 <td class="gt_row gt_right gt_striped">+14,794%</td>
 </tr>
 <tr class="odd">
@@ -2448,10 +2448,10 @@ United Kingdom
 </svg>
 </span></td>
 <td class="gt_row gt_left">United Kingdom of Great Britain and Northern Ireland</td>
-<td class="gt_row gt_right">3,468</td>
 <td class="gt_row gt_right">3</td>
-<td class="gt_row gt_right">433.5</td>
+<td class="gt_row gt_right">3,468</td>
 <td class="gt_row gt_right">3.0</td>
+<td class="gt_row gt_right">433.5</td>
 <td class="gt_row gt_right">+14,350%</td>
 </tr>
 <tr class="even">
@@ -2464,10 +2464,10 @@ Japan
 </svg>
 </span></td>
 <td class="gt_row gt_left gt_striped">Japan</td>
-<td class="gt_row gt_right gt_striped">240</td>
 <td class="gt_row gt_right gt_striped">84</td>
-<td class="gt_row gt_right gt_striped">240.0</td>
+<td class="gt_row gt_right gt_striped">240</td>
 <td class="gt_row gt_right gt_striped">2.4</td>
+<td class="gt_row gt_right gt_striped">240.0</td>
 <td class="gt_row gt_right gt_striped">+9,900%</td>
 </tr>
 <tr class="odd">
@@ -2480,10 +2480,10 @@ France
 </svg>
 </span></td>
 <td class="gt_row gt_left">France</td>
-<td class="gt_row gt_right">2,731</td>
 <td class="gt_row gt_right">15</td>
-<td class="gt_row gt_right">910.3</td>
+<td class="gt_row gt_right">2,731</td>
 <td class="gt_row gt_right">15.0</td>
+<td class="gt_row gt_right">910.3</td>
 <td class="gt_row gt_right">+5,969%</td>
 </tr>
 <tr class="even">
@@ -2496,10 +2496,10 @@ Germany
 </svg>
 </span></td>
 <td class="gt_row gt_left gt_striped">Germany</td>
-<td class="gt_row gt_right gt_striped">5,008</td>
 <td class="gt_row gt_right gt_striped">281</td>
-<td class="gt_row gt_right gt_striped">5,008.0</td>
+<td class="gt_row gt_right gt_striped">5,008</td>
 <td class="gt_row gt_right gt_striped">140.5</td>
+<td class="gt_row gt_right gt_striped">5,008.0</td>
 <td class="gt_row gt_right gt_striped">+3,464%</td>
 </tr>
 <tr class="odd">
@@ -2512,10 +2512,10 @@ Ireland
 </svg>
 </span></td>
 <td class="gt_row gt_left">Ireland</td>
-<td class="gt_row gt_right">139</td>
 <td class="gt_row gt_right">1</td>
-<td class="gt_row gt_right">34.8</td>
+<td class="gt_row gt_right">139</td>
 <td class="gt_row gt_right">1.0</td>
+<td class="gt_row gt_right">34.8</td>
 <td class="gt_row gt_right">+3,375%</td>
 </tr>
 <tr class="even">
@@ -2528,10 +2528,10 @@ China
 </svg>
 </span></td>
 <td class="gt_row gt_left gt_striped">China</td>
-<td class="gt_row gt_right gt_striped">2,332</td>
 <td class="gt_row gt_right gt_striped">3,459</td>
-<td class="gt_row gt_right gt_striped">2,332.0</td>
+<td class="gt_row gt_right gt_striped">2,332</td>
 <td class="gt_row gt_right gt_striped">72.1</td>
+<td class="gt_row gt_right gt_striped">2,332.0</td>
 <td class="gt_row gt_right gt_striped">+3,136%</td>
 </tr>
 <tr class="odd">
@@ -2544,10 +2544,10 @@ Australia
 </svg>
 </span></td>
 <td class="gt_row gt_left">Australia</td>
-<td class="gt_row gt_right">682</td>
 <td class="gt_row gt_right">3</td>
-<td class="gt_row gt_right">75.8</td>
+<td class="gt_row gt_right">682</td>
 <td class="gt_row gt_right">3.0</td>
+<td class="gt_row gt_right">75.8</td>
 <td class="gt_row gt_right">+2,426%</td>
 </tr>
 <tr class="even">
@@ -2560,10 +2560,10 @@ Tunisia
 </svg>
 </span></td>
 <td class="gt_row gt_left gt_striped">Tunisia</td>
-<td class="gt_row gt_right gt_striped">1,810</td>
 <td class="gt_row gt_right gt_striped">40</td>
-<td class="gt_row gt_right gt_striped">905.0</td>
+<td class="gt_row gt_right gt_striped">1,810</td>
 <td class="gt_row gt_right gt_striped">40.0</td>
+<td class="gt_row gt_right gt_striped">905.0</td>
 <td class="gt_row gt_right gt_striped">+2,162%</td>
 </tr>
 </tbody><tfoot class="gt_sourcenotes">
@@ -2597,7 +2597,7 @@ Challenge
 </div>
 <p>There could be several ways to solve this task. In my table the top country is South Africa and the bottom country in Bangladesh. Pause a video and give this task a try! When you come back we will walk through a solution together and discuss the learning from the pivoting lesson.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="7e2c6eb0" class="cell" data-execution_count="19">
+<div id="eec837be" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>top_10_id_rate_increase <span class="op">=</span> (plastics_countries_df</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"num_events"</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    .unpivot(index<span class="op">=</span>cs.by_name(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"volunteers"</span>), </span>
@@ -2778,7 +2778,7 @@ Challenge
 </ul>
 <p>If you find these tips helpful pause again and try solving the task. Otherwise, hang on, we will discuss the solution to this challenge together momentarily.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="992f24af" class="cell" data-execution_count="20">
+<div id="fc86e0df" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(top_10_id_rate_increase</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    .pipe(GT)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    .tab_spanner(label<span class="op">=</span><span class="st">"Indentification"</span>, columns<span class="op">=</span>cs.starts_with(<span class="st">"id_rate"</span>))</span>
@@ -2806,52 +2806,52 @@ Challenge
 <span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    .opt_stylize(style<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
-<div id="mphdiqphul" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="rrxdapabcf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>
-#mphdiqphul table {
+#rrxdapabcf table {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
 
-#mphdiqphul thead, tbody, tfoot, tr, td, th { border-style: none; }
+#rrxdapabcf thead, tbody, tfoot, tr, td, th { border-style: none; }
  tr { background-color: transparent; }
-#mphdiqphul p { margin: 0; padding: 0; }
- #mphdiqphul .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
- #mphdiqphul .gt_caption { padding-top: 4px; padding-bottom: 4px; }
- #mphdiqphul .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
- #mphdiqphul .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
- #mphdiqphul .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #mphdiqphul .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; }
- #mphdiqphul .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #mphdiqphul .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
- #mphdiqphul .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
- #mphdiqphul .gt_column_spanner_outer:first-child { padding-left: 0; }
- #mphdiqphul .gt_column_spanner_outer:last-child { padding-right: 0; }
- #mphdiqphul .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
- #mphdiqphul .gt_spanner_row { border-bottom-style: hidden; }
- #mphdiqphul .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
- #mphdiqphul .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; vertical-align: middle; }
- #mphdiqphul .gt_from_md> :first-child { margin-top: 0; }
- #mphdiqphul .gt_from_md> :last-child { margin-bottom: 0; }
- #mphdiqphul .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; }
- #mphdiqphul .gt_stub { color: #FFFFFF; background-color: #0076BA; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #0076BA; padding-left: 5px; padding-right: 5px; }
- #mphdiqphul .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
- #mphdiqphul .gt_row_group_first td { border-top-width: 2px; }
- #mphdiqphul .gt_row_group_first th { border-top-width: 2px; }
- #mphdiqphul .gt_striped { background-color: #F4F4F4; }
- #mphdiqphul .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; }
- #mphdiqphul .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
- #mphdiqphul .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
- #mphdiqphul .gt_left { text-align: left; }
- #mphdiqphul .gt_center { text-align: center; }
- #mphdiqphul .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
- #mphdiqphul .gt_font_normal { font-weight: normal; }
- #mphdiqphul .gt_font_bold { font-weight: bold; }
- #mphdiqphul .gt_font_italic { font-style: italic; }
- #mphdiqphul .gt_super { font-size: 65%; }
- #mphdiqphul .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
- #mphdiqphul .gt_asterisk { font-size: 100%; vertical-align: 0; }
+#rrxdapabcf p { margin: 0; padding: 0; }
+ #rrxdapabcf .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #004D80; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #004D80; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #rrxdapabcf .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #rrxdapabcf .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
+ #rrxdapabcf .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
+ #rrxdapabcf .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #rrxdapabcf .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; }
+ #rrxdapabcf .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #rrxdapabcf .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #rrxdapabcf .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #rrxdapabcf .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #rrxdapabcf .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #rrxdapabcf .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #rrxdapabcf .gt_spanner_row { border-bottom-style: hidden; }
+ #rrxdapabcf .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #rrxdapabcf .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; vertical-align: middle; }
+ #rrxdapabcf .gt_from_md> :first-child { margin-top: 0; }
+ #rrxdapabcf .gt_from_md> :last-child { margin-bottom: 0; }
+ #rrxdapabcf .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: none; border-top-width: 1px; border-top-color: #89D3FE; border-left-style: none; border-left-width: 1px; border-left-color: #89D3FE; border-right-style: none; border-right-width: 1px; border-right-color: #89D3FE; vertical-align: middle; overflow-x: hidden; }
+ #rrxdapabcf .gt_stub { color: #FFFFFF; background-color: #0076BA; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #0076BA; padding-left: 5px; padding-right: 5px; }
+ #rrxdapabcf .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #rrxdapabcf .gt_row_group_first td { border-top-width: 2px; }
+ #rrxdapabcf .gt_row_group_first th { border-top-width: 2px; }
+ #rrxdapabcf .gt_striped { background-color: #F4F4F4; }
+ #rrxdapabcf .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #0076BA; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #0076BA; }
+ #rrxdapabcf .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #rrxdapabcf .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #rrxdapabcf .gt_left { text-align: left; }
+ #rrxdapabcf .gt_center { text-align: center; }
+ #rrxdapabcf .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #rrxdapabcf .gt_font_normal { font-weight: normal; }
+ #rrxdapabcf .gt_font_bold { font-weight: bold; }
+ #rrxdapabcf .gt_font_italic { font-style: italic; }
+ #rrxdapabcf .gt_super { font-size: 65%; }
+ #rrxdapabcf .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #rrxdapabcf .gt_asterisk { font-size: 100%; vertical-align: 0; }
  
 </style>
 
@@ -3085,7 +3085,7 @@ Bangladesh
 </ul></li>
 </ul>
 <p>&lt; PAUSE &gt;</p>
-<div id="c3f65c8c" class="cell" data-execution_count="21">
+<div id="013b4352" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>    .with_columns( (pl.col(<span class="st">"quantity"</span>)<span class="op">/</span>pl.col(<span class="st">"quantity"</span>).<span class="bu">sum</span>())</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                    .over(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>, <span class="st">"volunteers"</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                    .alias(<span class="st">"id_rate"</span>))</span>
@@ -3093,7 +3093,7 @@ Bangladesh
 </div>
 <pre><code>- Alternatively, we can pivot the `plastic_unidentified` and compute the proportion across the two new columns (named True and False). This option would look something like this:</code></pre>
 <p>&lt; PAUSE &gt;</p>
-<div id="3c311882" class="cell" data-execution_count="22">
+<div id="9219dc62" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>    .pivot(on<span class="op">=</span>cs.by_name(<span class="st">"plastic_unidentified"</span>), values<span class="op">=</span>cs.by_name(<span class="st">"quantity"</span>))</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    .with_columns(id_rate<span class="op">=</span>pl.col(<span class="st">"false"</span>)<span class="op">/</span>(pl.col(<span class="st">"true"</span>)<span class="op">+</span>pl.col(<span class="st">"false"</span>)))</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"true"</span>, <span class="st">"false"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3109,7 +3109,7 @@ Bangladesh
 <p>One of the most common ways to merge datasets is through a join. A join allows you to bring data from one table into another based on matching values in one or more columns. In Polars, this is done using the .join() method.</p>
 <p>Let’s look at an example. We have two small datasets: one lists the countries in the Nordic Council, including their area and population; the other contains information on members of the European Free Trade Association (EFTA), with data on exports, imports, and GDP (in billion USD). Our goal is to combine these datasets in a meaningful way.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="06406309" class="cell" data-execution_count="23">
+<div id="eb6ddcb4" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>nordic_council <span class="op">=</span> pl.DataFrame({</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"country_name"</span>: [<span class="st">"Denmark"</span>, <span class="st">"Finland"</span>, <span class="st">"Iceland"</span>, <span class="st">"Sweden"</span>, <span class="st">"Norway"</span>],</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"population_mln"</span>: [<span class="fl">5.973136</span>, <span class="fl">5.626414</span>, <span class="fl">0.364036</span>, <span class="fl">10.589835</span>, <span class="fl">5.509733</span>],</span>
@@ -3123,7 +3123,7 @@ Bangladesh
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"gdp_bln"</span>: [<span class="fl">499.528</span>, <span class="fl">733.779</span>, <span class="fl">26.155</span>, <span class="fl">4.978</span>]</span>
 <span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="8e4fe749" class="cell" data-execution_count="24">
+<div id="ff888322" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>nordic_council</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <div><style>
@@ -3178,7 +3178,7 @@ Bangladesh
 </div>
 </div>
 </div>
-<div id="b7555927" class="cell" data-execution_count="25">
+<div id="cca664e3" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>efta_countries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <div><style>
@@ -3238,7 +3238,7 @@ Bangladesh
 <p>How do we solve this? That’s right—we need to join the tables! By merging them based on the shared “country_name” column, we can bring all the necessary information together. Once combined, we can simply use the .with_columns() method to compute GDP per capita.</p>
 <p>This approach lets us seamlessly integrate data from different sources and perform new calculations with ease.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="495558b7" class="cell" data-execution_count="26">
+<div id="0541c785" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(nordic_council</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    .join(efta_countries, on<span class="op">=</span><span class="st">"country_name"</span>)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    .with_columns(gdp_per_cap<span class="op">=</span>pl.col(<span class="st">"gdp_bln"</span>)<span class="op">/</span>pl.col(<span class="st">"population_mln"</span>))</span>
@@ -3302,7 +3302,7 @@ Bangladesh
 <p>A left join keeps all records from the table on the “left” and adds matching information from the table on the “right.” If no match is found, the missing values are filled with null. Since we’re starting with nordic_council, it serves as our “left” table.</p>
 <p>Let’s see it in action:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="0e3068e6" class="cell" data-execution_count="27">
+<div id="793232af" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(nordic_council</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    .join(efta_countries, on<span class="op">=</span><span class="st">"country_name"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3384,7 +3384,7 @@ Bangladesh
 <p>This approach ensures that we retain all countries from our original dataset while still incorporating relevant details from the second table.</p>
 <p>Just as a left join keeps all records from the left table, a right join does the opposite—it preserves all records from the right table and only includes matching data from the left.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="1ab3e405" class="cell" data-execution_count="28">
+<div id="9c392350" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(nordic_council</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    .join(efta_countries, on<span class="op">=</span><span class="st">"country_name"</span>, how<span class="op">=</span><span class="st">"right"</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3457,7 +3457,7 @@ Bangladesh
 <p>In this case, the result contains four records - one for each country in the <code>efta_countries</code> table. Notice that the <code>country_name</code> column has shifted in the output, appearing after population and area. Also, since Switzerland and Liechtenstein weren’t in the <code>nordic_council</code> table, their population and area values are <code>null</code>.</p>
 <p>A full join combines all records from both tables, keeping everything from the left and right datasets. If there’s no match, the missing values are filled with <code>null</code></p>
 <p>&lt; PAUSE &gt;</p>
-<div id="7f0e7a80" class="cell" data-execution_count="29">
+<div id="3caad8be" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(nordic_council</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    .join(efta_countries, on<span class="op">=</span><span class="st">"country_name"</span>, how<span class="op">=</span><span class="st">"full"</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3563,7 +3563,7 @@ Bangladesh
 <p>This results in seven records—one for each unique country appearing in either dataset. However, you’ll notice that the country_name column is now duplicated, explicitly showing which table contributed each row.</p>
 <p>To merge these into a single country_name column, we can use the <code>coalesce=True</code> argument.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="2bf68cbf" class="cell" data-execution_count="30">
+<div id="96e04a80" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(nordic_council</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    .join(efta_countries, on<span class="op">=</span><span class="st">"country_name"</span>, how<span class="op">=</span><span class="st">"full"</span>, coalesce<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3637,20 +3637,20 @@ Bangladesh
 <td>499.528</td>
 </tr>
 <tr class="even">
-<td>"Switzerland"</td>
-<td>null</td>
-<td>null</td>
-<td>661.628</td>
-<td>554.358</td>
-<td>733.779</td>
-</tr>
-<tr class="odd">
 <td>"Liechtenstein"</td>
 <td>null</td>
 <td>null</td>
 <td>3.217</td>
 <td>2.23</td>
 <td>4.978</td>
+</tr>
+<tr class="odd">
+<td>"Switzerland"</td>
+<td>null</td>
+<td>null</td>
+<td>661.628</td>
+<td>554.358</td>
+<td>733.779</td>
 </tr>
 </tbody>
 </table>
@@ -3661,7 +3661,7 @@ Bangladesh
 <p>However, notice that five out of seven records contain missing values in at least some columns. For two of them, population and area are missing, while for the other three, economic data (gdp, export, and import) is absent.</p>
 <p>One particularly useful - but less commonly discussed - join type is the anti-join. Unlike a left join, which retains all records from the left table, an anti-join returns only the rows that would have gone missing in a left join.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="e68bafb4" class="cell" data-execution_count="31">
+<div id="dfefbf7a" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>(nordic_council</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    .join(efta_countries, on<span class="op">=</span><span class="st">"country_name"</span>, how<span class="op">=</span><span class="st">"anti"</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3737,7 +3737,7 @@ Bangladesh
 <li>fuel_types – Types of fuel used for cooking in various countries.</li>
 <li>clean_fuels – Proportion of the population with access to clean cooking fuels.</li>
 </ul>
-<div id="75e0de2a" class="cell" data-execution_count="32">
+<div id="58754e23" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>hhap_deaths <span class="op">=</span> pl.read_csv(<span class="st">"https://bit.ly/data24-hhap-deaths"</span>)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>fuel_types <span class="op">=</span> pl.read_csv(<span class="st">"https://bit.ly/data24-cooking-by-fuel-type"</span>)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>clean_fuels <span class="op">=</span> pl.read_csv(<span class="st">"https://bit.ly/data24-clean-fuels-cooking"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3764,7 +3764,7 @@ Challenge
 </div>
 <p>&lt; PAUSE &gt;</p>
 <p>Here’s the code which allows us to observe trends in household pollution-related deaths over time, broken down by cause of death and country.</p>
-<div id="1d4a5dac" class="cell" data-execution_count="33">
+<div id="77d5cc6b" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>pop_years_df <span class="op">=</span> pl.read_csv(<span class="st">"hhap/pop_years_df.csv"</span>)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>(hhap_deaths</span>
@@ -3803,7 +3803,7 @@ Challenge
 <p>Each dataset includes three key columns that describe the country of observation: region, country_code, and country. While these datasets share many of the same countries, they don’t completely overlap. Our goal is to create a master list of all countries, along with their codes and regions.</p>
 <p>Since each dataset spans multiple years, they contain duplicate entries for the same country. This issue will grow when we stack the datasets together, so we need to ensure our final dataset contains only unique records.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="87be4f6e" class="cell" data-execution_count="34">
+<div id="042c4236" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>idcols<span class="op">=</span>cs.by_name(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>country_regions <span class="op">=</span> (hhap_deaths.select(idcols)</span>
@@ -3816,7 +3816,7 @@ Challenge
 <p>Next, we want to verify that our country codes match the official ISO country codes. We have a reference file containing all Alpha-2 and Alpha-3 country codes. Before performing a left join, we first check for any records that don’t have a corresponding ISO code.</p>
 <p>Since the column names in our dataset and the ISO file don’t match, we explicitly specify the columns to join on using left_on and right_on. The anti-join returns an empty table. It means all our country codes successfully matched an entry in the ISO dataset - an important step in ensuring data integrity before further analysis.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="c3f90bea" class="cell" data-execution_count="35">
+<div id="035d92e3" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>iso_df <span class="op">=</span> pl.read_csv(<span class="st">"https://bit.ly/data24-countrycodes"</span>)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>(country_regions</span>
@@ -3854,44 +3854,44 @@ Challenge
 </thead>
 <tbody>
 <tr class="odd">
+<td>"Europe"</td>
+<td>"RUS"</td>
+<td>"Russian Federation"</td>
+<td>"Russian Federation (the)"</td>
+<td>"RU"</td>
+<td>643</td>
+</tr>
+<tr class="even">
+<td>"Eastern Mediterranean"</td>
+<td>"KWT"</td>
+<td>"Kuwait"</td>
+<td>"Kuwait"</td>
+<td>"KW"</td>
+<td>414</td>
+</tr>
+<tr class="odd">
+<td>"Europe"</td>
+<td>"MDA"</td>
+<td>"Republic of Moldova"</td>
+<td>"Moldova (the Republic of)"</td>
+<td>"MD"</td>
+<td>498</td>
+</tr>
+<tr class="even">
 <td>"Africa"</td>
-<td>"SWZ"</td>
-<td>"Eswatini"</td>
-<td>"Eswatini"</td>
-<td>"SZ"</td>
-<td>748</td>
-</tr>
-<tr class="even">
-<td>"Americas"</td>
-<td>"GUY"</td>
-<td>"Guyana"</td>
-<td>"Guyana"</td>
-<td>"GY"</td>
-<td>328</td>
+<td>"AGO"</td>
+<td>"Angola"</td>
+<td>"Angola"</td>
+<td>"AO"</td>
+<td>24</td>
 </tr>
 <tr class="odd">
 <td>"Europe"</td>
-<td>"MNE"</td>
-<td>"Montenegro"</td>
-<td>"Montenegro"</td>
-<td>"ME"</td>
-<td>499</td>
-</tr>
-<tr class="even">
-<td>"Europe"</td>
-<td>"ROU"</td>
-<td>"Romania"</td>
-<td>"Romania"</td>
-<td>"RO"</td>
-<td>642</td>
-</tr>
-<tr class="odd">
-<td>"Europe"</td>
-<td>"DNK"</td>
-<td>"Denmark"</td>
-<td>"Denmark"</td>
-<td>"DK"</td>
-<td>208</td>
+<td>"GBR"</td>
+<td>"United Kingdom of Great Britai…</td>
+<td>"United Kingdom of Great Britai…</td>
+<td>"GB"</td>
+<td>826</td>
 </tr>
 <tr class="even">
 <td>…</td>
@@ -3903,43 +3903,43 @@ Challenge
 </tr>
 <tr class="odd">
 <td>"Africa"</td>
-<td>"CAF"</td>
-<td>"Central African Republic"</td>
-<td>"Central African Republic (the)"</td>
-<td>"CF"</td>
-<td>140</td>
+<td>"MLI"</td>
+<td>"Mali"</td>
+<td>"Mali"</td>
+<td>"ML"</td>
+<td>466</td>
+</tr>
+<tr class="even">
+<td>"Africa"</td>
+<td>"COD"</td>
+<td>"Democratic Republic of the Con…</td>
+<td>"Congo (the Democratic Republic…</td>
+<td>"CD"</td>
+<td>180</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>"PNG"</td>
+<td>"Papua New Guinea"</td>
+<td>"Papua New Guinea"</td>
+<td>"PG"</td>
+<td>598</td>
 </tr>
 <tr class="even">
 <td>"South-East Asia"</td>
-<td>"IDN"</td>
-<td>"Indonesia"</td>
-<td>"Indonesia"</td>
-<td>"ID"</td>
-<td>360</td>
+<td>"IND"</td>
+<td>"India"</td>
+<td>"India"</td>
+<td>"IN"</td>
+<td>356</td>
 </tr>
 <tr class="odd">
-<td>"Africa"</td>
-<td>"GNB"</td>
-<td>"Guinea-Bissau"</td>
-<td>"Guinea-Bissau"</td>
-<td>"GW"</td>
-<td>624</td>
-</tr>
-<tr class="even">
-<td>"Americas"</td>
-<td>"BHS"</td>
-<td>"Bahamas"</td>
-<td>"Bahamas (the)"</td>
-<td>"BS"</td>
-<td>44</td>
-</tr>
-<tr class="odd">
-<td>"Eastern Mediterranean"</td>
-<td>"LBY"</td>
-<td>"Libya"</td>
-<td>"Libya"</td>
-<td>"LY"</td>
-<td>434</td>
+<td>"Western Pacific"</td>
+<td>"LAO"</td>
+<td>"Lao People's Democratic Republ…</td>
+<td>"Lao People's Democratic Republ…</td>
+<td>"LA"</td>
+<td>418</td>
 </tr>
 </tbody>
 </table>
@@ -3948,7 +3948,7 @@ Challenge
 </div>
 <p>Now that we’ve combined our data from multiple sources, let’s dig a little deeper into the completeness of our dataset. Specifically, we want to find out how many countries are missing from our combined household air pollution dataset.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="4eead042" class="cell" data-execution_count="36">
+<div id="2724b9e5" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(iso_df</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    .join(country_regions, left_on<span class="op">=</span><span class="st">"alpha3"</span>, right_on<span class="op">=</span><span class="st">"country_code"</span>, how<span class="op">=</span><span class="st">"anti"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
