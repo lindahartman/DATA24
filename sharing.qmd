@@ -147,7 +147,7 @@ Now, let’s talk about a powerful Quarto feature: labels and cross-referencing.
 
 Every code cell in a Quarto report has a label, even if you don’t explicitly assign one — Quarto generates it automatically. But if you want to refer to specific outputs in your text — like a figure or table — you’ll need to assign meaningful labels yourself.
 
-Here’s how it works: Figures should have labels that start with `fig-`. Tables should have labels that start with `tab-`.
+Here’s how it works: Figures should have labels that start with `fig-`. Tables should have labels that start with `tbl-`.
 
 Labels allow you to reference figures and tables directly in your text, and Quarto will automatically create hyperlinks to them. This makes your report more interactive and easier to navigate.
 
@@ -172,19 +172,19 @@ To add a caption to your figure, use another chunk option. Place it right undern
 
 A descriptive caption appears under your figure, helping your audience interpret the data correctly.
 
-If a cell produces a table, you should label it with `tab-`, like this:
+If a cell produces a table, you should label it with `tbl-`, like this:
 
 ```
-#| label: tab-summary-stats
+#| label: tbl-summary-stats
 ```
 
 You can also add a table caption for clarity:
 
 ```
-#| tab-cap: "Summary statistics for `gapminder` dataset."
+#| tbl-cap: "Summary statistics for `gapminder` dataset."
 ```
 
-Then, in your text, you can refer to the table using @tab-summary-stats, and Quarto will handle the rest — linking it properly and ensuring consistent formatting.
+Then, in your text, you can refer to the table using @tbl-summary-stats, and Quarto will handle the rest — linking it properly and ensuring consistent formatting.
 
 This small but powerful feature makes your reports much more professional by keeping figures and tables clearly referenced.
 
@@ -230,9 +230,9 @@ This prevents the both the code and the output from appearing in the final docum
 
 :::{.challenge}
 Try it out! Open a Jupyter notebook you created in this course and:
-- Add labels and captions to your figures (fig-) and tables (tab-).
+- Add labels and captions to your figures (fig-) and tables (tbl-).
 - Insert a Markdown cell under each figure or table, explaining key insights.
-- Refer to figures and tables using @fig-label or @tab-label in your text.
+- Refer to figures and tables using @fig-label or @tbl-label in your text.
 - Hide code printouts that don’t produce meaningful output, either:  Globally (by setting `echo: false` in the front matter), or individually (by adding `#| echo: false` to specific cells).
 - Ensure each cell outputs only one thing — a table, a plot, or text — for clarity.
 :::
@@ -309,7 +309,7 @@ We’re nearing the final stretch of this course! In the last video, we’ll dis
 
 See you in a bit!
 
-# VIDEO 5: Sharing the project 
+<!-- # VIDEO 5: Sharing the project  -->
 
 Congratulations! You’ve successfully completed an exciting project — from installing software to visualizing and exploring datasets, and finally, producing an analytical report that documents your entire journey. Now, it’s time to prepare this work to be shared with others.
 
