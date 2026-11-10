@@ -48,11 +48,30 @@ Here’s the code to read the three datasets we’ll use. Add these lines to a n
 
 < PAUSE >
 
+:::{.callout-tip}
+## Update 2026:
+
+The bit.ly links used in the videos are obsolete:
 ```{python}
+#| echo: true
+#| eval: false
+# Old code:
 hhap_deaths = pl.read_csv("https://bit.ly/data24-hhap-deaths")
 fuel_types = pl.read_csv("https://bit.ly/data24-cooking-by-fuel-type")
 clean_fuels = pl.read_csv("https://bit.ly/data24-clean-fuels-cooking")
 ```
+Use tinyurl versions instead, see below!
+:::
+
+```{python}
+#| echo: true
+#| eval: true
+# Updated 2026
+hhap_deaths = pl.read_csv("https://tinyurl.com/data24-hhap-deaths")
+fuel_types = pl.read_csv("https://tinyurl.com/data24-cooking-by-fuel-type")
+clean_fuels = pl.read_csv("https://tinyurl.com/data24-clean-fuels-cooking")
+```
+
 
 Let’s break this down. We’re using the `read_csv()` function from Polars to load the data. This function takes a single mandatory argument: the file path, written as a string in quotes. The equal sign indicates that we assign the content of the file to the variable, listed on the left. The function is located in the `polars` package. This is why it is prepended with  `pl.` prefix. 
 

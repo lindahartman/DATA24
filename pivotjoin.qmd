@@ -41,8 +41,25 @@ Have a look at the code that brings this data into our workspace:
 
 < PAUSE >
 
+
+:::{.callout-tip}
+## Update 2026:
+
+The bit.ly links used in the videos are obsolete:
 ```{python}
+#| echo: true
+#| eval: false
+# Old code:
 plastics_df = pl.read_csv('https://bit.ly/data24-bffplastics')
+```
+Use tinyurl versions instead, see below!
+:::
+
+```{python}
+#| echo: true
+#| eval: true
+# Updated 2026
+plastics_df = pl.read_csv('https://tinyurl.com/data24-bffplastics')
 
 plastics_docs = pl.DataFrame({
     'Variable': ['region', 'country_code' , 'country', 'year', 'parent_company', 'empty', 'hdpe', 'ldpe', 'o', 'pet', 'pp', 'ps', 'pvc', 'grand_total', 'num_events', 'volunteers'],
