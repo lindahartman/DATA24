@@ -104,17 +104,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <style>
-div.callout-question.callout {
-  border-left-color: pink;
-}
-div.callout-question.callout-style-default > .callout-header {
-  background-color: rgb(from pink r g b / 13%);
-}
-div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
-div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
-  content: '🧠';
-  background-image: none;
-}
 div.callout-challenge.callout {
   border-left-color: firebrick;
 }
@@ -124,6 +113,17 @@ div.callout-challenge.callout-style-default > .callout-header {
 div.callout-challenge .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
 div.callout-challenge.callout-style-default .callout-icon::before, div.callout-challenge.callout-titled .callout-icon::before {
   content: '🛠️';
+  background-image: none;
+}
+div.callout-question.callout {
+  border-left-color: pink;
+}
+div.callout-question.callout-style-default > .callout-header {
+  background-color: rgb(from pink r g b / 13%);
+}
+div.callout-question .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-question.callout-style-default .callout-icon::before, div.callout-question.callout-titled .callout-icon::before {
+  content: '🧠';
   background-image: none;
 }
 </style>
@@ -255,19 +255,40 @@ div.callout-challenge.callout-style-default .callout-icon::before, div.callout-c
 <p>We’ve prepared these datasets for you and stored them in the course repository on GitHub. While Polars allows us to read files directly from remote locations, you can also download the files and the load them into Python from your local project directory.</p>
 <p>Here’s the code to read the three datasets we’ll use. Add these lines to a new cell in your notebook and run it.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="bf184cb3" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>hhap_deaths <span class="op">=</span> pl.read_csv(<span class="st">"https://bit.ly/data24-hhap-deaths"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fuel_types <span class="op">=</span> pl.read_csv(<span class="st">"https://bit.ly/data24-cooking-by-fuel-type"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>clean_fuels <span class="op">=</span> pl.read_csv(<span class="st">"https://bit.ly/data24-clean-fuels-cooking"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Update 2026:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The bit.ly links used in the videos are obsolete:</p>
+<div id="4d2c3b9a" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Old code:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>hhap_deaths <span class="op">=</span> pl.read_csv(<span class="st">"https://bit.ly/data24-hhap-deaths"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>fuel_types <span class="op">=</span> pl.read_csv(<span class="st">"https://bit.ly/data24-cooking-by-fuel-type"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>clean_fuels <span class="op">=</span> pl.read_csv(<span class="st">"https://bit.ly/data24-clean-fuels-cooking"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Use tinyurl versions instead, see below!</p>
+</div>
+</div>
+<div id="c3905622" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Updated 2026</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>hhap_deaths <span class="op">=</span> pl.read_csv(<span class="st">"https://tinyurl.com/data24-hhap-deaths"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>fuel_types <span class="op">=</span> pl.read_csv(<span class="st">"https://tinyurl.com/data24-cooking-by-fuel-type"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>clean_fuels <span class="op">=</span> pl.read_csv(<span class="st">"https://tinyurl.com/data24-clean-fuels-cooking"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s break this down. We’re using the <code>read_csv()</code> function from Polars to load the data. This function takes a single mandatory argument: the file path, written as a string in quotes. The equal sign indicates that we assign the content of the file to the variable, listed on the left. The function is located in the <code>polars</code> package. This is why it is prepended with <code>pl.</code> prefix.</p>
 <p>The <code>read_csv()</code> function returns a data frame. So, from now on, we can simply refer to <code>h-hap</code> underscore <code>deaths</code> (<code>hhap_deaths</code>) whenever we need to access the first dataframe without needing to re-import it.</p>
 <p>To understand the data, it’s helpful to preview it. You do it in a few different ways. For instance, you can simply type the name of a dataset - like <code>clean_fuels</code>. It will display a preview of the first five and last five rows of the corresponding data frame.</p>
 <p>Rows in a data frame are often referred to as observations or records, while columns are known as variables or features. If you want to see more rows than the default preview, you can use the <code>.head()</code> method and specify the number of rows to display:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="cf0d0ed4" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c77402da" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div><style>
 .dataframe > thead > tr,
@@ -386,9 +407,9 @@ div.callout-challenge.callout-style-default .callout-icon::before, div.callout-c
 <p>Previewing the first few rows gives us an initial sense of the dataset’s structure and content. If you’re curious about the last few rows, there’s also a <code>.tail()</code> method you can use in a similar way.</p>
 <p>For a broader overview of your data, you can use the <code>.describe()</code> method:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="dc015559" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    .describe())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2d56e420" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    .describe())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div><style>
 .dataframe > thead > tr,
@@ -531,14 +552,14 @@ Challenge
 </div>
 </div>
 <p>&lt; PAUSE &gt;</p>
-<div id="f022bd89" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">25</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .describe())</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    .describe()</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    .tail(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c1c50154" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">25</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    .describe())</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    .describe()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    .tail(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div><style>
 .dataframe > thead > tr,
@@ -623,9 +644,9 @@ Challenge
 <p>Sometimes a dataset may have so many columns that methods like <code>.head()</code> or <code>.describe()</code> don’t quite give a full overview. In such cases, Polars offers a particularly useful method: <code>.glimpse()</code>.</p>
 <p>The <code>.glimpse()</code> method displays the dataset’s structure horizontally, listing each variable as a row. This format makes it easier to scan through all columns, even on a limited screen. Here’s how it looks in action::</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="961e0e07" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    .glimpse())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1de048fc" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    .glimpse())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 6402
 Columns: 6
@@ -660,9 +681,9 @@ Question
 <h1>VIDEO 3 Select/ Drop</h1>
 <p>One of the most common tasks in data analysis is selecting specific variables or columns from a dataset. Let’s start by pulling out the country information from the <code>clean_fuels</code> data. Pause the video for a moment and try running this code:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="b460246e" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"country"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9e1f4479" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"country"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div><style>
 .dataframe > thead > tr,
@@ -723,9 +744,9 @@ Question
 <p>Here, we’re using the <code>select()</code> method to isolate a column. Notice how the column name is wrapped in the <code>pl.col()</code> function. This wrapper explicitly tells Polars that we’re referring to a column in the dataframe.</p>
 <p>But here’s something cool - you can skip the <code>pl.col()</code> wrapper in certain cases! For example, this code:</p>
 <p>&lt; SMALL PAUSE &gt;</p>
-<div id="e75db21e" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"country_code"</span>, <span class="st">"country"</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5a776cf3" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">"country_code"</span>, <span class="st">"country"</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div><style>
 .dataframe > thead > tr,
@@ -797,9 +818,9 @@ Question
 </div>
 </div>
 <p>…does the exact same thing as this:</p>
-<div id="fb535d4c" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"country_code"</span>), pl.col(<span class="st">"country"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7a2b4d33" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"country_code"</span>), pl.col(<span class="st">"country"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div><style>
 .dataframe > thead > tr,
@@ -874,17 +895,17 @@ Question
 <p>Pretty neat, right? The <code>select()</code> method can directly interpret strings as column names, making your code a little cleaner and quicker to write.</p>
 <p>When you wrap a column name in <code>pl.col()</code>, you’re creating an expression. An expression is like a recepie - it doesn’t do anything on its own. For example, if you run this code:</p>
 <p>&lt; SMALL PAUSE &gt;</p>
-<div id="ac8f0402" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pl.col(<span class="st">"country_code"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="09e52e08" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pl.col(<span class="st">"country_code"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 col("country_code")
 </div>
 </div>
 <p>…nothing happens. It just returns something called an “unevaluated expression”. But when you evaluate that expression in the context of a dataset, it returns something useful. For instance:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="24da8cc8" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"country_code"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b4d98d99" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"country_code"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div><style>
 .dataframe > thead > tr,
@@ -958,9 +979,9 @@ Tip
 </div>
 <p>The <code>pl.col()</code> wrapper is super flexible, and it’s going to be central as we build more advanced expressions in Polars. For instance, you can use <code>pl.col()</code> to refer to multiple columns simultaneously:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="8243eaee" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"country_code"</span>, <span class="st">"country"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1081f979" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"country_code"</span>, <span class="st">"country"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div><style>
 .dataframe > thead > tr,
@@ -1033,9 +1054,9 @@ Tip
 </div>
 <p>Sometimes, typing out long column names can feel like a chore, especially when you’re working with many columns. But don’t worry - Polars makes it easy to select columns by their position in the dataset. For example, this code selects the second and third columns by their numerical index:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="3d7ddfd7" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.nth(<span class="dv">1</span>,<span class="dv">2</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1e5ddd30" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.nth(<span class="dv">1</span>,<span class="dv">2</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div><style>
 .dataframe > thead > tr,
@@ -1109,9 +1130,9 @@ Tip
 <p>Note that the column indices in Polars are 0-based. That means the first column is index 0, the second column is index 1, and so on.</p>
 <p>What about negative numbers? They’re a handy shortcut for selecting columns from the back of the dataset. For instance, <code>-1</code> refers to the last column, and this code will select the first and last columns:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="d9975183" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.nth(<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="100f3548" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.nth(<span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div><style>
 .dataframe > thead > tr,
@@ -1185,9 +1206,9 @@ Tip
 <p>A note of caution: Selecting columns by the order of their appearance can be risky. If your dataset’s structure changes, you might accidentally select the wrong columns. So, use the <code>nth()</code> method sparingly.</p>
 <p>Now, let’s talk about the opposite of <code>select()</code> - the <code>drop()</code> method. The <code>drop()</code> method removes specific columns from your dataset, leaving everything else intact. For example:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="539e8968" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    .drop(pl.col(<span class="st">"country"</span>), pl.col(<span class="st">"region"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2d50071b" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    .drop(pl.col(<span class="st">"country"</span>), pl.col(<span class="st">"region"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div><style>
 .dataframe > thead > tr,
@@ -1286,9 +1307,9 @@ Tip
 </div>
 <p>Dropping is equivalent to selecting all columns <strong>except</strong> the ones you want to exclude. Here’s how could would write the dropping expression using in terms of selection:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="5f2eefd5" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.<span class="bu">all</span>().exclude(<span class="st">"country"</span>, <span class="st">"region"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6f4c6d18" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.<span class="bu">all</span>().exclude(<span class="st">"country"</span>, <span class="st">"region"</span>)))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <div><style>
 .dataframe > thead > tr,
@@ -1403,16 +1424,16 @@ Challenge
 </div>
 <p>Please, pause the video and try couple of different ways of selecting these columns.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="a5f4d07f" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"pop_clean_fuels_cooking_mln"</span>), </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"prop_clean_fuels_cooking_pct"</span>))) </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    .select(pl.nth(<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>))) </span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="bd927d85" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    .select(pl.col(<span class="st">"pop_clean_fuels_cooking_mln"</span>), </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"prop_clean_fuels_cooking_pct"</span>))) </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    .select(pl.nth(<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>))) </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>(clean_fuels  </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    .drop(<span class="st">"region"</span>, <span class="st">"country_code"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <div><style>
 .dataframe > thead > tr,
@@ -1503,20 +1524,20 @@ Note
 </div>
 <p>Let’s make sure we import the selectors module:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="f5aaedac" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars.selectors <span class="im">as</span> cs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2f775bb7" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars.selectors <span class="im">as</span> cs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Among the most useful selectors are, of course, selectors by name and by column index. Although, for this we might not really need selectors, because those can be picked out with <code>pl.col()</code> and <code>pl.nth()</code>.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="81779756" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    .select(cs.by_name(<span class="st">"region"</span>, <span class="st">"country"</span>))</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># note python is 0-based</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    .select(cs.by_index(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">5</span>))</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7f69e651" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    .select(cs.by_name(<span class="st">"region"</span>, <span class="st">"country"</span>))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># note python is 0-based</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    .select(cs.by_index(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">5</span>))</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <div><style>
 .dataframe > thead > tr,
@@ -1617,21 +1638,21 @@ Challenge
 <p>Use <code>polars.selectors</code> aliased as <code>cs.</code> to select - first column - everyhing other than the first column - all non-numeric columns</p>
 </div>
 </div>
-<div id="42e8cfaf" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    .select(cs.first())</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># not first</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    .select(<span class="op">~</span>cs.first())</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co"># not numeric</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    .select(<span class="op">~</span>cs.numeric())</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b6ebf6a2" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    .select(cs.first())</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># not first</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    .select(<span class="op">~</span>cs.first())</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># not numeric</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    .select(<span class="op">~</span>cs.numeric())</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <div><style>
 .dataframe > thead > tr,
@@ -1723,10 +1744,10 @@ Challenge
 <p>Now let’s talk about filtering - an essential part of data analysis. In Polars, you can use filtering to subset your data based on logical conditions, using the magic of expressions. Logical operations are one of the simplest and most common use cases for expressions. For example, you can compare every value in the <code>region</code> column to the string “Europe”. If there’s a match, Polars returns True; otherwise, it returns False.</p>
 <p>Let’s see how this works in code:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="d6d61e5b" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"region"</span>)<span class="op">==</span><span class="st">"Europe"</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5ed93959" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"region"</span>)<span class="op">==</span><span class="st">"Europe"</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <div><style>
 .dataframe > thead > tr,
@@ -1866,14 +1887,14 @@ Challenge
 <p>Were there any countries in Europe in 2022 where the majority of people lacked access to clean fuel for cooking?</p>
 </div>
 </div>
-<div id="22fa511d" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"region"</span>)<span class="op">==</span><span class="st">"Europe"</span>,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"year"</span>)<span class="op">==</span><span class="dv">2022</span>,</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"prop_clean_fuels_cooking_pct"</span>)<span class="op">&lt;</span><span class="dv">50</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c9f8ef4f" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"region"</span>)<span class="op">==</span><span class="st">"Europe"</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"year"</span>)<span class="op">==</span><span class="dv">2022</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        pl.col(<span class="st">"prop_clean_fuels_cooking_pct"</span>)<span class="op">&lt;</span><span class="dv">50</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <div><style>
 .dataframe > thead > tr,
@@ -1919,11 +1940,11 @@ Challenge
 <p>What did you get? Oh, wow! Over half the population of Bosnia still lacks access to clean fuels for cooking. That’s a striking insight!</p>
 <p>Let’s zoom in on Bosnia to better understand the data. Bosnia’s country code is “BIH”, but you can also use country name to filter, if you prefer.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="e6bd0071" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>clean_fuels</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country_code"</span>)<span class="op">==</span><span class="st">"BIH"</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8099758a" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>clean_fuels</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country_code"</span>)<span class="op">==</span><span class="st">"BIH"</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <div><style>
 .dataframe > thead > tr,
@@ -2049,15 +2070,15 @@ Challenge
 <p>We are interested in tracking how the proportion of the population with access to clean fuels for cooking has changed over the years. Let’s create a plot, with the year on the x-axis and the proportion of population on the y-axis. If you remember from the Plotnine module, the dataset goes into the first argument of the ggplot function.</p>
 <p>Here’s one way to do this:</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="3b8299cf" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>ggplot(clean_fuels.<span class="bu">filter</span>(pl.col(<span class="st">"country_code"</span>)<span class="op">==</span><span class="st">"BIH"</span>))</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_line(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"prop_clean_fuels_cooking_pct"</span>))</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f436d023" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>ggplot(clean_fuels.<span class="bu">filter</span>(pl.col(<span class="st">"country_code"</span>)<span class="op">==</span><span class="st">"BIH"</span>))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_line(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"prop_clean_fuels_cooking_pct"</span>))</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wrangling_files/figure-html/cell-25-output-1.png" width="672" height="480" class="figure-img"></p>
+<p><img src="wrangling_files/figure-html/cell-26-output-1.png" width="672" height="480" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -2077,16 +2098,16 @@ ggplot(df)
 </code></pre>
 <p>Pipe keeps the code clean and modular. Everything after <code>.pipe(ggplot)</code> is Plotnine-specific code.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="1a932cf4" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country_code"</span>)<span class="op">==</span><span class="st">"BIH"</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_line(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"pop_clean_fuels_cooking_mln"</span>))</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="138c0b81" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country_code"</span>)<span class="op">==</span><span class="st">"BIH"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_line(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"pop_clean_fuels_cooking_mln"</span>))</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wrangling_files/figure-html/cell-26-output-1.png" width="672" height="480" class="figure-img"></p>
+<p><img src="wrangling_files/figure-html/cell-27-output-1.png" width="672" height="480" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -2095,9 +2116,9 @@ ggplot(df)
 <p>What if you’re not sure how a country’s name is spelled in the dataset? For example, is it “Czech Republic” or just “Czechia”?</p>
 <p>In this case, you can use partial string matching to find it.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="2832ad92" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>).<span class="bu">str</span>.starts_with(<span class="st">"Cz"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8388f063" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>).<span class="bu">str</span>.starts_with(<span class="st">"Cz"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <div><style>
 .dataframe > thead > tr,
@@ -2243,19 +2264,19 @@ Challenge
 <p>Visualize the proportion of people with access to clean fuels in your own country</p>
 </div>
 </div>
-<div id="3989676e" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>).<span class="bu">str</span>.starts_with(<span class="st">"Ukr"</span>))</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_line(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"prop_clean_fuels_cooking_pct"</span>))</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme_seaborn()</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>labs(title<span class="op">=</span><span class="st">"Share of population with access to clean fuels in Ukraine"</span>,</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span><span class="st">"Year"</span>, y<span class="op">=</span><span class="st">"Proportion, %"</span>)</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b65babed" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>).<span class="bu">str</span>.starts_with(<span class="st">"Ukr"</span>))</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_line(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"prop_clean_fuels_cooking_pct"</span>))</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme_seaborn()</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>labs(title<span class="op">=</span><span class="st">"Share of population with access to clean fuels in Ukraine"</span>,</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span><span class="st">"Year"</span>, y<span class="op">=</span><span class="st">"Proportion, %"</span>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wrangling_files/figure-html/cell-28-output-1.png" width="672" height="480" class="figure-img"></p>
+<p><img src="wrangling_files/figure-html/cell-29-output-1.png" width="672" height="480" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -2267,8 +2288,8 @@ Challenge
 <h1>VIDEO 6 Deaths data</h1>
 <p>Let’s apply what we’ve learned about filtering to visualize the causes of death in some European countries.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="dd35425f" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>hhap_deaths</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="02537c58" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>hhap_deaths</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <div><style>
 .dataframe > thead > tr,
@@ -2394,11 +2415,11 @@ Challenge
 <p>This dataset contains both summarized and detailed breakdowns of deaths for every country and year. Take a look at the column labeled <code>cause_of_death</code>. When this column says “All causes,” it represents the total deaths for that country and year - a sum of all the other rows.</p>
 <p>Let’s zoom in on Bosnia for a single year, say 2010, to understand this better.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="4d86f13f" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>(hhap_deaths</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country_code"</span>)<span class="op">==</span><span class="st">"BIH"</span>, </span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"year"</span>)<span class="op">==</span><span class="dv">2010</span>)</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b4b6ca8b" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>(hhap_deaths</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country_code"</span>)<span class="op">==</span><span class="st">"BIH"</span>, </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"year"</span>)<span class="op">==</span><span class="dv">2010</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
 <div><style>
 .dataframe > thead > tr,
@@ -2484,21 +2505,21 @@ Challenge
 <p>One of the rows is labeled “All causes” with 4,816 deaths. This total matches the sum of the individual causes of death. While it’s useful to have the total, it can lead to double counting if we include it in our analysis.</p>
 <p>Now let’s expand our view to include all European countries for which we have death data. We’ll exclude the totals and focus on trends for each specific cause of death. Faceting will help us visualize these trends country by country.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="caf11e77" class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>(hhap_deaths</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"region"</span>)<span class="op">==</span><span class="st">"Europe"</span>,</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"deaths"</span>)<span class="op">&gt;</span><span class="dv">0</span>,</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"cause_of_death"</span>)<span class="op">!=</span><span class="st">"All causes"</span>)</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"deaths"</span>, color<span class="op">=</span><span class="st">"cause_of_death"</span>, group<span class="op">=</span><span class="st">"cause_of_death"</span>))</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_smooth(method<span class="op">=</span><span class="st">"lm"</span>)</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>facet_wrap(<span class="st">"country"</span>, scales<span class="op">=</span><span class="st">"free_y"</span>, nrow<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme_seaborn()</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme(figure_size<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">10</span>), legend_position<span class="op">=</span><span class="st">"bottom"</span>)</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="bcf7bf33" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>(hhap_deaths</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"region"</span>)<span class="op">==</span><span class="st">"Europe"</span>,</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"deaths"</span>)<span class="op">&gt;</span><span class="dv">0</span>,</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"cause_of_death"</span>)<span class="op">!=</span><span class="st">"All causes"</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"deaths"</span>, color<span class="op">=</span><span class="st">"cause_of_death"</span>, group<span class="op">=</span><span class="st">"cause_of_death"</span>))</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_smooth(method<span class="op">=</span><span class="st">"lm"</span>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>facet_wrap(<span class="st">"country"</span>, scales<span class="op">=</span><span class="st">"free_y"</span>, nrow<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme_seaborn()</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme(figure_size<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">10</span>), legend_position<span class="op">=</span><span class="st">"bottom"</span>)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wrangling_files/figure-html/cell-31-output-1.png" width="1920" height="960" class="figure-img"></p>
+<p><img src="wrangling_files/figure-html/cell-32-output-1.png" width="1920" height="960" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -2512,10 +2533,10 @@ Challenge
 <p>To create new variables, we use the <code>with_columns()</code> method. This method lets us add or modify columns using expressions.</p>
 <p>Let’s start by converting the percentage of people with access to clean fuels into a true proportion by dividing it by 100.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="23efd43e" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    .with_columns(prop<span class="op">=</span>pl.col(<span class="st">"prop_clean_fuels_cooking_pct"</span>)<span class="op">/</span><span class="dv">100</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="792e1b83" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    .with_columns(prop<span class="op">=</span>pl.col(<span class="st">"prop_clean_fuels_cooking_pct"</span>)<span class="op">/</span><span class="dv">100</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <div><style>
 .dataframe > thead > tr,
@@ -2654,12 +2675,12 @@ Challenge
 <p>Here, we create a new column called <code>prop</code>. The expression starts with a column name, and then we specify the operation: dividing by 100. The <code>prop</code> on the left of the equal sign will become a new column name. Easy enough, right?</p>
 <p>Now that we have the true proportion, we can calculate the total population. Let’s divide the population by proportion.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="5e4d5771" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>clean_fuels_pop_df <span class="op">=</span> (clean_fuels</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    .with_columns(prop<span class="op">=</span>pl.col(<span class="st">"prop_clean_fuels_cooking_pct"</span>)<span class="op">/</span><span class="dv">100</span>)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    .with_columns( (pl.col(<span class="st">"pop_clean_fuels_cooking_mln"</span>)<span class="op">/</span>pl.col(<span class="st">"prop"</span>))</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>                    .alias(<span class="st">"population"</span>))</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="21e4ba86" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>clean_fuels_pop_df <span class="op">=</span> (clean_fuels</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    .with_columns(prop<span class="op">=</span>pl.col(<span class="st">"prop_clean_fuels_cooking_pct"</span>)<span class="op">/</span><span class="dv">100</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    .with_columns( (pl.col(<span class="st">"pop_clean_fuels_cooking_mln"</span>)<span class="op">/</span>pl.col(<span class="st">"prop"</span>))</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>                    .alias(<span class="st">"population"</span>))</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Notice that I wrapped the division operation in parentheses to ensure it’s evaluated correctly. I also used the <code>alias()</code> method to specify a name for the new column: <code>population</code>. This code calculates and adds two new columns:</p>
 <ul>
@@ -2668,8 +2689,8 @@ Challenge
 </ul>
 <p>This looks good. Lets assign it to a variable and inspect the updated dataset.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="a9138a00" class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>clean_fuels_pop_df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7e0e6452" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>clean_fuels_pop_df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
 <div><style>
 .dataframe > thead > tr,
@@ -2813,9 +2834,9 @@ Challenge
 <p><code>NaN</code> is a special marker for missing or undefined values. Missing values in Polars propagate through calculations, which means any further operations on these rows will also result in missing values. This is why the mean and standard deviation of the population column are also <code>NaN</code> in the summary.</p>
 <p>Let’s see how many rows in our dataset contain illegal population estimates. We can use the <code>.is_nan()</code> method, which evaluates whether a column contains a <code>NaN</code> value.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="02fbcdff" class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels_pop_df</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"population"</span>).is_nan()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3990f459" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>(clean_fuels_pop_df</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"population"</span>).is_nan()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
 <div><style>
 .dataframe > thead > tr,
@@ -2981,17 +3002,17 @@ Challenge
 <p>Add a population estimate to the <code>fuel_types</code> dataset and save it under a new variable name</p>
 </div>
 </div>
-<div id="0a39a8ec" class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>fuel_types_pop_df <span class="op">=</span> (fuel_types</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    .with_columns(population<span class="op">=</span>pl.col(<span class="st">"pop_cooking_mln"</span>)<span class="op">/</span>pl.col(<span class="st">"prop_cooking_pct"</span>)<span class="op">*</span><span class="dv">100</span>)</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c3c483ad" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>fuel_types_pop_df <span class="op">=</span> (fuel_types</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    .with_columns(population<span class="op">=</span>pl.col(<span class="st">"pop_cooking_mln"</span>)<span class="op">/</span>pl.col(<span class="st">"prop_cooking_pct"</span>)<span class="op">*</span><span class="dv">100</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This looks promising! Let’s have a look at our favorite Bosnia</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="0cf38d57" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>(fuel_types_pop_df</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>).<span class="bu">str</span>.starts_with(<span class="st">"Bosni"</span>))</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a911d2b9" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>(fuel_types_pop_df</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"country"</span>).<span class="bu">str</span>.starts_with(<span class="st">"Bosni"</span>))</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
 <div><style>
 .dataframe > thead > tr,
@@ -3147,11 +3168,11 @@ Challenge
 <h1>VIDEO 8 Summaries</h1>
 <p>One of the most important tasks for data analysts is creating summaries of the data, particularly by groups. In our newly prepared dataset, we’re interested in summarizing the total population for each country by year. In Polars, this is a two-step process. First, we define the groups using <code>.group_by()</code>. Then, we aggregate the data using <code>.agg()</code>.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="ae6866b4" class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>(fuel_types_pop_df</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"population"</span>).mean())</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b47f83a7" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>(fuel_types_pop_df</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"population"</span>).mean())</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="37">
 <div><style>
 .dataframe > thead > tr,
@@ -3178,32 +3199,32 @@ Challenge
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Africa"</td>
-<td>"Rwanda"</td>
-<td>2017</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
 <td>"Europe"</td>
-<td>"Slovakia"</td>
-<td>2011</td>
-<td>NaN</td>
-</tr>
-<tr class="odd">
-<td>"Africa"</td>
-<td>"Seychelles"</td>
-<td>2019</td>
+<td>"Croatia"</td>
+<td>2015</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
 <td>"Americas"</td>
-<td>"Cuba"</td>
-<td>2018</td>
+<td>"El Salvador"</td>
+<td>2006</td>
 <td>NaN</td>
 </tr>
 <tr class="odd">
-<td>"Africa"</td>
-<td>"United Republic of Tanzania"</td>
+<td>"Eastern Mediterranean"</td>
+<td>"Afghanistan"</td>
+<td>2009</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td>"Western Pacific"</td>
+<td>"Niue"</td>
+<td>2003</td>
+<td>0.002506</td>
+</tr>
+<tr class="odd">
+<td>"Eastern Mediterranean"</td>
+<td>"Jordan"</td>
 <td>2000</td>
 <td>NaN</td>
 </tr>
@@ -3214,33 +3235,33 @@ Challenge
 <td>…</td>
 </tr>
 <tr class="odd">
-<td>"Europe"</td>
-<td>"North Macedonia"</td>
-<td>2022</td>
+<td>"Americas"</td>
+<td>"Haiti"</td>
+<td>2008</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
 <td>"Africa"</td>
-<td>"Mauritania"</td>
-<td>1994</td>
-<td>NaN</td>
+<td>"Mali"</td>
+<td>2007</td>
+<td>13.856042</td>
 </tr>
 <tr class="odd">
-<td>"Africa"</td>
-<td>"Botswana"</td>
-<td>2000</td>
+<td>"Europe"</td>
+<td>"Greece"</td>
+<td>2009</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
-<td>"Africa"</td>
-<td>"Guinea"</td>
-<td>2020</td>
+<td>"Western Pacific"</td>
+<td>"Tokelau"</td>
+<td>1999</td>
 <td>NaN</td>
 </tr>
 <tr class="odd">
 <td>"Americas"</td>
-<td>"Dominica"</td>
-<td>1990</td>
+<td>"Costa Rica"</td>
+<td>2009</td>
 <td>NaN</td>
 </tr>
 </tbody>
@@ -3251,21 +3272,21 @@ Challenge
 <p>This gives us a mean population estimate for each country and year. But you might notice something suspicious - some countries and years still show <code>NaN</code> values for the population. These missing values are a result of the division by zero we encountered earlier. To address this, we have a couple of options:</p>
 <p>We could drop the missing values directly before averaging, using <code>.drop_nans()</code>; OR We could filter out zero-valued records in the “proportion of population” column, which was used in the denominator of the population estimate.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="d7d3dd3d" class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>pop_years_df <span class="op">=</span> (fuel_types_pop_df</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>)</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"population"</span>).drop_nans().mean().alias(<span class="st">"mean_pop"</span>))</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>pop_years_df.write_csv(<span class="st">"hhap/pop_years_df.csv"</span>)</span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="co"># method 2</span></span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>(fuel_types</span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"prop_cooking_pct"</span>)<span class="op">&gt;</span><span class="dv">0</span>)</span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>    .with_columns(population<span class="op">=</span>pl.col(<span class="st">"pop_cooking_mln"</span>)<span class="op">/</span>pl.col(<span class="st">"prop_cooking_pct"</span>)<span class="op">*</span><span class="dv">100</span>)</span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>)</span>
-<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"population"</span>).mean())</span>
-<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3d1b67b6" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>pop_years_df <span class="op">=</span> (fuel_types_pop_df</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"population"</span>).drop_nans().mean().alias(<span class="st">"mean_pop"</span>))</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>pop_years_df.write_csv(<span class="st">"hhap/pop_years_df.csv"</span>)</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co"># method 2</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>(fuel_types</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"prop_cooking_pct"</span>)<span class="op">&gt;</span><span class="dv">0</span>)</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    .with_columns(population<span class="op">=</span>pl.col(<span class="st">"pop_cooking_mln"</span>)<span class="op">/</span>pl.col(<span class="st">"prop_cooking_pct"</span>)<span class="op">*</span><span class="dv">100</span>)</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>)</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"population"</span>).mean())</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="38">
 <div><style>
 .dataframe > thead > tr,
@@ -3293,69 +3314,69 @@ Challenge
 <tbody>
 <tr class="odd">
 <td>"Eastern Mediterranean"</td>
-<td>"Oman"</td>
-<td>1992</td>
-<td>1.995726</td>
+<td>"Jordan"</td>
+<td>2010</td>
+<td>7.091549</td>
 </tr>
 <tr class="even">
-<td>"Eastern Mediterranean"</td>
-<td>"Tunisia"</td>
-<td>1991</td>
-<td>8.436517</td>
+<td>"Europe"</td>
+<td>"Belarus"</td>
+<td>2012</td>
+<td>9.467327</td>
 </tr>
 <tr class="odd">
 <td>"Africa"</td>
-<td>"Liberia"</td>
-<td>2009</td>
-<td>3.883051</td>
-</tr>
-<tr class="even">
-<td>"Africa"</td>
-<td>"Cote d'Ivoire"</td>
-<td>2022</td>
-<td>27.493263</td>
-</tr>
-<tr class="odd">
-<td>"Western Pacific"</td>
-<td>"Tuvalu"</td>
-<td>2019</td>
-<td>0.011675</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>"Africa"</td>
-<td>"Algeria"</td>
-<td>1990</td>
-<td>26.048434</td>
+<td>"Cabo Verde"</td>
+<td>2010</td>
+<td>0.501373</td>
 </tr>
 <tr class="even">
 <td>"Americas"</td>
-<td>"Suriname"</td>
+<td>"Guyana"</td>
 <td>2003</td>
-<td>0.486523</td>
+<td>0.75383</td>
 </tr>
 <tr class="odd">
-<td>"Europe"</td>
-<td>"Armenia"</td>
-<td>2021</td>
-<td>2.933825</td>
+<td>"Americas"</td>
+<td>"Saint Vincent and the Grenadin…</td>
+<td>2018</td>
+<td>0.103589</td>
 </tr>
 <tr class="even">
-<td>"Eastern Mediterranean"</td>
-<td>"Afghanistan"</td>
-<td>2005</td>
-<td>25.092008</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
 </tr>
 <tr class="odd">
-<td>"Eastern Mediterranean"</td>
-<td>"Syrian Arab Republic"</td>
-<td>2016</td>
-<td>18.45028</td>
+<td>"South-East Asia"</td>
+<td>"Nepal"</td>
+<td>2008</td>
+<td>26.271461</td>
+</tr>
+<tr class="even">
+<td>"South-East Asia"</td>
+<td>"Timor-Leste"</td>
+<td>2007</td>
+<td>1.060346</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>"Fiji"</td>
+<td>2014</td>
+<td>0.8888</td>
+</tr>
+<tr class="even">
+<td>"Europe"</td>
+<td>"Kazakhstan"</td>
+<td>1990</td>
+<td>16.592762</td>
+</tr>
+<tr class="odd">
+<td>"Western Pacific"</td>
+<td>"Tonga"</td>
+<td>1993</td>
+<td>0.095054</td>
 </tr>
 </tbody>
 </table>
@@ -3379,21 +3400,21 @@ Challenge
 <p>Plot the total population per region over time.</p>
 </div>
 </div>
-<div id="c4b696f3" class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>(fuel_types_pop_df</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"population"</span>).drop_nans().mean())</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"year"</span>)</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"population"</span>).<span class="bu">sum</span>())</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_line(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"population"</span>, color<span class="op">=</span><span class="st">"region"</span>))</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>scale_color_cmap_d()</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme_seaborn()</span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="455499d4" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>(fuel_types_pop_df</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"country"</span>, <span class="st">"year"</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"population"</span>).drop_nans().mean())</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"year"</span>)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"population"</span>).<span class="bu">sum</span>())</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_line(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"population"</span>, color<span class="op">=</span><span class="st">"region"</span>))</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>scale_color_cmap_d()</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme_seaborn()</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wrangling_files/figure-html/cell-40-output-1.png" width="672" height="480" class="figure-img"></p>
+<p><img src="wrangling_files/figure-html/cell-41-output-1.png" width="672" height="480" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -3415,35 +3436,15 @@ Challenge
 <p>Visualize the total number of people using each type of fuel for cooking, for every year, worldwide.</p>
 </div>
 </div>
-<div id="75a0b777" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>(fuel_types_pop_df</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"fuel_type"</span>, <span class="st">"year"</span>)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"pop_cooking_mln"</span>).drop_nans().<span class="bu">sum</span>())</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_line(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"pop_cooking_mln"</span>, color<span class="op">=</span><span class="st">"fuel_type"</span>, group<span class="op">=</span><span class="st">"fuel_type"</span>))</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>scale_color_cmap_d()</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> theme_seaborn()</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="wrangling_files/figure-html/cell-41-output-1.png" width="672" height="480" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>This plot looks fantastic! By aggregating by fuel type and year, we can clearly see trends in fuel usage globally. But we can take this further. What if we wanted to break this data down by region? Faceting would allow us to examine the trends within each region more closely.</p>
-<p>&lt; PAUSE &gt;</p>
-<div id="07951473" class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    fuel_types</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"fuel_type"</span>, <span class="st">"year"</span>, <span class="st">"region"</span>)</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"pop_cooking_mln"</span>).drop_nans().<span class="bu">sum</span>())</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_line(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"pop_cooking_mln"</span>, color<span class="op">=</span><span class="st">"fuel_type"</span>, group<span class="op">=</span><span class="st">"fuel_type"</span>))</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>facet_wrap(<span class="st">"region"</span>, ncol<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme_seaborn()</span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d4a46a4e" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>(fuel_types_pop_df</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"fuel_type"</span>, <span class="st">"year"</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"pop_cooking_mln"</span>).drop_nans().<span class="bu">sum</span>())</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_line(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"pop_cooking_mln"</span>, color<span class="op">=</span><span class="st">"fuel_type"</span>, group<span class="op">=</span><span class="st">"fuel_type"</span>))</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>scale_color_cmap_d()</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> theme_seaborn()</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -3452,17 +3453,37 @@ Challenge
 </div>
 </div>
 </div>
-<p>With this plot, we can see unique trends for every region. Across the globe, electricity and gas are becoming more prevalent. Yet, biomass remains crucial in regions like Africa and Southeast Asia. However, there’s still a challenge here. Because the number of people using each fuel type varies so widely across regions, it’s difficult to compare the energy mix within each region.</p>
-<p>To make the energy mix clearer, we can represent the share of the population relying on each fuel type within a region. This requires dividing the number of people using each fuel by the annual total population for the region. We’ll use Polars’ <code>.over()</code> method to calculate these totals for subgroups without collapsing the data.</p>
+<p>This plot looks fantastic! By aggregating by fuel type and year, we can clearly see trends in fuel usage globally. But we can take this further. What if we wanted to break this data down by region? Faceting would allow us to examine the trends within each region more closely.</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="db6a583a" class="cell" data-execution_count="42">
+<div id="c86ade29" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    fuel_types</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"fuel_type"</span>, <span class="st">"year"</span>, <span class="st">"region"</span>)</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"pop_cooking_mln"</span>).<span class="bu">sum</span>())</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    .with_columns(prop_pop<span class="op">=</span>(pl.col(<span class="st">"pop_cooking_mln"</span>)<span class="op">/</span>pl.col(<span class="st">"pop_cooking_mln"</span>).<span class="bu">sum</span>())</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>                            .over(<span class="st">"year"</span>, <span class="st">"region"</span>))</span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"pop_cooking_mln"</span>).drop_nans().<span class="bu">sum</span>())</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_line(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"pop_cooking_mln"</span>, color<span class="op">=</span><span class="st">"fuel_type"</span>, group<span class="op">=</span><span class="st">"fuel_type"</span>))</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>facet_wrap(<span class="st">"region"</span>, ncol<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme_seaborn()</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="wrangling_files/figure-html/cell-43-output-1.png" width="672" height="480" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>With this plot, we can see unique trends for every region. Across the globe, electricity and gas are becoming more prevalent. Yet, biomass remains crucial in regions like Africa and Southeast Asia. However, there’s still a challenge here. Because the number of people using each fuel type varies so widely across regions, it’s difficult to compare the energy mix within each region.</p>
+<p>To make the energy mix clearer, we can represent the share of the population relying on each fuel type within a region. This requires dividing the number of people using each fuel by the annual total population for the region. We’ll use Polars’ <code>.over()</code> method to calculate these totals for subgroups without collapsing the data.</p>
+<p>&lt; PAUSE &gt;</p>
+<div id="c53d2763" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    fuel_types</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"fuel_type"</span>, <span class="st">"year"</span>, <span class="st">"region"</span>)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"pop_cooking_mln"</span>).<span class="bu">sum</span>())</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    .with_columns(prop_pop<span class="op">=</span>(pl.col(<span class="st">"pop_cooking_mln"</span>)<span class="op">/</span>pl.col(<span class="st">"pop_cooking_mln"</span>).<span class="bu">sum</span>())</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>                            .over(<span class="st">"year"</span>, <span class="st">"region"</span>))</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="42">
 <div><style>
 .dataframe > thead > tr,
@@ -3491,81 +3512,81 @@ Challenge
 </thead>
 <tbody>
 <tr class="odd">
-<td>"Charcoal"</td>
-<td>2012</td>
-<td>"South-East Asia"</td>
-<td>15.79</td>
-<td>0.008563</td>
+<td>"Gas"</td>
+<td>2014</td>
+<td>"Western Pacific"</td>
+<td>842.8904</td>
+<td>0.506597</td>
 </tr>
 <tr class="even">
 <td>"Kerosene"</td>
-<td>2006</td>
-<td>"Americas"</td>
-<td>3.3944</td>
-<td>0.006096</td>
-</tr>
-<tr class="odd">
-<td>"Charcoal"</td>
-<td>2005</td>
+<td>1994</td>
 <td>"Eastern Mediterranean"</td>
-<td>4.676</td>
-<td>0.009215</td>
-</tr>
-<tr class="even">
-<td>"Gas"</td>
-<td>1991</td>
-<td>"Western Pacific"</td>
-<td>499.6167</td>
-<td>0.372423</td>
+<td>51.287</td>
+<td>0.132568</td>
 </tr>
 <tr class="odd">
 <td>"Biomass"</td>
-<td>2002</td>
-<td>"Western Pacific"</td>
-<td>476.2364</td>
-<td>0.309112</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr class="odd">
-<td>"Electricity"</td>
-<td>2019</td>
-<td>"Europe"</td>
-<td>90.576</td>
-<td>0.194981</td>
-</tr>
-<tr class="even">
-<td>"Kerosene"</td>
-<td>2017</td>
-<td>"Africa"</td>
-<td>47.517</td>
-<td>0.045989</td>
-</tr>
-<tr class="odd">
-<td>"Kerosene"</td>
 <td>1995</td>
 <td>"South-East Asia"</td>
-<td>171.036</td>
-<td>0.119992</td>
+<td>982.24</td>
+<td>0.689101</td>
+</tr>
+<tr class="even">
+<td>"Coal"</td>
+<td>2021</td>
+<td>"Africa"</td>
+<td>3.48</td>
+<td>0.003052</td>
+</tr>
+<tr class="odd">
+<td>"Coal"</td>
+<td>1993</td>
+<td>"Americas"</td>
+<td>1.817</td>
+<td>0.003979</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>"Charcoal"</td>
+<td>1997</td>
+<td>"South-East Asia"</td>
+<td>26.949</td>
+<td>0.018254</td>
 </tr>
 <tr class="even">
 <td>"Electricity"</td>
 <td>1997</td>
-<td>"Europe"</td>
-<td>83.022</td>
-<td>0.185184</td>
+<td>"Americas"</td>
+<td>14.9203</td>
+<td>0.03047</td>
 </tr>
 <tr class="odd">
-<td>"Biomass"</td>
-<td>2002</td>
+<td>"Charcoal"</td>
+<td>1991</td>
 <td>"South-East Asia"</td>
-<td>1046.013</td>
-<td>0.650521</td>
+<td>32.465</td>
+<td>0.024582</td>
+</tr>
+<tr class="even">
+<td>"Charcoal"</td>
+<td>1990</td>
+<td>"Eastern Mediterranean"</td>
+<td>4.2046</td>
+<td>0.012493</td>
+</tr>
+<tr class="odd">
+<td>"Gas"</td>
+<td>2018</td>
+<td>"Africa"</td>
+<td>134.341</td>
+<td>0.126775</td>
 </tr>
 </tbody>
 </table>
@@ -3574,26 +3595,26 @@ Challenge
 </div>
 <p>I wrap the expression into parenthesis and pass it to the <code>.over()</code> method which defines the scope for the <code>.sum()</code> operation. Note that this is different from aggregation, because the number of rows actually does not change. Lets visualize it!</p>
 <p>&lt; PAUSE &gt;</p>
-<div id="e7e3b15e" class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    fuel_types</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"fuel_type"</span>, <span class="st">"year"</span>, <span class="st">"region"</span>)</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"pop_cooking_mln"</span>).<span class="bu">sum</span>())</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    .with_columns(prop_pop<span class="op">=</span>(pl.col(<span class="st">"pop_cooking_mln"</span>)<span class="op">/</span>pl.col(<span class="st">"pop_cooking_mln"</span>).<span class="bu">sum</span>())</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>                            .over(<span class="st">"year"</span>, <span class="st">"region"</span>))</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_area(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"prop_pop"</span>, fill<span class="op">=</span><span class="st">"fuel_type"</span>))</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>facet_wrap(<span class="st">"region"</span>, ncol<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>scale_fill_cmap_d()</span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme_linedraw()</span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>labs(title<span class="op">=</span><span class="st">"Energy mix per world region"</span>,</span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>        subtitle<span class="op">=</span><span class="st">"From biomass to natural gas"</span>,</span>
-<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">"Share of population"</span>, x<span class="op">=</span><span class="st">"Year"</span>, fill<span class="op">=</span><span class="st">"Fuel Type"</span>)</span>
-<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e09eabec" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    fuel_types</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"fuel_type"</span>, <span class="st">"year"</span>, <span class="st">"region"</span>)</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"pop_cooking_mln"</span>).<span class="bu">sum</span>())</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    .with_columns(prop_pop<span class="op">=</span>(pl.col(<span class="st">"pop_cooking_mln"</span>)<span class="op">/</span>pl.col(<span class="st">"pop_cooking_mln"</span>).<span class="bu">sum</span>())</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>                            .over(<span class="st">"year"</span>, <span class="st">"region"</span>))</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot)</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_area(aes(x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"prop_pop"</span>, fill<span class="op">=</span><span class="st">"fuel_type"</span>))</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>facet_wrap(<span class="st">"region"</span>, ncol<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>scale_fill_cmap_d()</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme_linedraw()</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>labs(title<span class="op">=</span><span class="st">"Energy mix per world region"</span>,</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>        subtitle<span class="op">=</span><span class="st">"From biomass to natural gas"</span>,</span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">"Share of population"</span>, x<span class="op">=</span><span class="st">"Year"</span>, fill<span class="op">=</span><span class="st">"Fuel Type"</span>)</span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wrangling_files/figure-html/cell-44-output-1.png" width="672" height="480" class="figure-img"></p>
+<p><img src="wrangling_files/figure-html/cell-45-output-1.png" width="672" height="480" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -3617,27 +3638,27 @@ Challenge
 <p>Create a column chart showing the top 10 countries by the number of people using coal and charcoal for cooking in 2022. Color the columns by continent. How many of these top-10 countries are in Africa?</p>
 </div>
 </div>
-<div id="feef8ee6" class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>(fuel_types</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"fuel_type"</span>).<span class="bu">str</span>.ends_with(<span class="st">"oal"</span>),</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"year"</span>)<span class="op">==</span><span class="dv">2022</span>,</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"pop_cooking_mln"</span>)<span class="op">&gt;</span><span class="dv">0</span>)</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"country"</span>)</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"pop_cooking_mln"</span>).<span class="bu">sum</span>())</span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    .sort(<span class="st">"pop_cooking_mln"</span>, descending<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(x<span class="op">=</span><span class="st">"reorder(country, pop_cooking_mln)"</span>, y<span class="op">=</span><span class="st">"pop_cooking_mln"</span>, fill<span class="op">=</span><span class="st">"region"</span>))</span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_col()</span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>coord_flip()</span>
-<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme_seaborn()</span>
-<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme(legend_position<span class="op">=</span><span class="st">"bottom"</span>,</span>
-<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>        axis_title_y<span class="op">=</span>element_blank(),</span>
-<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>        figure_size<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span>
-<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5b91c9fc" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>(fuel_types</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">filter</span>(pl.col(<span class="st">"fuel_type"</span>).<span class="bu">str</span>.ends_with(<span class="st">"oal"</span>),</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"year"</span>)<span class="op">==</span><span class="dv">2022</span>,</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>            pl.col(<span class="st">"pop_cooking_mln"</span>)<span class="op">&gt;</span><span class="dv">0</span>)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">"region"</span>, <span class="st">"country"</span>)</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>    .agg(pl.col(<span class="st">"pop_cooking_mln"</span>).<span class="bu">sum</span>())</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>    .sort(<span class="st">"pop_cooking_mln"</span>, descending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>    .head(<span class="dv">10</span>)</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>    .pipe(ggplot, aes(x<span class="op">=</span><span class="st">"reorder(country, pop_cooking_mln)"</span>, y<span class="op">=</span><span class="st">"pop_cooking_mln"</span>, fill<span class="op">=</span><span class="st">"region"</span>))</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>geom_col()</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>coord_flip()</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme_seaborn()</span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span>theme(legend_position<span class="op">=</span><span class="st">"bottom"</span>,</span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>        axis_title_y<span class="op">=</span>element_blank(),</span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>        figure_size<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">5</span>))</span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="wrangling_files/figure-html/cell-45-output-1.png" width="960" height="480" class="figure-img"></p>
+<p><img src="wrangling_files/figure-html/cell-46-output-1.png" width="960" height="480" class="figure-img"></p>
 </figure>
 </div>
 </div>
