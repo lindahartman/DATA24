@@ -453,38 +453,54 @@ $ cd data-literacy-project
 $ uv init</code></pre>
 <p>Either way, once you’re inside the folder, it’s ready to go! You can explore what uv has created for you by running <code>ls</code>. One of the files you’ll see is pyproject.toml. This is your project’s manifest—a file where uv tracks metadata about your project, including its dependencies (the libraries it needs).</p>
 <p>Speaking of dependencies, let’s add some libraries. Run the following commands:</p>
+<pre><code>$ uv add plotnine polars pyarrow great_tables
+$ uv add "gapminder @ git+https://github.com/dmi3kno/gapminderpy"
+$ uv add --dev setuptools jupyter ipykernel pyyaml nbformat nbclient jupyterlab-quarto</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Update 2026:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To fix issues in the gapminder package (or rather obsolete dependencies), what we instruct here is a modified version of the original code we show in the videos.</p>
 <pre><code>$ uv add gapminder plotnine polars pyarrow great_tables
 $ uv add --dev setuptools jupyter ipykernel pyyaml nbformat nbclient jupyterlab-quarto</code></pre>
+</div>
+</div>
 <p>These commands install several Python libraries we’ll use throughout the course. Here we separated the main packages we need for analysis and visualization (listed here in the first line), from the auxilliary packages used to set up a computing environment, the tools we are going to use. The idea is that your Python code relying on main dependencies may stay the same, while the computing setup may look completely different. In this course we will be using Jupyter notebooks, but the same analysis can be performed in Python script files in an IDE, such as VS Studio Code or Positron.</p>
 <p>As you run these commands, you will notice that uv installs more packages than we requested. It pulls in the packages that these specified libraries rely on — it handles all the messy details of software dependecies for you! And thanks to uv, the installation will be lightning-fast.</p>
 <p>Curious about what just happened? I want to leave you with a fun little command: it’s called cat. Yes, like the furry little animal! The cat command is a handy way to view the contents of small files directly in your terminal. For larger files, it might take a while to load, but for our purposes, cat is perfect.</p>
 <p>Let’s use it to check out the contents of our project manifest file. In your terminal, type:</p>
 <pre><code>cat pyproject.toml</code></pre>
 <p>When you hit enter, you’ll see something like this:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="at">project</span><span class="kw">]</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="at">name = "data-literacy-project"</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="at">version = "0.1.0"</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="at">description = "Add your description here"</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="at">readme = "README.md"</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="at">requires-python = "&gt;=3.10"</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="at">dependencies = [</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"gapminder&gt;=0.1"</span><span class="at">,</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"great-tables&gt;=0.17.0"</span><span class="at">,</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"plotnine&gt;=0.14.5"</span><span class="at">,</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"polars&gt;=1.25.2"</span><span class="at">,</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"pyarrow&gt;=19.0.1"</span><span class="at">,</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="at">]</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="at">tool.uv</span><span class="kw">]</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="at">dev-dependencies = [</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"ipykernel&gt;=6.29.5"</span><span class="at">,</span></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"jupyter&gt;=1.1.1"</span><span class="at">,</span></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"jupyterlab-quarto&gt;=0.3.5"</span><span class="at">,</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"nbclient&gt;=0.10.2"</span><span class="at">,</span></span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"nbformat&gt;=5.10.4"</span><span class="at">,</span></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"pyyaml&gt;=6.0.2"</span><span class="at">,</span></span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"setuptools&gt;=77.0.3"</span><span class="at">,</span></span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="at">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="at">project</span><span class="kw">]</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="at">name = "data-literacy-project"</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="at">version = "0.1.0"</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="at">description = "Add your description here"</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="at">readme = "README.md"</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="at">requires-python = "&gt;=3.10"</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="at">dependencies = [</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"gapminder&gt;=0.1"</span><span class="at">,</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"great-tables&gt;=0.17.0"</span><span class="at">,</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"plotnine&gt;=0.14.5"</span><span class="at">,</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"polars&gt;=1.25.2"</span><span class="at">,</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"pyarrow&gt;=19.0.1"</span><span class="at">,</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="at">]</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="kw">[</span><span class="at">tool.uv</span><span class="kw">]</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="at">dev-dependencies = [</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"ipykernel&gt;=6.29.5"</span><span class="at">,</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"jupyter&gt;=1.1.1"</span><span class="at">,</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"jupyterlab-quarto&gt;=0.3.5"</span><span class="at">,</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"nbclient&gt;=0.10.2"</span><span class="at">,</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"nbformat&gt;=5.10.4"</span><span class="at">,</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"pyyaml&gt;=6.0.2"</span><span class="at">,</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="st">"setuptools&gt;=77.0.3"</span><span class="at">,</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="at">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This file, pyproject.toml, serves as a “manifest” for your project. It keeps track of metadata like your project name, version, and—most importantly—dependencies. Each time you add a new library with <code>uv</code> add, it’s recorded here.</p>
 <p>Now, here’s something happening behind the scenes: <code>uv</code> created a hidden folder called <code>.venv</code>. This stands for “virtual environment,” and it’s where all your project’s libraries and dependencies live. Hidden files and folders don’t show up when you run <code>ls</code>— not unless you add the -a flag to the command, so <code>ls -a</code> will, in fact, show that you have this <code>.venv</code> folder in your project directory. But don’t worry that this folder stays hidden, you’ll rarely, if ever, need to open it. <code>uv</code> manages this folder for you, so you can focus on your work without getting bogged down in the details.</p>
 <p>Here’s the most important thing to know: the <code>.venv</code> folder is what makes your project self-contained. All your dependencies are stored there, safe and separate from anything else on your system. This is especially useful if you want to share your work later — a topic we’ll cover in the final module of this course.</p>
